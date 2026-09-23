@@ -14,3 +14,10 @@ if (typeof window !== 'undefined' && !window.matchMedia) {
     dispatchEvent: () => false,
   })
 }
+
+// jsdom doesn't implement scrollTo — polyfill it as a no-op so
+// useRouteTransitionEffects' scroll-restoration-on-navigate doesn't log a
+// noisy "not implemented" warning on every route-change test.
+if (typeof window !== 'undefined') {
+  window.scrollTo = () => {}
+}

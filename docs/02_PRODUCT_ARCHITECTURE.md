@@ -144,4 +144,38 @@ All sections above are now implemented, not just proposed: the Vite+React+TS sca
 ## 10. Remaining Open Items
 
 - Confirm final choice of `HashRouter` vs. `BrowserRouter` + static-host redirect rules once the target deployment host is chosen (Phase 15) — `HashRouter` is the Phase 1 implementation and works without further configuration regardless of host.
-- Confirm whether the dummy Login/Signup state should persist via `sessionStorage` (survives reload) or be purely in-memory (resets on reload) — Phase 1 implements it as in-memory (simplest, least likely to be mistaken for real auth persistence); revisit if the Director prefers `sessionStorage` for a more convincing demo.
+
+## 11. Dummy Authentication (resolved, D-025)
+
+FR-045 requires Login/Signup buttons that are UI-only and perform no real authentication. The Phase 1/2 open item — in-memory vs. `localStorage`-backed state — is resolved: **in-memory only** (`src/stores/uiStore.ts`, no `persist` middleware). Rationale:
+
+- The SRS asks only that the buttons exist and not authenticate anyone (p.14) — nothing requires the "logged in" state to survive a reload.
+- Director's Phase 3 instruction explicitly asks for "the simplest architecture consistent with the SRS," and in-memory is strictly simpler than adding a `persist`-backed store key for state that carries no real identity.
+- `localStorage` persistence would make the demo state survive a reload and a browser restart — behaviorally indistinguishable from a *real* remembered session to an observer, which risks being mistaken for actual authentication despite the UI-only disclaimer in the dialog (`DummyAuthModal.module.css`'s `.notice`). In-memory avoids that ambiguity entirely: reloading always returns to a logged-out state, reinforcing that nothing was really "signed in."
+- No credentials are ever read from the form fields into state — the email/password inputs are purely presentational (`DummyAuthModal.tsx`'s `handleSubmit` never reads `event.target` values), so there is nothing sensitive to protect or accidentally persist.
+
+No code change was needed — this was already Phase 1's implementation; Phase 3 formally closes the open question rather than changes the behavior.
+
+## 12. Route Transition UX (Phase 3, D-026/D-027)
+
+Two real gaps found in the Phase 3 audit, both fixed via one shared mechanism:
+
+- **Page titles**: every route previously showed the same static `index.html` title. `src/components/DocumentTitle/DocumentTitle.tsx` now sets `document.title` per route from `handle.title` in `src/routes/routes.tsx`, via the same `useMatches()` pattern already proven for `Breadcrumb` — one source of truth, not hand-maintained per page. Convention: `FandomVerse — Portal for Fandom World` on Home, `FandomVerse — <Page>` everywhere else (e.g. `FandomVerse — Anime`, `FandomVerse — Search`, `FandomVerse — Page Not Found`). The router's `errorElement` (`RouteErrorFallback`) replaces the entire root route tree on a render error, so `DocumentTitle` never mounts in that case — it sets its own title directly.
+- **Scroll restoration + focus management**: `src/hooks/useRouteTransitionEffects.ts`, used once in `RootLayout`, scrolls to the top and moves focus to `#main-content` on every route change *except* the initial page load (so it doesn't fight the browser's own initial-focus behavior) and *except* same-page query-string changes (e.g. a search query update doesn't reset scroll/focus, only an actual route change does). This closes a real accessibility gap: previously nothing indicated to screen-reader users that navigation had occurred, and scroll position leaked from the previous page.
+
+## 13. Route-Level Code Splitting (audited, deferred — D-028)
+
+The Phase 3 architecture audit (§1) checked for route-level `Suspense`/lazy boundaries: **none exist yet** — all 17 page components are bundled into the single main JS chunk (only the cinematic layer's Three.js/R3F code is lazy-loaded, per Phase 1). This is a deliberate, documented deferral, not an oversight: code-splitting is a performance-optimization technique, and both this phase's and Phase 1's instructions explicitly reserve performance optimization for Phase 13. The current main bundle (363KB / 113KB gzip) doesn't yet warrant the added complexity of restructuring `CategoryHubPage`'s prop-based category selection (currently passed from the route config, which doesn't compose cleanly with React Router's `route.lazy` API) — that refactor is better done once, in Phase 13, alongside the rest of the bundle-size work.
+
+## 14. Page Title Convention
+
+| Route pattern | Title |
+|---|---|
+| `/` (Home) | `FandomVerse — Portal for Fandom World` |
+| `/anime`, `/gaming`, … (7 category hubs) | `FandomVerse — <Category Name>` (e.g. `FandomVerse — Anime`) |
+| `/category/:slug` | `FandomVerse — Category` |
+| `/article/:id`, `/character/:id`, `/event/:id`, `/product/:id` | `FandomVerse — Article` / `— Character` / `— Event` / `— Product` (generic per-type title; dynamic per-item titles using the actual content name are a Phase 5+ enhancement once real content exists) |
+| `/search`, `/trailers`, `/events`, `/merchandise`, `/cart`, `/bookmarks`, `/contact`, `/about` | `FandomVerse — <Page Name>` |
+| `/releases` | `FandomVerse — Upcoming Releases` |
+| Unmatched route | `FandomVerse — Page Not Found` |
+| Render error (`errorElement`) | `FandomVerse — Something Went Wrong` |

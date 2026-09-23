@@ -8,7 +8,7 @@ FandomVerse's own visual language and component system. Written from principles,
 - **One shell, seven identities.** A single consistent layout/interaction language across all 7 category hubs, expressed through a distinct accent color per category (§9) so each fandom feels distinct without needing a different UX per hub.
 - **Motion with intent.** Animation calls out state changes (hover, added-to-cart, dialog open) — it is never decorative noise, and it always has a reduced-motion equivalent (§7).
 - **Original, not derivative.** Kage informs technique (scroll-driven pacing, WebGL depth) but FandomVerse's palette, type, iconography, and narrative concept are original. No color values, component shapes, font choices, copy, or imagery are lifted from the Kage landing page (§10).
-- **Dark-first, dark-only, deliberately.** FandomVerse is a "digital fandom universe" — a dark canvas that per-category accents and controlled glow sit on top of. There is no light theme and no theme toggle; this is a documented decision (D-016), not a missing feature (§2).
+- **Dark-first, dark-only, deliberately.** FandomVerse is a "digital fandom universe" — a dark canvas that per-category accents and controlled glow sit on top of. There is no light theme and no theme toggle; this is a documented decision (D-016, formally re-confirmed under explicit Phase 3 review as D-029), not a missing feature (§2).
 
 ## 2. Token Architecture
 
