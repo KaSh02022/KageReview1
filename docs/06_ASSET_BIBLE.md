@@ -67,7 +67,11 @@ Every non-originally-created asset entry must have a matching row in `08_LICENSE
 
 ## 9. Gemini Asset Prompts
 
-This section holds prompt drafts for Gemini-based visual generation, to be refined and executed in Phase 2 (Design System) and Phase 5–8 (content population). No assets have been generated yet — these are starting prompts, not a record of completed work.
+> **Superseded by Phase 5B.** The production prompt set now lives in `GEMINI_IMAGE_PROMPTS.md` — 70 fully composed, production-ready prompts generated from the live content data, with a shared visual language in `AI_IMAGE_ASSET_BIBLE.md`, an inventory in `ASSET_MANIFEST.md`, a provenance workflow in `ASSET_PROVENANCE.md`, and an acceptance gate in `AI_ASSET_REVIEW_CHECKLIST.md`.
+>
+> The drafts below are kept as the Phase 0 historical record. They predate the seven original franchises created in Phase 5 (D-037) and the measured image classes established in Phase 5B (D-044), so **do not generate from them** — they would produce art inconsistent with the current content and would be cropped incorrectly by the real UI.
+
+This section holds the original Phase 0 prompt drafts. No assets have been generated from them.
 
 **Style direction constraint for every prompt below:** original fandom-portal aesthetic, NOT a copy of any specific real franchise's official art, NOT a copy of Kage's imagery/branding. Aim for a distinct, cohesive "FandomVerse" visual identity across all 7 categories, with per-category accent variation.
 
