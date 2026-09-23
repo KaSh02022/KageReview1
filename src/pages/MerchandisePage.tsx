@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
 import { merchandise } from '../data'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
+import { Card, CardHeader, CardBody } from '../components/ui/Card/Card'
+import { Grid } from '../components/ui/Layout/Grid'
 
 export function MerchandisePage() {
   return (
@@ -10,14 +11,18 @@ export function MerchandisePage() {
       requirementIds={['FR-027', 'FR-028', 'FR-029', 'FR-030', 'FR-031']}
       phase="Phase 9"
     >
-      <ul>
+      <Grid minItemWidth={220} gap="md">
         {merchandise.map((product) => (
-          <li key={product.id}>
-            <Link to={`/product/${product.id}`}>{product.name}</Link> — {product.currency}{' '}
-            {product.priceRangeMin}–{product.priceRangeMax}
-          </li>
+          <Card key={product.id} to={`/product/${product.id}`}>
+            <CardHeader>
+              <h3>{product.name}</h3>
+            </CardHeader>
+            <CardBody>
+              {product.currency} {product.priceRangeMin}–{product.priceRangeMax}
+            </CardBody>
+          </Card>
         ))}
-      </ul>
+      </Grid>
     </PagePlaceholder>
   )
 }

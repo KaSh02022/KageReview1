@@ -1,8 +1,21 @@
-import { Link } from 'react-router-dom'
 import { CATEGORY_ROUTES } from '../routes/routes'
 import { CinematicEntry } from '../features/universe/CinematicEntry'
 import { articles, getCategoryById } from '../data'
+import { SectionHeader } from '../components/ui/SectionHeader/SectionHeader'
+import { Grid } from '../components/ui/Layout/Grid'
+import { Card, CardHeader, CardBody } from '../components/ui/Card/Card'
+import { EmptyState } from '../components/EmptyState/EmptyState'
 import styles from './HomePage.module.css'
+
+const CATEGORY_ACCENT_VAR: Record<string, string> = {
+  anime: 'var(--color-accent-anime)',
+  gaming: 'var(--color-accent-gaming)',
+  movies: 'var(--color-accent-movies)',
+  'tv-shows': 'var(--color-accent-tvshows)',
+  'k-pop': 'var(--color-accent-kpop)',
+  comics: 'var(--color-accent-comics)',
+  manga: 'var(--color-accent-manga)',
+}
 
 export function HomePage() {
   const featured = articles.filter((article) => article.featured)
@@ -11,33 +24,45 @@ export function HomePage() {
     <div className={styles.wrapper}>
       <CinematicEntry />
 
-      <section aria-labelledby="category-grid-heading" className={styles.section}>
-        <h2 id="category-grid-heading">Explore fandoms</h2>
-        <div className={styles.categoryGrid}>
+      <section aria-labelledby="category-grid-heading">
+        <SectionHeader
+          id="category-grid-heading"
+          eyebrow="Seven worlds, one portal"
+          title="Explore fandoms"
+        />
+        <Grid minItemWidth={200} gap="md">
           {CATEGORY_ROUTES.map((category) => {
             const meta = getCategoryById(category.categoryId)
             return (
-              <Link key={category.path} to={`/${category.path}`} className={styles.categoryCard}>
-                <h3>{category.label}</h3>
-                {meta && <p>{meta.tagline}</p>}
-              </Link>
+              <Card key={category.path} to={`/${category.path}`} accent={CATEGORY_ACCENT_VAR[category.path]}>
+                <CardHeader>
+                  <h3>{category.label}</h3>
+                </CardHeader>
+                {meta && <CardBody>{meta.tagline}</CardBody>}
+              </Card>
             )
           })}
-        </div>
+        </Grid>
       </section>
 
-      <section aria-labelledby="featured-heading" className={styles.section}>
-        <h2 id="featured-heading">Featured content</h2>
+      <section aria-labelledby="featured-heading">
+        <SectionHeader id="featured-heading" title="Featured content" />
         {featured.length === 0 ? (
-          <p>No featured content yet — full content population happens in later phases.</p>
+          <EmptyState
+            title="No featured content yet"
+            description="Full content population happens in later phases."
+          />
         ) : (
-          <ul className={styles.featuredList}>
+          <Grid minItemWidth={240} gap="md">
             {featured.map((article) => (
-              <li key={article.id}>
-                <Link to={`/article/${article.id}`}>{article.title}</Link>
-              </li>
+              <Card key={article.id} to={`/article/${article.id}`}>
+                <CardHeader>
+                  <h3>{article.title}</h3>
+                </CardHeader>
+                <CardBody>{article.summary}</CardBody>
+              </Card>
             ))}
-          </ul>
+          </Grid>
         )}
       </section>
     </div>

@@ -1,0 +1,73 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-md);
+}
+
+.panel {
+  width: 100%;
+  max-height: min(85vh, 720px);
+  overflow-y: auto;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-dialog);
+  animation: dialog-in var(--duration-normal) var(--easing-standard);
+}
+
+.size-sm {
+  max-width: var(--dialog-width-sm);
+}
+
+.size-md {
+  max-width: var(--dialog-width-md);
+}
+
+.size-lg {
+  max-width: var(--dialog-width-lg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.title {
+  font: var(--font-h3);
+  margin: 0;
+}
+
+.description {
+  color: var(--color-text-muted);
+  font: var(--font-body-small);
+  margin: var(--space-sm) 0 0;
+}
+
+.body {
+  margin-top: var(--space-md);
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+}

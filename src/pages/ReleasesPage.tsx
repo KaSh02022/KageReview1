@@ -1,6 +1,9 @@
 import { releases } from '../data'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
 import { EmptyState } from '../components/EmptyState/EmptyState'
+import { Grid } from '../components/ui/Layout/Grid'
+import { Card, CardHeader, CardMeta } from '../components/ui/Card/Card'
+import { Badge } from '../components/ui/Badge/Badge'
 
 export function ReleasesPage() {
   return (
@@ -12,13 +15,19 @@ export function ReleasesPage() {
       {releases.length === 0 ? (
         <EmptyState title="No releases yet" />
       ) : (
-        <ul>
+        <Grid minItemWidth={220} gap="md">
           {releases.map((release) => (
-            <li key={release.id}>
-              {release.title} — {release.releaseDate} ({release.type})
-            </li>
+            <Card key={release.id}>
+              <CardHeader>
+                <h3>{release.title}</h3>
+              </CardHeader>
+              <CardMeta>
+                <span>{release.releaseDate}</span>
+                <Badge tone="neutral">{release.type}</Badge>
+              </CardMeta>
+            </Card>
           ))}
-        </ul>
+        </Grid>
       )}
     </PagePlaceholder>
   )

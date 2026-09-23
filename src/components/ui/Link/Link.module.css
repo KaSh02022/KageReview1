@@ -1,0 +1,23 @@
+.link {
+  transition: color var(--duration-fast) var(--easing-standard);
+}
+
+.tone-muted {
+  color: var(--color-text-muted);
+}
+
+.tone-muted:hover {
+  color: var(--color-text-primary);
+}
+
+.tone-primary {
+  color: var(--color-primary);
+}
+
+.tone-primary:hover {
+  color: var(--color-primary-hover);
+}
+
+.underline {
+  text-decoration: underline;
+}

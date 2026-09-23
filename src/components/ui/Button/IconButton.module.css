@@ -1,0 +1,20 @@
+.size-small {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: var(--font-size-base);
+}
+
+.size-medium {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: var(--font-size-lg);
+}
+
+.size-large {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  font-size: var(--font-size-xl);
+}

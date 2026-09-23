@@ -1,5 +1,8 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react'
-import styles from './ErrorBoundary.module.css'
+import { ErrorState } from '../ui/ErrorState/ErrorState'
+import { Button } from '../ui/Button/Button'
+import { Link } from '../ui/Link/Link'
+import buttonStyles from '../ui/Button/Button.module.css'
 
 interface Props {
   children: ReactNode
@@ -29,19 +32,23 @@ export class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.error) {
       return (
-        <div className={styles.wrapper} role="alert">
-          <h1>Something went wrong</h1>
-          <p>
-            This section of FandomVerse hit an unexpected error. You can try again, or head back
-            to the home page.
-          </p>
-          <div className={styles.actions}>
-            <button type="button" onClick={this.handleReset}>
-              Try again
-            </button>
-            <a href="#/">Go home</a>
-          </div>
-        </div>
+        <ErrorState
+          title="Something went wrong"
+          description="This section of FandomVerse hit an unexpected error. You can try again, or head back to the home page."
+          action={
+            <>
+              <Button variant="primary" onClick={this.handleReset}>
+                Try again
+              </Button>
+              <Link
+                to="/"
+                className={`${buttonStyles.button} ${buttonStyles['variant-outline']} ${buttonStyles['size-medium']}`}
+              >
+                Go home
+              </Link>
+            </>
+          }
+        />
       )
     }
 

@@ -1,0 +1,4 @@
+.entryLabel {
+  display: block;
+  margin-bottom: var(--space-sm);
+}

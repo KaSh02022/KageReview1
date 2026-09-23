@@ -2,6 +2,11 @@ import { useBookmarksStore } from '../stores/bookmarksStore'
 import { useNotesStore, toBookmarkKey } from '../stores/notesStore'
 import { EmptyState } from '../components/EmptyState/EmptyState'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
+import { Card, CardBody, CardFooter } from '../components/ui/Card/Card'
+import { Stack } from '../components/ui/Layout/Stack'
+import { Button } from '../components/ui/Button/Button'
+import { Textarea } from '../components/ui/Form/Textarea'
+import styles from './BookmarksPage.module.css'
 
 /** FR-035–038: favorites (localStorage) + session-only notes (sessionStorage) + export. */
 export function BookmarksPage() {
@@ -40,37 +45,41 @@ export function BookmarksPage() {
           description="Bookmark an article, character, or event to see it here."
         />
       ) : (
-        <>
-          <ul>
-            {entries.map((entry) => {
-              const key = toBookmarkKey(entry.contentType, entry.contentId)
-              return (
-                <li key={key}>
-                  <strong>
+        <Stack gap="md">
+          {entries.map((entry) => {
+            const key = toBookmarkKey(entry.contentType, entry.contentId)
+            return (
+              <Card key={key}>
+                <CardBody>
+                  <strong className={styles.entryLabel}>
                     {entry.contentType}: {entry.contentId}
                   </strong>
-                  <div>
-                    <label htmlFor={`note-${key}`} className="visually-hidden">
-                      Note for {entry.contentId}
-                    </label>
-                    <textarea
-                      id={`note-${key}`}
-                      value={notes[key] ?? ''}
-                      onChange={(event) => setNote(key, event.target.value)}
-                      placeholder="Personal note (this session only)"
-                    />
-                  </div>
-                  <button type="button" onClick={() => removeBookmark(entry.contentType, entry.contentId)}>
+                  <label htmlFor={`note-${key}`} className="visually-hidden">
+                    Note for {entry.contentId}
+                  </label>
+                  <Textarea
+                    id={`note-${key}`}
+                    value={notes[key] ?? ''}
+                    onChange={(event) => setNote(key, event.target.value)}
+                    placeholder="Personal note (this session only)"
+                  />
+                </CardBody>
+                <CardFooter>
+                  <Button
+                    variant="ghost"
+                    size="small"
+                    onClick={() => removeBookmark(entry.contentType, entry.contentId)}
+                  >
                     Remove
-                  </button>
-                </li>
-              )
-            })}
-          </ul>
-          <button type="button" onClick={handleExport}>
+                  </Button>
+                </CardFooter>
+              </Card>
+            )
+          })}
+          <Button variant="outline" onClick={handleExport}>
             Export bookmarks
-          </button>
-        </>
+          </Button>
+        </Stack>
       )}
     </PagePlaceholder>
   )

@@ -10,10 +10,15 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 0 var(--space-lg);
 }
 
 .hero h1 {
-  font-size: var(--font-size-4xl);
+  /* Fluid (clamp-based) rather than the fixed --font-size-4xl — a fixed
+     56px heading clipped against the hero's `overflow:hidden` edge at
+     mobile widths (found via Phase 2 visual QA screenshots). */
+  font: var(--font-display);
+  max-width: 100%;
 }
 
 .hero p {

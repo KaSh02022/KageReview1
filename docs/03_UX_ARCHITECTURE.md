@@ -1,5 +1,7 @@
 # 03 — UX Architecture
 
+**Phase 2 implementation note:** the structure below was proposed in Phase 0 and is now backed by real, working UX: the mobile/tablet navigation menu (§12) is a real accessible `Drawer`, the chatbot and dummy-auth modals (§10) are real accessible `Dialog`s with a focus trap, and the breadcrumb (§15 in `04_DESIGN_SYSTEM.md`) has responsive truncation and no horizontal overflow. See `04_DESIGN_SYSTEM.md` for the component-level detail; this document stays the UX/IA reference.
+
 ## 1. Sitemap
 
 ```
@@ -73,6 +75,8 @@ A dedicated `/bookmarks` view lists all favorited items across types, each with 
 
 A floating launcher opens a chat panel with: a welcome message + quick-reply suggestions, a text input, and a scrollable conversation log. Responses may include an inline link/button to a relevant category or content page (FR-034). The chat panel is dismissible without losing the app's current page state.
 
+**Implemented (Phase 2):** the panel is the shared `Dialog` primitive (`04_DESIGN_SYSTEM.md` §7) — real focus trap, Escape-to-close, focus restoration to the launcher button. The quick-reply/text-input/rule-matching conversation flow itself remains Phase 11 scope; Phase 2 shipped the dialog shell and a static welcome message.
+
 ## 11. About Us / Contact Us
 
 Static informational pages reachable from header/footer at all times. About Us covers team + site purpose (FR-040), consistent with `00_PROJECT_CONSTITUTION.md` §1 vision language.
@@ -84,6 +88,8 @@ Contact Us (FR-039, architecture finalized as D-006 in `11_DECISION_LOG.md`) sho
 - Header collapses to a hamburger/menu control for category navigation and search below a defined breakpoint (see `04_DESIGN_SYSTEM.md`).
 - Cart, bookmarks, and chatbot remain reachable via persistent icons or the mobile menu — never hidden behind more than one tap.
 - Filter/sort controls collapse into a sheet/drawer on small screens rather than a cramped inline toolbar.
+
+**Implemented (Phase 2):** the hamburger menu opens the shared `Drawer` primitive (`04_DESIGN_SYSTEM.md` §7), collapsing at the canonical tablet/desktop boundary (≤1023px, not the Phase 1 arbitrary 767px — D-018). Cart and bookmarks stay as persistent header icons at every breakpoint (never moved into the drawer); category navigation moves into the drawer below the breakpoint. Verified with zero horizontal overflow across 5 viewport widths in `e2e/responsive.spec.ts` (a real overflow bug in the header's utility bar was found and fixed this way — D-023). Filter/sort drawers themselves are Phase 6 scope (no filter/sort UI exists yet).
 
 ## 13. Accessibility Navigation
 

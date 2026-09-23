@@ -1,6 +1,9 @@
 import { media } from '../data'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
 import { EmptyState } from '../components/EmptyState/EmptyState'
+import { Grid } from '../components/ui/Layout/Grid'
+import { Card, CardHeader, CardMeta } from '../components/ui/Card/Card'
+import { Badge } from '../components/ui/Badge/Badge'
 
 export function TrailersPage() {
   const trailers = media.filter((item) => item.mediaType === 'trailer')
@@ -15,13 +18,21 @@ export function TrailersPage() {
       {trailers.length === 0 ? (
         <EmptyState title="No trailers yet" />
       ) : (
-        <ul>
+        <Grid minItemWidth={220} gap="md">
           {trailers.map((trailer) => (
-            <li key={trailer.id}>
-              {trailer.title} — {trailer.categoryId} ({trailer.releaseStatus})
-            </li>
+            <Card key={trailer.id}>
+              <CardHeader>
+                <h3>{trailer.title}</h3>
+              </CardHeader>
+              <CardMeta>
+                <Badge tone="neutral">{trailer.categoryId}</Badge>
+                <Badge tone={trailer.releaseStatus === 'upcoming' ? 'primary' : 'neutral'}>
+                  {trailer.releaseStatus}
+                </Badge>
+              </CardMeta>
+            </Card>
           ))}
-        </ul>
+        </Grid>
       )}
     </PagePlaceholder>
   )

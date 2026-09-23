@@ -1,8 +1,11 @@
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { articles, characters, events, media, galleries, getCategoryById } from '../data'
 import { EmptyState } from '../components/EmptyState/EmptyState'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
-import styles from './CategoryHubPage.module.css'
+import { SectionHeader } from '../components/ui/SectionHeader/SectionHeader'
+import { Grid } from '../components/ui/Layout/Grid'
+import { Stack } from '../components/ui/Layout/Stack'
+import { Card, CardHeader } from '../components/ui/Card/Card'
 
 interface CategoryHubPageProps {
   categoryId?: string
@@ -18,6 +21,7 @@ export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryH
   const { slug } = useParams()
   const categoryId = categoryIdProp ?? slug ?? ''
   const category = getCategoryById(categoryId)
+  const accent = category ? `var(--color-accent-${category.id.replace('-', '')})` : undefined
 
   const categoryArticles = articles.filter((item) => item.categoryId === categoryId)
   const categoryCharacters = characters.filter((item) => item.categoryId === categoryId)
@@ -48,64 +52,78 @@ export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryH
           description="Phase 1 only ships a few sample entries for architecture verification. Full population happens in Phase 5–8."
         />
       ) : (
-        <div className={styles.sections}>
+        <Stack gap="xl">
           {categoryArticles.length > 0 && (
-            <section>
-              <h2>Articles</h2>
-              <ul>
+            <section aria-labelledby={`${categoryId}-articles`}>
+              <SectionHeader id={`${categoryId}-articles`} title="Articles" level={3} />
+              <Grid minItemWidth={200} gap="sm">
                 {categoryArticles.map((article) => (
-                  <li key={article.id}>
-                    <Link to={`/article/${article.id}`}>{article.title}</Link>
-                  </li>
+                  <Card key={article.id} to={`/article/${article.id}`} accent={accent}>
+                    <CardHeader>
+                      <h4>{article.title}</h4>
+                    </CardHeader>
+                  </Card>
                 ))}
-              </ul>
+              </Grid>
             </section>
           )}
           {categoryCharacters.length > 0 && (
-            <section>
-              <h2>Characters</h2>
-              <ul>
+            <section aria-labelledby={`${categoryId}-characters`}>
+              <SectionHeader id={`${categoryId}-characters`} title="Characters" level={3} />
+              <Grid minItemWidth={160} gap="sm">
                 {categoryCharacters.map((character) => (
-                  <li key={character.id}>
-                    <Link to={`/character/${character.id}`}>{character.name}</Link>
-                  </li>
+                  <Card key={character.id} to={`/character/${character.id}`} accent={accent}>
+                    <CardHeader>
+                      <h4>{character.name}</h4>
+                    </CardHeader>
+                  </Card>
                 ))}
-              </ul>
+              </Grid>
             </section>
           )}
           {categoryEvents.length > 0 && (
-            <section>
-              <h2>Events</h2>
-              <ul>
+            <section aria-labelledby={`${categoryId}-events`}>
+              <SectionHeader id={`${categoryId}-events`} title="Events" level={3} />
+              <Grid minItemWidth={200} gap="sm">
                 {categoryEvents.map((event) => (
-                  <li key={event.id}>
-                    <Link to={`/event/${event.id}`}>{event.title}</Link>
-                  </li>
+                  <Card key={event.id} to={`/event/${event.id}`} accent={accent}>
+                    <CardHeader>
+                      <h4>{event.title}</h4>
+                    </CardHeader>
+                  </Card>
                 ))}
-              </ul>
+              </Grid>
             </section>
           )}
           {categoryMedia.length > 0 && (
-            <section>
-              <h2>Videos &amp; Audio</h2>
-              <ul>
+            <section aria-labelledby={`${categoryId}-media`}>
+              <SectionHeader id={`${categoryId}-media`} title="Videos & Audio" level={3} />
+              <Grid minItemWidth={200} gap="sm">
                 {categoryMedia.map((item) => (
-                  <li key={item.id}>{item.title}</li>
+                  <Card key={item.id} accent={accent}>
+                    <CardHeader>
+                      <h4>{item.title}</h4>
+                    </CardHeader>
+                  </Card>
                 ))}
-              </ul>
+              </Grid>
             </section>
           )}
           {categoryGalleries.length > 0 && (
-            <section>
-              <h2>Gallery</h2>
-              <ul>
+            <section aria-labelledby={`${categoryId}-gallery`}>
+              <SectionHeader id={`${categoryId}-gallery`} title="Gallery" level={3} />
+              <Grid minItemWidth={200} gap="sm">
                 {categoryGalleries.map((gallery) => (
-                  <li key={gallery.id}>{gallery.title}</li>
+                  <Card key={gallery.id} accent={accent}>
+                    <CardHeader>
+                      <h4>{gallery.title}</h4>
+                    </CardHeader>
+                  </Card>
                 ))}
-              </ul>
+              </Grid>
             </section>
           )}
-        </div>
+        </Stack>
       )}
     </PagePlaceholder>
   )

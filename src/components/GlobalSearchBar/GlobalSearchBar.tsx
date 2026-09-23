@@ -1,5 +1,7 @@
-import { useState, type FormEvent } from 'react'
+import { useId, useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { SearchInput } from '../ui/Form/SearchInput'
+import { IconButton } from '../ui/Button/IconButton'
 import styles from './GlobalSearchBar.module.css'
 
 /**
@@ -10,6 +12,7 @@ import styles from './GlobalSearchBar.module.css'
 export function GlobalSearchBar() {
   const [value, setValue] = useState('')
   const navigate = useNavigate()
+  const inputId = useId()
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -19,21 +22,15 @@ export function GlobalSearchBar() {
 
   return (
     <form role="search" className={styles.form} onSubmit={handleSubmit}>
-      <label htmlFor="global-search-input" className="visually-hidden">
-        Search FandomVerse
-      </label>
-      <input
-        id="global-search-input"
-        type="search"
+      <SearchInput
+        id={inputId}
+        label="Search FandomVerse"
         name="q"
         placeholder="Search articles, characters, events…"
         value={value}
         onChange={(event) => setValue(event.target.value)}
-        className={styles.input}
       />
-      <button type="submit" className={styles.button}>
-        Search
-      </button>
+      <IconButton type="submit" label="Search" icon="→" variant="primary" />
     </form>
   )
 }

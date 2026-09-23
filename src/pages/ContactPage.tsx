@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
+import { Button } from '../components/ui/Button/Button'
+import buttonStyles from '../components/ui/Button/Button.module.css'
 import styles from './ContactPage.module.css'
 
 const DESTINATION_QUERY = 'FandomVerse HQ, Seed City'
@@ -62,16 +64,31 @@ export function ContactPage() {
       </div>
 
       <div className={styles.actions}>
-        <a href={DIRECTIONS_BASE_URL} target="_blank" rel="noreferrer noopener">
+        <a
+          href={DIRECTIONS_BASE_URL}
+          target="_blank"
+          rel="noreferrer noopener"
+          className={`${buttonStyles.button} ${buttonStyles['variant-outline']} ${buttonStyles['size-medium']}`}
+        >
           Get Directions
         </a>
 
-        <button type="button" onClick={handleUseMyLocation} disabled={geoState === 'loading'}>
-          {geoState === 'loading' ? 'Locating…' : 'Directions from my location'}
-        </button>
+        <Button
+          variant="outline"
+          onClick={handleUseMyLocation}
+          disabled={geoState === 'loading'}
+          isLoading={geoState === 'loading'}
+        >
+          Directions from my location
+        </Button>
 
         {geoState === 'ready' && directionsFromMeUrl && (
-          <a href={directionsFromMeUrl} target="_blank" rel="noreferrer noopener">
+          <a
+            href={directionsFromMeUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className={`${buttonStyles.button} ${buttonStyles['variant-primary']} ${buttonStyles['size-medium']}`}
+          >
             Open directions from your location
           </a>
         )}

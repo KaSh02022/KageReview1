@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom'
 import { events } from '../data'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
 import { EmptyState } from '../components/EmptyState/EmptyState'
+import { Grid } from '../components/ui/Layout/Grid'
+import { Card, CardHeader, CardMeta } from '../components/ui/Card/Card'
+import { Badge } from '../components/ui/Badge/Badge'
 
 export function EventsPage() {
   return (
@@ -14,13 +16,19 @@ export function EventsPage() {
       {events.length === 0 ? (
         <EmptyState title="No events yet" />
       ) : (
-        <ul>
+        <Grid minItemWidth={220} gap="md">
           {events.map((event) => (
-            <li key={event.id}>
-              <Link to={`/event/${event.id}`}>{event.title}</Link> — {event.date} ({event.status})
-            </li>
+            <Card key={event.id} to={`/event/${event.id}`}>
+              <CardHeader>
+                <h3>{event.title}</h3>
+              </CardHeader>
+              <CardMeta>
+                <span>{event.date}</span>
+                <Badge tone={event.status === 'upcoming' ? 'primary' : 'neutral'}>{event.status}</Badge>
+              </CardMeta>
+            </Card>
           ))}
-        </ul>
+        </Grid>
       )}
     </PagePlaceholder>
   )

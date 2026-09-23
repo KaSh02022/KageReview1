@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { merchandise } from '../data'
 import { useCartStore } from '../stores/cartStore'
 import { EmptyState } from '../components/EmptyState/EmptyState'
+import { Button } from '../components/ui/Button/Button'
 
 export function ProductDetailPage() {
   const { id } = useParams()
@@ -19,9 +20,9 @@ export function ProductDetailPage() {
         {product.currency} {product.priceRangeMin}–{product.priceRangeMax}
       </p>
       <p>{product.description}</p>
-      <button type="button" onClick={() => addItem(product.id)}>
+      <Button variant="primary" onClick={() => addItem(product.id)}>
         Add to cart
-      </button>
+      </Button>
       <p>
         <em>Temporary demo cart only — no checkout, payment, or real purchase (FR-031).</em>
       </p>

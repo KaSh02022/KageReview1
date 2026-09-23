@@ -1,6 +1,6 @@
 # FandomVerse — Portal for Fandom World
 
-**Status: Phase 1 (Architecture & Technical Foundation) complete.** The application scaffold, routing, app shell, state stores, and design tokens exist and are verified (typecheck/lint/unit/E2E/build all passing — see Testing below). Feature content (full category catalogs, chatbot logic, cinematic scene, merchandise catalog, etc.) is intentionally minimal seed data — that's Phase 5+ scope.
+**Status: Phase 2 (Design System & Visual Language) complete.** The application scaffold, routing, app shell, state stores, design tokens, and a full shared component primitive library (Button, Card, Dialog, Drawer, forms, layout) exist and are verified (typecheck/lint/unit/E2E/build all passing — see Testing below). Feature content (full category catalogs, chatbot logic, cinematic scene, merchandise catalog, etc.) is intentionally minimal seed data — that's Phase 5+ scope.
 
 FandomVerse is a browser-based, backend-free Single Page Application that brings together content — articles, image galleries, videos/audio, character profiles, event highlights, trailers, merchandise, and a rule-based chatbot — across seven fandom categories (Anime, Gaming, Movies, TV Shows, K-Pop, Comics, Manga) into one centralized, visually engaging portal. Built for the "Web Innovation Unleashed" category.
 
@@ -12,12 +12,13 @@ See `docs/00_PROJECT_CONSTITUTION.md` for the full vision, goals, non-goals, and
 
 ## Technology Stack
 
-- React 19 + TypeScript, built with Vite (see `docs/11_DECISION_LOG.md` D-001, D-010)
+- React 19 + TypeScript, built with Vite (D-001, D-010, formally confirmed D-020)
 - React Router (`HashRouter`/`createHashRouter`) for SPA navigation
-- Three.js via React Three Fiber, lazy-loaded, scoped to the cinematic "Fandom Universe" entry layer (Phase 4 builds the real scene; Phase 1 ships the progressive-enhancement/fallback architecture only)
+- Three.js via React Three Fiber, lazy-loaded, scoped to the cinematic "Fandom Universe" entry layer (Phase 4 builds the real scene; Phase 1/2 ship the progressive-enhancement/fallback architecture only)
 - Zustand for cross-cutting client state (cart, bookmarks, notes, chatbot session, UI), persisted to `localStorage`/`sessionStorage` per the boundaries in `docs/05_DATA_SCHEMA.md` §13
+- A shared component primitive library (`src/components/ui/`) — Button, IconButton, Badge, Card (+ Media/Header/Body/Meta/Footer), Dialog, Drawer, form controls (FormField/Input/Select/Textarea/SearchInput), layout primitives (Container/Stack/Grid/Divider), SectionHeader, Skeleton, ErrorState — all built on one canonical design-token system and one shared accessible-dialog hook (`useFocusTrap`)
 - Static, versioned JSON as the entire data layer — no backend, no server-side database, nothing is ever written back to the data files at runtime
-- A fully custom, in-repo rule-based chatbot shell (no external AI API, no Tawk.to/Tidio dependency — see `docs/11_DECISION_LOG.md` D-004); the rule engine itself is Phase 11
+- A fully custom, in-repo rule-based chatbot shell (no external AI API, no Tawk.to/Tidio dependency — D-004); the rule engine itself is Phase 11
 - ESLint (flat config, TypeScript + React Hooks + jsx-a11y), Vitest + React Testing Library, Playwright + axe-core
 
 Full architecture: `docs/02_PRODUCT_ARCHITECTURE.md`. Design system: `docs/04_DESIGN_SYSTEM.md`. Data schema: `docs/05_DATA_SCHEMA.md`.
@@ -51,7 +52,7 @@ npm run test:watch   # vitest, watch mode
 npm run test:e2e     # playwright test (builds + serves the app, runs across chromium/firefox/webkit/mobile-chrome)
 ```
 
-All of the above pass as of the Phase 1 completion report. See `docs/09_TEST_STRATEGY.md` for the full test strategy and requirement traceability, and the Phase 1 completion report for exact results.
+All of the above pass as of the Phase 2 completion report (45 unit tests, 203 E2E tests across chromium/firefox/webkit/mobile-chrome). See `docs/09_TEST_STRATEGY.md` for the full test strategy and requirement traceability, and the Phase 2 completion report for exact results.
 
 ## Build
 
@@ -71,10 +72,11 @@ FandomVerse is a client-only SPA: a persistent app shell (`src/layouts/RootLayou
 ```
 src/
   app/          — root App component + RouterProvider wiring
-  components/   — shared UI primitives (Header, Footer, Breadcrumb, ErrorBoundary, states, ChatbotLauncher, DummyAuth, BookmarkToggle, …)
+  components/   — feature components (Header, Footer, Breadcrumb, ErrorBoundary, states, ChatbotLauncher, DummyAuth, BookmarkToggle, …)
+  components/ui/ — shared design-system primitives (Button, Card, Dialog, Drawer, Form, Layout, Badge, Link, SectionHeader, Skeleton, ErrorState)
   data/         — static JSON content (seed data) + typed loader (src/data/index.ts)
   features/     — cross-cutting feature logic (currently: the cinematic-entry progressive-enhancement scaffold)
-  hooks/        — usePrefersReducedMotion, useWebglSupport, useClock, useVisitorCounter
+  hooks/        — usePrefersReducedMotion, useWebglSupport, useClock, useVisitorCounter, useFocusTrap
   layouts/      — RootLayout (the persistent app shell)
   pages/        — one file per route
   routes/       — route table (src/routes/routes.tsx)
@@ -82,7 +84,7 @@ src/
   styles/       — design tokens (tokens.css), global reset/base styles, breakpoint constants
   types/        — TypeScript domain types (src/types/content.ts)
   utils/        — storage.ts (failure-safe localStorage/sessionStorage wrapper)
-e2e/            — Playwright end-to-end tests
+e2e/            — Playwright end-to-end tests (navigation, persistence, accessibility, responsive, console audit)
 ```
 
 ## Constraints
@@ -106,8 +108,9 @@ Every non-original asset must be verified and logged in `docs/08_LICENSES.md` be
 ## Current Status
 
 - **Phase 0 — complete.** Repository audited, SRS extracted and mapped into a 76-item requirement matrix, full documentation set produced under `docs/`.
-- **Phase 1 — complete.** See the Phase 1 completion report (delivered to the Project Director) for the full breakdown: git initialized, Vite+React+TS app scaffolded, `HashRouter`-based routing with placeholders for every primary + detail route, reusable app shell, Zustand stores with the correct persistence boundaries, TypeScript domain types + seed data, design-token foundation, accessibility foundation (skip link, focus states, accessible dialogs, `aria-current` nav, keyboard-operable chatbot/auth modals), error/loading/empty/not-found states, ESLint/Vitest/Playwright configured with passing tests, and a clean production build.
-- **Phases 2–15 — not started.** Awaiting Project Director review and go-ahead per the phase-gate process (`docs/00_PROJECT_CONSTITUTION.md` §13).
+- **Phase 1 — complete.** Git initialized, Vite+React+TS app scaffolded, `HashRouter`-based routing with placeholders for every primary + detail route, reusable app shell, Zustand stores with the correct persistence boundaries, TypeScript domain types + seed data, design-token foundation, accessibility foundation, error/loading/empty/not-found states, ESLint/Vitest/Playwright configured with passing tests.
+- **Phase 2 — complete.** Canonical breakpoint system (reconciled the Header's Phase 1 arbitrary 767px to the tablet/desktop boundary), React 19 formally confirmed as the baseline, canonical route inventory documented, full design-token system (color/typography/spacing/radius/shadow/motion/layout), and a shared component primitive library (Button, Card, Dialog, Drawer, forms, layout) with a real focus-trap hook shared by every dialog/drawer. Fixed 3 real bugs this phase (a Dialog focus-trap gap, a `Card` prop-forwarding gap, and a significant Header horizontal-overflow bug at mobile widths) — all caught by new automated tests, not by inspection. 45 unit tests, 203 E2E tests, all passing.
+- **Phases 3–15 — not started.** Awaiting Project Director review and go-ahead per the phase-gate process (`docs/00_PROJECT_CONSTITUTION.md` §13).
 
 ## Document Index
 

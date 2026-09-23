@@ -1,7 +1,11 @@
-import { Link, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { articles, characters } from '../data'
 import { EmptyState } from '../components/EmptyState/EmptyState'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
+import { SectionHeader } from '../components/ui/SectionHeader/SectionHeader'
+import { Grid } from '../components/ui/Layout/Grid'
+import { Stack } from '../components/ui/Layout/Stack'
+import { Card, CardHeader } from '../components/ui/Card/Card'
 
 /**
  * Phase 1 search is a trivial substring match over seed titles/names only,
@@ -30,30 +34,36 @@ export function SearchPage() {
       {query && !hasResults && (
         <EmptyState title="No results" description="Try a different search term." />
       )}
-      {matchedArticles.length > 0 && (
-        <section>
-          <h2>Articles</h2>
-          <ul>
-            {matchedArticles.map((article) => (
-              <li key={article.id}>
-                <Link to={`/article/${article.id}`}>{article.title}</Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-      {matchedCharacters.length > 0 && (
-        <section>
-          <h2>Characters</h2>
-          <ul>
-            {matchedCharacters.map((character) => (
-              <li key={character.id}>
-                <Link to={`/character/${character.id}`}>{character.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      <Stack gap="xl">
+        {matchedArticles.length > 0 && (
+          <section aria-labelledby="search-articles">
+            <SectionHeader id="search-articles" title="Articles" level={3} />
+            <Grid minItemWidth={200} gap="sm">
+              {matchedArticles.map((article) => (
+                <Card key={article.id} to={`/article/${article.id}`}>
+                  <CardHeader>
+                    <h4>{article.title}</h4>
+                  </CardHeader>
+                </Card>
+              ))}
+            </Grid>
+          </section>
+        )}
+        {matchedCharacters.length > 0 && (
+          <section aria-labelledby="search-characters">
+            <SectionHeader id="search-characters" title="Characters" level={3} />
+            <Grid minItemWidth={160} gap="sm">
+              {matchedCharacters.map((character) => (
+                <Card key={character.id} to={`/character/${character.id}`}>
+                  <CardHeader>
+                    <h4>{character.name}</h4>
+                  </CardHeader>
+                </Card>
+              ))}
+            </Grid>
+          </section>
+        )}
+      </Stack>
     </PagePlaceholder>
   )
 }

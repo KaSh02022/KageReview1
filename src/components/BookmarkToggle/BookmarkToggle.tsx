@@ -1,7 +1,7 @@
 import { useBookmarksStore } from '../../stores/bookmarksStore'
 import { useNotesStore, toBookmarkKey } from '../../stores/notesStore'
 import type { BookmarkContentType } from '../../types/content'
-import styles from './BookmarkToggle.module.css'
+import { Button } from '../ui/Button/Button'
 
 interface BookmarkToggleProps {
   contentType: BookmarkContentType
@@ -23,14 +23,14 @@ export function BookmarkToggle({ contentType, contentId }: BookmarkToggleProps) 
   }
 
   return (
-    <button
-      type="button"
+    <Button
+      variant={isBookmarked ? 'secondary' : 'outline'}
+      size="small"
       onClick={handleClick}
-      className={styles.button}
       aria-pressed={isBookmarked}
+      leadingIcon={isBookmarked ? '★' : '☆'}
     >
-      <span aria-hidden="true">{isBookmarked ? '★' : '☆'}</span>{' '}
       {isBookmarked ? 'Bookmarked' : 'Bookmark'}
-    </button>
+    </Button>
   )
 }

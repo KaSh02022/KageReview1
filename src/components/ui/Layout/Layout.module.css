@@ -1,0 +1,61 @@
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.containerNarrow {
+  max-width: var(--reading-max-width);
+}
+
+.stack {
+  display: flex;
+}
+
+.stackWrap {
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-lg) 0;
+}
+
+.dividerVertical {
+  border: none;
+  border-left: 1px solid var(--color-border);
+  height: 100%;
+  margin: 0 var(--space-md);
+}
+
+.dividerWithLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+  color: var(--color-text-muted);
+  font: var(--font-label);
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.dividerLabel {
+  white-space: nowrap;
+}
+
+/* Mobile gutter reduction — canonical breakpoint (mobile tier, see docs/04_DESIGN_SYSTEM.md §2b) */
+@media (max-width: 599px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+}

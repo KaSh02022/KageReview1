@@ -1,4 +1,6 @@
-import { useMatches, Link } from 'react-router-dom'
+import { useMatches } from 'react-router-dom'
+import { Container } from '../ui/Layout/Container'
+import { Link } from '../ui/Link/Link'
 import styles from './Breadcrumb.module.css'
 
 interface RouteHandle {
@@ -8,7 +10,9 @@ interface RouteHandle {
 /**
  * Breadcrumb trail derived from route match data (react-router's
  * useMatches), per docs/02_PRODUCT_ARCHITECTURE.md §3 — not hand-maintained
- * per page. FR-044.
+ * per page. FR-044. Regression-tested against the Phase 1 bug where the
+ * root route had no `handle`, so no page ever produced more than 1 crumb
+ * (D-013) — see src/components/Breadcrumb/Breadcrumb.test.tsx.
  */
 export function Breadcrumb() {
   const matches = useMatches()
@@ -23,25 +27,31 @@ export function Breadcrumb() {
 
   return (
     <nav aria-label="Breadcrumb" className={styles.wrapper}>
-      <ol className={styles.list}>
-        {crumbs.map((crumb, index) => {
-          const isLast = index === crumbs.length - 1
-          return (
-            <li key={crumb.pathname} className={styles.item}>
-              {isLast ? (
-                <span aria-current="page">{crumb.label}</span>
-              ) : (
-                <Link to={crumb.pathname}>{crumb.label}</Link>
-              )}
-              {!isLast && (
-                <span className={styles.separator} aria-hidden="true">
-                  /
-                </span>
-              )}
-            </li>
-          )
-        })}
-      </ol>
+      <Container>
+        <ol className={styles.list}>
+          {crumbs.map((crumb, index) => {
+            const isLast = index === crumbs.length - 1
+            return (
+              <li key={crumb.pathname} className={styles.item}>
+                {isLast ? (
+                  <span aria-current="page" className={styles.current}>
+                    {crumb.label}
+                  </span>
+                ) : (
+                  <Link to={crumb.pathname} tone="muted" underline className={styles.crumbLink}>
+                    {crumb.label}
+                  </Link>
+                )}
+                {!isLast && (
+                  <span className={styles.separator} aria-hidden="true">
+                    /
+                  </span>
+                )}
+              </li>
+            )
+          })}
+        </ol>
+      </Container>
     </nav>
   )
 }

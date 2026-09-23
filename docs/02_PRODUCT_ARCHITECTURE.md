@@ -1,17 +1,17 @@
 # 02 — Product Architecture
 
-Defines how FandomVerse is built to satisfy `01_SRS_REQUIREMENTS.md` under the constraints in `00_PROJECT_CONSTITUTION.md`. Updated at the end of Phase 1 to reflect what was actually scaffolded (Director-approved baseline, see D-001–D-009 in `11_DECISION_LOG.md`). Full feature implementation (content population, chatbot logic, cinematic layer) remains scoped to later phases per `10_IMPLEMENTATION_PLAN.md`.
+Defines how FandomVerse is built to satisfy `01_SRS_REQUIREMENTS.md` under the constraints in `00_PROJECT_CONSTITUTION.md`. Updated at the end of Phase 1 to reflect what was actually scaffolded, and again at the end of Phase 2 with the design-system layer and the confirmed dependency baseline (Director-approved, see `11_DECISION_LOG.md`). Full feature implementation (content population, chatbot logic, cinematic layer) remains scoped to later phases per `10_IMPLEMENTATION_PLAN.md`.
 
-## 1. Stack Decision (see D-001..D-003 in `11_DECISION_LOG.md`)
+## 1. Stack Decision (see D-001–D-003, D-020 in `11_DECISION_LOG.md`)
 
 | Concern | Choice | Why |
 |---|---|---|
-| Framework | React 18 + TypeScript | SRS explicitly allows ReactJS (p.16); Master Directive assigns React to Claude; TypeScript catches data-shape errors across ~76 JSON-driven requirements. |
+| Framework | **React 19.2 — confirmed, not provisional (D-020)** | SRS explicitly allows ReactJS (p.16); Master Directive assigns React to Claude; TypeScript catches data-shape errors across ~76 JSON-driven requirements. Latest-stable was taken over the Phase 0 draft's "React 18" (D-010); Phase 2 formally re-verified compatibility across the whole dependency graph (R3F/drei, React Router, Zustand, Testing Library, Playwright) with zero React-version-related warnings across 45 unit + 40+ E2E tests (D-020). |
 | Build tool | Vite | Fast dev server, zero-backend static build output, first-class React+TS template, code-splitting out of the box. |
-| Routing | React Router (`HashRouter`) | SPA routing (CR-004) without requiring server rewrite rules — works on any static host or even `file://` for demo/offline review. |
-| 3D layer | Three.js via React Three Fiber + drei | Declarative Three.js scene composition inside React; only mounted on the landing/"Fandom Universe" route. |
-| Global state | Zustand (with `persist` middleware) | Minimal-boilerplate store for cart, bookmarks, chatbot session; `persist` middleware maps cleanly to localStorage/sessionStorage per FR-036/FR-037. |
-| Styling | CSS Modules + design tokens (custom, not a component-template library) | Avoids "ready-made template" risk (AI-002); full control over the original visual language in `04_DESIGN_SYSTEM.md`. |
+| Routing | React Router 7 (`HashRouter`/`createHashRouter`, data router) | SPA routing (CR-004) without requiring server rewrite rules — works on any static host or even `file://` for demo/offline review. The data-router form specifically enables `useMatches()`-driven breadcrumbs (§14). |
+| 3D layer | Three.js via React Three Fiber + drei, lazy-loaded | Declarative Three.js scene composition inside React; only mounted on the landing/"Fandom Universe" route, and confirmed as a separate ~900KB chunk never loaded on other routes. |
+| Global state | Zustand 5 (with `persist` middleware) | Minimal-boilerplate store for cart, bookmarks, notes, chatbot session, UI state; `persist` middleware maps cleanly to localStorage/sessionStorage per FR-036/FR-037. |
+| Styling | CSS Modules + design tokens + a shared component primitive library (`src/components/ui/`) | Avoids "ready-made template" risk (AI-002); full control over the original visual language in `04_DESIGN_SYSTEM.md`. Phase 2 added the primitive library (Button, Card, Dialog, Drawer, Form controls, layout primitives) so every feature composes from the same visual/accessible building blocks instead of hand-rolling CSS per component. |
 | Data | Static JSON files under `src/data/` | Matches CR-001/IR-002; loaded via static `import` (bundled) for content correctness at build time. |
 | Testing | Vitest + React Testing Library (unit/integration), Playwright (+ `@axe-core/playwright`) for e2e/responsive/a11y, Lighthouse CI for performance | Covers `09_TEST_STRATEGY.md` test types without any backend test infra. |
 | Package manager | npm | Already available in the environment (v11.13); no extra install needed. |
@@ -42,31 +42,38 @@ Defines how FandomVerse is built to satisfy `01_SRS_REQUIREMENTS.md` under the c
 
 No server tier exists. The only network calls the app makes at runtime are to the app's own static bundle, static JSON/media assets, an embedded YouTube player iframe (FR-015), and an embedded Google Maps iframe (FR-039) — all client-side, none requiring a private key exchange with FandomVerse infrastructure.
 
-## 3. Routing Map
+## 3. Canonical Route Inventory (D-019)
 
-Implemented with `HashRouter` in Phase 1. Top-level category routes use their own SRS-facing slugs (`/anime`, `/gaming`, ...) rather than a single `/category/:categoryId` param, per the Director's Phase 1 route list; a shared `CategoryHub` page component is reused across all seven, parameterized internally by category id, so this is a routing-table choice, not seven separate implementations.
+Implemented with `HashRouter`/`createHashRouter` (a data router, so `useMatches()` can drive the breadcrumb — see §14). Top-level category routes use their own SRS-facing slugs (`/anime`, `/gaming`, ...) rather than a single `/category/:categoryId` param, per the Director's Phase 1 route list; a shared `CategoryHub` page component is reused across all seven, parameterized internally by category id, so this is a routing-table choice, not seven separate implementations.
 
-| Route | Page | Key Requirements | Phase 1 Status |
-|---|---|---|---|
-| `#/` | Cinematic entry → Home | FR-001–004 | Placeholder page |
-| `#/anime`, `#/gaming`, `#/movies`, `#/tv-shows`, `#/k-pop`, `#/comics`, `#/manga` | Category Hub (shared component, 7 registered routes) | FR-005–008, FR-012–024 | Placeholder page |
-| `#/category/:slug` | Category Hub, generic slug entry point (kept alongside the 7 named routes for forward-compatible/linked navigation, e.g. from search results or the chatbot) | FR-005–008 | Placeholder page |
-| `#/article/:id` | Article detail | FR-017–018 | Placeholder page |
-| `#/character/:id` | Character detail | FR-019–021 | Placeholder page |
-| `#/event/:id` | Event detail | FR-022–024 | Placeholder page |
-| `#/product/:id` | Merchandise product detail | FR-027–028 | Placeholder page |
-| `#/search` | Global search results | FR-009–011 | Placeholder page |
-| `#/trailers` | Cross-category trailers | FR-025–026 | Placeholder page |
-| `#/events` | Cross-category event highlights | FR-022–024 | Placeholder page |
-| `#/releases` | Upcoming releases calendar | data model in `05_DATA_SCHEMA.md` §9 | Placeholder page |
-| `#/merchandise` | Merchandise showcase | FR-027–028 | Placeholder page |
-| `#/cart` | Temporary cart (localStorage-persisted, D-005) | FR-029–031 | Placeholder page |
-| `#/bookmarks` | Bookmarks + notes + export | FR-035–038 | Placeholder page |
-| `#/contact` | Contact Us (map + directions + optional geolocation, D-006) | FR-039 | Placeholder page |
-| `#/about` | About Us | FR-040 | Placeholder page |
-| `*` (unmatched) | Not Found | — | Implemented |
+**Reconciliation note (D-019):** the Phase 1 completion report said the console/network audit covered "21 primary + detail routes" — that count was correct *for that specific audit's scope* (it intentionally excluded the generic `/category/:slug` alias, redundant with the 7 named category routes for a same-page audit, and the `*` Not Found route, which isn't "content"). The table below is the full, canonical inventory: **23 distinct route patterns**. All future reports should cite this table, not re-derive a count.
 
-Chatbot (FR-032–034) is a persistent overlay, not a route. Breadcrumbs (FR-044), header search, visitor counter (FR-041), and clock (FR-042) live in the persistent app shell (`Layout`), not per-page. Every route above renders a real, labeled placeholder page in Phase 1 — never a blank screen — so navigation, breadcrumbs, and back/forward can be verified before feature content exists.
+Every route in this app is public — FandomVerse has no real authentication (dummy Login/Signup is UI-only, FR-045) and therefore no route is gated by login state.
+
+| # | Route | Page / Component | Route Type | Key Requirements | Test Coverage | Status |
+|---|---|---|---|---|---|---|
+| 1 | `#/` | `RootLayout` (persistent shell) | Layout (wraps all routes below) | — | `e2e/navigation.spec.ts`, `e2e/accessibility.spec.ts`, `src/app/App.test.tsx` | Implemented |
+| 2 | `#/` (index) | `HomePage` | Landing | FR-001–004 | `src/app/App.test.tsx`, `e2e/navigation.spec.ts`, `e2e/responsive.spec.ts` | Placeholder content, real routing/shell |
+| 3–9 | `#/anime`, `#/gaming`, `#/movies`, `#/tv-shows`, `#/k-pop`, `#/comics`, `#/manga` | `CategoryHubPage` (shared component, 7 registered routes) | Category hub (named) | FR-005–008, FR-012–024 | `src/app/App.test.tsx`, `e2e/navigation.spec.ts`, `e2e/responsive.spec.ts` | Placeholder content, real routing |
+| 10 | `#/category/:slug` | `CategoryHubPage` (generic entry) | Category hub (generic) | FR-005–008 | `src/app/App.test.tsx` | Placeholder content, real routing |
+| 11 | `#/article/:id` | `ArticleDetailPage` | Detail | FR-017–018 | `src/app/App.test.tsx`, `e2e/persistence.spec.ts` (bookmark flow) | Real seed-data render, not full feature |
+| 12 | `#/character/:id` | `CharacterDetailPage` | Detail | FR-019–021 | `src/app/App.test.tsx` | Real seed-data render, not full feature |
+| 13 | `#/event/:id` | `EventDetailPage` | Detail | FR-022–024 | `src/app/App.test.tsx` | Real seed-data render, not full feature |
+| 14 | `#/product/:id` | `ProductDetailPage` | Detail | FR-027–028 | `src/app/App.test.tsx`, `e2e/persistence.spec.ts` (cart flow) | Real add-to-cart flow, not full catalog |
+| 15 | `#/search` | `SearchPage` | Feature list | FR-009–011 | `src/app/App.test.tsx` | Trivial substring match; full index is Phase 6 |
+| 16 | `#/trailers` | `TrailersPage` | Feature list | FR-025–026 | `src/app/App.test.tsx` | Placeholder content, real routing |
+| 17 | `#/events` | `EventsPage` | Feature list | FR-022–024 | `src/app/App.test.tsx` | Placeholder content, real routing |
+| 18 | `#/releases` | `ReleasesPage` | Feature list | data model in `05_DATA_SCHEMA.md` §9 | `src/app/App.test.tsx` | Placeholder content, real routing |
+| 19 | `#/merchandise` | `MerchandisePage` | Feature list | FR-027–028 | `src/app/App.test.tsx` | Placeholder content, real routing |
+| 20 | `#/cart` | `CartPage` | Utility (temporary cart, D-005) | FR-029–031 | `src/app/App.test.tsx`, `src/stores/cartStore.test.ts`, `e2e/persistence.spec.ts` | Real, working add/remove/total flow |
+| 21 | `#/bookmarks` | `BookmarksPage` | Utility | FR-035–038 | `src/app/App.test.tsx`, `src/stores/bookmarksStore.test.ts`, `src/stores/notesStore.test.ts`, `e2e/persistence.spec.ts` | Real, working bookmark/note/export flow |
+| 22 | `#/contact` | `ContactPage` | Utility (map + directions + optional geolocation, D-006) | FR-039 | `src/app/App.test.tsx` | Real map/directions implementation |
+| 23 | `#/about` | `AboutPage` | Utility | FR-040 | `src/app/App.test.tsx` | Real static content |
+| 24 | `*` (unmatched) | `NotFoundPage` | Not Found | — | `src/app/App.test.tsx`, `e2e/navigation.spec.ts` | Implemented |
+
+(24 rows because row 1 is the layout route itself, not a distinct URL — 23 distinct route *patterns* is the canonical figure cited elsewhere.)
+
+Chatbot (FR-032–034) is a persistent overlay, not a route. Breadcrumbs (FR-044), header search, visitor counter (FR-041), and clock (FR-042) live in the persistent app shell (`RootLayout`), not per-page. Every route above renders a real, labeled page — never a blank screen — so navigation, breadcrumbs, and back/forward are verifiable end-to-end even where feature content is still seed data.
 
 ## 3a. Project Structure (Director-specified, D-009)
 

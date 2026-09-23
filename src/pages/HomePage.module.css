@@ -1,49 +1,6 @@
 .wrapper {
-  padding: var(--space-6) 0;
+  padding: var(--space-xl) 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
-}
-
-.section h2 {
-  font-size: var(--font-size-2xl);
-  margin-bottom: var(--space-4);
-}
-
-.categoryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: var(--space-4);
-}
-
-.categoryCard {
-  display: block;
-  padding: var(--space-4);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-surface);
-  text-decoration: none;
-  color: var(--color-text-primary);
-}
-
-.categoryCard:hover {
-  border-color: var(--color-action-primary);
-}
-
-.categoryCard p {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-sm);
-  margin: var(--space-1) 0 0;
-}
-
-.featuredList {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.featuredList a {
-  color: var(--color-action-primary);
+  gap: var(--space-3xl);
 }
