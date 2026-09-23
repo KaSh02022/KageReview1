@@ -168,7 +168,7 @@ All dates use the actual execution date. Every Gemini document states PLANNED an
 
 ## 8. Git
 
-**Commit:** see below — `phase: prepare pre-gemini ux and search architecture`
+**Commit:** `8517511` — `phase: prepare pre-gemini ux and search architecture`
 **Working tree:** clean. No scratch files, logs, screenshots, secrets or environment files. Three temporary harnesses removed. `package.json` and the lockfile are unchanged.
 
 ---
