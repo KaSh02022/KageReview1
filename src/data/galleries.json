@@ -1,0 +1,11 @@
+[
+  {
+    "id": "gallery-anime-sample-01",
+    "categoryId": "anime",
+    "title": "Sample Gallery — Architecture Check",
+    "images": [
+      { "src": "/assets/gallery/placeholder-1.svg", "alt": "Placeholder gallery image one" },
+      { "src": "/assets/gallery/placeholder-2.svg", "alt": "Placeholder gallery image two" }
+    ]
+  }
+]

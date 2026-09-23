@@ -1,0 +1,11 @@
+[
+  {
+    "id": "release-gaming-sample-01",
+    "categoryId": "gaming",
+    "title": "Sample Upcoming Release — Architecture Check",
+    "releaseDate": "2026-12-01",
+    "type": "game",
+    "description": "Placeholder release entry used only to verify the Release type and releases route in Phase 1.",
+    "coverImage": { "src": "/assets/release/placeholder.svg", "alt": "Placeholder cover art for a sample upcoming release" }
+  }
+]

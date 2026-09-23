@@ -1,0 +1,12 @@
+.wrapper {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--color-text-muted);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.wrapper h2 {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+}

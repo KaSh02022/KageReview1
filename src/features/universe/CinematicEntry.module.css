@@ -1,0 +1,32 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: min(60vh, 480px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 30%, var(--color-bg-surface-raised), var(--color-bg-base));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: var(--font-size-4xl);
+}
+
+.hero p {
+  color: var(--color-text-muted);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}

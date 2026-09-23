@@ -1,0 +1,7 @@
+[
+  {
+    "id": "faq-sample-01",
+    "question": "What is FandomVerse?",
+    "answer": "FandomVerse is a client-only portal for discovering fandom content across seven categories. This is seed FAQ data for Phase 1 architecture verification — the full FAQ set is authored in Phase 11."
+  }
+]

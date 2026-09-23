@@ -1,0 +1,26 @@
+[
+  {
+    "id": "article-anime-sample-01",
+    "categoryId": "anime",
+    "title": "Sample Article — Anime Hub Architecture Check",
+    "thumbnail": { "src": "/assets/card/article-placeholder.svg", "alt": "Placeholder thumbnail for a sample anime article" },
+    "summary": "Seed data used only to verify the Article type, card rendering, and detail routing in Phase 1.",
+    "body": "This is placeholder body copy for architecture verification. Real articles are authored in Phase 6/7.",
+    "tags": ["seed", "architecture-check"],
+    "publishedDate": "2026-01-01",
+    "featured": true,
+    "relatedIds": []
+  },
+  {
+    "id": "article-gaming-sample-01",
+    "categoryId": "gaming",
+    "title": "Sample Article — Gaming Hub Architecture Check",
+    "thumbnail": { "src": "/assets/card/article-placeholder.svg", "alt": "Placeholder thumbnail for a sample gaming article" },
+    "summary": "Seed data used only to verify the Article type, card rendering, and detail routing in Phase 1.",
+    "body": "This is placeholder body copy for architecture verification. Real articles are authored in Phase 6/7.",
+    "tags": ["seed", "architecture-check"],
+    "publishedDate": "2026-01-02",
+    "featured": false,
+    "relatedIds": ["article-anime-sample-01"]
+  }
+]

@@ -1,0 +1,5 @@
+.clock {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}

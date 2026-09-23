@@ -1,0 +1,15 @@
+[
+  {
+    "id": "media-anime-sample-01",
+    "categoryId": "anime",
+    "title": "Sample Trailer — Architecture Check",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "about:blank#seed-placeholder-trailer-embed",
+    "thumbnail": { "src": "/assets/media/placeholder.svg", "alt": "Placeholder thumbnail for a sample trailer" },
+    "description": "Placeholder media entry used only to verify the MediaItem type and embed rendering in Phase 1.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-02-01",
+    "tags": ["seed"]
+  }
+]

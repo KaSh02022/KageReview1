@@ -1,0 +1,14 @@
+{
+  "welcomeMessage": "Hi! I'm the FandomVerse assistant (placeholder — full rule set arrives in Phase 11).",
+  "defaultFallback": "I don't have an answer for that yet — this is Phase 1 seed data.",
+  "quickRepliesStart": ["What is FandomVerse?"],
+  "rules": [
+    {
+      "id": "rule-sample-01",
+      "patterns": ["what is fandomverse", "about fandomverse"],
+      "response": "FandomVerse is a client-only portal for discovering fandom content across seven categories.",
+      "quickReplies": ["Show me Anime"],
+      "recommendCategoryId": "anime"
+    }
+  ]
+}

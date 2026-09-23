@@ -1,0 +1,58 @@
+[
+  {
+    "id": "anime",
+    "name": "Anime",
+    "tagline": "Worlds drawn in motion.",
+    "accentColor": "--color-accent-anime",
+    "heroImage": { "src": "/assets/hero/anime-placeholder.svg", "alt": "Placeholder hero artwork for the Anime hub" },
+    "description": "Original-concept placeholder description for the Anime category hub. Real editorial content is populated in Phase 5."
+  },
+  {
+    "id": "gaming",
+    "name": "Gaming",
+    "tagline": "Every save file, one hub.",
+    "accentColor": "--color-accent-gaming",
+    "heroImage": { "src": "/assets/hero/gaming-placeholder.svg", "alt": "Placeholder hero artwork for the Gaming hub" },
+    "description": "Original-concept placeholder description for the Gaming category hub. Real editorial content is populated in Phase 5."
+  },
+  {
+    "id": "movies",
+    "name": "Movies",
+    "tagline": "The reel world, curated.",
+    "accentColor": "--color-accent-movies",
+    "heroImage": { "src": "/assets/hero/movies-placeholder.svg", "alt": "Placeholder hero artwork for the Movies hub" },
+    "description": "Original-concept placeholder description for the Movies category hub. Real editorial content is populated in Phase 5."
+  },
+  {
+    "id": "tv-shows",
+    "name": "TV Shows",
+    "tagline": "Binge-worthy, organized.",
+    "accentColor": "--color-accent-tvshows",
+    "heroImage": { "src": "/assets/hero/tv-shows-placeholder.svg", "alt": "Placeholder hero artwork for the TV Shows hub" },
+    "description": "Original-concept placeholder description for the TV Shows category hub. Real editorial content is populated in Phase 5."
+  },
+  {
+    "id": "kpop",
+    "name": "K-Pop",
+    "tagline": "Stages, stans, and setlists.",
+    "accentColor": "--color-accent-kpop",
+    "heroImage": { "src": "/assets/hero/kpop-placeholder.svg", "alt": "Placeholder hero artwork for the K-Pop hub" },
+    "description": "Original-concept placeholder description for the K-Pop category hub. Real editorial content is populated in Phase 5."
+  },
+  {
+    "id": "comics",
+    "name": "Comics",
+    "tagline": "Panels, ink, and legends.",
+    "accentColor": "--color-accent-comics",
+    "heroImage": { "src": "/assets/hero/comics-placeholder.svg", "alt": "Placeholder hero artwork for the Comics hub" },
+    "description": "Original-concept placeholder description for the Comics category hub. Real editorial content is populated in Phase 5."
+  },
+  {
+    "id": "manga",
+    "name": "Manga",
+    "tagline": "Volumes without borders.",
+    "accentColor": "--color-accent-manga",
+    "heroImage": { "src": "/assets/hero/manga-placeholder.svg", "alt": "Placeholder hero artwork for the Manga hub" },
+    "description": "Original-concept placeholder description for the Manga category hub. Real editorial content is populated in Phase 5."
+  }
+]

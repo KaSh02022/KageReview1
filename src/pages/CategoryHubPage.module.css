@@ -1,0 +1,17 @@
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.sections h2 {
+  font-size: var(--font-size-lg);
+}
+
+.sections ul {
+  padding-left: var(--space-5);
+}
+
+.sections a {
+  color: var(--color-action-primary);
+}

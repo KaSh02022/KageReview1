@@ -1,0 +1,22 @@
+[
+  {
+    "id": "character-anime-sample-01",
+    "categoryId": "anime",
+    "name": "Sample Character One",
+    "image": { "src": "/assets/character/placeholder.svg", "alt": "Placeholder portrait for Sample Character One" },
+    "series": "Seed Series",
+    "biography": "Placeholder biography used only to verify the Character type and detail page in Phase 1.",
+    "traits": ["placeholder", "seed-data"],
+    "tags": ["seed"]
+  },
+  {
+    "id": "character-gaming-sample-01",
+    "categoryId": "gaming",
+    "name": "Sample Character Two",
+    "image": { "src": "/assets/character/placeholder.svg", "alt": "Placeholder portrait for Sample Character Two" },
+    "series": "Seed Series",
+    "biography": "Placeholder biography used only to verify the Character type and detail page in Phase 1.",
+    "traits": ["placeholder", "seed-data"],
+    "tags": ["seed"]
+  }
+]

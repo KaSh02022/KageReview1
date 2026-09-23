@@ -1,0 +1,101 @@
+/*
+  FandomVerse design tokens — Phase 1 structural foundation.
+  Original token set (see docs/04_DESIGN_SYSTEM.md). Values are a working
+  baseline; final visual polish/contrast tuning happens in Phase 2.
+  Not derived from or matching Kage's palette.
+*/
+
+:root {
+  /* Color — base surfaces */
+  --color-bg-base: #0b0e17;
+  --color-bg-surface: #141a29;
+  --color-bg-surface-raised: #1c2338;
+  --color-border: #2a3350;
+
+  /* Color — text */
+  --color-text-primary: #f3f5fb;
+  --color-text-muted: #a7b0c8;
+  --color-text-on-accent: #0b0e17;
+
+  /* Color — per-category accents (7 fandom hubs) */
+  --color-accent-anime: #ff5d73;
+  --color-accent-gaming: #33d0ff;
+  --color-accent-movies: #ffb648;
+  --color-accent-tvshows: #8f7bff;
+  --color-accent-kpop: #ff5de0;
+  --color-accent-comics: #ffe14d;
+  --color-accent-manga: #5ce6a6;
+
+  /* Color — action / feedback */
+  --color-action-primary: #5b7bff;
+  --color-action-primary-hover: #4665e0;
+  --color-success: #3ddc84;
+  --color-warning: #ffb648;
+  --color-danger: #ff5d73;
+
+  /* Typography */
+  --font-family-display: 'Cal Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-family-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.75rem;
+  --font-size-4xl: 3.5rem;
+
+  --line-height-tight: 1.15;
+  --line-height-base: 1.5;
+
+  /* Spacing (8px base scale) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
+
+  /* Focus */
+  --focus-ring: 0 0 0 3px var(--color-bg-base), 0 0 0 5px var(--color-action-primary);
+
+  /* Motion */
+  --motion-fast: 120ms;
+  --motion-base: 220ms;
+  --motion-slow: 400ms;
+  --motion-easing: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Layout */
+  --container-max-width: 1440px;
+  --header-height: 64px;
+
+  /* Breakpoints (reference values; consumed by JS via src/styles/breakpoints.ts,
+     since CSS custom properties cannot be used inside @media queries) */
+  --breakpoint-mobile-max: 599px;
+  --breakpoint-tablet-min: 600px;
+  --breakpoint-tablet-max: 1023px;
+  --breakpoint-desktop-min: 1024px;
+  --breakpoint-wide-min: 1440px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-slow: 0ms;
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "event-anime-sample-01",
+    "categoryId": "anime",
+    "title": "Sample Event — Architecture Check Meetup",
+    "date": "2026-11-15",
+    "location": "Seed City Convention Center",
+    "description": "Placeholder event used only to verify the EventItem type and detail routing in Phase 1.",
+    "eventType": "meetup",
+    "status": "upcoming"
+  },
+  {
+    "id": "event-comics-sample-01",
+    "categoryId": "comics",
+    "title": "Sample Event — Architecture Check Convention",
+    "date": "2025-06-01",
+    "location": "Seed Town Expo Hall",
+    "description": "Placeholder event used only to verify the EventItem type and detail routing in Phase 1.",
+    "eventType": "convention",
+    "status": "past"
+  }
+]

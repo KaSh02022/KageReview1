@@ -1,0 +1,125 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 800;
+  background: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-5);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+.logo {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.mobileNavToggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+}
+
+.searchSlot {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.utilityBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.iconLink {
+  position: relative;
+  text-decoration: none;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: var(--color-action-primary);
+  color: var(--color-text-on-accent);
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-full);
+  padding: 0 5px;
+  min-width: 16px;
+  text-align: center;
+}
+
+.authButton {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.categoryNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-2) var(--space-5) var(--space-3);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+.categoryLink {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  padding: var(--space-1) 0;
+  border-bottom: 2px solid transparent;
+}
+
+.categoryLink:hover {
+  color: var(--color-text-primary);
+}
+
+.categoryLink[aria-current='page'] {
+  color: var(--color-text-primary);
+  border-bottom-color: var(--color-action-primary);
+}
+
+@media (max-width: 767px) {
+  .mobileNavToggle {
+    display: inline-flex;
+  }
+
+  .searchSlot {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .categoryNav {
+    display: none;
+    flex-direction: column;
+  }
+
+  .categoryNavOpen {
+    display: flex;
+  }
+}

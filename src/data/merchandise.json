@@ -1,0 +1,24 @@
+[
+  {
+    "id": "merch-anime-sample-01",
+    "categoryId": "anime",
+    "name": "Sample T-Shirt",
+    "image": { "src": "/assets/merch/placeholder.svg", "alt": "Placeholder product image for a sample t-shirt" },
+    "priceRangeMin": 15,
+    "priceRangeMax": 25,
+    "currency": "USD",
+    "description": "Placeholder merchandise entry used only to verify the MerchandiseItem type and cart flow in Phase 1.",
+    "tags": ["seed", "apparel"]
+  },
+  {
+    "id": "merch-gaming-sample-01",
+    "categoryId": "gaming",
+    "name": "Sample Collectible Figure",
+    "image": { "src": "/assets/merch/placeholder.svg", "alt": "Placeholder product image for a sample collectible figure" },
+    "priceRangeMin": 30,
+    "priceRangeMax": 45,
+    "currency": "USD",
+    "description": "Placeholder merchandise entry used only to verify the MerchandiseItem type and cart flow in Phase 1.",
+    "tags": ["seed", "collectible"]
+  }
+]

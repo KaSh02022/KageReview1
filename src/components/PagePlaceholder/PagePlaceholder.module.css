@@ -1,0 +1,19 @@
+.wrapper {
+  max-width: 720px;
+  padding: var(--space-6) 0;
+}
+
+.description {
+  color: var(--color-text-muted);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  border-left: 3px solid var(--color-action-primary);
+  padding-left: var(--space-3);
+  margin-top: var(--space-5);
+}
