@@ -36,6 +36,10 @@
   --color-primary: #5b7bff;
   --color-primary-hover: #4665e0;
   --color-primary-active: #3a54c2;
+  /* Lighter primary for small text sitting on a *tinted* primary surface
+     (e.g. Badge tone="primary"), where --color-primary only reaches 3.94:1
+     and fails WCAG AA. Found by axe in Phase 5 — D-039. */
+  --color-primary-on-tint: #8da4ff;
   --color-secondary: #ff5de0;
   --color-secondary-hover: #e042c2;
   --color-accent: #33d0ff;

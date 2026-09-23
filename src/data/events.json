@@ -1,22 +1,401 @@
 [
   {
-    "id": "event-anime-sample-01",
+    "id": "event-anime-starlit-ronin-convention",
     "categoryId": "anime",
-    "title": "Sample Event — Architecture Check Meetup",
-    "date": "2026-11-15",
-    "location": "Seed City Convention Center",
-    "description": "Placeholder event used only to verify the EventItem type and detail routing in Phase 1.",
-    "eventType": "meetup",
-    "status": "upcoming"
+    "title": "Starlit Ronin Fan Convention",
+    "date": "2026-11-14",
+    "location": "The Lantern Pavilion (fictional fan-convention venue)",
+    "description": "An annual fan-run convention celebrating Starlit Ronin, with cosplay meetups, panel discussions, and fan-art showcases. A simulated FandomVerse community event, not a real-world convention.",
+    "eventType": "convention",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-anime-starlit-ronin-convention.svg",
+      "alt": "Promotional artwork for the Starlit Ronin Fan Convention fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-anime-kaida-nova"
+    ],
+    "fictional": true
   },
   {
-    "id": "event-comics-sample-01",
-    "categoryId": "comics",
-    "title": "Sample Event — Architecture Check Convention",
-    "date": "2025-06-01",
-    "location": "Seed Town Expo Hall",
-    "description": "Placeholder event used only to verify the EventItem type and detail routing in Phase 1.",
+    "id": "event-anime-season-finale-watch-party",
+    "categoryId": "anime",
+    "title": "Season Finale Watch Party",
+    "date": "2026-08-02",
+    "location": "Online (FandomVerse Watch Party)",
+    "description": "Fans gather online to watch the Starlit Ronin season finale together, with a live chat running alongside the stream.",
+    "eventType": "watch-party",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-anime-season-finale-watch-party.svg",
+      "alt": "Promotional artwork for the Season Finale Watch Party fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-anime-kaida-nova"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-anime-kaida-cosplay-meetup",
+    "categoryId": "anime",
+    "title": "Kaida Cosplay Meetup",
+    "date": "2026-06-20",
+    "location": "Ashen Reaches Park (fictional meetup spot)",
+    "description": "A casual, fan-organized meetup for Starlit Ronin cosplayers to share builds and photos.",
+    "eventType": "meetup",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-anime-kaida-cosplay-meetup.svg",
+      "alt": "Promotional artwork for the Kaida Cosplay Meetup fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-anime-kaida-nova"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-gaming-community-championship",
+    "categoryId": "gaming",
+    "title": "Ashfall Protocol Community Championship",
+    "date": "2026-09-05",
+    "location": "Online (FandomVerse Community Event)",
+    "description": "A fan-run bracket tournament for Ashfall Protocol, streamed live with community-cast commentary.",
+    "eventType": "other",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-gaming-community-championship.svg",
+      "alt": "Promotional artwork for the Ashfall Protocol Community Championship fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-gaming-kestrel-rho"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-gaming-squad-up-watch-party",
+    "categoryId": "gaming",
+    "title": "Ashfall Squad-Up Watch Party",
+    "date": "2026-07-18",
+    "location": "Online (FandomVerse Watch Party)",
+    "description": "A community watch-along for the Ashfall Protocol Community Championship finals.",
+    "eventType": "watch-party",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-gaming-squad-up-watch-party.svg",
+      "alt": "Promotional artwork for the Ashfall Squad-Up Watch Party fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-gaming-kestrel-rho"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-gaming-local-meetup",
+    "categoryId": "gaming",
+    "title": "Ashfall Protocol Local Meetup",
+    "date": "2026-05-30",
+    "location": "Exclusion Zone Arcade (fictional venue)",
+    "description": "An in-person meetup for local Ashfall Protocol players to team up and compare loadouts.",
+    "eventType": "meetup",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-gaming-local-meetup.svg",
+      "alt": "Promotional artwork for the Ashfall Protocol Local Meetup fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-gaming-kestrel-rho"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-movies-premiere-night",
+    "categoryId": "movies",
+    "title": "Midnight Meridian Premiere Night",
+    "date": "2026-10-10",
+    "location": "The Meridian Theatre (fictional venue)",
+    "description": "A fan-organized premiere-night screening event for the latest Midnight Meridian release.",
+    "eventType": "other",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-movies-premiere-night.svg",
+      "alt": "Promotional artwork for the Midnight Meridian Premiere Night fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-movies-lena-cross"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-movies-directors-cut-watch-party",
+    "categoryId": "movies",
+    "title": "Director's Cut Watch Party",
+    "date": "2026-08-22",
+    "location": "Online (FandomVerse Watch Party)",
+    "description": "A community watch party for the Midnight Meridian director's cut, with a discussion thread running live.",
+    "eventType": "watch-party",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-movies-directors-cut-watch-party.svg",
+      "alt": "Promotional artwork for the Director's Cut Watch Party fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-movies-lena-cross"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-movies-noir-fans-meetup",
+    "categoryId": "movies",
+    "title": "Noir Fans Meetup",
+    "date": "2026-06-12",
+    "location": "Cross Street Cafe (fictional venue)",
+    "description": "A small in-person meetup for Midnight Meridian fans to trade theories about the Meridian case.",
+    "eventType": "meetup",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-movies-noir-fans-meetup.svg",
+      "alt": "Promotional artwork for the Noir Fans Meetup fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-movies-lena-cross"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-tv-shows-con-panel",
+    "categoryId": "tv-shows",
+    "title": "Glass Archive Fan Convention Panel",
+    "date": "2026-11-01",
+    "location": "The Archive Hall (fictional venue)",
+    "description": "A fan-convention panel dedicated to The Glass Archive, covering fragment theories and set-design breakdowns.",
     "eventType": "convention",
-    "status": "past"
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-tv-shows-con-panel.svg",
+      "alt": "Promotional artwork for the Glass Archive Fan Convention Panel fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-tv-shows-elena-marsh"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-tv-shows-season-3-finale-watch-party",
+    "categoryId": "tv-shows",
+    "title": "Season 3 Finale Watch Party",
+    "date": "2026-09-27",
+    "location": "Online (FandomVerse Watch Party)",
+    "description": "Fans watch the Glass Archive season 3 finale together online, with live reactions.",
+    "eventType": "watch-party",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-tv-shows-season-3-finale-watch-party.svg",
+      "alt": "Promotional artwork for the Season 3 Finale Watch Party fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-tv-shows-elena-marsh"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-tv-shows-archive-theory-meetup",
+    "categoryId": "tv-shows",
+    "title": "Archive Theory Meetup",
+    "date": "2026-07-09",
+    "location": "Fragment Cafe (fictional venue)",
+    "description": "A recurring in-person meetup where Glass Archive fans compare fragment-translation theories.",
+    "eventType": "meetup",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-tv-shows-archive-theory-meetup.svg",
+      "alt": "Promotional artwork for the Archive Theory Meetup fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-tv-shows-elena-marsh"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-kpop-lunaris-convention",
+    "categoryId": "kpop",
+    "title": "LUNARIS Fan Convention",
+    "date": "2026-12-05",
+    "location": "Lunaris Dome (fictional venue)",
+    "description": "An annual fan convention for LUNARIS, featuring fan-cam screenings and lightstick customization booths.",
+    "eventType": "convention",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-kpop-lunaris-convention.svg",
+      "alt": "Promotional artwork for the LUNARIS Fan Convention fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-kpop-hana"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-kpop-comeback-watch-party",
+    "categoryId": "kpop",
+    "title": "Comeback Stage Watch Party",
+    "date": "2026-08-15",
+    "location": "Online (FandomVerse Watch Party)",
+    "description": "Fans stream LUNARIS's comeback stage together online, reacting in real time.",
+    "eventType": "watch-party",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-kpop-comeback-watch-party.svg",
+      "alt": "Promotional artwork for the Comeback Stage Watch Party fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-kpop-hana"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-kpop-lightstick-meetup",
+    "categoryId": "kpop",
+    "title": "Lightstick Meetup",
+    "date": "2026-06-28",
+    "location": "Moonlight Plaza (fictional venue)",
+    "description": "A local, fan-organized meetup for LUNARIS fans to trade merch and photocards.",
+    "eventType": "meetup",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-kpop-lightstick-meetup.svg",
+      "alt": "Promotional artwork for the Lightstick Meetup fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-kpop-hana"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-comics-vanguard-con-panel",
+    "categoryId": "comics",
+    "title": "Ironclad Vanguard Con Panel",
+    "date": "2026-10-24",
+    "location": "Steelframe Convention Hall (fictional venue)",
+    "description": "A fan-convention panel covering the latest Ironclad Vanguard story arc, with guest fan-artists.",
+    "eventType": "convention",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-comics-vanguard-con-panel.svg",
+      "alt": "Promotional artwork for the Ironclad Vanguard Con Panel fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-comics-aegis"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-comics-issue-release-party",
+    "categoryId": "comics",
+    "title": "Issue #1 Release Party",
+    "date": "2026-05-16",
+    "location": "Vanguard Comics & Games (fictional venue)",
+    "description": "A local comic-shop release-day event for the newest Ironclad Vanguard issue.",
+    "eventType": "other",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-comics-issue-release-party.svg",
+      "alt": "Promotional artwork for the Issue #1 Release Party fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-comics-aegis"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-comics-readers-meetup",
+    "categoryId": "comics",
+    "title": "Vanguard Readers Meetup",
+    "date": "2026-07-02",
+    "location": "Online (FandomVerse Community Event)",
+    "description": "An online meetup and discussion thread for Ironclad Vanguard readers to catch up on the current arc.",
+    "eventType": "meetup",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-comics-readers-meetup.svg",
+      "alt": "Promotional artwork for the Vanguard Readers Meetup fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-comics-aegis"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-manga-requiem-convention",
+    "categoryId": "manga",
+    "title": "Paper Moon Requiem Fan Convention",
+    "date": "2026-11-21",
+    "location": "The Bound Hall (fictional venue)",
+    "description": "A fan convention dedicated to Paper Moon Requiem, with volume-signing lookalike events and fan-art alley.",
+    "eventType": "convention",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-manga-requiem-convention.svg",
+      "alt": "Promotional artwork for the Paper Moon Requiem Fan Convention fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-manga-yui-kurogane"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-manga-volume-release-watch-party",
+    "categoryId": "manga",
+    "title": "Volume Release Watch Party",
+    "date": "2026-09-11",
+    "location": "Online (FandomVerse Watch Party)",
+    "description": "Fans watch the newest Paper Moon Requiem promotional trailer together online at midnight release.",
+    "eventType": "watch-party",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-manga-volume-release-watch-party.svg",
+      "alt": "Promotional artwork for the Volume Release Watch Party fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-manga-yui-kurogane"
+    ],
+    "fictional": true
+  },
+  {
+    "id": "event-manga-readers-meetup",
+    "categoryId": "manga",
+    "title": "Requiem Readers Meetup",
+    "date": "2026-06-05",
+    "location": "Paper Lantern Bookstore (fictional venue)",
+    "description": "A local reading-circle meetup for Paper Moon Requiem fans.",
+    "eventType": "meetup",
+    "status": "upcoming",
+    "image": {
+      "src": "/assets/generated/event/event-manga-readers-meetup.svg",
+      "alt": "Promotional artwork for the Requiem Readers Meetup fan event",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "relatedIds": [
+      "character-manga-yui-kurogane"
+    ],
+    "fictional": true
   }
 ]

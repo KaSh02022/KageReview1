@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Curator Abel Finch">
+  <rect width="480" height="480" fill="#2b179b" />
+  <circle cx="409" cy="70" r="69.0" fill="#8f7bff" opacity="0.21" />
+  <circle cx="230" cy="293" r="49.0" fill="#8f7bff" opacity="0.42" />
+  <circle cx="51" cy="35" r="134.5" fill="#8f7bff" opacity="0.23" />
+  <circle cx="352" cy="258" r="114.4" fill="#8f7bff" opacity="0.44" />
+  <circle cx="165" cy="141" r="43.7" fill="#8f7bff" opacity="0.17" />
+  <circle cx="240" cy="240" r="153.6" fill="#8f7bff" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">CA</text>
+</svg>

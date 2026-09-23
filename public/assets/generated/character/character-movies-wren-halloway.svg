@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Insp. Wren Halloway">
+  <rect width="480" height="480" fill="#9b5200" />
+  <circle cx="4" cy="193" r="42.6" fill="#ffb648" opacity="0.16" />
+  <circle cx="183" cy="450" r="62.7" fill="#ffb648" opacity="0.35" />
+  <circle cx="362" cy="228" r="82.8" fill="#ffb648" opacity="0.14" />
+  <circle cx="61" cy="5" r="102.8" fill="#ffb648" opacity="0.33" />
+  <circle cx="248" cy="122" r="68.0" fill="#ffb648" opacity="0.20" />
+  <circle cx="427" cy="380" r="88.0" fill="#ffb648" opacity="0.39" />
+  <circle cx="240" cy="240" r="153.6" fill="#ffb648" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">IW</text>
+</svg>

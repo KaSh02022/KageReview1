@@ -3,7 +3,7 @@ import { CinematicEntry } from '../features/universe/CinematicEntry'
 import { articles, getCategoryById } from '../data'
 import { SectionHeader } from '../components/ui/SectionHeader/SectionHeader'
 import { Grid } from '../components/ui/Layout/Grid'
-import { Card, CardHeader, CardBody } from '../components/ui/Card/Card'
+import { Card, CardMedia, CardHeader, CardBody } from '../components/ui/Card/Card'
 import { EmptyState } from '../components/EmptyState/EmptyState'
 import styles from './HomePage.module.css'
 
@@ -56,6 +56,9 @@ export function HomePage() {
           <Grid minItemWidth={240} gap="md">
             {featured.map((article) => (
               <Card key={article.id} to={`/article/${article.id}`}>
+                <CardMedia>
+                  <img src={article.thumbnail.src} alt={article.thumbnail.alt} loading="lazy" />
+                </CardMedia>
                 <CardHeader>
                   <h3>{article.title}</h3>
                 </CardHeader>

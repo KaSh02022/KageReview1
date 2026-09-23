@@ -12,10 +12,13 @@ const DEEP_LINKS: Array<[string, RegExp]> = [
   ['/', /FandomVerse/i],
   ['/anime', /^Anime$/i],
   ['/gaming', /^Gaming$/i],
-  ['/article/article-anime-sample-01', /sample article/i],
-  ['/character/character-anime-sample-01', /sample character one/i],
-  ['/event/event-anime-sample-01', /sample event/i],
-  ['/product/merch-anime-sample-01', /sample t-shirt/i],
+  // Real content ids are used deliberately here: the point of this suite is
+  // that a bookmarked/shared deep link resolves, so it should break loudly
+  // if a published content id ever disappears.
+  ['/article/article-anime-why-the-ashen-reaches-feel-alive', /^Starlit Ronin: Why the Ashen Reaches Feel Alive$/i],
+  ['/character/character-anime-kaida-nova', /^Kaida Nova$/i],
+  ['/event/event-anime-starlit-ronin-convention', /^Starlit Ronin Fan Convention$/i],
+  ['/product/merch-anime-blade-bearer-tee', /^Starlit Ronin Blade-Bearer Tee$/i],
   ['/search', /^Search$/i],
   ['/trailers', /^Trailers$/i],
   ['/events', /^Events$/i],

@@ -50,24 +50,24 @@ test.describe('Keyboard-only walkthrough', () => {
     // otherwise Tab starts from the stale pre-navigation focus target.
     await expect(page.locator('#main-content')).toBeFocused()
 
-    // Tab from main content to the first article link and activate it.
-    // Checking tagName === 'A' matters: <main>'s own textContent already
-    // *contains* "Sample Article" (it's the concatenation of everything
-    // inside it, including that link's text), so a substring check alone
-    // matches <main> itself at guard=0, before any Tab is pressed.
+    // Tab from main content to the first article link and activate it. The
+    // link is identified by its href rather than its title text, so this
+    // stays a keyboard-reachability test instead of a test that one
+    // particular article still exists.
     guard = 0
-    while (guard < 15) {
-      const focused = await page.evaluate(() => ({
-        tag: document.activeElement?.tagName,
-        text: document.activeElement?.textContent?.trim(),
-      }))
-      if (focused.tag === 'A' && focused.text?.includes('Sample Article')) break
+    while (guard < 25) {
+      const isArticleLink = await page.evaluate(() => {
+        const active = document.activeElement
+        return active?.tagName === 'A' && (active.getAttribute('href') ?? '').includes('#/article/')
+      })
+      if (isArticleLink) break
       await page.keyboard.press('Tab')
       guard += 1
     }
-    expect(guard).toBeLessThan(15)
+    expect(guard, 'never reached an article link by keyboard').toBeLessThan(25)
     await page.keyboard.press('Enter')
-    await expect(page.getByRole('heading', { level: 1, name: /sample article/i })).toBeVisible()
+    await expect(page).toHaveURL(/#\/article\//)
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
     await expect(page.locator('#main-content')).toBeFocused()
 
     // DETAIL -> SEARCH: the search input lives in the header, earlier in
@@ -92,7 +92,8 @@ test.describe('Keyboard-only walkthrough', () => {
 
     // BACK: browser back returns to the article detail page.
     await page.goBack()
-    await expect(page.getByRole('heading', { level: 1, name: /sample article/i })).toBeVisible()
+    await expect(page).toHaveURL(/#\/article\//)
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
   })
 
   test('MOBILE NAV -> DIALOG -> CLOSE, entirely by keyboard', async ({ page }) => {

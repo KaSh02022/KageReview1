@@ -1,58 +1,107 @@
 [
   {
     "id": "anime",
+    "slug": "anime",
     "name": "Anime",
     "tagline": "Worlds drawn in motion.",
     "accentColor": "--color-accent-anime",
-    "heroImage": { "src": "/assets/hero/anime-placeholder.svg", "alt": "Placeholder hero artwork for the Anime hub" },
-    "description": "Original-concept placeholder description for the Anime category hub. Real editorial content is populated in Phase 5."
+    "heroImage": {
+      "src": "/assets/generated/category/anime-hero.svg",
+      "alt": "Anime category hero banner featuring the Starlit Ronin franchise",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "Home of Starlit Ronin, FandomVerse’s original blade-and-sky adventure, plus the fan community built around it: character deep-dives, con meetups, and every Ashen Reaches theory in one place.",
+    "visualMotif": "Ember gradients and blade-light streaks",
+    "franchise": "Starlit Ronin"
   },
   {
     "id": "gaming",
+    "slug": "gaming",
     "name": "Gaming",
     "tagline": "Every save file, one hub.",
     "accentColor": "--color-accent-gaming",
-    "heroImage": { "src": "/assets/hero/gaming-placeholder.svg", "alt": "Placeholder hero artwork for the Gaming hub" },
-    "description": "Original-concept placeholder description for the Gaming category hub. Real editorial content is populated in Phase 5."
+    "heroImage": {
+      "src": "/assets/generated/category/gaming-hero.svg",
+      "alt": "Gaming category hero banner featuring the Ashfall Protocol franchise",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "Everything for Ashfall Protocol, FandomVerse’s original tactical-squad shooter series: squad lore, community tournaments, and the gear people actually want to buy.",
+    "visualMotif": "HUD grids and signal-flare cyan",
+    "franchise": "Ashfall Protocol"
   },
   {
     "id": "movies",
+    "slug": "movies",
     "name": "Movies",
     "tagline": "The reel world, curated.",
     "accentColor": "--color-accent-movies",
-    "heroImage": { "src": "/assets/hero/movies-placeholder.svg", "alt": "Placeholder hero artwork for the Movies hub" },
-    "description": "Original-concept placeholder description for the Movies category hub. Real editorial content is populated in Phase 5."
+    "heroImage": {
+      "src": "/assets/generated/category/movies-hero.svg",
+      "alt": "Movies category hero banner featuring the Midnight Meridian franchise",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A curated hub for Midnight Meridian, FandomVerse’s original neo-noir mystery series: cast profiles, premiere-night events, and the ongoing debate over who Julian Moreau really is.",
+    "visualMotif": "Amber spotlight and film-grain vignette",
+    "franchise": "Midnight Meridian"
   },
   {
     "id": "tv-shows",
+    "slug": "tv-shows",
     "name": "TV Shows",
     "tagline": "Binge-worthy, organized.",
     "accentColor": "--color-accent-tvshows",
-    "heroImage": { "src": "/assets/hero/tv-shows-placeholder.svg", "alt": "Placeholder hero artwork for the TV Shows hub" },
-    "description": "Original-concept placeholder description for the TV Shows category hub. Real editorial content is populated in Phase 5."
+    "heroImage": {
+      "src": "/assets/generated/category/tv-shows-hero.svg",
+      "alt": "TV Shows category hero banner featuring the The Glass Archive franchise",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "The full companion hub for The Glass Archive, FandomVerse’s original sci-fi mystery series: episode-era articles, fan theory meetups, and every recovered \"fragment\" fans have catalogued.",
+    "visualMotif": "Violet scanlines and archive-glass texture",
+    "franchise": "The Glass Archive"
   },
   {
     "id": "kpop",
+    "slug": "k-pop",
     "name": "K-Pop",
     "tagline": "Stages, stans, and setlists.",
     "accentColor": "--color-accent-kpop",
-    "heroImage": { "src": "/assets/hero/kpop-placeholder.svg", "alt": "Placeholder hero artwork for the K-Pop hub" },
-    "description": "Original-concept placeholder description for the K-Pop category hub. Real editorial content is populated in Phase 5."
+    "heroImage": {
+      "src": "/assets/generated/category/kpop-hero.svg",
+      "alt": "K-Pop category hero banner featuring the LUNARIS franchise",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "The fan hub for LUNARIS, FandomVerse’s original five-member group: member profiles, comeback-era releases, and the lightstick-sea meetups that keep the fandom going.",
+    "visualMotif": "Magenta stage-light bloom",
+    "franchise": "LUNARIS"
   },
   {
     "id": "comics",
+    "slug": "comics",
     "name": "Comics",
     "tagline": "Panels, ink, and legends.",
     "accentColor": "--color-accent-comics",
-    "heroImage": { "src": "/assets/hero/comics-placeholder.svg", "alt": "Placeholder hero artwork for the Comics hub" },
-    "description": "Original-concept placeholder description for the Comics category hub. Real editorial content is populated in Phase 5."
+    "heroImage": {
+      "src": "/assets/generated/category/comics-hero.svg",
+      "alt": "Comics category hero banner featuring the Ironclad Vanguard franchise",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "The full hub for Ironclad Vanguard, FandomVerse’s original superhero-team comic: issue-by-issue coverage, character files, and the artwork fans keep drawing between issues.",
+    "visualMotif": "Halftone dots and bold primary ink",
+    "franchise": "Ironclad Vanguard"
   },
   {
     "id": "manga",
+    "slug": "manga",
     "name": "Manga",
     "tagline": "Volumes without borders.",
     "accentColor": "--color-accent-manga",
-    "heroImage": { "src": "/assets/hero/manga-placeholder.svg", "alt": "Placeholder hero artwork for the Manga hub" },
-    "description": "Original-concept placeholder description for the Manga category hub. Real editorial content is populated in Phase 5."
+    "heroImage": {
+      "src": "/assets/generated/category/manga-hero.svg",
+      "alt": "Manga category hero banner featuring the Paper Moon Requiem franchise",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A dedicated hub for Paper Moon Requiem, FandomVerse’s original dark-fantasy manga: volume tracking, character files, and reader meetups for a series that never stays quietly bound.",
+    "visualMotif": "Screentone monochrome with a single accent",
+    "franchise": "Paper Moon Requiem"
   }
 ]

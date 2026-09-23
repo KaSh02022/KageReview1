@@ -1,11 +1,24 @@
+import type { CSSProperties } from 'react'
 import { useParams } from 'react-router-dom'
-import { articles, characters, events, media, galleries, getCategoryById } from '../data'
+import {
+  articles,
+  characters,
+  events,
+  media,
+  galleries,
+  releases,
+  merchandise,
+  getCategoryByIdOrSlug,
+} from '../data'
+import { CATEGORY_ROUTES } from '../routes/categoryRoutes'
 import { EmptyState } from '../components/EmptyState/EmptyState'
-import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
 import { SectionHeader } from '../components/ui/SectionHeader/SectionHeader'
 import { Grid } from '../components/ui/Layout/Grid'
 import { Stack } from '../components/ui/Layout/Stack'
-import { Card, CardHeader } from '../components/ui/Card/Card'
+import { Badge } from '../components/ui/Badge/Badge'
+import { Card, CardMedia, CardHeader, CardBody, CardMeta, CardFooter } from '../components/ui/Card/Card'
+import { Link } from '../components/ui/Link/Link'
+import styles from './CategoryHubPage.module.css'
 
 interface CategoryHubPageProps {
   categoryId?: string
@@ -13,118 +26,254 @@ interface CategoryHubPageProps {
 }
 
 /**
- * Shared Category Hub, mounted once per category route (docs/02_PRODUCT_ARCHITECTURE.md §3).
- * Phase 1 shows only the seed content available for that category; full
- * catalog/filter/sort (FR-005–008) is Phase 5/6 scope.
+ * The shared "one universe, seven worlds" category hub template (Phase 5,
+ * docs/02_PRODUCT_ARCHITECTURE.md §16). Every category renders the exact
+ * same section structure — hero, featured, articles, gallery, characters,
+ * events, trailers, upcoming releases, merchandise, discovery — with only
+ * the accent color, imagery, and content differing per category.
  */
 export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryHubPageProps) {
   const { slug } = useParams()
-  const categoryId = categoryIdProp ?? slug ?? ''
-  const category = getCategoryById(categoryId)
-  const accent = category ? `var(--color-accent-${category.id.replace('-', '')})` : undefined
+  const lookupValue = categoryIdProp ?? slug ?? ''
+  const category = getCategoryByIdOrSlug(lookupValue)
+
+  if (!category) {
+    return (
+      <EmptyState
+        title="Category not found"
+        description={`No category matches "${label ?? lookupValue}". Explore one of the seven fandom hubs from the navigation.`}
+      />
+    )
+  }
+
+  const categoryId = category.id
+  const accent = `var(${category.accentColor})`
 
   const categoryArticles = articles.filter((item) => item.categoryId === categoryId)
+  const featuredArticle = categoryArticles.find((item) => item.featured)
+  const remainingArticles = categoryArticles.filter((item) => item.id !== featuredArticle?.id)
   const categoryCharacters = characters.filter((item) => item.categoryId === categoryId)
   const categoryEvents = events.filter((item) => item.categoryId === categoryId)
-  const categoryMedia = media.filter((item) => item.categoryId === categoryId)
-  const categoryGalleries = galleries.filter((item) => item.categoryId === categoryId)
-
-  const hasAnyContent =
-    categoryArticles.length ||
-    categoryCharacters.length ||
-    categoryEvents.length ||
-    categoryMedia.length ||
-    categoryGalleries.length
+  const categoryTrailers = media.filter((item) => item.categoryId === categoryId && item.mediaType === 'trailer')
+  const categoryGallery = galleries.find((item) => item.categoryId === categoryId)
+  const categoryReleases = releases.filter((item) => item.categoryId === categoryId)
+  const categoryMerch = merchandise.filter((item) => item.categoryId === categoryId)
+  const otherCategories = CATEGORY_ROUTES.filter((route) => route.categoryId !== categoryId)
 
   return (
-    <PagePlaceholder
-      title={category?.name ?? label ?? 'Category Hub'}
-      description={
-        category?.description ??
-        'Unrecognized category slug — full validation/redirect handling is added alongside real content in Phase 5.'
-      }
-      requirementIds={['FR-005', 'FR-006', 'FR-007', 'FR-008']}
-      phase="Phase 5 (full catalog, filter, sort)"
-    >
-      {!hasAnyContent ? (
-        <EmptyState
-          title="No seed content for this category yet"
-          description="Phase 1 only ships a few sample entries for architecture verification. Full population happens in Phase 5–8."
+    <div className={styles.wrapper}>
+      <header className={styles.hero} style={{ '--hero-accent': accent } as CSSProperties}>
+        <img
+          className={styles.heroImage}
+          src={category.heroImage.src}
+          alt={category.heroImage.alt}
+          loading="lazy"
         />
-      ) : (
-        <Stack gap="xl">
-          {categoryArticles.length > 0 && (
-            <section aria-labelledby={`${categoryId}-articles`}>
-              <SectionHeader id={`${categoryId}-articles`} title="Articles" level={3} />
-              <Grid minItemWidth={200} gap="sm">
-                {categoryArticles.map((article) => (
-                  <Card key={article.id} to={`/article/${article.id}`} accent={accent}>
-                    <CardHeader>
-                      <h4>{article.title}</h4>
-                    </CardHeader>
-                  </Card>
-                ))}
-              </Grid>
-            </section>
+        <div className={styles.heroContent}>
+          <p className={styles.heroEyebrow}>{category.visualMotif}</p>
+          <h1 className={styles.heroTitle}>{category.name}</h1>
+          <p className={styles.heroTagline}>{category.tagline}</p>
+          <p className={styles.heroDescription}>{category.description}</p>
+        </div>
+      </header>
+
+      <Stack gap="2xl" className={styles.sections}>
+        {featuredArticle && (
+          <section aria-labelledby={`${categoryId}-featured`}>
+            <SectionHeader
+              id={`${categoryId}-featured`}
+              eyebrow="Featured"
+              title={`Start here: ${category.franchise}`}
+            />
+            <Card to={`/article/${featuredArticle.id}`} accent={accent} className={styles.featuredCard}>
+              <CardMedia>
+                <img src={featuredArticle.thumbnail.src} alt={featuredArticle.thumbnail.alt} loading="lazy" />
+              </CardMedia>
+              <CardBody>
+                <h3>{featuredArticle.title}</h3>
+                <p>{featuredArticle.summary}</p>
+              </CardBody>
+            </Card>
+          </section>
+        )}
+
+        <section aria-labelledby={`${categoryId}-articles`}>
+          <SectionHeader id={`${categoryId}-articles`} title="Articles" level={2} />
+          {remainingArticles.length === 0 ? (
+            <EmptyState title="No further articles yet" description="Check back soon for more coverage." />
+          ) : (
+            <Grid minItemWidth={240} gap="md">
+              {remainingArticles.map((article) => (
+                <Card key={article.id} to={`/article/${article.id}`} accent={accent}>
+                  <CardMedia>
+                    <img src={article.thumbnail.src} alt={article.thumbnail.alt} loading="lazy" />
+                  </CardMedia>
+                  <CardHeader>
+                    <h3>{article.title}</h3>
+                  </CardHeader>
+                  <CardBody>
+                    <p>{article.summary}</p>
+                  </CardBody>
+                </Card>
+              ))}
+            </Grid>
           )}
-          {categoryCharacters.length > 0 && (
-            <section aria-labelledby={`${categoryId}-characters`}>
-              <SectionHeader id={`${categoryId}-characters`} title="Characters" level={3} />
-              <Grid minItemWidth={160} gap="sm">
-                {categoryCharacters.map((character) => (
-                  <Card key={character.id} to={`/character/${character.id}`} accent={accent}>
-                    <CardHeader>
-                      <h4>{character.name}</h4>
-                    </CardHeader>
-                  </Card>
-                ))}
-              </Grid>
-            </section>
+        </section>
+
+        <section aria-labelledby={`${categoryId}-gallery`}>
+          <SectionHeader id={`${categoryId}-gallery`} title="Gallery" level={2} />
+          {!categoryGallery || categoryGallery.images.length === 0 ? (
+            <EmptyState title="No gallery images yet" description="Fan-art and concept pieces are added over time." />
+          ) : (
+            <Grid minItemWidth={150} gap="sm">
+              {categoryGallery.images.map((image) => (
+                <figure key={image.id} className={styles.galleryItem}>
+                  <img src={image.src} alt={image.alt} loading="lazy" />
+                  <figcaption>{image.caption}</figcaption>
+                </figure>
+              ))}
+            </Grid>
           )}
-          {categoryEvents.length > 0 && (
-            <section aria-labelledby={`${categoryId}-events`}>
-              <SectionHeader id={`${categoryId}-events`} title="Events" level={3} />
-              <Grid minItemWidth={200} gap="sm">
-                {categoryEvents.map((event) => (
-                  <Card key={event.id} to={`/event/${event.id}`} accent={accent}>
-                    <CardHeader>
-                      <h4>{event.title}</h4>
-                    </CardHeader>
-                  </Card>
-                ))}
-              </Grid>
-            </section>
+        </section>
+
+        <section aria-labelledby={`${categoryId}-characters`}>
+          <SectionHeader id={`${categoryId}-characters`} title="Characters" level={2} />
+          {categoryCharacters.length === 0 ? (
+            <EmptyState title="No character profiles yet" description="Character profiles are added over time." />
+          ) : (
+            <Grid minItemWidth={150} gap="sm">
+              {categoryCharacters.map((character) => (
+                <Card key={character.id} to={`/character/${character.id}`} accent={accent}>
+                  <CardMedia>
+                    <img src={character.image.src} alt={character.image.alt} loading="lazy" />
+                  </CardMedia>
+                  <CardHeader>
+                    <h3>{character.name}</h3>
+                  </CardHeader>
+                  <CardMeta>{character.role}</CardMeta>
+                </Card>
+              ))}
+            </Grid>
           )}
-          {categoryMedia.length > 0 && (
-            <section aria-labelledby={`${categoryId}-media`}>
-              <SectionHeader id={`${categoryId}-media`} title="Videos & Audio" level={3} />
-              <Grid minItemWidth={200} gap="sm">
-                {categoryMedia.map((item) => (
-                  <Card key={item.id} accent={accent}>
-                    <CardHeader>
-                      <h4>{item.title}</h4>
-                    </CardHeader>
-                  </Card>
-                ))}
-              </Grid>
-            </section>
+        </section>
+
+        <section aria-labelledby={`${categoryId}-events`}>
+          <SectionHeader id={`${categoryId}-events`} title="Events" level={2} />
+          {categoryEvents.length === 0 ? (
+            <EmptyState title="No events scheduled" description="Fan events are added as they're organized." />
+          ) : (
+            <Grid minItemWidth={240} gap="md">
+              {categoryEvents.map((event) => (
+                <Card key={event.id} to={`/event/${event.id}`} accent={accent}>
+                  <CardMedia>
+                    <img src={event.image.src} alt={event.image.alt} loading="lazy" />
+                  </CardMedia>
+                  <CardHeader>
+                    <h3>{event.title}</h3>
+                  </CardHeader>
+                  <CardBody>
+                    <p>
+                      {event.date} · {event.location}
+                    </p>
+                  </CardBody>
+                  <CardFooter>
+                    <Badge tone="neutral">{event.eventType}</Badge>
+                    {event.fictional && (
+                      <Badge tone="warning">Simulated fan event</Badge>
+                    )}
+                  </CardFooter>
+                </Card>
+              ))}
+            </Grid>
           )}
-          {categoryGalleries.length > 0 && (
-            <section aria-labelledby={`${categoryId}-gallery`}>
-              <SectionHeader id={`${categoryId}-gallery`} title="Gallery" level={3} />
-              <Grid minItemWidth={200} gap="sm">
-                {categoryGalleries.map((gallery) => (
-                  <Card key={gallery.id} accent={accent}>
-                    <CardHeader>
-                      <h4>{gallery.title}</h4>
-                    </CardHeader>
-                  </Card>
-                ))}
-              </Grid>
-            </section>
+        </section>
+
+        <section aria-labelledby={`${categoryId}-trailers`}>
+          <SectionHeader id={`${categoryId}-trailers`} title="Trailers" level={2} />
+          {categoryTrailers.length === 0 ? (
+            <EmptyState title="No trailers yet" description="Trailers are added as they're released." />
+          ) : (
+            <Grid minItemWidth={220} gap="md">
+              {categoryTrailers.map((trailer) => (
+                <Card key={trailer.id} accent={accent}>
+                  <CardMedia>
+                    <img src={trailer.thumbnail.src} alt={trailer.thumbnail.alt} loading="lazy" />
+                  </CardMedia>
+                  <CardHeader>
+                    <h3>{trailer.title}</h3>
+                  </CardHeader>
+                  <CardBody>
+                    <p>{trailer.description}</p>
+                  </CardBody>
+                  <CardFooter>
+                    <Badge tone="neutral">Fictional trailer</Badge>
+                  </CardFooter>
+                </Card>
+              ))}
+            </Grid>
           )}
-        </Stack>
-      )}
-    </PagePlaceholder>
+        </section>
+
+        <section aria-labelledby={`${categoryId}-releases`}>
+          <SectionHeader id={`${categoryId}-releases`} title="Upcoming Releases" level={2} />
+          {categoryReleases.length === 0 ? (
+            <EmptyState title="Nothing scheduled" description="Release info is added as it's announced." />
+          ) : (
+            <Grid minItemWidth={150} gap="sm">
+              {categoryReleases.map((release) => (
+                <Card key={release.id} accent={accent}>
+                  <CardMedia>
+                    <img src={release.coverImage.src} alt={release.coverImage.alt} loading="lazy" />
+                  </CardMedia>
+                  <CardHeader>
+                    <h3>{release.title}</h3>
+                  </CardHeader>
+                  <CardFooter>
+                    <Badge tone={release.status === 'upcoming' ? 'primary' : 'neutral'}>{release.status}</Badge>
+                  </CardFooter>
+                </Card>
+              ))}
+            </Grid>
+          )}
+        </section>
+
+        <section aria-labelledby={`${categoryId}-merch`}>
+          <SectionHeader id={`${categoryId}-merch`} title="Merchandise" level={2} />
+          {categoryMerch.length === 0 ? (
+            <EmptyState title="No merchandise yet" description="Merchandise is added over time." />
+          ) : (
+            <Grid minItemWidth={150} gap="sm">
+              {categoryMerch.map((item) => (
+                <Card key={item.id} to={`/product/${item.id}`} accent={accent}>
+                  <CardMedia>
+                    <img src={item.image.src} alt={item.image.alt} loading="lazy" />
+                  </CardMedia>
+                  <CardHeader>
+                    <h3>{item.name}</h3>
+                  </CardHeader>
+                  <CardFooter>
+                    <span>
+                      {item.currency} {item.priceRangeMin}–{item.priceRangeMax}
+                    </span>
+                    <Badge tone={item.status === 'available' ? 'success' : 'neutral'}>{item.status}</Badge>
+                  </CardFooter>
+                </Card>
+              ))}
+            </Grid>
+          )}
+        </section>
+
+        <section aria-labelledby={`${categoryId}-explore`}>
+          <SectionHeader id={`${categoryId}-explore`} title="Explore another world" level={2} />
+          <Stack direction="row" wrap gap="sm">
+            {otherCategories.map((route) => (
+              <Link key={route.categoryId} to={`/${route.path}`}>
+                {route.label}
+              </Link>
+            ))}
+          </Stack>
+        </section>
+      </Stack>
+    </div>
   )
 }

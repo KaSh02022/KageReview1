@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-label="Ironclad Vanguard">
+  <defs>
+    <linearGradient id="g" gradientTransform="rotate(150)">
+      <stop offset="0%" stop-color="#a58700" />
+      <stop offset="100%" stop-color="#ffe14d" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="500" fill="#a58700" />
+  <circle cx="600" cy="295" r="660" fill="url(#g)" opacity="0.85" />
+  <rect y="310" width="1200" height="190" fill="#a58700" opacity="0.5" />
+  <text x="72" y="428" font-family="sans-serif" font-size="48" font-weight="600" letter-spacing="1.5" fill="#ffffffdd">IRONCLAD VANGUARD</text>
+</svg>

@@ -52,7 +52,22 @@ Per SRS p.6: Search, Bookmarks, Contact Us, About Us, and the chatbot must remai
 
 ## 4. Category Hubs
 
-Each of the 7 hubs follows one consistent template (own visual accent color per `04_DESIGN_SYSTEM.md`, shared layout): catalog grid with filter/sort controls at top, then gallery, media, articles, characters, and events sections/sub-tabs below. Consistency here is deliberate — it keeps 7 categories navigable without relearning UX per category, while still allowing category-specific art direction.
+Each of the 7 hubs follows one consistent template (own visual accent color per `04_DESIGN_SYSTEM.md`, shared layout). Consistency here is deliberate — it keeps 7 categories navigable without relearning UX per category, while still allowing category-specific art direction.
+
+**As implemented in Phase 5** (`src/pages/CategoryHubPage.tsx`, architecture in `02_PRODUCT_ARCHITECTURE.md` §16), the section order is:
+
+1. **Hero** — category art, visual motif eyebrow, name (h1), tagline, and description.
+2. **Featured** — the category's one featured article, given a larger card as the "start here" entry point.
+3. **Articles** — the remaining articles (the featured one is not repeated).
+4. **Gallery** — the category's gallery images with captions.
+5. **Characters** — all 5 profiles (FR-019), each linking to its detail page.
+6. **Events** — all 3 events (FR-022), badged with type and a "Simulated fan event" label.
+7. **Trailers** — badged as fictional; no external video is embedded.
+8. **Upcoming Releases** — with status badges.
+9. **Merchandise** — with price range and availability badges, linking to product pages.
+10. **Explore another world** — links to the other six hubs, so a hub is never a dead end.
+
+Filter/sort controls are deliberately absent at this stage: the search/filter/sort engine is later-phase scope, and the data carries normalized `tags`/`categoryId`/date fields ready for it. Sections render an `EmptyState` when a content type genuinely has no items rather than fabricating filler cards.
 
 ## 5. Search
 
@@ -61,6 +76,8 @@ Always-reachable via the header. Results view groups by content type (article/ch
 ## 6. Content Detail Pages (Article / Character / Event)
 
 Consistent detail-page shell: hero image/media, metadata block (type-specific fields per FR-020/FR-024), body content, "related content" module (FR-018), bookmark toggle, breadcrumb back to the owning category hub.
+
+**Phase 5 additions:** each detail page also carries explicit category context (an accent-toned badge naming the category) and an in-page "← Back to \<Category\>" link, so returning to the owning hub does not depend on the breadcrumb alone. The browser tab title is the item's own name rather than the generic route label (`useDynamicDocumentTitle`). Related content resolves across types — an article can relate to characters and events — and any id that does not resolve is dropped rather than rendered as a dead link, with the dataset itself guarded against orphan references by `contentValidation.test.ts`.
 
 ## 7. Trailers
 

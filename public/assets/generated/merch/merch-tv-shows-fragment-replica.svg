@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 45 400 300" role="img" aria-label="Glass Archive Fragment Replica">
+  <rect y="45" width="400" height="300" fill="#301ca0" />
+  <circle cx="200" cy="180" r="110" fill="#8f7bff" /><circle cx="200" cy="180" r="24" fill="#301ca0" />
+  <text x="50%" y="312" font-family="sans-serif" font-size="22" fill="#ffffffcc" text-anchor="middle">The Glass Archive</text>
+</svg>

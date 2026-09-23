@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: var(--reading-max-width);
+}
+
+.heroImage {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: var(--radius-large);
+  background: var(--color-surface-elevated);
+}
+
+/* Character portraits are square art; a full-width letterbox crop threw
+   most of the portrait away, so constrain them to a portrait-ish box. */
+.portraitImage {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-large);
+  background: var(--color-surface-elevated);
+}
+
+/* Keeps Button/BookmarkToggle at its intrinsic width inside the flex
+   column instead of stretching across the whole reading measure. */
+.inlineAction {
+  align-self: flex-start;
+}
+
+.meta {
+  align-items: center;
+  color: var(--color-text-muted);
+  font: var(--font-body-small);
+}
+
+.summary {
+  font: var(--font-body);
+  color: var(--color-text-muted);
+}
+
+.related ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="LUNARIS 2">
+  <rect width="480" height="480" fill="#9b007c" />
+  <circle cx="165" cy="405" r="107.0" fill="#ff5de0" opacity="0.17" />
+  <circle cx="466" cy="148" r="87.0" fill="#ff5de0" opacity="0.38" />
+  <circle cx="287" cy="370" r="66.9" fill="#ff5de0" opacity="0.19" />
+  <circle cx="108" cy="112" r="46.8" fill="#ff5de0" opacity="0.40" />
+  <circle cx="409" cy="335" r="132.4" fill="#ff5de0" opacity="0.21" />
+  <circle cx="240" cy="240" r="153.6" fill="#ff5de0" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">L·2</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Wraithwing (Devon Cole)">
+  <rect width="480" height="480" fill="#9b7d00" />
+  <circle cx="361" cy="125" r="102.8" fill="#ffe14d" opacity="0.13" />
+  <circle cx="182" cy="347" r="82.8" fill="#ffe14d" opacity="0.34" />
+  <circle cx="3" cy="90" r="62.7" fill="#ffe14d" opacity="0.15" />
+  <circle cx="304" cy="312" r="42.6" fill="#ffe14d" opacity="0.36" />
+  <circle cx="117" cy="195" r="77.5" fill="#ffe14d" opacity="0.49" />
+  <circle cx="240" cy="240" r="153.6" fill="#ffe14d" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">WD</text>
+</svg>

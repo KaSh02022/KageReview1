@@ -4,8 +4,8 @@ const ROUTES = [
   '/', '/anime', '/gaming', '/movies', '/tv-shows', '/k-pop', '/comics', '/manga',
   '/search', '/trailers', '/events', '/releases', '/merchandise', '/cart',
   '/bookmarks', '/contact', '/about',
-  '/article/article-anime-sample-01', '/character/character-anime-sample-01',
-  '/event/event-anime-sample-01', '/product/merch-anime-sample-01',
+  '/article/article-anime-why-the-ashen-reaches-feel-alive', '/character/character-anime-kaida-nova',
+  '/event/event-anime-starlit-ronin-convention', '/product/merch-anime-blade-bearer-tee',
 ]
 
 test('console/network audit across all primary routes', async ({ page }) => {

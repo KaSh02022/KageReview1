@@ -1,11 +1,317 @@
 [
   {
-    "id": "release-gaming-sample-01",
+    "id": "release-anime-season-2",
+    "categoryId": "anime",
+    "title": "Starlit Ronin: Season 2",
+    "releaseDate": "2026-10-01",
+    "type": "show",
+    "description": "The next chapter of Kaida's journey across the Ashen Reaches.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-anime-season-2.svg",
+      "alt": "Cover artwork for Starlit Ronin: Season 2",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-anime-season-1-collection",
+    "categoryId": "anime",
+    "title": "Starlit Ronin: Season 1 Complete Collection",
+    "releaseDate": "2026-03-15",
+    "type": "other",
+    "description": "A complete-season home release with bonus storyboard art.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-anime-season-1-collection.svg",
+      "alt": "Cover artwork for Starlit Ronin: Season 1 Complete Collection",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "recent",
+    "fictional": true
+  },
+  {
+    "id": "release-anime-ova-special",
+    "categoryId": "anime",
+    "title": "Starlit Ronin: Ashfall OVA Special",
+    "releaseDate": "2027-01-20",
+    "type": "other",
+    "description": "A side-story special following Suzu before she joined the group.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-anime-ova-special.svg",
+      "alt": "Cover artwork for Starlit Ronin: Ashfall OVA Special",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-gaming-protocol-2",
     "categoryId": "gaming",
-    "title": "Sample Upcoming Release — Architecture Check",
-    "releaseDate": "2026-12-01",
+    "title": "Ashfall Protocol II",
+    "releaseDate": "2026-11-12",
     "type": "game",
-    "description": "Placeholder release entry used only to verify the Release type and releases route in Phase 1.",
-    "coverImage": { "src": "/assets/release/placeholder.svg", "alt": "Placeholder cover art for a sample upcoming release" }
+    "description": "The sequel expanding Kestrel’s squad-tactics system with new terrain mechanics.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-gaming-protocol-2.svg",
+      "alt": "Cover artwork for Ashfall Protocol II",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-gaming-directors-cut",
+    "categoryId": "gaming",
+    "title": "Ashfall Protocol: Director's Cut",
+    "releaseDate": "2026-02-01",
+    "type": "game",
+    "description": "An expanded edition of the original with new missions and difficulty options.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-gaming-directors-cut.svg",
+      "alt": "Cover artwork for Ashfall Protocol: Director's Cut",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "recent",
+    "fictional": true
+  },
+  {
+    "id": "release-gaming-mobile",
+    "categoryId": "gaming",
+    "title": "Ashfall Protocol Mobile",
+    "releaseDate": "2027-02-01",
+    "type": "game",
+    "description": "A companion mobile squad-tactics spin-off.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-gaming-mobile.svg",
+      "alt": "Cover artwork for Ashfall Protocol Mobile",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-movies-meridian-part-2",
+    "categoryId": "movies",
+    "title": "Midnight Meridian: Part II",
+    "releaseDate": "2026-12-04",
+    "type": "movie",
+    "description": "The continuation of Lena Cross's investigation into the Meridian case.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-movies-meridian-part-2.svg",
+      "alt": "Cover artwork for Midnight Meridian: Part II",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-movies-meridian-original",
+    "categoryId": "movies",
+    "title": "Midnight Meridian",
+    "releaseDate": "2026-01-16",
+    "type": "movie",
+    "description": "The original film that introduced the Meridian case.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-movies-meridian-original.svg",
+      "alt": "Cover artwork for Midnight Meridian",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "recent",
+    "fictional": true
+  },
+  {
+    "id": "release-movies-meridian-extended-cut",
+    "categoryId": "movies",
+    "title": "Midnight Meridian: Extended Cut",
+    "releaseDate": "2026-11-01",
+    "type": "movie",
+    "description": "An extended home release with restored scenes.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-movies-meridian-extended-cut.svg",
+      "alt": "Cover artwork for Midnight Meridian: Extended Cut",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-tv-shows-season-4",
+    "categoryId": "tv-shows",
+    "title": "The Glass Archive: Season 4",
+    "releaseDate": "2026-10-15",
+    "type": "show",
+    "description": "The next season continuing the fragment-translation mystery.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-tv-shows-season-4.svg",
+      "alt": "Cover artwork for The Glass Archive: Season 4",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-tv-shows-season-3",
+    "categoryId": "tv-shows",
+    "title": "The Glass Archive: Season 3",
+    "releaseDate": "2026-04-20",
+    "type": "show",
+    "description": "The season introducing Nova Reyes and the board-wide leak.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-tv-shows-season-3.svg",
+      "alt": "Cover artwork for The Glass Archive: Season 3",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "recent",
+    "fictional": true
+  },
+  {
+    "id": "release-tv-shows-origins-special",
+    "categoryId": "tv-shows",
+    "title": "The Glass Archive: Origins",
+    "releaseDate": "2027-01-05",
+    "type": "other",
+    "description": "A prequel special covering the Archive's founding.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-tv-shows-origins-special.svg",
+      "alt": "Cover artwork for The Glass Archive: Origins",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-kpop-afterglow",
+    "categoryId": "kpop",
+    "title": "LUNARIS 3rd Mini Album \"Afterglow\"",
+    "releaseDate": "2026-09-18",
+    "type": "album",
+    "description": "LUNARIS's next comeback release.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-kpop-afterglow.svg",
+      "alt": "Cover artwork for LUNARIS 3rd Mini Album \"Afterglow\"",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-kpop-nocturne",
+    "categoryId": "kpop",
+    "title": "LUNARIS 2nd Album \"Nocturne\"",
+    "releaseDate": "2026-03-02",
+    "type": "album",
+    "description": "The group's most recent full-length release.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-kpop-nocturne.svg",
+      "alt": "Cover artwork for LUNARIS 2nd Album \"Nocturne\"",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "recent",
+    "fictional": true
+  },
+  {
+    "id": "release-kpop-winter-single",
+    "categoryId": "kpop",
+    "title": "LUNARIS Winter Single",
+    "releaseDate": "2026-12-20",
+    "type": "album",
+    "description": "A seasonal single release.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-kpop-winter-single.svg",
+      "alt": "Cover artwork for LUNARIS Winter Single",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-comics-issue-13",
+    "categoryId": "comics",
+    "title": "Ironclad Vanguard #13",
+    "releaseDate": "2026-10-07",
+    "type": "comic-issue",
+    "description": "The next issue continuing the Cartographer's current arc.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-comics-issue-13.svg",
+      "alt": "Cover artwork for Ironclad Vanguard #13",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-comics-issue-12",
+    "categoryId": "comics",
+    "title": "Ironclad Vanguard #12",
+    "releaseDate": "2026-09-02",
+    "type": "comic-issue",
+    "description": "The most recent issue in the ongoing story.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-comics-issue-12.svg",
+      "alt": "Cover artwork for Ironclad Vanguard #12",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "recent",
+    "fictional": true
+  },
+  {
+    "id": "release-comics-annual",
+    "categoryId": "comics",
+    "title": "Ironclad Vanguard Annual",
+    "releaseDate": "2026-12-01",
+    "type": "comic-issue",
+    "description": "An extra-length annual issue with a Terra Prime solo story.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-comics-annual.svg",
+      "alt": "Cover artwork for Ironclad Vanguard Annual",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-manga-volume-6",
+    "categoryId": "manga",
+    "title": "Paper Moon Requiem Vol. 6",
+    "releaseDate": "2026-11-10",
+    "type": "manga-volume",
+    "description": "The next volume continuing Yui and Tsukiko's story.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-manga-volume-6.svg",
+      "alt": "Cover artwork for Paper Moon Requiem Vol. 6",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
+  },
+  {
+    "id": "release-manga-volume-5",
+    "categoryId": "manga",
+    "title": "Paper Moon Requiem Vol. 5",
+    "releaseDate": "2026-06-18",
+    "type": "manga-volume",
+    "description": "The most recently released volume.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-manga-volume-5.svg",
+      "alt": "Cover artwork for Paper Moon Requiem Vol. 5",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "recent",
+    "fictional": true
+  },
+  {
+    "id": "release-manga-volume-6-limited",
+    "categoryId": "manga",
+    "title": "Paper Moon Requiem Vol. 6 Limited Edition",
+    "releaseDate": "2026-11-10",
+    "type": "manga-volume",
+    "description": "A limited edition of Volume 6 with a bonus art booklet.",
+    "coverImage": {
+      "src": "/assets/generated/release/release-manga-volume-6-limited.svg",
+      "alt": "Cover artwork for Paper Moon Requiem Vol. 6 Limited Edition",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "status": "upcoming",
+    "fictional": true
   }
 ]

@@ -1,24 +1,268 @@
 [
   {
-    "id": "merch-anime-sample-01",
+    "id": "merch-anime-blade-bearer-tee",
     "categoryId": "anime",
-    "name": "Sample T-Shirt",
-    "image": { "src": "/assets/merch/placeholder.svg", "alt": "Placeholder product image for a sample t-shirt" },
-    "priceRangeMin": 15,
-    "priceRangeMax": 25,
+    "name": "Starlit Ronin Blade-Bearer Tee",
+    "image": {
+      "src": "/assets/generated/merch/merch-anime-blade-bearer-tee.svg",
+      "alt": "Product artwork for Starlit Ronin Blade-Bearer Tee",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 22,
+    "priceRangeMax": 28,
     "currency": "USD",
-    "description": "Placeholder merchandise entry used only to verify the MerchandiseItem type and cart flow in Phase 1.",
-    "tags": ["seed", "apparel"]
+    "description": "A graphic tee featuring Kaida’s celestial blade motif.",
+    "tags": [
+      "anime",
+      "shirt"
+    ],
+    "status": "available"
   },
   {
-    "id": "merch-gaming-sample-01",
-    "categoryId": "gaming",
-    "name": "Sample Collectible Figure",
-    "image": { "src": "/assets/merch/placeholder.svg", "alt": "Placeholder product image for a sample collectible figure" },
-    "priceRangeMin": 30,
+    "id": "merch-anime-kaida-figure",
+    "categoryId": "anime",
+    "name": "Kaida Nova Collectible Figure",
+    "image": {
+      "src": "/assets/generated/merch/merch-anime-kaida-figure.svg",
+      "alt": "Product artwork for Kaida Nova Collectible Figure",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 35,
     "priceRangeMax": 45,
     "currency": "USD",
-    "description": "Placeholder merchandise entry used only to verify the MerchandiseItem type and cart flow in Phase 1.",
-    "tags": ["seed", "collectible"]
+    "description": "A collectible figure of Kaida Nova in her signature pose.",
+    "tags": [
+      "anime",
+      "pin"
+    ],
+    "status": "coming-soon"
+  },
+  {
+    "id": "merch-gaming-squad-hoodie",
+    "categoryId": "gaming",
+    "name": "Ashfall Protocol Squad Hoodie",
+    "image": {
+      "src": "/assets/generated/merch/merch-gaming-squad-hoodie.svg",
+      "alt": "Product artwork for Ashfall Protocol Squad Hoodie",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 45,
+    "priceRangeMax": 55,
+    "currency": "USD",
+    "description": "A hoodie featuring Kestrel's squad insignia.",
+    "tags": [
+      "gaming",
+      "shirt"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "merch-gaming-aria-pin-set",
+    "categoryId": "gaming",
+    "name": "ARIA-9 Enamel Pin Set",
+    "image": {
+      "src": "/assets/generated/merch/merch-gaming-aria-pin-set.svg",
+      "alt": "Product artwork for ARIA-9 Enamel Pin Set",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 15,
+    "priceRangeMax": 20,
+    "currency": "USD",
+    "description": "A set of enamel pins inspired by ARIA-9’s interface icons.",
+    "tags": [
+      "gaming",
+      "pin"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "merch-movies-noir-poster",
+    "categoryId": "movies",
+    "name": "Midnight Meridian Noir Poster Print",
+    "image": {
+      "src": "/assets/generated/merch/merch-movies-noir-poster.svg",
+      "alt": "Product artwork for Midnight Meridian Noir Poster Print",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 18,
+    "priceRangeMax": 24,
+    "currency": "USD",
+    "description": "A noir-styled poster print inspired by the Meridian skyline.",
+    "tags": [
+      "movies",
+      "poster"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "merch-movies-trench-coat",
+    "categoryId": "movies",
+    "name": "Meridian Trench Coat Replica",
+    "image": {
+      "src": "/assets/generated/merch/merch-movies-trench-coat.svg",
+      "alt": "Product artwork for Meridian Trench Coat Replica",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 90,
+    "priceRangeMax": 120,
+    "currency": "USD",
+    "description": "A replica of Lena Cross's signature coat.",
+    "tags": [
+      "movies",
+      "shirt"
+    ],
+    "status": "coming-soon"
+  },
+  {
+    "id": "merch-tv-shows-fragment-replica",
+    "categoryId": "tv-shows",
+    "name": "Glass Archive Fragment Replica",
+    "image": {
+      "src": "/assets/generated/merch/merch-tv-shows-fragment-replica.svg",
+      "alt": "Product artwork for Glass Archive Fragment Replica",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 25,
+    "priceRangeMax": 32,
+    "currency": "USD",
+    "description": "A replica prop of a recovered Archive fragment.",
+    "tags": [
+      "tv-shows",
+      "disc"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "merch-tv-shows-researcher-tee",
+    "categoryId": "tv-shows",
+    "name": "Archive Researcher Tee",
+    "image": {
+      "src": "/assets/generated/merch/merch-tv-shows-researcher-tee.svg",
+      "alt": "Product artwork for Archive Researcher Tee",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 22,
+    "priceRangeMax": 28,
+    "currency": "USD",
+    "description": "A tee styled after the Archive's field-researcher uniform.",
+    "tags": [
+      "tv-shows",
+      "shirt"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "merch-kpop-lightstick",
+    "categoryId": "kpop",
+    "name": "LUNARIS Official Lightstick",
+    "image": {
+      "src": "/assets/generated/merch/merch-kpop-lightstick.svg",
+      "alt": "Product artwork for LUNARIS Official Lightstick",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 30,
+    "priceRangeMax": 38,
+    "currency": "USD",
+    "description": "The official LUNARIS fan lightstick.",
+    "tags": [
+      "kpop",
+      "pin"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "merch-kpop-afterglow-hoodie",
+    "categoryId": "kpop",
+    "name": "LUNARIS Afterglow Hoodie",
+    "image": {
+      "src": "/assets/generated/merch/merch-kpop-afterglow-hoodie.svg",
+      "alt": "Product artwork for LUNARIS Afterglow Hoodie",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 48,
+    "priceRangeMax": 58,
+    "currency": "USD",
+    "description": "A hoodie themed around the Afterglow comeback.",
+    "tags": [
+      "kpop",
+      "shirt"
+    ],
+    "status": "coming-soon"
+  },
+  {
+    "id": "merch-comics-aegis-figure",
+    "categoryId": "comics",
+    "name": "Ironclad Vanguard: Aegis Figure",
+    "image": {
+      "src": "/assets/generated/merch/merch-comics-aegis-figure.svg",
+      "alt": "Product artwork for Ironclad Vanguard: Aegis Figure",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 32,
+    "priceRangeMax": 40,
+    "currency": "USD",
+    "description": "A collectible figure of Aegis in his exo-armor.",
+    "tags": [
+      "comics",
+      "pin"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "merch-comics-team-tee",
+    "categoryId": "comics",
+    "name": "Ironclad Vanguard Team Tee",
+    "image": {
+      "src": "/assets/generated/merch/merch-comics-team-tee.svg",
+      "alt": "Product artwork for Ironclad Vanguard Team Tee",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 22,
+    "priceRangeMax": 26,
+    "currency": "USD",
+    "description": "A tee featuring the full Vanguard team roster art.",
+    "tags": [
+      "comics",
+      "shirt"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "merch-manga-talisman-bookmarks",
+    "categoryId": "manga",
+    "name": "Paper Moon Requiem Talisman Bookmark Set",
+    "image": {
+      "src": "/assets/generated/merch/merch-manga-talisman-bookmarks.svg",
+      "alt": "Product artwork for Paper Moon Requiem Talisman Bookmark Set",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 12,
+    "priceRangeMax": 16,
+    "currency": "USD",
+    "description": "A set of bookmarks styled after Yui's paper talismans.",
+    "tags": [
+      "manga",
+      "disc"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "merch-manga-ink-wash-tee",
+    "categoryId": "manga",
+    "name": "Paper Moon Requiem Ink-Wash Tee",
+    "image": {
+      "src": "/assets/generated/merch/merch-manga-ink-wash-tee.svg",
+      "alt": "Product artwork for Paper Moon Requiem Ink-Wash Tee",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "priceRangeMin": 24,
+    "priceRangeMax": 30,
+    "currency": "USD",
+    "description": "A tee featuring ink-wash style art from the series.",
+    "tags": [
+      "manga",
+      "shirt"
+    ],
+    "status": "coming-soon"
   }
 ]

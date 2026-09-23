@@ -52,6 +52,19 @@ A phase-by-phase task roadmap. This is a planning document for Phases 1–15; no
 | T5.2 | CategoryHub page + catalog grid | `src/pages/CategoryHub/` | T5.1, Phase 2/3 | Hub renders per-category content | E2E test (×7) | Low |
 | T5.3 | Per-category accent theming | `src/styles/tokens.css` | T2.1 | Each hub visually distinct via accent token | Visual review | Low |
 
+**Phase 5 status: complete.** T5.1–T5.3 all delivered. The Director's Phase 5 scope was broader than this original plan entry, so the following tasks originally scheduled for Phases 7–9 were pulled forward and completed as part of the content foundation (their *UI* work — filtering, sorting, gallery lightbox, media playback, full cart behaviour — remains in its original phase):
+
+| Pulled forward | Delivered in Phase 5 | Still in its original phase |
+|---|---|---|
+| T7.2 (galleries + media data) | 7 galleries / 28 images, 14 trailers | Gallery lightbox, media playback UI |
+| T7.4 (events ≥3/category) | 21 events + detail page | Event filtering/sorting |
+| T8.1 (characters ≥5/category) | 35 profiles + detail page | — |
+| T8.3 (releases data) | 21 releases + hub section | Release calendar sorting UI |
+| T8.4 (articles + detail + related) | 21 articles, detail page, cross-type related content | — |
+| T9.1 (merchandise data + detail) | 14 products + detail page | Full cart/checkout-free purchase flow |
+
+Two items were also added that this plan did not anticipate: `scripts/generate-content.mjs` (content + asset generation, D-036) and `src/data/contentValidation.test.ts` (the executable SRS content gate), which is what the plan's repeated "Data-integrity test" column now actually refers to.
+
 ## Phase 6 — Content System, Search, Filtering, Sorting
 
 | Task ID | Objective | Files | Dependencies | Acceptance Criteria | Test | Risk |

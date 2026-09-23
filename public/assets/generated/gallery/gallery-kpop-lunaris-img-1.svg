@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="LUNARIS 1">
+  <rect width="480" height="480" fill="#9b007c" />
+  <circle cx="100" cy="469" r="59.5" fill="#ff5de0" opacity="0.32" />
+  <circle cx="279" cy="246" r="79.6" fill="#ff5de0" opacity="0.51" />
+  <circle cx="458" cy="24" r="99.6" fill="#ff5de0" opacity="0.30" />
+  <circle cx="157" cy="281" r="119.7" fill="#ff5de0" opacity="0.49" />
+  <circle cx="344" cy="398" r="84.9" fill="#ff5de0" opacity="0.36" />
+  <circle cx="43" cy="176" r="104.9" fill="#ff5de0" opacity="0.15" />
+  <circle cx="240" cy="240" r="153.6" fill="#ff5de0" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">L·1</text>
+</svg>

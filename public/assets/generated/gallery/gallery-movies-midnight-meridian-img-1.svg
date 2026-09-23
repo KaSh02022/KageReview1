@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Midnight Meridian 1">
+  <rect width="480" height="480" fill="#9b5200" />
+  <circle cx="53" cy="410" r="136.6" fill="#ffb648" opacity="0.25" />
+  <circle cx="354" cy="153" r="116.5" fill="#ffb648" opacity="0.46" />
+  <circle cx="175" cy="375" r="96.5" fill="#ffb648" opacity="0.27" />
+  <circle cx="476" cy="118" r="76.4" fill="#ffb648" opacity="0.48" />
+  <circle cx="297" cy="340" r="56.4" fill="#ffb648" opacity="0.29" />
+  <circle cx="240" cy="240" r="153.6" fill="#ffb648" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">MM·1</text>
+</svg>

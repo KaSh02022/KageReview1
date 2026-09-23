@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Midnight Meridian">
+  <defs>
+    <linearGradient id="g" gradientTransform="rotate(158)">
+      <stop offset="0%" stop-color="#a55c00" />
+      <stop offset="100%" stop-color="#ffb648" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="#a55c00" />
+  <circle cx="371.2" cy="129.60000000000002" r="352" fill="url(#g)" opacity="0.85" />
+  <rect y="297.6" width="640" height="182.4" fill="#a55c00" opacity="0.5" />
+  <text x="38" y="442" font-family="sans-serif" font-size="26" font-weight="600" letter-spacing="1.5" fill="#ffffffdd">MIDNIGHT MERIDIAN</text>
+</svg>

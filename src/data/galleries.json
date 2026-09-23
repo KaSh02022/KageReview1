@@ -1,11 +1,275 @@
 [
   {
-    "id": "gallery-anime-sample-01",
+    "id": "gallery-anime-starlit-ronin",
     "categoryId": "anime",
-    "title": "Sample Gallery — Architecture Check",
+    "title": "Starlit Ronin Gallery",
     "images": [
-      { "src": "/assets/gallery/placeholder-1.svg", "alt": "Placeholder gallery image one" },
-      { "src": "/assets/gallery/placeholder-2.svg", "alt": "Placeholder gallery image two" }
+      {
+        "id": "gallery-anime-starlit-ronin-img-1",
+        "title": "Starlit Ronin — Piece 1",
+        "caption": "Concept mood art — palette study",
+        "src": "/assets/generated/gallery/gallery-anime-starlit-ronin-img-1.svg",
+        "alt": "Abstract procedural artwork in Anime's signature color palette, generated placeholder image 1 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-anime-starlit-ronin-img-2",
+        "title": "Starlit Ronin — Piece 2",
+        "caption": "Fan-favorite scene, reimagined as abstract color study",
+        "src": "/assets/generated/gallery/gallery-anime-starlit-ronin-img-2.svg",
+        "alt": "Abstract procedural artwork in Anime's signature color palette, generated placeholder image 2 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-anime-starlit-ronin-img-3",
+        "title": "Starlit Ronin — Piece 3",
+        "caption": "Title-card inspired composition",
+        "src": "/assets/generated/gallery/gallery-anime-starlit-ronin-img-3.svg",
+        "alt": "Abstract procedural artwork in Anime's signature color palette, generated placeholder image 3 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-anime-starlit-ronin-img-4",
+        "title": "Starlit Ronin — Piece 4",
+        "caption": "Community fan-art jam prompt piece",
+        "src": "/assets/generated/gallery/gallery-anime-starlit-ronin-img-4.svg",
+        "alt": "Abstract procedural artwork in Anime's signature color palette, generated placeholder image 4 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      }
+    ]
+  },
+  {
+    "id": "gallery-gaming-ashfall-protocol",
+    "categoryId": "gaming",
+    "title": "Ashfall Protocol Gallery",
+    "images": [
+      {
+        "id": "gallery-gaming-ashfall-protocol-img-1",
+        "title": "Ashfall Protocol — Piece 1",
+        "caption": "Concept mood art — palette study",
+        "src": "/assets/generated/gallery/gallery-gaming-ashfall-protocol-img-1.svg",
+        "alt": "Abstract procedural artwork in Gaming's signature color palette, generated placeholder image 1 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-gaming-ashfall-protocol-img-2",
+        "title": "Ashfall Protocol — Piece 2",
+        "caption": "Fan-favorite scene, reimagined as abstract color study",
+        "src": "/assets/generated/gallery/gallery-gaming-ashfall-protocol-img-2.svg",
+        "alt": "Abstract procedural artwork in Gaming's signature color palette, generated placeholder image 2 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-gaming-ashfall-protocol-img-3",
+        "title": "Ashfall Protocol — Piece 3",
+        "caption": "Title-card inspired composition",
+        "src": "/assets/generated/gallery/gallery-gaming-ashfall-protocol-img-3.svg",
+        "alt": "Abstract procedural artwork in Gaming's signature color palette, generated placeholder image 3 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-gaming-ashfall-protocol-img-4",
+        "title": "Ashfall Protocol — Piece 4",
+        "caption": "Community fan-art jam prompt piece",
+        "src": "/assets/generated/gallery/gallery-gaming-ashfall-protocol-img-4.svg",
+        "alt": "Abstract procedural artwork in Gaming's signature color palette, generated placeholder image 4 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      }
+    ]
+  },
+  {
+    "id": "gallery-movies-midnight-meridian",
+    "categoryId": "movies",
+    "title": "Midnight Meridian Gallery",
+    "images": [
+      {
+        "id": "gallery-movies-midnight-meridian-img-1",
+        "title": "Midnight Meridian — Piece 1",
+        "caption": "Concept mood art — palette study",
+        "src": "/assets/generated/gallery/gallery-movies-midnight-meridian-img-1.svg",
+        "alt": "Abstract procedural artwork in Movies's signature color palette, generated placeholder image 1 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-movies-midnight-meridian-img-2",
+        "title": "Midnight Meridian — Piece 2",
+        "caption": "Fan-favorite scene, reimagined as abstract color study",
+        "src": "/assets/generated/gallery/gallery-movies-midnight-meridian-img-2.svg",
+        "alt": "Abstract procedural artwork in Movies's signature color palette, generated placeholder image 2 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-movies-midnight-meridian-img-3",
+        "title": "Midnight Meridian — Piece 3",
+        "caption": "Title-card inspired composition",
+        "src": "/assets/generated/gallery/gallery-movies-midnight-meridian-img-3.svg",
+        "alt": "Abstract procedural artwork in Movies's signature color palette, generated placeholder image 3 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-movies-midnight-meridian-img-4",
+        "title": "Midnight Meridian — Piece 4",
+        "caption": "Community fan-art jam prompt piece",
+        "src": "/assets/generated/gallery/gallery-movies-midnight-meridian-img-4.svg",
+        "alt": "Abstract procedural artwork in Movies's signature color palette, generated placeholder image 4 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      }
+    ]
+  },
+  {
+    "id": "gallery-tv-shows-the-glass-archive",
+    "categoryId": "tv-shows",
+    "title": "The Glass Archive Gallery",
+    "images": [
+      {
+        "id": "gallery-tv-shows-the-glass-archive-img-1",
+        "title": "The Glass Archive — Piece 1",
+        "caption": "Concept mood art — palette study",
+        "src": "/assets/generated/gallery/gallery-tv-shows-the-glass-archive-img-1.svg",
+        "alt": "Abstract procedural artwork in TV Shows's signature color palette, generated placeholder image 1 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-tv-shows-the-glass-archive-img-2",
+        "title": "The Glass Archive — Piece 2",
+        "caption": "Fan-favorite scene, reimagined as abstract color study",
+        "src": "/assets/generated/gallery/gallery-tv-shows-the-glass-archive-img-2.svg",
+        "alt": "Abstract procedural artwork in TV Shows's signature color palette, generated placeholder image 2 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-tv-shows-the-glass-archive-img-3",
+        "title": "The Glass Archive — Piece 3",
+        "caption": "Title-card inspired composition",
+        "src": "/assets/generated/gallery/gallery-tv-shows-the-glass-archive-img-3.svg",
+        "alt": "Abstract procedural artwork in TV Shows's signature color palette, generated placeholder image 3 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-tv-shows-the-glass-archive-img-4",
+        "title": "The Glass Archive — Piece 4",
+        "caption": "Community fan-art jam prompt piece",
+        "src": "/assets/generated/gallery/gallery-tv-shows-the-glass-archive-img-4.svg",
+        "alt": "Abstract procedural artwork in TV Shows's signature color palette, generated placeholder image 4 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      }
+    ]
+  },
+  {
+    "id": "gallery-kpop-lunaris",
+    "categoryId": "kpop",
+    "title": "LUNARIS Gallery",
+    "images": [
+      {
+        "id": "gallery-kpop-lunaris-img-1",
+        "title": "LUNARIS — Piece 1",
+        "caption": "Concept mood art — palette study",
+        "src": "/assets/generated/gallery/gallery-kpop-lunaris-img-1.svg",
+        "alt": "Abstract procedural artwork in K-Pop's signature color palette, generated placeholder image 1 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-kpop-lunaris-img-2",
+        "title": "LUNARIS — Piece 2",
+        "caption": "Fan-favorite scene, reimagined as abstract color study",
+        "src": "/assets/generated/gallery/gallery-kpop-lunaris-img-2.svg",
+        "alt": "Abstract procedural artwork in K-Pop's signature color palette, generated placeholder image 2 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-kpop-lunaris-img-3",
+        "title": "LUNARIS — Piece 3",
+        "caption": "Title-card inspired composition",
+        "src": "/assets/generated/gallery/gallery-kpop-lunaris-img-3.svg",
+        "alt": "Abstract procedural artwork in K-Pop's signature color palette, generated placeholder image 3 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-kpop-lunaris-img-4",
+        "title": "LUNARIS — Piece 4",
+        "caption": "Community fan-art jam prompt piece",
+        "src": "/assets/generated/gallery/gallery-kpop-lunaris-img-4.svg",
+        "alt": "Abstract procedural artwork in K-Pop's signature color palette, generated placeholder image 4 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      }
+    ]
+  },
+  {
+    "id": "gallery-comics-ironclad-vanguard",
+    "categoryId": "comics",
+    "title": "Ironclad Vanguard Gallery",
+    "images": [
+      {
+        "id": "gallery-comics-ironclad-vanguard-img-1",
+        "title": "Ironclad Vanguard — Piece 1",
+        "caption": "Concept mood art — palette study",
+        "src": "/assets/generated/gallery/gallery-comics-ironclad-vanguard-img-1.svg",
+        "alt": "Abstract procedural artwork in Comics's signature color palette, generated placeholder image 1 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-comics-ironclad-vanguard-img-2",
+        "title": "Ironclad Vanguard — Piece 2",
+        "caption": "Fan-favorite scene, reimagined as abstract color study",
+        "src": "/assets/generated/gallery/gallery-comics-ironclad-vanguard-img-2.svg",
+        "alt": "Abstract procedural artwork in Comics's signature color palette, generated placeholder image 2 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-comics-ironclad-vanguard-img-3",
+        "title": "Ironclad Vanguard — Piece 3",
+        "caption": "Title-card inspired composition",
+        "src": "/assets/generated/gallery/gallery-comics-ironclad-vanguard-img-3.svg",
+        "alt": "Abstract procedural artwork in Comics's signature color palette, generated placeholder image 3 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-comics-ironclad-vanguard-img-4",
+        "title": "Ironclad Vanguard — Piece 4",
+        "caption": "Community fan-art jam prompt piece",
+        "src": "/assets/generated/gallery/gallery-comics-ironclad-vanguard-img-4.svg",
+        "alt": "Abstract procedural artwork in Comics's signature color palette, generated placeholder image 4 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      }
+    ]
+  },
+  {
+    "id": "gallery-manga-paper-moon-requiem",
+    "categoryId": "manga",
+    "title": "Paper Moon Requiem Gallery",
+    "images": [
+      {
+        "id": "gallery-manga-paper-moon-requiem-img-1",
+        "title": "Paper Moon Requiem — Piece 1",
+        "caption": "Concept mood art — palette study",
+        "src": "/assets/generated/gallery/gallery-manga-paper-moon-requiem-img-1.svg",
+        "alt": "Abstract procedural artwork in Manga's signature color palette, generated placeholder image 1 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-manga-paper-moon-requiem-img-2",
+        "title": "Paper Moon Requiem — Piece 2",
+        "caption": "Fan-favorite scene, reimagined as abstract color study",
+        "src": "/assets/generated/gallery/gallery-manga-paper-moon-requiem-img-2.svg",
+        "alt": "Abstract procedural artwork in Manga's signature color palette, generated placeholder image 2 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-manga-paper-moon-requiem-img-3",
+        "title": "Paper Moon Requiem — Piece 3",
+        "caption": "Title-card inspired composition",
+        "src": "/assets/generated/gallery/gallery-manga-paper-moon-requiem-img-3.svg",
+        "alt": "Abstract procedural artwork in Manga's signature color palette, generated placeholder image 3 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      },
+      {
+        "id": "gallery-manga-paper-moon-requiem-img-4",
+        "title": "Paper Moon Requiem — Piece 4",
+        "caption": "Community fan-art jam prompt piece",
+        "src": "/assets/generated/gallery/gallery-manga-paper-moon-requiem-img-4.svg",
+        "alt": "Abstract procedural artwork in Manga's signature color palette, generated placeholder image 4 of 4",
+        "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      }
     ]
   }
 ]

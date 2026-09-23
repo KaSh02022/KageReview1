@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Sgt. Dax Okafor">
+  <rect width="480" height="480" fill="#006c9b" />
+  <circle cx="176" cy="197" r="118.7" fill="#33d0ff" opacity="0.28" />
+  <circle cx="355" cy="455" r="138.7" fill="#33d0ff" opacity="0.47" />
+  <circle cx="54" cy="232" r="53.2" fill="#33d0ff" opacity="0.26" />
+  <circle cx="233" cy="10" r="73.2" fill="#33d0ff" opacity="0.45" />
+  <circle cx="412" cy="267" r="93.3" fill="#33d0ff" opacity="0.24" />
+  <circle cx="111" cy="45" r="113.4" fill="#33d0ff" opacity="0.43" />
+  <circle cx="240" cy="240" r="153.6" fill="#33d0ff" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">SD</text>
+</svg>

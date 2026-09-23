@@ -1,22 +1,922 @@
 [
   {
-    "id": "character-anime-sample-01",
+    "id": "character-anime-kaida-nova",
     "categoryId": "anime",
-    "name": "Sample Character One",
-    "image": { "src": "/assets/character/placeholder.svg", "alt": "Placeholder portrait for Sample Character One" },
-    "series": "Seed Series",
-    "biography": "Placeholder biography used only to verify the Character type and detail page in Phase 1.",
-    "traits": ["placeholder", "seed-data"],
-    "tags": ["seed"]
+    "name": "Kaida Nova",
+    "image": {
+      "src": "/assets/generated/character/character-anime-kaida-nova.svg",
+      "alt": "Procedural portrait artwork representing Kaida Nova",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Starlit Ronin",
+    "role": "Wandering Blade-Bearer",
+    "biography": "Kaida carries a celestial blade that chooses its wielder, and it chose her the night her village burned. She crosses the Ashen Reaches searching for the ronin who abandoned her — and the truth about why the sky itself seems to be dimming.",
+    "traits": [
+      "Resolute",
+      "Blade-bonded",
+      "Guarded"
+    ],
+    "tags": [
+      "protagonist",
+      "swordfighter",
+      "celestial-blade"
+    ],
+    "relatedIds": [
+      "article-anime-why-the-ashen-reaches-feel-alive",
+      "event-anime-starlit-ronin-convention"
+    ]
   },
   {
-    "id": "character-gaming-sample-01",
+    "id": "character-anime-ryo-ashen",
+    "categoryId": "anime",
+    "name": "Ryo Ashen",
+    "image": {
+      "src": "/assets/generated/character/character-anime-ryo-ashen.svg",
+      "alt": "Procedural portrait artwork representing Ryo Ashen",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Starlit Ronin",
+    "role": "Rival Swordsman",
+    "biography": "Once Kaida's closest friend, Ryo trained under the same fallen master and now serves the empire hunting blade-bearers. Every duel between them is as much an argument as a fight.",
+    "traits": [
+      "Disciplined",
+      "Conflicted",
+      "Loyal-to-a-fault"
+    ],
+    "tags": [
+      "rival",
+      "swordsman",
+      "imperial-guard"
+    ],
+    "relatedIds": [
+      "article-anime-why-the-ashen-reaches-feel-alive",
+      "event-anime-starlit-ronin-convention"
+    ]
+  },
+  {
+    "id": "character-anime-mei-lantern",
+    "categoryId": "anime",
+    "name": "Mei Lantern",
+    "image": {
+      "src": "/assets/generated/character/character-anime-mei-lantern.svg",
+      "alt": "Procedural portrait artwork representing Mei Lantern",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Starlit Ronin",
+    "role": "Tactician & Mechanist",
+    "biography": "Mei builds the gliders, wards, and lantern-drones that keep the group alive between battles. She talks faster than she fights, and she is rarely wrong about either.",
+    "traits": [
+      "Inventive",
+      "Quick-witted",
+      "Overprepared"
+    ],
+    "tags": [
+      "support",
+      "engineer",
+      "strategist"
+    ],
+    "relatedIds": [
+      "article-anime-why-the-ashen-reaches-feel-alive",
+      "event-anime-starlit-ronin-convention"
+    ]
+  },
+  {
+    "id": "character-anime-ozren-vale",
+    "categoryId": "anime",
+    "name": "Ozren Vale",
+    "image": {
+      "src": "/assets/generated/character/character-anime-ozren-vale.svg",
+      "alt": "Procedural portrait artwork representing Ozren Vale",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Starlit Ronin",
+    "role": "Disgraced Mentor",
+    "biography": "A former imperial blade-master who broke his oath rather than burn one more village, Ozren now teaches Kaida the forms the empire tried to erase.",
+    "traits": [
+      "Weathered",
+      "Principled",
+      "Haunted"
+    ],
+    "tags": [
+      "mentor",
+      "ex-imperial",
+      "swordsman"
+    ],
+    "relatedIds": [
+      "article-anime-why-the-ashen-reaches-feel-alive",
+      "event-anime-starlit-ronin-convention"
+    ]
+  },
+  {
+    "id": "character-anime-suzu-windrift",
+    "categoryId": "anime",
+    "name": "Suzu Windrift",
+    "image": {
+      "src": "/assets/generated/character/character-anime-suzu-windrift.svg",
+      "alt": "Procedural portrait artwork representing Suzu Windrift",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Starlit Ronin",
+    "role": "Scout & Storyteller",
+    "biography": "Suzu maps the Ashen Reaches by ear, collecting rumors, songs, and shortcuts in equal measure, and insists every road has a story worth trading for.",
+    "traits": [
+      "Curious",
+      "Resourceful",
+      "Talkative"
+    ],
+    "tags": [
+      "scout",
+      "comic-relief",
+      "cartographer"
+    ],
+    "relatedIds": [
+      "article-anime-why-the-ashen-reaches-feel-alive",
+      "event-anime-starlit-ronin-convention"
+    ]
+  },
+  {
+    "id": "character-gaming-kestrel-rho",
     "categoryId": "gaming",
-    "name": "Sample Character Two",
-    "image": { "src": "/assets/character/placeholder.svg", "alt": "Placeholder portrait for Sample Character Two" },
-    "series": "Seed Series",
-    "biography": "Placeholder biography used only to verify the Character type and detail page in Phase 1.",
-    "traits": ["placeholder", "seed-data"],
-    "tags": ["seed"]
+    "name": "Kestrel Rho",
+    "image": {
+      "src": "/assets/generated/character/character-gaming-kestrel-rho.svg",
+      "alt": "Procedural portrait artwork representing Kestrel Rho",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Ashfall Protocol",
+    "role": "Squad Commander",
+    "biography": "Kestrel leads the last independent strike team operating inside the Ashfall exclusion zone, running missions the official Protocol won't authorize.",
+    "traits": [
+      "Decisive",
+      "Protective",
+      "Tactical"
+    ],
+    "tags": [
+      "protagonist",
+      "squad-leader",
+      "soldier"
+    ],
+    "relatedIds": [
+      "article-gaming-squad-tactics",
+      "event-gaming-community-championship"
+    ]
+  },
+  {
+    "id": "character-gaming-juno-marchetti",
+    "categoryId": "gaming",
+    "name": "Juno Marchetti",
+    "image": {
+      "src": "/assets/generated/character/character-gaming-juno-marchetti.svg",
+      "alt": "Procedural portrait artwork representing Juno Marchetti",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Ashfall Protocol",
+    "role": "Demolitions Specialist",
+    "biography": "Juno never met a locked door — or a collapsing structure — she did not like. Her chaotic energy in the field hides a near-perfect memory for blueprints.",
+    "traits": [
+      "Fearless",
+      "Meticulous",
+      "Blunt"
+    ],
+    "tags": [
+      "demolitions",
+      "field-specialist"
+    ],
+    "relatedIds": [
+      "article-gaming-squad-tactics",
+      "event-gaming-community-championship"
+    ]
+  },
+  {
+    "id": "character-gaming-talon-vex",
+    "categoryId": "gaming",
+    "name": "Talon Vex",
+    "image": {
+      "src": "/assets/generated/character/character-gaming-talon-vex.svg",
+      "alt": "Procedural portrait artwork representing Talon Vex",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Ashfall Protocol",
+    "role": "Recon Sniper",
+    "biography": "A former Protocol marksman who went rogue after a mission he still won't discuss, Talon says little and sees everything from half a klick out.",
+    "traits": [
+      "Silent",
+      "Precise",
+      "Distrustful"
+    ],
+    "tags": [
+      "sniper",
+      "recon",
+      "ex-protocol"
+    ],
+    "relatedIds": [
+      "article-gaming-squad-tactics",
+      "event-gaming-community-championship"
+    ]
+  },
+  {
+    "id": "character-gaming-aria-9",
+    "categoryId": "gaming",
+    "name": "ARIA-9",
+    "image": {
+      "src": "/assets/generated/character/character-gaming-aria-9.svg",
+      "alt": "Procedural portrait artwork representing ARIA-9",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Ashfall Protocol",
+    "role": "Tactical AI Companion",
+    "biography": "Salvaged from a downed Protocol dropship, ARIA-9 was built to coordinate airstrikes. Instead it coordinates Kestrel's squad — and keeps its own counsel about why.",
+    "traits": [
+      "Analytical",
+      "Adaptive",
+      "Secretive"
+    ],
+    "tags": [
+      "ai-companion",
+      "support",
+      "non-human"
+    ],
+    "relatedIds": [
+      "article-gaming-squad-tactics",
+      "event-gaming-community-championship"
+    ]
+  },
+  {
+    "id": "character-gaming-dax-okafor",
+    "categoryId": "gaming",
+    "name": "Sgt. Dax Okafor",
+    "image": {
+      "src": "/assets/generated/character/character-gaming-dax-okafor.svg",
+      "alt": "Procedural portrait artwork representing Sgt. Dax Okafor",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Ashfall Protocol",
+    "role": "Heavy Support",
+    "biography": "Dax carries more armor plating than anyone should be able to move in, and somehow still reaches the extraction point first. The squad's steadiest hand under fire.",
+    "traits": [
+      "Steadfast",
+      "Dry-humored",
+      "Protective"
+    ],
+    "tags": [
+      "heavy-support",
+      "veteran"
+    ],
+    "relatedIds": [
+      "article-gaming-squad-tactics",
+      "event-gaming-community-championship"
+    ]
+  },
+  {
+    "id": "character-movies-lena-cross",
+    "categoryId": "movies",
+    "name": "Det. Lena Cross",
+    "image": {
+      "src": "/assets/generated/character/character-movies-lena-cross.svg",
+      "alt": "Procedural portrait artwork representing Det. Lena Cross",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Midnight Meridian",
+    "role": "Lead Investigator",
+    "biography": "Cross has worked every unsolved case that crosses the Meridian city line at midnight, and the Meridian case is the only one she's never closed.",
+    "traits": [
+      "Relentless",
+      "Observant",
+      "Guarded"
+    ],
+    "tags": [
+      "protagonist",
+      "detective",
+      "noir"
+    ],
+    "relatedIds": [
+      "article-movies-noir-built-for-streaming",
+      "event-movies-premiere-night"
+    ]
+  },
+  {
+    "id": "character-movies-julian-moreau",
+    "categoryId": "movies",
+    "name": "Julian Moreau",
+    "image": {
+      "src": "/assets/generated/character/character-movies-julian-moreau.svg",
+      "alt": "Procedural portrait artwork representing Julian Moreau",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Midnight Meridian",
+    "role": "Nightclub Owner",
+    "biography": "Moreau's club sits at the center of every rumor in the city, which is exactly how he likes it. Whether he's an ally or a suspect changes with the lighting.",
+    "traits": [
+      "Charming",
+      "Evasive",
+      "Well-connected"
+    ],
+    "tags": [
+      "informant",
+      "club-owner",
+      "ambiguous"
+    ],
+    "relatedIds": [
+      "article-movies-noir-built-for-streaming",
+      "event-movies-premiere-night"
+    ]
+  },
+  {
+    "id": "character-movies-vivian-sharpe",
+    "categoryId": "movies",
+    "name": "Vivian Sharpe",
+    "image": {
+      "src": "/assets/generated/character/character-movies-vivian-sharpe.svg",
+      "alt": "Procedural portrait artwork representing Vivian Sharpe",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Midnight Meridian",
+    "role": "Investigative Journalist",
+    "biography": "Sharpe has been three days ahead of the police on every Meridian story so far, and she's not planning to slow down to explain how.",
+    "traits": [
+      "Ambitious",
+      "Sharp-tongued",
+      "Independent"
+    ],
+    "tags": [
+      "journalist",
+      "deuteragonist"
+    ],
+    "relatedIds": [
+      "article-movies-noir-built-for-streaming",
+      "event-movies-premiere-night"
+    ]
+  },
+  {
+    "id": "character-movies-nico-delacroix",
+    "categoryId": "movies",
+    "name": "Nico Delacroix",
+    "image": {
+      "src": "/assets/generated/character/character-movies-nico-delacroix.svg",
+      "alt": "Procedural portrait artwork representing Nico Delacroix",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Midnight Meridian",
+    "role": "Forensic Analyst",
+    "biography": "Nico reads a crime scene like other people read a room, and is the only one on the team who still believes the case is solvable by the book.",
+    "traits": [
+      "Meticulous",
+      "Idealistic",
+      "Loyal"
+    ],
+    "tags": [
+      "forensics",
+      "analyst"
+    ],
+    "relatedIds": [
+      "article-movies-noir-built-for-streaming",
+      "event-movies-premiere-night"
+    ]
+  },
+  {
+    "id": "character-movies-wren-halloway",
+    "categoryId": "movies",
+    "name": "Insp. Wren Halloway",
+    "image": {
+      "src": "/assets/generated/character/character-movies-wren-halloway.svg",
+      "alt": "Procedural portrait artwork representing Insp. Wren Halloway",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Midnight Meridian",
+    "role": "Cross's Superior",
+    "biography": "Halloway wants the Meridian case closed for reasons that have nothing to do with justice, and everything to do with who keeps calling him at 2 a.m.",
+    "traits": [
+      "Pragmatic",
+      "Pressured",
+      "Morally-grey"
+    ],
+    "tags": [
+      "police-captain",
+      "antagonist-adjacent"
+    ],
+    "relatedIds": [
+      "article-movies-noir-built-for-streaming",
+      "event-movies-premiere-night"
+    ]
+  },
+  {
+    "id": "character-tv-shows-elena-marsh",
+    "categoryId": "tv-shows",
+    "name": "Dr. Elena Marsh",
+    "image": {
+      "src": "/assets/generated/character/character-tv-shows-elena-marsh.svg",
+      "alt": "Procedural portrait artwork representing Dr. Elena Marsh",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "The Glass Archive",
+    "role": "Archive Researcher",
+    "biography": "Marsh discovered the Glass Archive's first recovered fragment and has spent three seasons proving it isn't a hoax — even as the fragments start proving things about her.",
+    "traits": [
+      "Curious",
+      "Rigorous",
+      "Haunted"
+    ],
+    "tags": [
+      "protagonist",
+      "researcher"
+    ],
+    "relatedIds": [
+      "article-tv-shows-what-the-fragments-are-hiding",
+      "event-tv-shows-con-panel"
+    ]
+  },
+  {
+    "id": "character-tv-shows-abel-finch",
+    "categoryId": "tv-shows",
+    "name": "Curator Abel Finch",
+    "image": {
+      "src": "/assets/generated/character/character-tv-shows-abel-finch.svg",
+      "alt": "Procedural portrait artwork representing Curator Abel Finch",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "The Glass Archive",
+    "role": "Archive Curator",
+    "biography": "Finch has managed the Archive’s public collection for decades and knows exactly which fragments are never shown to visitors — or explained to Marsh.",
+    "traits": [
+      "Secretive",
+      "Composed",
+      "Long-serving"
+    ],
+    "tags": [
+      "gatekeeper",
+      "ambiguous"
+    ],
+    "relatedIds": [
+      "article-tv-shows-what-the-fragments-are-hiding",
+      "event-tv-shows-con-panel"
+    ]
+  },
+  {
+    "id": "character-tv-shows-iris-kaine",
+    "categoryId": "tv-shows",
+    "name": "Iris Kaine",
+    "image": {
+      "src": "/assets/generated/character/character-tv-shows-iris-kaine.svg",
+      "alt": "Procedural portrait artwork representing Iris Kaine",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "The Glass Archive",
+    "role": "Field Recovery Specialist",
+    "biography": "Iris retrieves fragments from wherever they surface, which is rarely somewhere safe, and trusts the Archive’s mission more than she trusts most of its people.",
+    "traits": [
+      "Bold",
+      "Skeptical",
+      "Independent"
+    ],
+    "tags": [
+      "field-agent",
+      "recovery-specialist"
+    ],
+    "relatedIds": [
+      "article-tv-shows-what-the-fragments-are-hiding",
+      "event-tv-shows-con-panel"
+    ]
+  },
+  {
+    "id": "character-tv-shows-tobias-lund",
+    "categoryId": "tv-shows",
+    "name": "Prof. Tobias Lund",
+    "image": {
+      "src": "/assets/generated/character/character-tv-shows-tobias-lund.svg",
+      "alt": "Procedural portrait artwork representing Prof. Tobias Lund",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "The Glass Archive",
+    "role": "Archive Linguist",
+    "biography": "Lund is the only person who can partially translate the fragments’ script, a fact that makes him both essential and constantly in danger.",
+    "traits": [
+      "Brilliant",
+      "Anxious",
+      "Devoted"
+    ],
+    "tags": [
+      "linguist",
+      "support"
+    ],
+    "relatedIds": [
+      "article-tv-shows-what-the-fragments-are-hiding",
+      "event-tv-shows-con-panel"
+    ]
+  },
+  {
+    "id": "character-tv-shows-nova-reyes",
+    "categoryId": "tv-shows",
+    "name": "Nova Reyes",
+    "image": {
+      "src": "/assets/generated/character/character-tv-shows-nova-reyes.svg",
+      "alt": "Procedural portrait artwork representing Nova Reyes",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "The Glass Archive",
+    "role": "Whistleblower Intern",
+    "biography": "Reyes started as an intern filing fragment reports. Now she is the one who leaked what the Archive’s board really knew, and there is no going back to filing.",
+    "traits": [
+      "Idealistic",
+      "Nervous",
+      "Determined"
+    ],
+    "tags": [
+      "whistleblower",
+      "newcomer"
+    ],
+    "relatedIds": [
+      "article-tv-shows-what-the-fragments-are-hiding",
+      "event-tv-shows-con-panel"
+    ]
+  },
+  {
+    "id": "character-kpop-hana",
+    "categoryId": "kpop",
+    "name": "Hana",
+    "image": {
+      "src": "/assets/generated/character/character-kpop-hana.svg",
+      "alt": "Procedural portrait artwork representing Hana",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "LUNARIS",
+    "role": "Leader & Main Vocalist",
+    "biography": "Hana has led LUNARIS since its earliest predebut days, and fans credit her steady presence for holding the group together through three lineup changes.",
+    "traits": [
+      "Steady",
+      "Warm",
+      "Perfectionist"
+    ],
+    "tags": [
+      "leader",
+      "vocalist"
+    ],
+    "relatedIds": [
+      "article-kpop-five-voices-one-stage",
+      "event-kpop-lunaris-convention"
+    ]
+  },
+  {
+    "id": "character-kpop-soojin",
+    "categoryId": "kpop",
+    "name": "Soojin",
+    "image": {
+      "src": "/assets/generated/character/character-kpop-soojin.svg",
+      "alt": "Procedural portrait artwork representing Soojin",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "LUNARIS",
+    "role": "Main Dancer",
+    "biography": "Soojin choreographs most of LUNARIS's title-track breaks herself, blending traditional dance training with sharp, percussive modern lines.",
+    "traits": [
+      "Disciplined",
+      "Expressive",
+      "Driven"
+    ],
+    "tags": [
+      "dancer",
+      "choreographer"
+    ],
+    "relatedIds": [
+      "article-kpop-five-voices-one-stage",
+      "event-kpop-lunaris-convention"
+    ]
+  },
+  {
+    "id": "character-kpop-yuri",
+    "categoryId": "kpop",
+    "name": "Yuri",
+    "image": {
+      "src": "/assets/generated/character/character-kpop-yuri.svg",
+      "alt": "Procedural portrait artwork representing Yuri",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "LUNARIS",
+    "role": "Lead Rapper",
+    "biography": "Yuri writes her own verses for nearly every LUNARIS release, and fans comb every comeback for the references hidden in her lyrics.",
+    "traits": [
+      "Witty",
+      "Confident",
+      "Introspective"
+    ],
+    "tags": [
+      "rapper",
+      "lyricist"
+    ],
+    "relatedIds": [
+      "article-kpop-five-voices-one-stage",
+      "event-kpop-lunaris-convention"
+    ]
+  },
+  {
+    "id": "character-kpop-minji",
+    "categoryId": "kpop",
+    "name": "Minji",
+    "image": {
+      "src": "/assets/generated/character/character-kpop-minji.svg",
+      "alt": "Procedural portrait artwork representing Minji",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "LUNARIS",
+    "role": "Vocalist & Visual",
+    "biography": "Minji joined LUNARIS as its youngest member and has grown into one of its strongest live vocalists, known for note-perfect high-energy stages.",
+    "traits": [
+      "Bright",
+      "Hardworking",
+      "Camera-ready"
+    ],
+    "tags": [
+      "vocalist",
+      "performer"
+    ],
+    "relatedIds": [
+      "article-kpop-five-voices-one-stage",
+      "event-kpop-lunaris-convention"
+    ]
+  },
+  {
+    "id": "character-kpop-dahye",
+    "categoryId": "kpop",
+    "name": "Dahye",
+    "image": {
+      "src": "/assets/generated/character/character-kpop-dahye.svg",
+      "alt": "Procedural portrait artwork representing Dahye",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "LUNARIS",
+    "role": "Maknae & Sub-Rapper",
+    "biography": "The group's youngest member, Dahye balances sharp stage presence with an unfiltered, fan-favorite variety-show personality.",
+    "traits": [
+      "Playful",
+      "Bold",
+      "Fast-learner"
+    ],
+    "tags": [
+      "maknae",
+      "rapper"
+    ],
+    "relatedIds": [
+      "article-kpop-five-voices-one-stage",
+      "event-kpop-lunaris-convention"
+    ]
+  },
+  {
+    "id": "character-comics-aegis",
+    "categoryId": "comics",
+    "name": "Aegis (Marcus Steele)",
+    "image": {
+      "src": "/assets/generated/character/character-comics-aegis.svg",
+      "alt": "Procedural portrait artwork representing Aegis (Marcus Steele)",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Ironclad Vanguard",
+    "role": "Team Leader",
+    "biography": "Marcus built the Vanguard's signature exo-armor to stop the accident that killed his brother from ever happening to anyone else, and has been failing to retire from the mission ever since.",
+    "traits": [
+      "Dutiful",
+      "Guilt-driven",
+      "Inventive"
+    ],
+    "tags": [
+      "leader",
+      "powered-armor"
+    ],
+    "relatedIds": [
+      "article-comics-armor-grief-and-the-next-generation",
+      "event-comics-vanguard-con-panel"
+    ]
+  },
+  {
+    "id": "character-comics-voltaire",
+    "categoryId": "comics",
+    "name": "Voltaire (Simone Aubert)",
+    "image": {
+      "src": "/assets/generated/character/character-comics-voltaire.svg",
+      "alt": "Procedural portrait artwork representing Voltaire (Simone Aubert)",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Ironclad Vanguard",
+    "role": "Energy Manipulator",
+    "biography": "Simone can channel raw electrical current through her own body, a gift that cost her the career she trained for and gave her the one she has now.",
+    "traits": [
+      "Volatile",
+      "Loyal",
+      "Sharp-witted"
+    ],
+    "tags": [
+      "energy-powers",
+      "deuteragonist"
+    ],
+    "relatedIds": [
+      "article-comics-armor-grief-and-the-next-generation",
+      "event-comics-vanguard-con-panel"
+    ]
+  },
+  {
+    "id": "character-comics-wraithwing",
+    "categoryId": "comics",
+    "name": "Wraithwing (Devon Cole)",
+    "image": {
+      "src": "/assets/generated/character/character-comics-wraithwing.svg",
+      "alt": "Procedural portrait artwork representing Wraithwing (Devon Cole)",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Ironclad Vanguard",
+    "role": "Aerial Scout",
+    "biography": "Devon's glide-suit lets him cover a city in minutes, which makes him the Vanguard's eyes before anyone else arrives — and often its first line of defense.",
+    "traits": [
+      "Agile",
+      "Impulsive",
+      "Protective"
+    ],
+    "tags": [
+      "flight",
+      "scout"
+    ],
+    "relatedIds": [
+      "article-comics-armor-grief-and-the-next-generation",
+      "event-comics-vanguard-con-panel"
+    ]
+  },
+  {
+    "id": "character-comics-terra-prime",
+    "categoryId": "comics",
+    "name": "Terra Prime (Amara Osei)",
+    "image": {
+      "src": "/assets/generated/character/character-comics-terra-prime.svg",
+      "alt": "Procedural portrait artwork representing Terra Prime (Amara Osei)",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Ironclad Vanguard",
+    "role": "Geokinetic",
+    "biography": "Amara can reshape stone and steel with a thought, a power she has only fully trusted herself to use since joining the Vanguard.",
+    "traits": [
+      "Grounded",
+      "Powerful",
+      "Cautious"
+    ],
+    "tags": [
+      "geokinesis",
+      "tank"
+    ],
+    "relatedIds": [
+      "article-comics-armor-grief-and-the-next-generation",
+      "event-comics-vanguard-con-panel"
+    ]
+  },
+  {
+    "id": "character-comics-the-cartographer",
+    "categoryId": "comics",
+    "name": "The Cartographer (Elliot Graves)",
+    "image": {
+      "src": "/assets/generated/character/character-comics-the-cartographer.svg",
+      "alt": "Procedural portrait artwork representing The Cartographer (Elliot Graves)",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Ironclad Vanguard",
+    "role": "Recurring Antagonist",
+    "biography": "Graves maps the fault lines in every hero team he studies, and has spent years mapping the Vanguard's. He doesn't fight his enemies; he redirects them.",
+    "traits": [
+      "Calculating",
+      "Patient",
+      "Manipulative"
+    ],
+    "tags": [
+      "antagonist",
+      "strategist"
+    ],
+    "relatedIds": [
+      "article-comics-armor-grief-and-the-next-generation",
+      "event-comics-vanguard-con-panel"
+    ]
+  },
+  {
+    "id": "character-manga-yui-kurogane",
+    "categoryId": "manga",
+    "name": "Yui Kurogane",
+    "image": {
+      "src": "/assets/generated/character/character-manga-yui-kurogane.svg",
+      "alt": "Procedural portrait artwork representing Yui Kurogane",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Paper Moon Requiem",
+    "role": "Bound Exorcist",
+    "biography": "Yui inherited her family’s duty to bind wandering spirits to paper talismans — and one particular spirit that refuses to stay bound to hers.",
+    "traits": [
+      "Stubborn",
+      "Compassionate",
+      "Burdened"
+    ],
+    "tags": [
+      "protagonist",
+      "exorcist"
+    ],
+    "relatedIds": [
+      "article-manga-binding-grief-and-what-stays",
+      "event-manga-requiem-convention"
+    ]
+  },
+  {
+    "id": "character-manga-shiro-tsukimori",
+    "categoryId": "manga",
+    "name": "Shiro Tsukimori",
+    "image": {
+      "src": "/assets/generated/character/character-manga-shiro-tsukimori.svg",
+      "alt": "Procedural portrait artwork representing Shiro Tsukimori",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Paper Moon Requiem",
+    "role": "Spirit Broker",
+    "biography": "Shiro trades favors between the living and the dead for a living, and always seems to know more about Yui’s bound spirit than he admits.",
+    "traits": [
+      "Enigmatic",
+      "Calm",
+      "Untrustworthy-seeming"
+    ],
+    "tags": [
+      "broker",
+      "deuteragonist"
+    ],
+    "relatedIds": [
+      "article-manga-binding-grief-and-what-stays",
+      "event-manga-requiem-convention"
+    ]
+  },
+  {
+    "id": "character-manga-renji-amakawa",
+    "categoryId": "manga",
+    "name": "Renji Amakawa",
+    "image": {
+      "src": "/assets/generated/character/character-manga-renji-amakawa.svg",
+      "alt": "Procedural portrait artwork representing Renji Amakawa",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Paper Moon Requiem",
+    "role": "Yui's Childhood Friend",
+    "biography": "Renji grew up next door to Yui’s family shrine and has spent years pretending not to notice the paper talismans multiplying in her sleeves.",
+    "traits": [
+      "Steady",
+      "Observant",
+      "Protective"
+    ],
+    "tags": [
+      "support",
+      "childhood-friend"
+    ],
+    "relatedIds": [
+      "article-manga-binding-grief-and-what-stays",
+      "event-manga-requiem-convention"
+    ]
+  },
+  {
+    "id": "character-manga-hono-saeki",
+    "categoryId": "manga",
+    "name": "Hono Saeki",
+    "image": {
+      "src": "/assets/generated/character/character-manga-hono-saeki.svg",
+      "alt": "Procedural portrait artwork representing Hono Saeki",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Paper Moon Requiem",
+    "role": "Rival Exorcist",
+    "biography": "Hono comes from a rival exorcist lineage that considers Yui’s family methods reckless, and keeps showing up to prove it whether Yui asks or not.",
+    "traits": [
+      "Proud",
+      "Skilled",
+      "Begrudgingly-helpful"
+    ],
+    "tags": [
+      "rival",
+      "exorcist"
+    ],
+    "relatedIds": [
+      "article-manga-binding-grief-and-what-stays",
+      "event-manga-requiem-convention"
+    ]
+  },
+  {
+    "id": "character-manga-tsukiko",
+    "categoryId": "manga",
+    "name": "Tsukiko",
+    "image": {
+      "src": "/assets/generated/character/character-manga-tsukiko.svg",
+      "alt": "Procedural portrait artwork representing Tsukiko",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "series": "Paper Moon Requiem",
+    "role": "The Bound Spirit",
+    "biography": "Tsukiko is the spirit bound to Yui’s oldest talisman, and the only one who remembers why the binding was never supposed to be permanent.",
+    "traits": [
+      "Mysterious",
+      "Melancholic",
+      "Fiercely-loyal"
+    ],
+    "tags": [
+      "spirit",
+      "bound-companion"
+    ],
+    "relatedIds": [
+      "article-manga-binding-grief-and-what-stays",
+      "event-manga-requiem-convention"
+    ]
   }
 ]

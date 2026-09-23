@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Starlit Ronin 2">
+  <rect width="480" height="480" fill="#9b000f" />
+  <circle cx="193" cy="362" r="73.2" fill="#ff5d73" opacity="0.45" />
+  <circle cx="14" cy="105" r="53.2" fill="#ff5d73" opacity="0.26" />
+  <circle cx="315" cy="327" r="138.7" fill="#ff5d73" opacity="0.47" />
+  <circle cx="136" cy="69" r="118.7" fill="#ff5d73" opacity="0.28" />
+  <circle cx="429" cy="432" r="47.9" fill="#ff5d73" opacity="0.41" />
+  <circle cx="240" cy="240" r="153.6" fill="#ff5d73" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">SR·2</text>
+</svg>

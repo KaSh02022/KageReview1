@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Dahye">
+  <rect width="480" height="480" fill="#9b007c" />
+  <circle cx="188" cy="64" r="89.1" fill="#ff5de0" opacity="0.40" />
+  <circle cx="367" cy="322" r="109.2" fill="#ff5de0" opacity="0.19" />
+  <circle cx="66" cy="99" r="129.2" fill="#ff5de0" opacity="0.38" />
+  <circle cx="245" cy="357" r="43.7" fill="#ff5de0" opacity="0.17" />
+  <circle cx="432" cy="474" r="114.4" fill="#ff5de0" opacity="0.44" />
+  <circle cx="131" cy="251" r="134.5" fill="#ff5de0" opacity="0.23" />
+  <circle cx="240" cy="240" r="153.6" fill="#ff5de0" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">D</text>
+</svg>

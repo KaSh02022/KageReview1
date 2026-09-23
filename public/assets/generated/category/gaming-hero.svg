@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-label="Ashfall Protocol">
+  <defs>
+    <linearGradient id="g" gradientTransform="rotate(281)">
+      <stop offset="0%" stop-color="#0076a5" />
+      <stop offset="100%" stop-color="#33d0ff" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="500" fill="#0076a5" />
+  <circle cx="732" cy="325" r="660" fill="url(#g)" opacity="0.85" />
+  <rect y="310" width="1200" height="190" fill="#0076a5" opacity="0.5" />
+  <text x="72" y="428" font-family="sans-serif" font-size="48" font-weight="600" letter-spacing="1.5" fill="#ffffffdd">ASHFALL PROTOCOL</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Minji">
+  <rect width="480" height="480" fill="#9b007c" />
+  <circle cx="10" cy="350" r="91.2" fill="#ff5de0" opacity="0.22" />
+  <circle cx="189" cy="128" r="111.3" fill="#ff5de0" opacity="0.41" />
+  <circle cx="132" cy="315" r="51.1" fill="#ff5de0" opacity="0.24" />
+  <circle cx="311" cy="93" r="71.1" fill="#ff5de0" opacity="0.43" />
+  <circle cx="254" cy="280" r="116.5" fill="#ff5de0" opacity="0.26" />
+  <circle cx="433" cy="57" r="136.6" fill="#ff5de0" opacity="0.45" />
+  <circle cx="376" cy="245" r="76.4" fill="#ff5de0" opacity="0.28" />
+  <circle cx="75" cy="22" r="96.5" fill="#ff5de0" opacity="0.47" />
+  <circle cx="240" cy="240" r="153.6" fill="#ff5de0" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">M</text>
+</svg>

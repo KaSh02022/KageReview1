@@ -1,15 +1,310 @@
 [
   {
-    "id": "media-anime-sample-01",
+    "id": "media-anime-teaser-trailer",
     "categoryId": "anime",
-    "title": "Sample Trailer — Architecture Check",
+    "title": "Starlit Ronin: Teaser Trailer",
     "mediaType": "trailer",
     "format": "video",
-    "embedUrl": "about:blank#seed-placeholder-trailer-embed",
-    "thumbnail": { "src": "/assets/media/placeholder.svg", "alt": "Placeholder thumbnail for a sample trailer" },
-    "description": "Placeholder media entry used only to verify the MediaItem type and embed rendering in Phase 1.",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-anime-teaser-trailer.svg",
+      "alt": "Thumbnail artwork for the Starlit Ronin: Teaser Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for Starlit Ronin, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
-    "publishedDate": "2026-02-01",
-    "tags": ["seed"]
+    "publishedDate": "2026-04-01",
+    "tags": [
+      "trailer",
+      "anime"
+    ],
+    "durationSeconds": 45,
+    "fictional": true
+  },
+  {
+    "id": "media-anime-official-trailer",
+    "categoryId": "anime",
+    "title": "Starlit Ronin: Official Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-anime-official-trailer.svg",
+      "alt": "Thumbnail artwork for the Starlit Ronin: Official Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for Starlit Ronin, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-07-01",
+    "tags": [
+      "trailer",
+      "anime"
+    ],
+    "durationSeconds": 120,
+    "fictional": true
+  },
+  {
+    "id": "media-gaming-teaser-trailer",
+    "categoryId": "gaming",
+    "title": "Ashfall Protocol: Teaser Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-gaming-teaser-trailer.svg",
+      "alt": "Thumbnail artwork for the Ashfall Protocol: Teaser Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for Ashfall Protocol, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-03-10",
+    "tags": [
+      "trailer",
+      "gaming"
+    ],
+    "durationSeconds": 45,
+    "fictional": true
+  },
+  {
+    "id": "media-gaming-official-trailer",
+    "categoryId": "gaming",
+    "title": "Ashfall Protocol: Official Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-gaming-official-trailer.svg",
+      "alt": "Thumbnail artwork for the Ashfall Protocol: Official Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for Ashfall Protocol, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-06-15",
+    "tags": [
+      "trailer",
+      "gaming"
+    ],
+    "durationSeconds": 120,
+    "fictional": true
+  },
+  {
+    "id": "media-movies-teaser-trailer",
+    "categoryId": "movies",
+    "title": "Midnight Meridian: Teaser Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-movies-teaser-trailer.svg",
+      "alt": "Thumbnail artwork for the Midnight Meridian: Teaser Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for Midnight Meridian, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-05-05",
+    "tags": [
+      "trailer",
+      "movies"
+    ],
+    "durationSeconds": 45,
+    "fictional": true
+  },
+  {
+    "id": "media-movies-official-trailer",
+    "categoryId": "movies",
+    "title": "Midnight Meridian: Official Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-movies-official-trailer.svg",
+      "alt": "Thumbnail artwork for the Midnight Meridian: Official Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for Midnight Meridian, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-08-20",
+    "tags": [
+      "trailer",
+      "movies"
+    ],
+    "durationSeconds": 120,
+    "fictional": true
+  },
+  {
+    "id": "media-tv-shows-teaser-trailer",
+    "categoryId": "tv-shows",
+    "title": "The Glass Archive: Teaser Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-tv-shows-teaser-trailer.svg",
+      "alt": "Thumbnail artwork for the The Glass Archive: Teaser Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for The Glass Archive, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-02-18",
+    "tags": [
+      "trailer",
+      "tv-shows"
+    ],
+    "durationSeconds": 45,
+    "fictional": true
+  },
+  {
+    "id": "media-tv-shows-official-trailer",
+    "categoryId": "tv-shows",
+    "title": "The Glass Archive: Official Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-tv-shows-official-trailer.svg",
+      "alt": "Thumbnail artwork for the The Glass Archive: Official Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for The Glass Archive, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-06-01",
+    "tags": [
+      "trailer",
+      "tv-shows"
+    ],
+    "durationSeconds": 120,
+    "fictional": true
+  },
+  {
+    "id": "media-kpop-teaser-trailer",
+    "categoryId": "kpop",
+    "title": "LUNARIS: Teaser Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-kpop-teaser-trailer.svg",
+      "alt": "Thumbnail artwork for the LUNARIS: Teaser Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for LUNARIS, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-01-20",
+    "tags": [
+      "trailer",
+      "kpop"
+    ],
+    "durationSeconds": 45,
+    "fictional": true
+  },
+  {
+    "id": "media-kpop-official-trailer",
+    "categoryId": "kpop",
+    "title": "LUNARIS: Official Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-kpop-official-trailer.svg",
+      "alt": "Thumbnail artwork for the LUNARIS: Official Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for LUNARIS, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-08-01",
+    "tags": [
+      "trailer",
+      "kpop"
+    ],
+    "durationSeconds": 120,
+    "fictional": true
+  },
+  {
+    "id": "media-comics-teaser-trailer",
+    "categoryId": "comics",
+    "title": "Ironclad Vanguard: Teaser Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-comics-teaser-trailer.svg",
+      "alt": "Thumbnail artwork for the Ironclad Vanguard: Teaser Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for Ironclad Vanguard, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-03-01",
+    "tags": [
+      "trailer",
+      "comics"
+    ],
+    "durationSeconds": 45,
+    "fictional": true
+  },
+  {
+    "id": "media-comics-official-trailer",
+    "categoryId": "comics",
+    "title": "Ironclad Vanguard: Official Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-comics-official-trailer.svg",
+      "alt": "Thumbnail artwork for the Ironclad Vanguard: Official Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for Ironclad Vanguard, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-05-01",
+    "tags": [
+      "trailer",
+      "comics"
+    ],
+    "durationSeconds": 120,
+    "fictional": true
+  },
+  {
+    "id": "media-manga-teaser-trailer",
+    "categoryId": "manga",
+    "title": "Paper Moon Requiem: Teaser Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-manga-teaser-trailer.svg",
+      "alt": "Thumbnail artwork for the Paper Moon Requiem: Teaser Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for Paper Moon Requiem, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-04-15",
+    "tags": [
+      "trailer",
+      "manga"
+    ],
+    "durationSeconds": 45,
+    "fictional": true
+  },
+  {
+    "id": "media-manga-official-trailer",
+    "categoryId": "manga",
+    "title": "Paper Moon Requiem: Official Trailer",
+    "mediaType": "trailer",
+    "format": "video",
+    "embedUrl": "",
+    "thumbnail": {
+      "src": "/assets/generated/media/media-manga-official-trailer.svg",
+      "alt": "Thumbnail artwork for the Paper Moon Requiem: Official Trailer",
+      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+    },
+    "description": "A trailer for Paper Moon Requiem, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
+    "releaseStatus": "upcoming",
+    "publishedDate": "2026-09-01",
+    "tags": [
+      "trailer",
+      "manga"
+    ],
+    "durationSeconds": 120,
+    "fictional": true
   }
 ]

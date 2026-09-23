@@ -203,3 +203,41 @@ The Phase 3 architecture audit (§1) checked for route-level `Suspense`/lazy bou
 **Kage inspiration boundary**: the orbit/ring/starfield/parallax *technique* is a documented area where Kage-style cinematic entries provided general inspiration (scroll/pointer-driven depth, layered motion) — no Kage code, artwork, textures, models, scene layout, or branding was copied; the Core's geometry, the seven-node concept, the color palette, and the "Fandom Core" narrative are original to this project (Master Directive Kage Reference Policy; `00_PROJECT_CONSTITUTION.md` §11).
 
 **No external/generated assets this phase** — see D-033; `06_ASSET_BIBLE.md` and `08_LICENSES.md` both confirm zero new asset rows.
+
+## 16. Category Hub Architecture (Phase 5)
+
+### One template, seven worlds
+
+All seven hubs are the **same component** — `src/pages/CategoryHubPage.tsx` — mounted once per category route. There is no per-category layout, no per-category stylesheet, and no branching on category id anywhere in the render path. A hub differs from its siblings only in:
+
+1. its accent colour (`Category.accentColor` → the existing `--color-accent-*` token, passed to `Card` as `accent`),
+2. its content (everything is a `categoryId` filter over the shared dataset),
+3. its hero art and `visualMotif` copy.
+
+This is what makes the "one universe, seven worlds" requirement structural rather than stylistic: adding an eighth category would require a data entry and a route entry, and no new UI code. `CategoryHubPage.test.tsx` asserts this directly by rendering all seven and requiring the identical section set in each.
+
+### Section order
+
+Hero → Featured → Articles → Gallery → Characters → Events → Trailers → Upcoming Releases → Merchandise → Explore another world.
+
+Each section is a landmark `<section aria-labelledby>` pointing at its `SectionHeader` heading, so the hub is navigable by heading/landmark in a screen reader. Headings run h1 (category) → h2 (section) → h3 (card), with no skipped levels — asserted by an E2E test rather than by inspection, after the first implementation skipped h3 entirely.
+
+### Content resolution
+
+| Concern | Source of truth |
+|---|---|
+| Which categories exist, and their routes | `src/routes/categoryRoutes.ts` (`CATEGORY_ROUTES`) — unchanged from Phase 4, still the only route registry |
+| Category identity/metadata | `src/data/categories.json` → `Category` |
+| Everything else | filtered from the shared collections by `categoryId` |
+
+`CATEGORY_ROUTES` and `categories.json` are kept in sync by a validation test (one route per category, one category per route, and `Category.slug === route.path`) rather than by convention — necessary because K-Pop's id (`kpop`) and route path (`k-pop`) legitimately differ. The generic `/category/:slug` route resolves through `getCategoryByIdOrSlug()` so either form works.
+
+### Detail pages
+
+`ArticleDetailPage`, `CharacterDetailPage`, `EventDetailPage` and `ProductDetailPage` share a layout shell (`DetailPage.module.css`) and each provide: category context (accent badge), a "← Back to \<Category\>" link, the item's imagery and metadata, a bookmark/cart action, and resolved related content. Related ids are heterogeneous (an article may relate to characters and events), so they resolve through `resolveRelatedContent()` in `src/data/index.ts`, which maps any id to its `{title, path}` regardless of collection.
+
+Document titles on detail routes come from `useDynamicDocumentTitle()`, which overrides the route-level generic title ("Article") with the item's own name. Route-level `handle.title` still supplies the fallback, so the Phase 3 title architecture is extended, not replaced.
+
+### Fandom Core integration (unchanged)
+
+Phase 4's Fandom Core is untouched. Its seven nodes derive from the same `CATEGORY_ROUTES` registry and remain plain semantic `<a>` links — no category interaction moved into WebGL. An E2E test now clicks each of the seven nodes and asserts it lands on the matching hub.

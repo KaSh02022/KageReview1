@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Ironclad Vanguard 3">
+  <rect width="480" height="480" fill="#9b7d00" />
+  <circle cx="341" cy="243" r="123.9" fill="#ffe14d" opacity="0.33" />
+  <circle cx="418" cy="241" r="99.6" fill="#ffe14d" opacity="0.30" />
+  <circle cx="239" cy="464" r="79.6" fill="#ffe14d" opacity="0.51" />
+  <circle cx="60" cy="206" r="59.5" fill="#ffe14d" opacity="0.32" />
+  <circle cx="361" cy="428" r="39.5" fill="#ffe14d" opacity="0.13" />
+  <circle cx="240" cy="240" r="153.6" fill="#ffe14d" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">IV·3</text>
+</svg>

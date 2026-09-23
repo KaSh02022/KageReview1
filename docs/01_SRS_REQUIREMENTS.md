@@ -71,7 +71,7 @@ Test IDs are named `T-<Req ID>` and detailed by category in `09_TEST_STRATEGY.md
 
 | ID | Requirement | Priority | Source | Acceptance Criteria | Implementation Area | Test ID | Status |
 |---|---|---|---|---|---|---|---|
-| FR-019 | Every category contains at least 5 character profiles loaded from JSON or hardcoded data | M | p.11 | Each of the 7 categories has ≥5 character entries (≥35 total) verified against `characters.json` | Characters module / data layer | T-FR-019 | Not Started |
+| FR-019 | Every category contains at least 5 character profiles loaded from JSON or hardcoded data | M | p.11 | Each of the 7 categories has ≥5 character entries (≥35 total) verified against `characters.json` | Characters module / data layer | T-FR-019 | **Done (Phase 5)** — 35 profiles, 5 per category, asserted per-category |
 | FR-020 | Each character profile includes: Name, Image, Series, Biography, Traits | M | p.11 | Character detail view renders all 5 fields for every profile | Characters module | T-FR-020 | Not Started |
 | FR-021 | Character profiles filterable by category and franchise/series | M | p.11 | Filter UI narrows character list by category and by series correctly | Characters module | T-FR-021 | Not Started |
 
@@ -79,7 +79,7 @@ Test IDs are named `T-<Req ID>` and detailed by category in `09_TEST_STRATEGY.md
 
 | ID | Requirement | Priority | Source | Acceptance Criteria | Implementation Area | Test ID | Status |
 |---|---|---|---|---|---|---|---|
-| FR-022 | Every category contains at least 3 events | M | p.11 | Each of the 7 categories has ≥3 event entries (≥21 total) verified against `events.json` | Events module / data layer | T-FR-022 | Not Started |
+| FR-022 | Every category contains at least 3 events | M | p.11 | Each of the 7 categories has ≥3 event entries (≥21 total) verified against `events.json` | Events module / data layer | T-FR-022 | **Done (Phase 5)** — 21 events, 3 per category, asserted per-category |
 | FR-023 | Displays past and upcoming fandom events: conventions, watch parties, meetups | M | p.11 | Event list distinguishes past vs. upcoming; covers the named event types | Events module | T-FR-023 | Not Started |
 | FR-024 | Each event entry includes: Title, date, location, description, associated category | M | p.11 | Event card/detail renders all 5 fields | Events module | T-FR-024 | Not Started |
 
@@ -209,8 +209,8 @@ Test IDs are named `T-<Req ID>` and detailed by category in `09_TEST_STRATEGY.md
 | Check | SRS Source | Requirement | Status |
 |---|---|---|---|
 | 7 fandom categories present | p.4, p.6, p.8 | Anime, Gaming, Movies, TV Shows, K-Pop, Comics, Manga | Verified in this document — carried into `02_PRODUCT_ARCHITECTURE.md` routing |
-| ≥5 character profiles per category (≥35 total) | p.11 | FR-019 | Not Started — enforced by data schema + `09_TEST_STRATEGY.md` data-integrity test |
-| ≥3 events per category (≥21 total) | p.11 | FR-022 | Not Started — enforced by data schema + data-integrity test |
+| ≥5 character profiles per category (≥35 total) | p.11 | FR-019 | **Met (Phase 5)** — exactly 5 per category, 35 total. Enforced per-category by `src/data/contentValidation.test.ts`, which fails the build if any category drops below 5 (gate verified to actually fail) |
+| ≥3 events per category (≥21 total) | p.11 | FR-022 | **Met (Phase 5)** — exactly 3 per category, 21 total. Enforced per-category by `src/data/contentValidation.test.ts` (gate verified to actually fail) |
 
 ## H. Requirement Count Summary
 

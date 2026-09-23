@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Hana">
+  <rect width="480" height="480" fill="#9b007c" />
+  <circle cx="413" cy="442" r="136.6" fill="#ff5de0" opacity="0.25" />
+  <circle cx="234" cy="184" r="116.5" fill="#ff5de0" opacity="0.46" />
+  <circle cx="55" cy="407" r="96.5" fill="#ff5de0" opacity="0.27" />
+  <circle cx="356" cy="149" r="76.4" fill="#ff5de0" opacity="0.48" />
+  <circle cx="177" cy="371" r="56.4" fill="#ff5de0" opacity="0.29" />
+  <circle cx="240" cy="240" r="153.6" fill="#ff5de0" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">H</text>
+</svg>

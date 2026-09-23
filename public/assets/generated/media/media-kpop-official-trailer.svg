@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 45 400 300" role="img" aria-label="LUNARIS: Official Trailer">
+  <rect y="45" width="400" height="300" fill="#a00081" />
+  <rect x="120" y="60" width="160" height="260" rx="6" fill="#ff5de0" /><rect x="140" y="90" width="120" height="80" fill="#a00081" opacity="0.5" />
+  <text x="50%" y="312" font-family="sans-serif" font-size="22" fill="#ffffffcc" text-anchor="middle">LUNARIS</text>
+</svg>

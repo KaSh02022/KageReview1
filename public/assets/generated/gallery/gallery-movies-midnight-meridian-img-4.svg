@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Midnight Meridian 4">
+  <rect width="480" height="480" fill="#9b5200" />
+  <circle cx="130" cy="13" r="91.2" fill="#ffb648" opacity="0.22" />
+  <circle cx="309" cy="271" r="111.3" fill="#ffb648" opacity="0.41" />
+  <circle cx="252" cy="458" r="51.1" fill="#ffb648" opacity="0.24" />
+  <circle cx="431" cy="236" r="71.1" fill="#ffb648" opacity="0.43" />
+  <circle cx="374" cy="423" r="116.5" fill="#ffb648" opacity="0.26" />
+  <circle cx="73" cy="200" r="136.6" fill="#ffb648" opacity="0.45" />
+  <circle cx="16" cy="388" r="76.4" fill="#ffb648" opacity="0.28" />
+  <circle cx="195" cy="165" r="96.5" fill="#ffb648" opacity="0.47" />
+  <circle cx="240" cy="240" r="153.6" fill="#ffb648" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">MM·4</text>
+</svg>

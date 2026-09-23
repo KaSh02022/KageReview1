@@ -187,3 +187,46 @@ Verified via **real DOM inspection**, not just source-reading (`e2e/dialog-archi
 **A real bug found via this testing, not by inspection (D-032):** writing `e2e/fandom-core.spec.ts`'s skip-intro test surfaced that the *existing* `SkipLink` (present since Phase 1) had the same defect — a plain `href="#id"` anchor, when followed natively in a `HashRouter` app, corrupts the router's hash-based route state and silently replaces the page with Not Found. Fixed in both places; regression tests added to both `e2e/accessibility.spec.ts` (non-root-route case, the general pattern) and `e2e/fandom-core.spec.ts` (the Fandom Core's own skip control).
 
 **Visual QA (required, not screenshot-diff-based per the Director's instruction):** manually reviewed real screenshots at 1440×900, 1024×768, 768×1024, 390×844, and 375×812, plus hover-state, focus-state, and reduced-motion states. Found and fixed one real defect (D-035): the 3D category fragments and the HTML overlay's nodes were both drawn at nearly the same radius, producing two visibly separate, misaligned rings of seven marks — invisible to every automated check (typecheck/lint/unit/E2E/axe all passed throughout), only visible in an actual rendered screenshot.
+
+## 14. Content Validation & Category Hub Coverage (Phase 5)
+
+### The content-validation gate
+
+`src/data/contentValidation.test.ts` (47 assertions) is the SRS content gate. It is the single place where the minimum-quantity requirements become executable rather than aspirational:
+
+| Group | What it asserts |
+|---|---|
+| SRS minimums | exactly 7 categories; ≥5 characters **per category** (FR-019); ≥3 events **per category** (FR-022); 35/21 totals; every category has article, gallery, trailer, release and merchandise content; exactly one featured article per category |
+| Registry integrity | one route per category and one category per route; `Category.slug` matches its route path (no second, conflicting registry) |
+| Referential integrity | globally unique entity ids; unique gallery image ids; every collection entry points at a real category; no orphan `relatedIds`; nothing lists itself as related |
+| Required fields | per-type field presence and shape (dates match `YYYY-MM-DD`, enums are in range, prices are sane, bodies/biographies/descriptions meet minimum lengths) |
+| Honesty labelling | every event, release and trailer carries `fictional: true`; no trailer ships a live external embed URL |
+| Asset integrity | every declared asset resolves to a real file under `public/`; every asset has non-empty alt text and a provenance credit |
+
+The per-category assertions use `it.each` over the category list, so a failure names the offending category rather than reporting one opaque total.
+
+**The gate was verified to actually fail.** Deleting one Anime character produced 3 real failures (the per-category minimum, the 35-total check, and — usefully — the orphan-reference check, because an event still referenced the deleted character). Pointing one asset at a nonexistent file produced a failure naming the exact entity and path. A gate that has never been seen to fail is not a gate.
+
+### Category hub E2E coverage
+
+`e2e/category-hubs.spec.ts` (41 tests per browser project) covers what the dataset tests cannot — what a browser actually renders:
+
+| Area | Coverage |
+|---|---|
+| Structure | all 9 sections present on all 7 hubs |
+| Content minimums on screen | ≥5 character links and ≥3 event links rendered per hub |
+| Images | every image on every hub actually loads (no `naturalWidth === 0`), and no request 4xx/5xxs |
+| Route/content integration | character, event and merchandise cards navigate to their detail routes; the back-to-hub link returns to the correct category; detail pages set an item-specific document title |
+| Fandom Core | each of the 7 Core nodes navigates to its matching hub |
+| Accessibility | axe (no serious/critical) on a hub and on a detail page; single-h1 no-skipped-level heading hierarchy; category identity available as text, not colour alone |
+| Responsive | no horizontal overflow on a fully populated hub and on a detail page at 375×812, 390×844, 768×1024, 1024×768, 1440×900 |
+
+### Defects these tests found
+
+- **A WCAG AA contrast failure in the Phase 2 `Badge` component** (`tone="primary"`, 3.94:1) that had existed since Phase 2 but never rendered until real content existed (D-039).
+- **A skipped heading level** (h2 → h4) in the first hub implementation, caught by the hierarchy test, not by review.
+- Two brittle-fixture failures in pre-existing suites (`persistence`, `deep-links`, `App.test`) that were silently pinned to Phase 1 seed ids. `persistence.spec.ts` was rewritten to navigate through the UI so it tests persistence rather than fixture existence; `deep-links.spec.ts` keeps hardcoded real ids on purpose, since a deep link breaking *should* fail loudly.
+
+### What real-screenshot QA caught that none of the above did
+
+Every automated check above passed while card art had its titles sliced off by the 4:3 crop, every card showed a duplicated title, the merchandise shirt glyph rendered as a malformed blob, and a populated mobile hub ran 9,572px tall. See D-040/D-041. This remains the strongest argument for the Director's standing requirement that visual quality is never declared on automated results alone.

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Terra Prime (Amara Osei)">
+  <rect width="480" height="480" fill="#9b7d00" />
+  <circle cx="337" cy="93" r="140.8" fill="#ffe14d" opacity="0.29" />
+  <circle cx="158" cy="315" r="120.8" fill="#ffe14d" opacity="0.50" />
+  <circle cx="459" cy="58" r="100.7" fill="#ffe14d" opacity="0.31" />
+  <circle cx="280" cy="280" r="80.6" fill="#ffe14d" opacity="0.12" />
+  <circle cx="93" cy="163" r="115.5" fill="#ffe14d" opacity="0.25" />
+  <circle cx="240" cy="240" r="153.6" fill="#ffe14d" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">TP</text>
+</svg>

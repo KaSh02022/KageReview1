@@ -1,6 +1,6 @@
 # FandomVerse — Portal for Fandom World
 
-**Status: Phase 4 (Cinematic WebGL / Fandom Universe) complete.** The application scaffold, routing, app shell, design system, and an original "Fandom Core" cinematic entry (procedural Three.js scene + accessible HTML overlay, with a 2D fallback and full reduced-motion/no-WebGL support) exist and are verified (typecheck/lint/unit/E2E/build all passing — see Testing below). Feature content (full category catalogs, chatbot logic, merchandise catalog, etc.) is intentionally minimal seed data — that's Phase 5+ scope.
+**Status: Phase 5 (Content Foundation & Seven Fandom Hubs) complete.** The application scaffold, routing, app shell, design system, the original "Fandom Core" cinematic entry, and a full original content dataset across all seven fandom hubs exist and are verified (typecheck/lint/unit/E2E/build all passing — see Testing below). Every hub is populated with real content: 35 character profiles, 21 events, 21 articles, 28 gallery pieces, 14 trailers, 21 releases and 14 merchandise items, all original fiction with procedurally generated artwork. Search/filter/sort, the chatbot rule engine, and final cart behaviour remain later-phase scope.
 
 FandomVerse is a browser-based, backend-free Single Page Application that brings together content — articles, image galleries, videos/audio, character profiles, event highlights, trailers, merchandise, and a rule-based chatbot — across seven fandom categories (Anime, Gaming, Movies, TV Shows, K-Pop, Comics, Manga) into one centralized, visually engaging portal. Built for the "Web Innovation Unleashed" category.
 
@@ -17,7 +17,7 @@ See `docs/00_PROJECT_CONSTITUTION.md` for the full vision, goals, non-goals, and
 - Three.js via React Three Fiber, lazy-loaded, powering the original "Fandom Core" cinematic entry (`src/features/universe/`) — procedural geometry only, no external models/textures; a 2D CSS fallback (not a placeholder — the loading, reduced-motion, and no-WebGL states all use it) shares the same accessible category-navigation overlay as the WebGL path
 - Zustand for cross-cutting client state (cart, bookmarks, notes, chatbot session, UI), persisted to `localStorage`/`sessionStorage` per the boundaries in `docs/05_DATA_SCHEMA.md` §13
 - A shared component primitive library (`src/components/ui/`) — Button, IconButton, Badge, Card (+ Media/Header/Body/Meta/Footer), Dialog, Drawer, form controls (FormField/Input/Select/Textarea/SearchInput), layout primitives (Container/Stack/Grid/Divider), SectionHeader, Skeleton, ErrorState — all built on one canonical design-token system and one shared accessible-dialog hook (`useFocusTrap`)
-- Static, versioned JSON as the entire data layer — no backend, no server-side database, nothing is ever written back to the data files at runtime
+- Static, versioned JSON as the entire data layer — no backend, no server-side database, nothing is ever written back to the data files at runtime. Content and its artwork are generated together by `scripts/generate-content.mjs` and guarded by a 47-assertion validation gate (`src/data/contentValidation.test.ts`) that fails the build if SRS content minimums, references, or assets regress
 - A fully custom, in-repo rule-based chatbot shell (no external AI API, no Tawk.to/Tidio dependency — D-004); the rule engine itself is Phase 11
 - ESLint (flat config, TypeScript + React Hooks + jsx-a11y), Vitest + React Testing Library, Playwright + axe-core
 
@@ -52,7 +52,7 @@ npm run test:watch   # vitest, watch mode
 npm run test:e2e     # playwright test (builds + serves the app, runs across chromium/firefox/webkit/mobile-chrome)
 ```
 
-All of the above pass as of the Phase 4 completion report (71 unit tests; 404 E2E tests across chromium/firefox/webkit/mobile-chrome — 401 passed, 3 skipped for a documented WebKit platform limitation, D-015). See `docs/09_TEST_STRATEGY.md` for the full test strategy and requirement traceability, and the Phase 4 completion report for exact results.
+All of the above pass as of the Phase 5 completion report. See `docs/09_TEST_STRATEGY.md` for the full test strategy and requirement traceability, and the Phase 5 completion report for exact results.
 
 ## Build
 
@@ -74,8 +74,8 @@ src/
   app/          — root App component + RouterProvider wiring
   components/   — feature components (Header, Footer, Breadcrumb, ErrorBoundary, states, ChatbotLauncher, DummyAuth, BookmarkToggle, …)
   components/ui/ — shared design-system primitives (Button, Card, Dialog, Drawer, Form, Layout, Badge, Link, SectionHeader, Skeleton, ErrorState)
-  data/         — static JSON content (seed data) + typed loader (src/data/index.ts)
-  features/     — cross-cutting feature logic (currently: the cinematic-entry progressive-enhancement scaffold)
+  data/         — static JSON content + typed loader (src/data/index.ts) + the content-validation gate
+  features/     — cross-cutting feature logic (the Fandom Core cinematic entry)
   hooks/        — usePrefersReducedMotion, useWebglSupport, useClock, useVisitorCounter, useFocusTrap
   layouts/      — RootLayout (the persistent app shell)
   pages/        — one file per route
@@ -84,7 +84,8 @@ src/
   styles/       — design tokens (tokens.css), global reset/base styles, breakpoint constants
   types/        — TypeScript domain types (src/types/content.ts)
   utils/        — storage.ts (failure-safe localStorage/sessionStorage wrapper)
-e2e/            — Playwright end-to-end tests (navigation, persistence, accessibility, responsive, console audit)
+e2e/            — Playwright end-to-end tests (navigation, category hubs, persistence, accessibility, responsive, console audit)
+scripts/        — content + asset generation (generate-content.mjs)
 ```
 
 ## Constraints
@@ -99,11 +100,11 @@ Full constraint list: `docs/00_PROJECT_CONSTITUTION.md` §4.
 
 ## AI Usage
 
-Claude (Sonnet 5) is the primary implementation agent (architecture, React/TypeScript, Three.js, tests, docs). Gemini is used for visual asset generation. ChatGPT serves as an external architecture/QA reviewer. Full, living usage log: `docs/07_AI_USAGE.md`. AI-generated assets are tracked with license status in `docs/08_LICENSES.md`. AI-assisted output is never treated as automatically production-ready — every change is checked against real typecheck/lint/test/build results before being reported as done.
+Claude is the primary implementation agent (architecture, React/TypeScript, Three.js, tests, docs, and the Phase 5 content dataset). No AI image generation has been used to date — all 161 visual assets are procedural SVG drawn from code (D-036); Gemini remains an approved-but-unused option for later visual work, and ChatGPT is available as an external architecture/QA reviewer. Full, living usage log: `docs/07_AI_USAGE.md`. AI-generated assets are tracked with license status in `docs/08_LICENSES.md`. AI-assisted output is never treated as automatically production-ready — every change is checked against real typecheck/lint/test/build results before being reported as done.
 
 ## License Policy
 
-Every non-original asset must be verified and logged in `docs/08_LICENSES.md` before use — nothing is used on the assumption that it's "probably fine." See `docs/00_PROJECT_CONSTITUTION.md` §10. No production/copyrighted assets have been added yet (Phase 1 ships zero images).
+Every non-original asset must be verified and logged in `docs/08_LICENSES.md` before use — nothing is used on the assumption that it's "probably fine." See `docs/00_PROJECT_CONSTITUTION.md` §10. As of Phase 5 the project ships 161 images, **all of them original procedural SVG generated by this repository's own script** — no stock imagery, no scraped artwork, no AI image generation, and no third-party license obligations. All seven fandoms are original fictional properties; no real franchise, character, logo or title appears anywhere in the content.
 
 ## Current Status
 
@@ -112,7 +113,8 @@ Every non-original asset must be verified and logged in `docs/08_LICENSES.md` be
 - **Phase 2 — complete.** Canonical breakpoint system (reconciled the Header's Phase 1 arbitrary 767px to the tablet/desktop boundary), React 19 formally confirmed as the baseline, canonical route inventory documented, full design-token system (color/typography/spacing/radius/shadow/motion/layout), and a shared component primitive library (Button, Card, Dialog, Drawer, forms, layout) with a real focus-trap hook shared by every dialog/drawer. Fixed 3 real bugs this phase — all caught by new automated tests, not by inspection.
 - **Phase 3 — complete.** Per-route document titles, scroll/focus-on-navigation, a formally-resolved dummy-auth decision (in-memory) and dark-only theme reconfirmation, a canonical 23-route inventory, and real DOM-level verification that the Dialog/Drawer background-inertness architecture is correct. A real keyboard-only walkthrough and full HashRouter deep-link/refresh verification across all 23 routes.
 - **Phase 4 — complete.** The "Fandom Core" cinematic entry: an original central object with seven orbiting category nodes, procedural (no external assets), with a real accessible HTML interaction layer shared identically between the WebGL and 2D-fallback paths. Found and fixed a **serious pre-existing bug** dating to Phase 1 (the skip-to-content link could corrupt `HashRouter`'s route state and throw users onto the 404 page) plus two real visual/architecture issues, all via genuine testing rather than inspection alone.
-- **Phases 5–15 — not started.** Awaiting Project Director review and go-ahead per the phase-gate process (`docs/00_PROJECT_CONSTITUTION.md` §13).
+- **Phase 5 — complete.** The real content foundation: seven original flagship franchises (one per hub), 35 character profiles, 21 events, 21 articles, 7 galleries, 14 trailers, 21 releases and 14 merchandise items, plus 161 procedurally generated SVG assets with documented provenance and zero third-party licensing exposure. Category hubs and all four detail pages rebuilt on the shared design system. Added an executable SRS content gate (verified to actually fail when minimums are broken) and found a latent WCAG AA contrast defect in the Phase 2 Badge component.
+- **Phases 6–15 — not started.** Awaiting Project Director review and go-ahead per the phase-gate process (`docs/00_PROJECT_CONSTITUTION.md` §13).
 
 ## Document Index
 

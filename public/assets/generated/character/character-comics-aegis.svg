@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Aegis (Marcus Steele)">
+  <rect width="480" height="480" fill="#9b7d00" />
+  <circle cx="454" cy="346" r="95.4" fill="#ffe14d" opacity="0.26" />
+  <circle cx="153" cy="124" r="115.5" fill="#ffe14d" opacity="0.45" />
+  <circle cx="96" cy="311" r="55.3" fill="#ffe14d" opacity="0.28" />
+  <circle cx="275" cy="89" r="75.4" fill="#ffe14d" opacity="0.47" />
+  <circle cx="210" cy="417" r="70.1" fill="#ffe14d" opacity="0.22" />
+  <circle cx="389" cy="194" r="90.1" fill="#ffe14d" opacity="0.41" />
+  <circle cx="332" cy="381" r="135.6" fill="#ffe14d" opacity="0.24" />
+  <circle cx="31" cy="159" r="50.0" fill="#ffe14d" opacity="0.43" />
+  <circle cx="240" cy="240" r="153.6" fill="#ffe14d" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">AM</text>
+</svg>

@@ -25,7 +25,7 @@
 
 .tone-primary {
   background: rgba(91, 123, 255, 0.14);
-  color: var(--color-primary);
+  color: var(--color-primary-on-tint);
 }
 
 .tone-success {

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Soojin">
+  <rect width="480" height="480" fill="#9b007c" />
+  <circle cx="87" cy="187" r="109.2" fill="#ff5de0" opacity="0.19" />
+  <circle cx="388" cy="410" r="89.1" fill="#ff5de0" opacity="0.40" />
+  <circle cx="445" cy="222" r="43.7" fill="#ff5de0" opacity="0.17" />
+  <circle cx="266" cy="445" r="129.2" fill="#ff5de0" opacity="0.38" />
+  <circle cx="331" cy="117" r="134.5" fill="#ff5de0" opacity="0.23" />
+  <circle cx="152" cy="339" r="114.4" fill="#ff5de0" opacity="0.44" />
+  <circle cx="209" cy="152" r="69.0" fill="#ff5de0" opacity="0.21" />
+  <circle cx="240" cy="240" r="153.6" fill="#ff5de0" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">S</text>
+</svg>

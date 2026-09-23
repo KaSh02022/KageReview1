@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Paper Moon Requiem 3">
+  <rect width="480" height="480" fill="#008242" />
+  <circle cx="169" cy="28" r="132.4" fill="#5ce6a6" opacity="0.21" />
+  <circle cx="470" cy="251" r="112.3" fill="#5ce6a6" opacity="0.42" />
+  <circle cx="291" cy="473" r="92.3" fill="#5ce6a6" opacity="0.23" />
+  <circle cx="112" cy="216" r="72.2" fill="#5ce6a6" opacity="0.44" />
+  <circle cx="405" cy="99" r="107.0" fill="#5ce6a6" opacity="0.17" />
+  <circle cx="240" cy="240" r="153.6" fill="#5ce6a6" opacity="0.9" />
+  <text x="50%" y="53%" font-family="sans-serif" font-size="96" font-weight="700" fill="#0b0b12" text-anchor="middle" dominant-baseline="middle">PM·3</text>
+</svg>
