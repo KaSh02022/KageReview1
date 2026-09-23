@@ -128,6 +128,8 @@ One global system, seven accent tokens — not seven separate designs:
 
 A category's accent is passed as `Card`'s `accent` prop and shown as a top-edge highlight on hover/focus (§5) — the *only* per-category visual variable. Navigation structure, typography, spacing, card composition, interaction patterns, and accessibility behavior are identical across all seven, per the Director's Phase 2 §9 instruction ("navigation / typography / spacing / card structure / interaction patterns / accessibility / layout must remain consistent"). Iconography, hero motif, and badge-treatment variation beyond color are Phase 5+ content-population scope (no large image asset collections were generated in Phase 2, per the Director's scope boundary).
 
+**Phase 4 reuse:** the Fandom Core's seven category nodes (`02_PRODUCT_ARCHITECTURE.md` §15) read these exact same seven CSS custom properties at runtime (`useCategoryAccentColors.ts`) for both the HTML overlay dots and the 3D fragment meshes — explicitly *not* a second, 3D-specific color palette. No new motion, radius, or shadow tokens were introduced for the cinematic layer either; it reuses `--duration-*`/`--easing-*` (zeroed under reduced motion at the token layer, same as every other animated component) and `--radius-*`/`--shadow-*` for the hero container and dialog-adjacent chrome.
+
 ## 10. Kage Non-Copying Note
 
 Where Kage is referenced during design exploration, it is used to study *technique* (e.g., how depth/parallax is staged, how a scroll sequence paces reveals) — never copied as color values, component shapes, font choices, copy, or imagery. FandomVerse's tokens and components above are independently designed and named.

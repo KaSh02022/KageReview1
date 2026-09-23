@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { CATEGORY_ROUTES } from '../../routes/routes'
+import { CATEGORY_ROUTES } from '../../routes/categoryRoutes'
 import { useCartStore } from '../../stores/cartStore'
 import { useBookmarksStore } from '../../stores/bookmarksStore'
 import { useUiStore } from '../../stores/uiStore'

@@ -1,37 +1,49 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.introText {
+  text-align: center;
+}
+
+.introText h1 {
+  font: var(--font-display);
+  margin: 0;
+}
+
+.introText p {
+  color: var(--color-text-muted);
+  margin: var(--space-xs) 0 0;
+}
+
+.skipLink {
+  font: var(--font-caption);
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  padding: var(--space-xs);
+}
+
+.skipLink:hover,
+.skipLink:focus-visible {
+  color: var(--color-text-primary);
+}
+
 .hero {
   position: relative;
   width: 100%;
   height: min(60vh, 480px);
-  border-radius: var(--radius-lg);
+  min-height: 320px;
+  border-radius: var(--radius-large);
   overflow: hidden;
-  background: radial-gradient(circle at 50% 30%, var(--color-bg-surface-raised), var(--color-bg-base));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 var(--space-lg);
+  background: var(--color-bg);
 }
 
-.hero h1 {
-  /* Fluid (clamp-based) rather than the fixed --font-size-4xl — a fixed
-     56px heading clipped against the hero's `overflow:hidden` edge at
-     mobile widths (found via Phase 2 visual QA screenshots). */
-  font: var(--font-display);
-  max-width: 100%;
-}
-
-.hero p {
-  color: var(--color-text-muted);
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  pointer-events: none;
+@media (max-width: 599px) {
+  .hero {
+    height: min(70vh, 420px);
+    min-height: 360px;
+  }
 }

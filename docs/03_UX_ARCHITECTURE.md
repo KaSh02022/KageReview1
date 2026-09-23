@@ -42,10 +42,13 @@ Per SRS p.6: Search, Bookmarks, Contact Us, About Us, and the chatbot must remai
 
 ## 3. Landing Page (Cinematic Entry → Home)
 
-**[C] Kage-inspired, [B] original concept.** A short, skippable WebGL sequence establishes the "Fandom Universe" metaphor (an original visual identity — not Kage's temple/night-walk), then resolves into the functional Home page. Must:
-- Be skippable at any time (a visible "Skip" / "Enter" control) — never a gate the user is forced to sit through.
-- Fall back to a static hero immediately when `prefers-reduced-motion` is set or WebGL is unavailable (see `00_PROJECT_CONSTITUTION.md` §5, §8).
-- Never block reaching Home/search/any category — cinematic layer supports discovery, never replaces it (Master Directive "Important Development Principle").
+**[C] Kage-inspired, [B] original concept.** The "Fandom Core" — a central original focal object with seven orbiting category nodes — establishes the "Fandom Universe" metaphor at the top of Home, above the same "Explore fandoms" card grid that has existed since Phase 2 (defense in depth: two independent paths to every category). Full technical architecture in `02_PRODUCT_ARCHITECTURE.md` §15.
+
+**Implemented (Phase 4):**
+- Not a gate or a sequence the user "sits through" — no autoplay narrative, no forced duration, no "Enter" button blocking content. The seven category links are real, immediately focusable/clickable the moment the page renders (via `FandomCoreOverlay`), whether or not the WebGL canvas has finished loading.
+- A visible "Skip intro — jump to categories" control moves focus straight to the "Explore fandoms" grid without navigating away.
+- Falls back to a static, intentionally-designed 2D version (`FandomCoreFallback`) immediately when `prefers-reduced-motion` is set or WebGL is unavailable — same seven links, same navigation targets, not a degraded/error-styled experience.
+- Never blocks reaching Home/search/any category — confirmed by `e2e/fandom-core.spec.ts` across the WebGL-supported, WebGL-unavailable, and reduced-motion cases.
 
 ## 4. Category Hubs
 

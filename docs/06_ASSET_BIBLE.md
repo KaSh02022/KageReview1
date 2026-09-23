@@ -2,6 +2,8 @@
 
 Defines asset identification, formats, and standards. No assets exist yet as of Phase 0 — this document establishes the rules Phase 2+ asset production (via Gemini for visuals) must follow, plus the license-verification gate every asset must clear before use (see `00_PROJECT_CONSTITUTION.md` §10 and `08_LICENSES.md`).
 
+**Phase 4 status:** still zero image/texture/model assets. The Fandom Core cinematic entry (`02_PRODUCT_ARCHITECTURE.md` §15) is entirely procedural — Three.js primitive geometries, code-driven materials, and CSS gradients — per the Director's explicit Phase 4 instruction to prefer procedural geometry and stop before integrating any external/generated asset (D-033). No Gemini prompts from §9 below have been executed yet; that remains later-phase scope.
+
 ## 1. Asset ID Convention
 
 `ASSET-<domain>-<category>-<slug>-<variant>`

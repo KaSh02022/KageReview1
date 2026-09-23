@@ -37,4 +37,30 @@ test.describe('Accessibility foundation', () => {
     await page.keyboard.press('Enter')
     await expect(page.locator('#main-content')).toBeFocused()
   })
+
+  /**
+   * Regression test for docs/11_DECISION_LOG.md D-032: activating the
+   * skip-to-content link used to rewrite window.location.hash to
+   * "#main-content", which HashRouter then read as an attempted route
+   * path — silently replacing the current page with the Not Found route.
+   * Present since Phase 1; found during Phase 4 E2E testing. Tested on a
+   * non-root route specifically, since "/" is a less representative case
+   * for HashRouter path-matching than a real nested route like "/anime".
+   */
+  test('skip-to-content does not corrupt HashRouter state on a non-root route', async ({
+    page,
+    browserName,
+  }) => {
+    test.skip(browserName === 'webkit', 'WebKit only tabs to links with Full Keyboard Access on')
+
+    await page.goto('/#/anime')
+    await expect(page.getByRole('heading', { level: 1, name: 'Anime' })).toBeVisible()
+
+    await page.keyboard.press('Tab')
+    await page.keyboard.press('Enter')
+
+    await expect(page).toHaveURL(/#\/anime$/)
+    await expect(page.getByRole('heading', { level: 1, name: 'Anime' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Page not found' })).not.toBeVisible()
+  })
 })

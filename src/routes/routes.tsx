@@ -17,6 +17,7 @@ import { BookmarksPage } from '../pages/BookmarksPage'
 import { ContactPage } from '../pages/ContactPage'
 import { AboutPage } from '../pages/AboutPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
+import { CATEGORY_ROUTES } from './categoryRoutes'
 
 /**
  * Route "handle.breadcrumb" is read by src/components/Breadcrumb, and
@@ -26,16 +27,14 @@ import { NotFoundPage } from '../pages/NotFoundPage'
  * (docs/02_PRODUCT_ARCHITECTURE.md §3), not hand-maintained per page.
  * Title convention (Phase 3, docs/02_PRODUCT_ARCHITECTURE.md §14):
  * "FandomVerse" alone on Home, "FandomVerse — <Page>" everywhere else.
+ *
+ * CATEGORY_ROUTES itself now lives in ./categoryRoutes (Phase 4, D-031),
+ * with every consumer (Header, HomePage, the Fandom Core scene) importing
+ * it from there directly rather than through this file — this file
+ * imports page components (HomePage etc.), so anything imported *through*
+ * it risks a circular import the moment one of those pages needs the
+ * category list too (exactly what broke the Fandom Core build this phase).
  */
-export const CATEGORY_ROUTES: { path: string; categoryId: string; label: string }[] = [
-  { path: 'anime', categoryId: 'anime', label: 'Anime' },
-  { path: 'gaming', categoryId: 'gaming', label: 'Gaming' },
-  { path: 'movies', categoryId: 'movies', label: 'Movies' },
-  { path: 'tv-shows', categoryId: 'tv-shows', label: 'TV Shows' },
-  { path: 'k-pop', categoryId: 'kpop', label: 'K-Pop' },
-  { path: 'comics', categoryId: 'comics', label: 'Comics' },
-  { path: 'manga', categoryId: 'manga', label: 'Manga' },
-]
 
 export const router = createHashRouter([
   {

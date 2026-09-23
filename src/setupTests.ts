@@ -21,3 +21,11 @@ if (typeof window !== 'undefined' && !window.matchMedia) {
 if (typeof window !== 'undefined') {
   window.scrollTo = () => {}
 }
+
+// jsdom doesn't implement Element.scrollIntoView either — found via a real
+// test failure (CinematicEntry's skip-intro control threw before it could
+// move focus). Real browsers always have this; only the test environment
+// needs the stub.
+if (typeof window !== 'undefined' && !window.HTMLElement.prototype.scrollIntoView) {
+  window.HTMLElement.prototype.scrollIntoView = () => {}
+}

@@ -179,3 +179,27 @@ The Phase 3 architecture audit (§1) checked for route-level `Suspense`/lazy bou
 | `/releases` | `FandomVerse — Upcoming Releases` |
 | Unmatched route | `FandomVerse — Page Not Found` |
 | Render error (`errorElement`) | `FandomVerse — Something Went Wrong` |
+
+## 15. The Fandom Core (Phase 4 cinematic entry, D-031)
+
+`src/features/universe/` implements one original cinematic entry — not seven separate 3D worlds, per the Director's explicit Phase 4 scope. Replaces Phase 1's placeholder `MinimalScene`/`StaticHeroFallback` (removed this phase).
+
+**Layered architecture, always progressive enhancement:**
+
+1. **Heading** (`CinematicEntry.tsx`) — the page's `<h1>FandomVerse</h1>` + tagline render above the visual, never overlaid on it. The orbit's first node sits at exactly top-center by construction (`fandomCoreNodes.ts`'s angle math starts at -90°), so overlaying text risked colliding with a node at some viewport width; heading-above-art sidesteps that entirely and keeps the h1 unconditionally present regardless of which visual path renders underneath.
+2. **`FandomCoreFallback`** — the base visual layer, ALWAYS mounted: a CSS radial-gradient glow + a ring + the one real interaction surface (`FandomCoreOverlay`, below). This single component simultaneously serves as the loading state (visible immediately, before any WebGL chunk arrives), the `prefers-reduced-motion: reduce` state, and the no-WebGL state — there is never a moment with nothing to look at or interact with.
+3. **`FandomCoreScene`** (lazy-loaded, `~912KB` chunk, confirmed separate from the main bundle in every build) — the real WebGL canvas, layered on top of the fallback only when `useWebglSupport() && !prefersReducedMotion`. Wrapped in `CanvasErrorBoundary`: a runtime error or failed chunk load silently leaves the already-visible 2D fallback as the final result, never a broken canvas or blank page.
+4. **`FandomCoreOverlay`** — the seven real, keyboard-reachable category links, positioned in a ring via CSS `cos()`/`sin()` trig functions (not JavaScript/3D-projection math). Rendered exactly once, inside `FandomCoreFallback`, regardless of whether the canvas is present — accessibility never depends on which rendering path is active (D-031).
+
+**Fandom Core visual composition** (`FandomCoreScene.tsx`):
+- **Core**: two nested procedural icosahedra (inner solid + outer wireframe, opposite slow rotation) + one point light — the original central focal object, entirely code-generated, no external model.
+- **Seven category fragments**: small octahedra at `FRAGMENT_RADIUS` (inner orbit), tinted with each category's existing design-system accent color (read from the live CSS custom property at runtime via `useCategoryAccentColors`, not a second color system), bobbing gently and brightening on hover — atmospheric depth cues, not the interactive layer (D-035).
+- **Orbit ring**: a thin torus at `RING_RADIUS` (outer), visually marking the HTML overlay's ring.
+- **Starfield**: `@react-three/drei`'s `<Stars>`, bounded to 250 (mobile) / 500 (desktop) points.
+- **Camera**: fixed initial position (`[0, 0, 5.5]`, 50° FOV), subtle pointer-parallax rotation of the whole rig via a pure, unit-tested function (`computeParallaxRotation.ts`) — deterministic, bounded (±0.18 rad desktop, ±0.08 rad mobile), zeroed under reduced motion, smoothed with `MathUtils.damp` (never an instant snap).
+
+**Performance guardrails** (Phase 4 §13, not final optimization): DPR capped at `[1, 1.5]` desktop / `[1, 1.25]` mobile; 10 total meshes with low-poly procedural geometry; no post-processing/bloom effect stack (the "glow" is emissive materials + a CSS layer, not `EffectComposer`); no texture loading (nothing to leak on unmount — R3F disposes its own managed geometries/materials); starfield count reduced on mobile; parallax strength reduced on mobile. See `09_TEST_STRATEGY.md` §13 for the measured Phase 4 baseline and Phase 13 follow-up note.
+
+**Kage inspiration boundary**: the orbit/ring/starfield/parallax *technique* is a documented area where Kage-style cinematic entries provided general inspiration (scroll/pointer-driven depth, layered motion) — no Kage code, artwork, textures, models, scene layout, or branding was copied; the Core's geometry, the seven-node concept, the color palette, and the "Fandom Core" narrative are original to this project (Master Directive Kage Reference Policy; `00_PROJECT_CONSTITUTION.md` §11).
+
+**No external/generated assets this phase** — see D-033; `06_ASSET_BIBLE.md` and `08_LICENSES.md` both confirm zero new asset rows.

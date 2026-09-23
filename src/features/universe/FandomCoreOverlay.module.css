@@ -1,0 +1,99 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.nodeList {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nodeItem {
+  --orbit-radius: 34%;
+  position: absolute;
+  left: calc(50% + cos(var(--node-angle)) * var(--orbit-radius));
+  top: calc(50% + sin(var(--node-angle)) * var(--orbit-radius));
+  transform: translate(-50%, -50%);
+}
+
+.nodeLink {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  padding: var(--space-xs);
+  border-radius: var(--radius-medium);
+  transition:
+    color var(--duration-fast) var(--easing-standard),
+    transform var(--duration-fast) var(--easing-standard);
+}
+
+.nodeDot {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-pill);
+  background: var(--node-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--node-accent) 25%, transparent);
+  transition:
+    box-shadow var(--duration-fast) var(--easing-standard),
+    transform var(--duration-fast) var(--easing-standard);
+}
+
+.nodeLabel {
+  font: var(--font-label);
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.nodeLink:hover,
+.nodeLink:focus-visible,
+.nodeLinkHovered {
+  color: var(--color-text-primary);
+  transform: scale(1.08);
+}
+
+.nodeLink:hover .nodeDot,
+.nodeLink:focus-visible .nodeDot,
+.nodeLinkHovered .nodeDot {
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--node-accent) 35%, transparent);
+  transform: scale(1.15);
+}
+
+.nodeLink:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nodeLink,
+  .nodeDot {
+    transition: none;
+  }
+}
+
+/* Canonical mobile tier (docs/04_DESIGN_SYSTEM.md §2a): tighter orbit and
+   smaller labels so all 7 nodes stay legible and non-overlapping in a
+   shorter, narrower hero. */
+@media (max-width: 599px) {
+  .nodeItem {
+    --orbit-radius: 40%;
+  }
+
+  .nodeLabel {
+    font-size: 0.6875rem;
+  }
+
+  .nodeDot {
+    width: 11px;
+    height: 11px;
+  }
+}

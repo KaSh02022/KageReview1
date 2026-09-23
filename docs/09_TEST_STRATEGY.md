@@ -79,39 +79,39 @@ Per Director instruction: Phase 1 establishes *what gets measured*, not final nu
 
 | Category | What it measures | How it's measured | Status |
 |---|---|---|---|
-| Initial document load | Time to first byte / first contentful paint of the base HTML+shell | Lighthouse, browser DevTools Network/Performance panel | Phase 1: FCP 2.3s, LCP 3.0s. Phase 2: FCP 2.3s, LCP 3.1s. **Phase 3 (2026-09-26):** FCP 2.3s, LCP 3.1s — stable |
-| JS bundle size | Total and per-route JS shipped to the client | `vite build` output stats | Phase 1: 352.61 kB (109.90 kB gzip). Phase 2: 363.60 kB (113.06 kB gzip). **Phase 3: 364.46 kB (113.28 kB gzip)** — +0.86 kB for `DocumentTitle`/`useRouteTransitionEffects` (no route-level code splitting yet, D-028); cinematic-layer chunk unchanged at 907.51 kB (240.27 kB gzip), still lazy |
-| CSS size | Total CSS shipped | `vite build` output stats | Phase 1: 14.26 kB. Phase 2: 22.30 kB. **Phase 3: 22.33 kB** — effectively unchanged (no new component styles, only hardening of existing ones) |
-| Image payload | Total image bytes per representative page | Lighthouse "resource summary", manual audit | Still not applicable — Phase 3 renders no images either (no content-population scope this phase); tracked from Phase 5+ |
+| Initial document load | Time to first byte / first contentful paint of the base HTML+shell | Lighthouse, browser DevTools Network/Performance panel | Phase 1–3: FCP 2.3s, LCP ~3.0–3.1s. **Phase 4 (2026-09-27):** FCP 2.3s, LCP 3.0s — stable |
+| JS bundle size | Total and per-route JS shipped to the client | `vite build` output stats | Phase 3: 364.46 kB (113.28 kB gzip). **Phase 4: 367.26 kB (114.10 kB gzip)** — +2.8 kB for the Fandom Core's shared data/hooks (`fandomCoreNodes.ts`, `useCategoryAccentColors.ts`, `computeParallaxRotation.ts`, `useIsMobileViewport.ts`) that live in the main bundle; the scene itself stays in the lazy chunk |
+| CSS size | Total CSS shipped | `vite build` output stats | Phase 3: 22.33 kB. **Phase 4: 24.76 kB (5.84 kB gzip)** — `FandomCoreOverlay`/`FandomCoreFallback`/`CinematicEntry` styles |
+| Image payload | Total image bytes per representative page | Lighthouse "resource summary", manual audit | Still not applicable — the Fandom Core is procedural (no textures/images, D-033); tracked from Phase 5+ |
 | Media payload | Video/audio embed weight (embeds only, not self-hosted, per `06_ASSET_BIBLE.md`) | Manual audit of embed strategy | Tracked from Phase 7 |
-| Cinematic lazy chunk size | Size of the Three.js/R3F chunk, confirmed separate from the main bundle | `vite build` output stats | **Stable across all 3 phases: 907.51 kB (240.27 kB gzip)**, never loaded outside the Home route |
-| WebGL initialization cost | Time from cinematic route mount to first rendered frame; fallback trigger latency | Manual profiling + Playwright timing assertions | Lazy-load re-confirmed in the Phase 3 build; precise init timing tracked from Phase 4 |
-| Route transition responsiveness | Time between navigation trigger and new route's main content painted | React Profiler / Performance API marks | Functionally verified via Playwright across all 23 routes; **Phase 3 adds explicit scroll/focus timing verification** (`src/app/RouteTransitions.test.tsx`, D-027). Frame-level timing instrumentation tracked from Phase 13 |
-| Lighthouse Performance | Overall Lighthouse Performance score | Lighthouse (`npx lighthouse`, desktop/unthrottled local preview server — not yet the mobile-throttled profile) | Phase 1: 78/100. Phase 2: 74/100. **Phase 3: 76/100** — within normal run-to-run noise for an unthrottled local pass; still desktop/pre-content, not yet meaningful to chase (Phase 13 scope) |
-| Lighthouse Accessibility | Overall Lighthouse Accessibility score | Lighthouse | Phase 1: 100/100. Phase 2: 100/100. **Phase 3: 100/100** — held steady through the route-transition/title/dialog-architecture hardening |
-| Lighthouse Best Practices | Overall Lighthouse Best Practices score | Lighthouse | Phase 2: 100/100. **Phase 3: 100/100** |
-| Lighthouse SEO | Overall Lighthouse SEO score | Lighthouse | Phase 1: 100/100. Phase 2: 100/100. **Phase 3: 100/100** — the per-route document titles (D-026) are also an SEO-adjacent improvement, though not the reason this phase's work was done |
-| Long tasks | Count/duration of main-thread tasks >50ms | Chrome DevTools Performance panel / Performance API `longtask` entries | Total Blocking Time as a proxy — Phase 1: 530ms. Phase 2: 680ms. **Phase 3: 610ms** — within normal run-to-run noise |
-| Layout shift | Cumulative Layout Shift (CLS) | Lighthouse / Performance API `layout-shift` entries | Phase 1: 0. Phase 2: 0. **Phase 3: 0** — held steady; the new instant (non-smooth) scroll-to-top on navigation is intentionally not an animated/layout-affecting scroll |
-| Mobile behavior | Functional + performance check specifically on emulated/real mobile viewports and throttled network/CPU | Lighthouse mobile profile, Playwright mobile viewport emulation | Phase 2: full responsive audit (80+ checks). **Phase 3: re-verified all 80+ checks still pass** after the route-transition/title changes, plus new deep-link and keyboard-walkthrough coverage on mobile viewports. A genuine Lighthouse mobile-throttled score remains deferred to Phase 13 |
+| Cinematic lazy chunk size | Size of the Three.js/R3F chunk, confirmed separate from the main bundle | `vite build` output stats | Phase 1–3: 907.51 kB (240.27 kB gzip, placeholder scene). **Phase 4: 912.41 kB (242.07 kB gzip)** — +4.9 kB for the real Fandom Core scene (Core/fragments/ring/starfield/parallax) replacing the placeholder rotating icosahedron; still never loaded outside the Home route |
+| WebGL initialization cost | Time from cinematic route mount to first rendered frame; fallback trigger latency | Manual profiling + Playwright timing assertions | **Phase 4: functionally verified** — `e2e/fandom-core.spec.ts` confirms the canvas becomes visible within 10s (typically <1s in practice) when WebGL is supported, and confirms the fallback renders immediately (no loading gap) when it isn't. Frame-level timing instrumentation remains Phase 13 scope |
+| Route transition responsiveness | Time between navigation trigger and new route's main content painted | React Profiler / Performance API marks | Unchanged this phase — see Phase 3 entry |
+| Lighthouse Performance | Overall Lighthouse Performance score | Lighthouse (`npx lighthouse`, desktop/unthrottled local preview server — not yet the mobile-throttled profile) | Phase 3: 76/100. **Phase 4: 68/100** — a real, expected drop: the Home page now runs a continuous WebGL render loop (Core rotation, fragment bob, starfield, camera parallax damping) during the Lighthouse trace, which Phase 1–3's placeholder scene never did. Flagged for Phase 13, not addressed now (Director's explicit "do not optimize prematurely") |
+| Lighthouse Accessibility | Overall Lighthouse Accessibility score | Lighthouse | Phase 3: 100/100. **Phase 4: 100/100** — held steady despite the new canvas + 7 overlay links |
+| Lighthouse Best Practices | Overall Lighthouse Best Practices score | Lighthouse | Phase 3: 100/100. **Phase 4: 100/100** |
+| Lighthouse SEO | Overall Lighthouse SEO score | Lighthouse | Phase 3: 100/100. **Phase 4: 100/100** |
+| Long tasks | Count/duration of main-thread tasks >50ms | Chrome DevTools Performance panel / Performance API `longtask` entries | Total Blocking Time as a proxy — Phase 3: 610ms. **Phase 4: 1,140ms** — directly attributable to the active WebGL render loop during the trace window (see Performance note above); a concrete Phase 13 candidate (e.g. `frameloop="demand"` when the tab/section isn't visible, or reducing per-frame work) |
+| Layout shift | Cumulative Layout Shift (CLS) | Lighthouse / Performance API `layout-shift` entries | Phase 3: 0. **Phase 4: 0** — held steady; the Fandom Core's fixed-height hero container (`CinematicEntry.module.css` `.hero`) reserves its footprint before the canvas or fallback paints, the same anti-CLS pattern established in Phase 1 (D-011) |
+| Mobile behavior | Functional + performance check specifically on emulated/real mobile viewports and throttled network/CPU | Lighthouse mobile profile, Playwright mobile viewport emulation | **Phase 4: real mobile-specific guardrails added** — starfield count (500→250), parallax strength (0.18→0.08 rad), and DPR cap (1.5→1.25) all reduced on the canonical mobile tier (`useIsMobileViewport`); verified visually via required screenshot QA at 375×812/390×844/768×1024, and functionally via `mobile-chrome` E2E runs. A genuine Lighthouse mobile-throttled score remains deferred to Phase 13 |
 
-**Phase 3 baseline summary (explicitly recorded per the Director's Phase 3 §13, alongside the Phase 2 baseline it must not overwrite):**
+**Phase 4 baseline summary (explicitly recorded per the Director's Phase 4 §13/§23, alongside the Phase 1–3 baselines it must not overwrite):**
 
-| | Phase 2 | Phase 3 |
+| | Phase 3 | Phase 4 |
 |---|---|---|
-| Performance | 74 | 76 |
+| Performance | 76 | 68 |
 | Accessibility | 100 | 100 |
 | Best Practices | 100 | 100 |
 | SEO | 100 | 100 |
 | CLS | 0 | 0 |
-| TBT | 680ms | 610ms |
-| Main JS | 363.60 kB (113.06 kB gzip) | 364.46 kB (113.28 kB gzip) |
-| CSS | 22.30 kB (5.35 kB gzip) | 22.33 kB (5.35 kB gzip) |
-| Cinematic lazy chunk | 907.51 kB (240.27 kB gzip) | 907.51 kB (240.27 kB gzip) |
+| TBT | 610ms | 1,140ms |
+| Main JS | 364.46 kB (113.28 kB gzip) | 367.26 kB (114.10 kB gzip) |
+| CSS | 22.33 kB (5.35 kB gzip) | 24.76 kB (5.84 kB gzip) |
+| Cinematic lazy chunk | 907.51 kB (240.27 kB gzip, placeholder) | 912.41 kB (242.07 kB gzip, real scene) |
 
-Performance optimization remains explicitly out of scope for Phase 3 (as for Phase 1/2) — reserved for Phase 13, per the Director's repeated instruction. No functionality was removed or degraded to produce these numbers.
+Performance optimization remains explicitly out of scope for Phase 4 — reserved for Phase 13, per the Director's repeated instruction, and explicitly restated in the Phase 4 brief ("Phase 4 is NOT final performance optimization... do NOT optimize by destroying visual quality prematurely"). The Performance-score/TBT movement this phase is the expected, honest cost of replacing a placeholder scene with the real, continuously-animated Fandom Core — not a regression introduced by carelessness, and not smoothed over: it is the first phase where the app does real, ongoing WebGL rendering work, so a real performance cost was always going to appear the moment that happened. Two concrete Phase 13 candidates are noted in the table above for when that phase begins.
 
-Numeric targets (e.g., "Performance ≥ 85") are deliberately not restated here as committed thresholds until Phase 13, when real content/3D/mobile-throttled data exists to tune against. Both phases' Performance scores are pre-content scaffold baselines (React 19 + Zustand + React Router + design-system primitives, no real images/video/3D scene yet) — expected to move further as real content is added; every number above is reported as-measured, not smoothed or rounded up. Phase 2's one real functional regression this pass surfaced — the Header horizontal-overflow bug (D-023) — was a correctness bug (content literally didn't fit on screen), not a performance-tuning question, and was fixed immediately; the small Performance-score dip from added CSS/JS is left for Phase 13, consistent with the Director's repeated instruction not to prematurely optimize.
+Numeric targets (e.g., "Performance ≥ 85") remain deliberately unset as committed thresholds until Phase 13. Every number above is reported as-measured, not smoothed or rounded up.
 
 ## 10. Phase 3 Architecture & Shell Audit
 
@@ -172,3 +172,18 @@ Verified via **real DOM inspection**, not just source-reading (`e2e/dialog-archi
 - Accessible name: `aria-labelledby` → dialog title (`h2`); accessible description: `aria-describedby` → optional description paragraph, only wired when a description is actually passed.
 - Nested/sequential interaction: the open-dialog counter handles the case of one dialog closing while another remains open without prematurely un-hiding the background (though no current UI opens two simultaneously).
 - Reduced motion: `Dialog`/`Drawer` entrance animations use the token-driven `--duration-normal`, which zeroes under `prefers-reduced-motion: reduce` at the token layer.
+
+## 13. Fandom Core Test Coverage (Phase 4)
+
+**Unit** (`src/features/universe/*.test.ts(x)`, all in jsdom — WebGL is unavailable there by construction, so these cover the logic layer, not GPU rendering):
+- `fandomCoreNodes.test.ts` — 7 nodes exist, each maps to a real `CATEGORY_ROUTES` entry (navigation mapping), angles are distinct and evenly spaced, accent variables match the design-token naming convention, labels match the shared route list exactly.
+- `computeParallaxRotation.test.ts` — the pure camera-parallax function (Director's "camera behavior where practical"): zero rotation under reduced motion, deterministic output for a centered pointer, correct desktop/mobile strength scaling, and a bound-check across the full `[-1, 1]` pointer input range confirming rotation is never unbounded ("no uncontrolled camera movement").
+- `FandomCoreOverlay.test.tsx` — all 7 links render with correct `aria-label`/`href`, are reachable via `Tab`, and report hover state via both mouse (`hover`/`unhover`) and keyboard (`focus`/`blur`) — hover/selected state must be keyboard-reachable, not mouse-only.
+- `FandomCoreFallback.test.tsx` — renders with no canvas dependency, still exposes all 7 category links (the fallback must never lose navigation).
+- `CinematicEntry.test.tsx` — the `h1` renders unconditionally; in jsdom (WebGL always unavailable) the fallback path renders with 7 links and no canvas; a dedicated case forces the reduced-motion media query to confirm that path independently; the skip-intro control moves focus to a stand-in target.
+
+**E2E** (`e2e/fandom-core.spec.ts`, real browsers): Home loads with the Fandom Core visible; the WebGL canvas becomes visible when supported; the 2D fallback renders (with all 7 links) when WebGL is force-disabled via a `canvas.getContext` override; the same under `prefers-reduced-motion: reduce`; all 7 category controls have correct `href`s; pointer/tap activation navigates; keyboard (Tab+Enter) activation navigates; the skip-intro control works without leaving the page; zero console errors and zero unexpected failed requests while the canvas is active (covers pointer-move/hover interaction, not just a static load). Run across chromium/firefox/webkit/mobile-chrome via the standard project matrix.
+
+**A real bug found via this testing, not by inspection (D-032):** writing `e2e/fandom-core.spec.ts`'s skip-intro test surfaced that the *existing* `SkipLink` (present since Phase 1) had the same defect — a plain `href="#id"` anchor, when followed natively in a `HashRouter` app, corrupts the router's hash-based route state and silently replaces the page with Not Found. Fixed in both places; regression tests added to both `e2e/accessibility.spec.ts` (non-root-route case, the general pattern) and `e2e/fandom-core.spec.ts` (the Fandom Core's own skip control).
+
+**Visual QA (required, not screenshot-diff-based per the Director's instruction):** manually reviewed real screenshots at 1440×900, 1024×768, 768×1024, 390×844, and 375×812, plus hover-state, focus-state, and reduced-motion states. Found and fixed one real defect (D-035): the 3D category fragments and the HTML overlay's nodes were both drawn at nearly the same radius, producing two visibly separate, misaligned rings of seven marks — invisible to every automated check (typecheck/lint/unit/E2E/axe all passed throughout), only visible in an actual rendered screenshot.

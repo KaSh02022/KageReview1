@@ -34,11 +34,11 @@ Column definitions:
 | Google Maps (iframe embed, `output=embed`) | Contact Us location/GPS (FR-039) | Google Maps Platform Terms of Service | No API key required for the basic `/maps?q=...&output=embed` iframe pattern; confirmed as a client-side-only embed, no FandomVerse backend involved |
 | YouTube (iframe embed) | Trailers/interviews/fan videos (FR-014/FR-015) | YouTube Terms of Service / embed policy | Only publicly embeddable videos are referenced; FandomVerse does not rehost video files sourced from YouTube |
 
-## 4. Status Summary (Phase 0)
+## 4. Status Summary (last updated: Phase 4)
 
 - Total assets logged: 0
 - Verified: 0
 - Pending Verification: 0
 - Blocked: 0
 
-This section will be updated at the end of every phase that introduces new assets.
+Phases 1–4 introduced zero image/texture/model/font assets requiring a license entry — the Phase 4 Fandom Core cinematic scene is entirely procedural (Three.js primitive geometry + code-driven materials + CSS), per D-033 in `11_DECISION_LOG.md`. This section will be updated at the end of every phase that introduces new assets.

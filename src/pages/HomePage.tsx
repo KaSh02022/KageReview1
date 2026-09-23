@@ -1,4 +1,4 @@
-import { CATEGORY_ROUTES } from '../routes/routes'
+import { CATEGORY_ROUTES } from '../routes/categoryRoutes'
 import { CinematicEntry } from '../features/universe/CinematicEntry'
 import { articles, getCategoryById } from '../data'
 import { SectionHeader } from '../components/ui/SectionHeader/SectionHeader'
@@ -24,7 +24,7 @@ export function HomePage() {
     <div className={styles.wrapper}>
       <CinematicEntry />
 
-      <section aria-labelledby="category-grid-heading">
+      <section id="fandom-categories-section" aria-labelledby="category-grid-heading" tabIndex={-1}>
         <SectionHeader
           id="category-grid-heading"
           eyebrow="Seven worlds, one portal"

@@ -1,6 +1,6 @@
 # FandomVerse — Portal for Fandom World
 
-**Status: Phase 2 (Design System & Visual Language) complete.** The application scaffold, routing, app shell, state stores, design tokens, and a full shared component primitive library (Button, Card, Dialog, Drawer, forms, layout) exist and are verified (typecheck/lint/unit/E2E/build all passing — see Testing below). Feature content (full category catalogs, chatbot logic, cinematic scene, merchandise catalog, etc.) is intentionally minimal seed data — that's Phase 5+ scope.
+**Status: Phase 4 (Cinematic WebGL / Fandom Universe) complete.** The application scaffold, routing, app shell, design system, and an original "Fandom Core" cinematic entry (procedural Three.js scene + accessible HTML overlay, with a 2D fallback and full reduced-motion/no-WebGL support) exist and are verified (typecheck/lint/unit/E2E/build all passing — see Testing below). Feature content (full category catalogs, chatbot logic, merchandise catalog, etc.) is intentionally minimal seed data — that's Phase 5+ scope.
 
 FandomVerse is a browser-based, backend-free Single Page Application that brings together content — articles, image galleries, videos/audio, character profiles, event highlights, trailers, merchandise, and a rule-based chatbot — across seven fandom categories (Anime, Gaming, Movies, TV Shows, K-Pop, Comics, Manga) into one centralized, visually engaging portal. Built for the "Web Innovation Unleashed" category.
 
@@ -14,7 +14,7 @@ See `docs/00_PROJECT_CONSTITUTION.md` for the full vision, goals, non-goals, and
 
 - React 19 + TypeScript, built with Vite (D-001, D-010, formally confirmed D-020)
 - React Router (`HashRouter`/`createHashRouter`) for SPA navigation
-- Three.js via React Three Fiber, lazy-loaded, scoped to the cinematic "Fandom Universe" entry layer (Phase 4 builds the real scene; Phase 1/2 ship the progressive-enhancement/fallback architecture only)
+- Three.js via React Three Fiber, lazy-loaded, powering the original "Fandom Core" cinematic entry (`src/features/universe/`) — procedural geometry only, no external models/textures; a 2D CSS fallback (not a placeholder — the loading, reduced-motion, and no-WebGL states all use it) shares the same accessible category-navigation overlay as the WebGL path
 - Zustand for cross-cutting client state (cart, bookmarks, notes, chatbot session, UI), persisted to `localStorage`/`sessionStorage` per the boundaries in `docs/05_DATA_SCHEMA.md` §13
 - A shared component primitive library (`src/components/ui/`) — Button, IconButton, Badge, Card (+ Media/Header/Body/Meta/Footer), Dialog, Drawer, form controls (FormField/Input/Select/Textarea/SearchInput), layout primitives (Container/Stack/Grid/Divider), SectionHeader, Skeleton, ErrorState — all built on one canonical design-token system and one shared accessible-dialog hook (`useFocusTrap`)
 - Static, versioned JSON as the entire data layer — no backend, no server-side database, nothing is ever written back to the data files at runtime
@@ -52,7 +52,7 @@ npm run test:watch   # vitest, watch mode
 npm run test:e2e     # playwright test (builds + serves the app, runs across chromium/firefox/webkit/mobile-chrome)
 ```
 
-All of the above pass as of the Phase 2 completion report (45 unit tests, 203 E2E tests across chromium/firefox/webkit/mobile-chrome). See `docs/09_TEST_STRATEGY.md` for the full test strategy and requirement traceability, and the Phase 2 completion report for exact results.
+All of the above pass as of the Phase 4 completion report (71 unit tests; 404 E2E tests across chromium/firefox/webkit/mobile-chrome — 401 passed, 3 skipped for a documented WebKit platform limitation, D-015). See `docs/09_TEST_STRATEGY.md` for the full test strategy and requirement traceability, and the Phase 4 completion report for exact results.
 
 ## Build
 
@@ -109,8 +109,10 @@ Every non-original asset must be verified and logged in `docs/08_LICENSES.md` be
 
 - **Phase 0 — complete.** Repository audited, SRS extracted and mapped into a 76-item requirement matrix, full documentation set produced under `docs/`.
 - **Phase 1 — complete.** Git initialized, Vite+React+TS app scaffolded, `HashRouter`-based routing with placeholders for every primary + detail route, reusable app shell, Zustand stores with the correct persistence boundaries, TypeScript domain types + seed data, design-token foundation, accessibility foundation, error/loading/empty/not-found states, ESLint/Vitest/Playwright configured with passing tests.
-- **Phase 2 — complete.** Canonical breakpoint system (reconciled the Header's Phase 1 arbitrary 767px to the tablet/desktop boundary), React 19 formally confirmed as the baseline, canonical route inventory documented, full design-token system (color/typography/spacing/radius/shadow/motion/layout), and a shared component primitive library (Button, Card, Dialog, Drawer, forms, layout) with a real focus-trap hook shared by every dialog/drawer. Fixed 3 real bugs this phase (a Dialog focus-trap gap, a `Card` prop-forwarding gap, and a significant Header horizontal-overflow bug at mobile widths) — all caught by new automated tests, not by inspection. 45 unit tests, 203 E2E tests, all passing.
-- **Phases 3–15 — not started.** Awaiting Project Director review and go-ahead per the phase-gate process (`docs/00_PROJECT_CONSTITUTION.md` §13).
+- **Phase 2 — complete.** Canonical breakpoint system (reconciled the Header's Phase 1 arbitrary 767px to the tablet/desktop boundary), React 19 formally confirmed as the baseline, canonical route inventory documented, full design-token system (color/typography/spacing/radius/shadow/motion/layout), and a shared component primitive library (Button, Card, Dialog, Drawer, forms, layout) with a real focus-trap hook shared by every dialog/drawer. Fixed 3 real bugs this phase — all caught by new automated tests, not by inspection.
+- **Phase 3 — complete.** Per-route document titles, scroll/focus-on-navigation, a formally-resolved dummy-auth decision (in-memory) and dark-only theme reconfirmation, a canonical 23-route inventory, and real DOM-level verification that the Dialog/Drawer background-inertness architecture is correct. A real keyboard-only walkthrough and full HashRouter deep-link/refresh verification across all 23 routes.
+- **Phase 4 — complete.** The "Fandom Core" cinematic entry: an original central object with seven orbiting category nodes, procedural (no external assets), with a real accessible HTML interaction layer shared identically between the WebGL and 2D-fallback paths. Found and fixed a **serious pre-existing bug** dating to Phase 1 (the skip-to-content link could corrupt `HashRouter`'s route state and throw users onto the 404 page) plus two real visual/architecture issues, all via genuine testing rather than inspection alone.
+- **Phases 5–15 — not started.** Awaiting Project Director review and go-ahead per the phase-gate process (`docs/00_PROJECT_CONSTITUTION.md` §13).
 
 ## Document Index
 
