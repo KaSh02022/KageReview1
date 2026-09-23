@@ -47,7 +47,7 @@ export function ProductDetailPage() {
         </Button>
       </div>
       <p>
-        <em>Temporary demo cart only — no checkout, payment, or real purchase (FR-031).</em>
+        <em>This is a fictional product in a temporary demo cart — no checkout, payment, or real purchase.</em>
       </p>
     </article>
   )

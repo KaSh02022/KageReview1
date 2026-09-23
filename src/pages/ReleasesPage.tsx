@@ -9,7 +9,7 @@ export function ReleasesPage() {
   return (
     <PagePlaceholder
       title="Upcoming Releases"
-      description="Cross-category release calendar (docs/05_DATA_SCHEMA.md §9) — 21 simulated releases (3 per category) across every fandom hub. Filtering/sorting is a later phase."
+      description="Release calendar across every fandom hub — 21 simulated releases (3 per category) for original, fictional franchises. Filtering and sorting are coming later."
     >
       {releases.length === 0 ? (
         <EmptyState title="No releases yet" />
@@ -21,7 +21,7 @@ export function ReleasesPage() {
                 <img src={release.coverImage.src} alt={release.coverImage.alt} loading="lazy" />
               </CardMedia>
               <CardHeader>
-                <h3>{release.title}</h3>
+                <h2>{release.title}</h2>
               </CardHeader>
               <CardMeta>
                 <span>{release.releaseDate}</span>

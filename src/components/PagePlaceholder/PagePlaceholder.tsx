@@ -4,35 +4,24 @@ import styles from './PagePlaceholder.module.css'
 interface PagePlaceholderProps {
   title: string
   description: string
-  requirementIds?: string[]
-  phase?: string
   children?: ReactNode
 }
 
 /**
- * Phase 1 development placeholder. Every route renders one of these (or a
- * page built on top of it) instead of a blank screen, so routing,
- * breadcrumbs, and navigation are verifiable before feature content exists
- * (Director's Phase 1 instructions, §6: "Every route must render a
- * meaningful development placeholder rather than a blank screen").
+ * Shared page header: title + intro copy, with the page body as children.
+ *
+ * It previously also rendered internal scaffolding — the SRS requirement
+ * ids and the implementing phase — directly in the user-facing UI. A
+ * Phase 5C screenshot review found "Requirements: FR-029, FR-030, FR-031"
+ * rendered on the Cart page, which is project metadata no visitor should
+ * ever see. Those props were removed entirely rather than merely unset, so
+ * they cannot be reintroduced by a future caller.
  */
-export function PagePlaceholder({
-  title,
-  description,
-  requirementIds,
-  phase,
-  children,
-}: PagePlaceholderProps) {
+export function PagePlaceholder({ title, description, children }: PagePlaceholderProps) {
   return (
     <section className={styles.wrapper}>
       <h1>{title}</h1>
       <p className={styles.description}>{description}</p>
-      {(requirementIds?.length || phase) && (
-        <p className={styles.meta}>
-          {requirementIds?.length ? <span>Requirements: {requirementIds.join(', ')}</span> : null}
-          {phase ? <span>Implemented in: {phase}</span> : null}
-        </p>
-      )}
       {children}
     </section>
   )

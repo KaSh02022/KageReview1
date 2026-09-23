@@ -11,7 +11,7 @@ export function TrailersPage() {
   return (
     <PagePlaceholder
       title="Trailers"
-      description="Cross-category trailer aggregation across all seven fandom hubs. Filtering/sorting is a later phase (FR-025/FR-026); every trailer here is a demonstrative placeholder for an original, fictional franchise — see each category hub for full context."
+      description="Every trailer across all seven fandom hubs. Each one is a demonstrative listing for an original, fictional franchise — there is no video to play. Filtering and sorting are coming later; see each category hub for full context."
     >
       {trailers.length === 0 ? (
         <EmptyState title="No trailers yet" />
@@ -23,7 +23,7 @@ export function TrailersPage() {
                 <img src={trailer.thumbnail.src} alt={trailer.thumbnail.alt} loading="lazy" />
               </CardMedia>
               <CardHeader>
-                <h3>{trailer.title}</h3>
+                <h2>{trailer.title}</h2>
               </CardHeader>
               <CardMeta>
                 <Badge tone="neutral">{trailer.categoryId}</Badge>

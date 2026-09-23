@@ -4,6 +4,9 @@ import { Button } from '../components/ui/Button/Button'
 import buttonStyles from '../components/ui/Button/Button.module.css'
 import styles from './ContactPage.module.css'
 
+/* Deliberately fictional: the project has no premises, and inventing a real
+   address for an organisation we do not represent would be dishonest. The UI
+   states plainly that the map is illustrative. */
 const DESTINATION_QUERY = 'FandomVerse HQ, Seed City'
 const MAP_EMBED_SRC = `https://www.google.com/maps?q=${encodeURIComponent(DESTINATION_QUERY)}&output=embed`
 const DIRECTIONS_BASE_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(DESTINATION_QUERY)}`
@@ -43,25 +46,29 @@ export function ContactPage() {
     <PagePlaceholder
       title="Contact Us"
       description="Team contact information with a responsive map and directions."
-      requirementIds={['FR-039']}
     >
       <address className={styles.address}>
         FandomVerse Team
         <br />
-        Seed City, Placeholder Region
+        A student competition project — no public office or storefront.
         <br />
-        <a href="mailto:hello@example.invalid">hello@example.invalid</a>
+        <a href="mailto:hello@example.invalid">hello@example.invalid</a> (example address, not
+        monitored)
       </address>
 
       <div className={styles.mapWrapper}>
         <iframe
-          title="FandomVerse location map"
+          title="Illustrative FandomVerse location map"
           src={MAP_EMBED_SRC}
           className={styles.map}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
       </div>
+      <p className={styles.mapNote}>
+        The map and directions below are an illustrative demonstration of the location/directions
+        feature. FandomVerse is a student project and has no physical premises.
+      </p>
 
       <div className={styles.actions}>
         <a

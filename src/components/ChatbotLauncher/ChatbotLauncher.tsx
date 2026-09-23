@@ -32,8 +32,8 @@ export function ChatbotLauncher() {
 
       <Dialog isOpen={isOpen} onClose={close} title="FandomVerse Assistant" size="sm">
         <p className={styles.panelBody}>
-          Hi! This is the Phase 1/2 chatbot shell — the rule-based FAQ and recommendation engine
-          (FR-032–034) is implemented in Phase 11.
+          Hi! The assistant isn’t answering questions yet — this is the panel it will live in. The
+          FAQ and recommendation engine is still being built.
         </p>
       </Dialog>
     </>

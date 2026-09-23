@@ -33,3 +33,17 @@
   font: var(--font-body-small);
   margin: 0;
 }
+
+.mapNote {
+  font: var(--font-body-small);
+  color: var(--color-text-muted);
+  margin: var(--space-sm) 0 0;
+  max-width: var(--reading-max-width);
+}
+
+/* mailto link rendered at 21px, below the WCAG 2.2 24px minimum target. */
+.address a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}

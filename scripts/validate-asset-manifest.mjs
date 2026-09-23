@@ -124,6 +124,83 @@ export function validateAssetManifest() {
     }
   }
 
+  errors.push(...validateBatch01(assets))
+  return errors
+}
+
+/**
+ * Phase 5B.1 — Gemini Batch 01 (proof-of-style) checks. The batch is a
+ * strict subset of the approved Tier B set, so it must never drift from
+ * it, never reference a content id that no longer exists, and never
+ * quietly become a runtime integration.
+ */
+function validateBatch01(approvedAssets) {
+  const errors = []
+  const batchPath = join(ROOT, 'docs', 'GEMINI_BATCH_01_MANIFEST.json')
+  if (!existsSync(batchPath)) {
+    return ['docs/GEMINI_BATCH_01_MANIFEST.json is missing — run `node scripts/generate-batch-01.mjs`']
+  }
+
+  const batch = JSON.parse(readFileSync(batchPath, 'utf8'))
+  const assets = batch.assets ?? []
+  const readData = (name) => JSON.parse(readFileSync(join(ROOT, 'src', 'data', name), 'utf8'))
+  const categories = readData('categories.json')
+  const characters = readData('characters.json')
+
+  const heroes = assets.filter((a) => a.asset_type === 'category-hero')
+  const portraits = assets.filter((a) => a.asset_type === 'character-portrait')
+
+  if (assets.length !== 14) errors.push(`batch 01: expected 14 assets, found ${assets.length}`)
+  if (heroes.length !== 7) errors.push(`batch 01: expected 7 category heroes, found ${heroes.length}`)
+  if (portraits.length !== 7) errors.push(`batch 01: expected 7 character portraits, found ${portraits.length}`)
+  if (new Set(assets.map((a) => a.asset_id)).size !== assets.length) errors.push('batch 01: duplicate asset_id')
+  if (new Set(assets.map((a) => a.filename)).size !== assets.length) errors.push('batch 01: duplicate filename')
+  if (new Set(heroes.map((a) => a.category)).size !== heroes.length)
+    errors.push('batch 01: heroes do not cover distinct categories')
+  if (new Set(portraits.map((a) => a.category)).size !== portraits.length)
+    errors.push('batch 01: portraits do not cover distinct categories')
+  if (batch.images_generated !== 0) errors.push('batch 01: images_generated must be 0 in this phase')
+
+  const approvedIds = new Set(approvedAssets.filter((a) => a.tier === 'B').map((a) => a.assetId))
+  const promptsPath = join(ROOT, 'docs', 'GEMINI_IMAGE_PROMPTS.md')
+  const prompts = existsSync(promptsPath) ? readFileSync(promptsPath, 'utf8') : ''
+  const execPath = join(ROOT, 'docs', 'GEMINI_BATCH_01_EXECUTION.md')
+  const execution = existsSync(execPath) ? readFileSync(execPath, 'utf8') : ''
+  if (!execution) errors.push('docs/GEMINI_BATCH_01_EXECUTION.md is missing')
+
+  for (const asset of assets) {
+    if (!approvedIds.has(asset.asset_id)) {
+      errors.push(`batch 01: ${asset.asset_id} is not an approved Tier B asset`)
+    }
+    if (asset.status !== 'READY_FOR_GEMINI') {
+      errors.push(`batch 01: ${asset.asset_id} has status "${asset.status}"`)
+    }
+    if (!prompts.includes(`### \`${asset.asset_id}\``)) {
+      errors.push(`batch 01: ${asset.asset_id} has no prompt in GEMINI_IMAGE_PROMPTS.md`)
+    }
+    if (execution && !execution.includes(`### ${assets.indexOf(asset) + 1}. \`${asset.asset_id}\``)) {
+      errors.push(`batch 01: ${asset.asset_id} is missing from the execution guide`)
+    }
+    // The prompt carried in the batch must be the approved one, verbatim.
+    if (prompts && asset.prompt && !prompts.includes(asset.prompt)) {
+      errors.push(`batch 01: ${asset.asset_id} prompt does not match GEMINI_IMAGE_PROMPTS.md verbatim`)
+    }
+    if (asset.prompt && !asset.prompt.includes('NEGATIVE CONSTRAINTS:')) {
+      errors.push(`batch 01: ${asset.asset_id} prompt is missing its negative constraint block`)
+    }
+    if (asset.prompt && !asset.prompt.includes('CRITICAL:')) {
+      errors.push(`batch 01: ${asset.asset_id} prompt is missing its crop constraint`)
+    }
+    // Source content must still exist under its stable id.
+    if (asset.source_content_kind === 'character') {
+      if (!characters.some((c) => c.id === asset.source_content_id)) {
+        errors.push(`batch 01: ${asset.asset_id} references missing character "${asset.source_content_id}"`)
+      }
+    } else if (!categories.some((c) => c.id === asset.source_content_id)) {
+      errors.push(`batch 01: ${asset.asset_id} references missing category "${asset.source_content_id}"`)
+    }
+  }
+
   return errors
 }
 

@@ -9,7 +9,7 @@ export function EventsPage() {
   return (
     <PagePlaceholder
       title="Events"
-      description="Cross-category event highlights across all seven fandom hubs — 21 simulated fan events (3 per category). Filtering/sorting is a later phase (FR-022–024)."
+      description="Event highlights across all seven fandom hubs — 21 simulated fan events (3 per category). Every event is fictional and none of them takes place. Filtering and sorting are coming later."
     >
       {events.length === 0 ? (
         <EmptyState title="No events yet" />
@@ -21,7 +21,7 @@ export function EventsPage() {
                 <img src={event.image.src} alt={event.image.alt} loading="lazy" />
               </CardMedia>
               <CardHeader>
-                <h3>{event.title}</h3>
+                <h2>{event.title}</h2>
               </CardHeader>
               <CardMeta>
                 <span>{event.date}</span>

@@ -37,7 +37,6 @@ export function BookmarksPage() {
     <PagePlaceholder
       title="Bookmarks"
       description="Favorites persist on this device via localStorage. Personal notes are session-only (sessionStorage) and clear when the browser session ends."
-      requirementIds={['FR-035', 'FR-036', 'FR-037', 'FR-038']}
     >
       {entries.length === 0 ? (
         <EmptyState

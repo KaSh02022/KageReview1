@@ -27,8 +27,8 @@ export function DummyAuthModal() {
   return (
     <Dialog isOpen={isOpen} onClose={close} title={`${mode === 'login' ? 'Log in' : 'Sign up'} (demo)`} size="sm">
       <p className={styles.notice}>
-        This form is UI-only for demonstration purposes. It does not authenticate you or create a
-        real account (SRS FR-045).
+        This form is for demonstration only. It does not authenticate you, create a real account, or
+        store anything you type.
       </p>
       <form onSubmit={handleSubmit} className={styles.form}>
         <FormField label="Email">

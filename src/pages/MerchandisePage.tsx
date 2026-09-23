@@ -8,7 +8,7 @@ export function MerchandisePage() {
   return (
     <PagePlaceholder
       title="Merchandise"
-      description="Fan merchandise showcase across all seven fandom hubs, with a temporary demo shopping cart — no checkout, payment, or real purchase (FR-027–031)."
+      description="Fan merchandise across all seven fandom hubs, with a temporary demo cart. These products are fictional and cannot be bought — there is no checkout, no payment, and no real purchase."
     >
       <Grid minItemWidth={220} gap="md">
         {merchandise.map((product) => (
@@ -17,7 +17,7 @@ export function MerchandisePage() {
               <img src={product.image.src} alt={product.image.alt} loading="lazy" />
             </CardMedia>
             <CardHeader>
-              <h3>{product.name}</h3>
+              <h2>{product.name}</h2>
             </CardHeader>
             <CardBody>
               {product.currency} {product.priceRangeMin}–{product.priceRangeMax}

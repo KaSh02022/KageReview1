@@ -28,8 +28,6 @@ export function SearchPage() {
     <PagePlaceholder
       title="Search"
       description={query ? `Results for "${query}"` : 'Enter a search term using the header search bar.'}
-      requirementIds={['FR-009', 'FR-010', 'FR-011']}
-      phase="Phase 6 (full client-side search index)"
     >
       {query && !hasResults && (
         <EmptyState title="No results" description="Try a different search term." />
@@ -37,12 +35,12 @@ export function SearchPage() {
       <Stack gap="xl">
         {matchedArticles.length > 0 && (
           <section aria-labelledby="search-articles">
-            <SectionHeader id="search-articles" title="Articles" level={3} />
+            <SectionHeader id="search-articles" title="Articles" level={2} />
             <Grid minItemWidth={200} gap="sm">
               {matchedArticles.map((article) => (
                 <Card key={article.id} to={`/article/${article.id}`}>
                   <CardHeader>
-                    <h4>{article.title}</h4>
+                    <h3>{article.title}</h3>
                   </CardHeader>
                 </Card>
               ))}
@@ -51,12 +49,12 @@ export function SearchPage() {
         )}
         {matchedCharacters.length > 0 && (
           <section aria-labelledby="search-characters">
-            <SectionHeader id="search-characters" title="Characters" level={3} />
+            <SectionHeader id="search-characters" title="Characters" level={2} />
             <Grid minItemWidth={160} gap="sm">
               {matchedCharacters.map((character) => (
                 <Card key={character.id} to={`/character/${character.id}`}>
                   <CardHeader>
-                    <h4>{character.name}</h4>
+                    <h3>{character.name}</h3>
                   </CardHeader>
                 </Card>
               ))}

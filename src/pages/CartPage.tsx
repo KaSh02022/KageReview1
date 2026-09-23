@@ -19,7 +19,6 @@ export function CartPage() {
     <PagePlaceholder
       title="Your cart"
       description="This cart is temporary and browser-local (saved via localStorage on this device only). There is no checkout, payment, or real purchase."
-      requirementIds={['FR-029', 'FR-030', 'FR-031']}
     >
       {items.length === 0 ? (
         <EmptyState title="Your cart is empty" description="Add items from the Merchandise page." />
