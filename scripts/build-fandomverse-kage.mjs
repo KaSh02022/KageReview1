@@ -210,8 +210,15 @@ const CHAPTERS = routes.map(chapterSection).join('\n\n')
 const CHIPS = routes
   .map((route, i) => {
     const category = categories.find((c) => c.id === route.categoryId)
-    return `      <div class="chip" data-chip="${i}" data-rv="up" data-cursor><span class="num">${String(i + 1).padStart(2, '0')}</span>
-        <span class="tx"><b>${esc(category.name)}</b><p>${esc(category.tagline)}</p></span></div>`
+    // An anchor, not a div: mouse, keyboard, Enter, middle-click and
+    // "open in new tab" all come free from the element, and the accessible
+    // name is the chapter number + world + tagline it already shows. The
+    // href is the router's own `/#/<path>` form — the same one the chapter
+    // CTAs use — so no route is invented and Kage's `a[href^="#"]` handler
+    // does not intercept it. `data-chip` is kept so the engine's focus
+    // wiring still finds it and the camera still leans on hover.
+    return `      <a class="chip" href="/#/${route.path}" data-chip="${i}" data-rv="up" data-cursor><span class="num">${String(i + 1).padStart(2, '0')}</span>
+        <span class="tx"><b>${esc(category.name)}</b><p>${esc(category.tagline)}</p></span></a>`
   })
   .join('\n')
 
@@ -236,11 +243,14 @@ ${CHIPS}
     </div>
   </div>
 
-  <a class="peek" href="#anime" data-view="3" data-rv="fade" data-cursor aria-label="Preview: enter the universe">
-    <span class="peek-fr" data-frame></span>
-    <span class="peek-play"><svg viewBox="0 0 22 22" fill="none"><path d="M8 5.6 16.4 11 8 16.4z" fill="#dfe7e0"/></svg></span>
-    <span class="peek-cap"><b>07</b><i>Seven worlds, one universe</i></span>
-  </a>
+  <!-- The Kage "peek" card is deliberately absent. It presented a play icon
+       captioned "07 — Seven worlds, one universe", which read as a seventh
+       chapter and as a video that does not exist; the seven chips below the
+       hero already carry chapter navigation. Removing the element is safe
+       because it was the only \`[data-view]\` node, and every consumer of the
+       CARDS list it fed is guarded (\`if (!CARDS.length) return\`). No video or
+       trailer feature elsewhere in FandomVerse is touched — the Trailers
+       surface and the media dataset are untouched. -->
 
   <div class="word-fb" aria-hidden="true">FANDOMVERSE</div>
 </section>`
@@ -509,8 +519,42 @@ const STYLE = `<style id="fv-adapt">
   .fv-lead-line { margin-top: .7rem; }
 }
 
+/* ============================================== the preloader, made quiet
+   The engine builds its textures and geometry in a sequence of JOBS, and the
+   body stays locked while that runs. That mechanism is load-bearing — job 0
+   and 1 create the renderer and the scene, and \`fallback()\` depends on them,
+   so it stays exactly as authored.
+
+   What goes is the *presentation*: a full-screen black panel with a brand
+   mark, a progress rail and a counting percentage. A visitor arriving at a
+   cinematic portal should arrive in it, not watch it load. The panel is
+   reduced to a plain dark veil that lifts quickly, which is the short
+   graceful transition rather than a second preloader.
+
+   The markup and the ids stay in the document on purpose: the engine writes
+   \`preFill.style.right\` and \`prePct.textContent\` every job, and removing
+   those nodes would make boot throw on the first tick. They are simply never
+   seen. */
+.pre-in { display: none; }
+#pre { transition: opacity .45s var(--ease), visibility .45s; }
+
+/* ==================================== the seven chapters are now navigable
+   The chips are anchors (see the generator). These rules only restore what an
+   \`<a>\` brings with it — the underline and the inherited link colour — and
+   give the keyboard a visible target, since the engine's own hover styling
+   says nothing about focus. */
+.chip { text-decoration: none; color: inherit; }
+.chip:focus-visible {
+  outline: 2px solid var(--vermilion);
+  outline-offset: 6px;
+  border-radius: 2px;
+}
+.chip:focus-visible .num { color: var(--ember); }
+.chip:focus-visible b { color: var(--bone); }
+
 @media (prefers-reduced-motion: reduce) {
   .fv-plate img, .fv-figure, .fv-figure img { transition: none; }
+  #pre { transition: none; }
 }
 </style>
 `

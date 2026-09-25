@@ -1,14 +1,91 @@
 {
-  "welcomeMessage": "Hi! I'm the FandomVerse assistant (placeholder — full rule set arrives in Phase 11).",
-  "defaultFallback": "I don't have an answer for that yet — this is Phase 1 seed data.",
-  "quickRepliesStart": ["What is FandomVerse?"],
+  "welcomeMessage": "I'm the FandomVerse guide. Ask about characters, events, trailers or merchandise — or pick one of the shortcuts below.",
+  "defaultFallback": "I don't have an answer for that one. I can help with characters, events, trailers, merchandise, or finding your way around a world.",
+  "quickRepliesStart": [
+    "Who are the characters?",
+    "What's happening?",
+    "Show me merchandise",
+    "What is FandomVerse?"
+  ],
   "rules": [
     {
-      "id": "rule-sample-01",
-      "patterns": ["what is fandomverse", "about fandomverse"],
-      "response": "FandomVerse is a client-only portal for discovering fandom content across seven categories.",
-      "quickReplies": ["Show me Anime"],
-      "recommendCategoryId": "anime"
+      "id": "rule-greeting",
+      "patterns": ["hi", "hey", "hello", "good morning", "good evening"],
+      "response": "Hello. You're in {world}. Ask me about its characters, events, trailers or merchandise.",
+      "quickReplies": ["Who are the characters?", "What's happening?", "Show me merchandise"]
+    },
+    {
+      "id": "rule-about",
+      "patterns": ["what is fandomverse", "about fandomverse", "what is this site", "what is this"],
+      "response": "FandomVerse is a browser-only portal for seven fandom worlds — anime, gaming, movies, TV shows, K-pop, comics and manga. Every character, story and product here is original fiction written and drawn for this portal.",
+      "quickReplies": ["Show me the worlds", "Who are the characters?"]
+    },
+    {
+      "id": "rule-worlds",
+      "patterns": ["show me the worlds", "what worlds", "what categories", "list categories", "seven worlds"],
+      "response": "Seven worlds: Anime, Gaming, Movies, TV Shows, K-Pop, Comics and Manga. Each has its own lead character, events, trailers and merchandise.",
+      "quickReplies": ["Who are the characters?", "What is FandomVerse?"]
+    },
+    {
+      "id": "rule-characters",
+      "patterns": ["character", "characters", "who are the characters", "cast", "lead", "protagonist"],
+      "response": "{world} has its own cast, led by {lead}. You'll find every character file on the {world} hub.",
+      "quickReplies": ["What's happening?", "Show me trailers"]
+    },
+    {
+      "id": "rule-events",
+      "patterns": ["event", "events", "what's happening", "whats happening", "meetup", "convention", "happening"],
+      "response": "Events for {world} — meetups, premieres and community gatherings — are listed on the {world} hub, and everything across all seven worlds is on the Events page.",
+      "quickReplies": ["Show me trailers", "Show me merchandise"],
+      "linkTo": { "type": "category", "id": "events" }
+    },
+    {
+      "id": "rule-trailers",
+      "patterns": ["trailer", "trailers", "video", "watch", "teaser"],
+      "response": "Trailers are demonstrative listings for original fictional franchises — there's no video to play. You can browse every one on the Trailers page.",
+      "quickReplies": ["Show me merchandise", "What's happening?"]
+    },
+    {
+      "id": "rule-merchandise",
+      "patterns": ["merch", "merchandise", "buy", "shop", "store", "product", "products", "price"],
+      "response": "Merchandise for {world} is on the Merchandise page. Everything is an original FandomVerse product — this is a demonstration catalogue, not a real storefront, so nothing can actually be purchased.",
+      "quickReplies": ["Who are the characters?", "What's happening?"]
+    },
+    {
+      "id": "rule-explore",
+      "patterns": ["explore", "where do i start", "how do i start", "navigate", "get around", "help me find"],
+      "response": "Start on the {world} hub: the lead character sits at the top, then featured stories, events, trailers and merchandise below. The header navigates between all seven worlds.",
+      "quickReplies": ["Who are the characters?", "Show me merchandise"]
+    },
+    {
+      "id": "rule-search",
+      "patterns": ["search", "find", "look for", "looking for"],
+      "response": "Use the search control in the header — it searches articles, characters and events across every world.",
+      "quickReplies": ["Who are the characters?", "What is FandomVerse?"]
+    },
+    {
+      "id": "rule-bookmarks",
+      "patterns": ["bookmark", "bookmarks", "save", "saved", "favourite", "favorite"],
+      "response": "Bookmarks are saved in your browser for this session and listed on the Bookmarks page. Nothing is sent anywhere — FandomVerse has no server.",
+      "quickReplies": ["Show me merchandise", "What is FandomVerse?"]
+    },
+    {
+      "id": "rule-real",
+      "patterns": ["is this real", "real money", "can i actually buy", "is it a real shop", "fake"],
+      "response": "None of it is real. FandomVerse is a student/competition project: the franchises, characters and products are original fiction, and the store is a demonstration only.",
+      "quickReplies": ["What is FandomVerse?", "Show me the worlds"]
+    },
+    {
+      "id": "rule-help",
+      "patterns": ["help", "what can you do", "who are you", "options"],
+      "response": "I'm a local guide — no network, no AI service, just a small rule set running in your browser. I can point you to characters, events, trailers, merchandise and search.",
+      "quickReplies": ["Who are the characters?", "Show me merchandise", "What is FandomVerse?"]
+    },
+    {
+      "id": "rule-thanks",
+      "patterns": ["thanks", "thank you", "cheers", "ta"],
+      "response": "Any time. Enjoy {world}.",
+      "quickReplies": ["Who are the characters?", "What's happening?"]
     }
   ]
 }

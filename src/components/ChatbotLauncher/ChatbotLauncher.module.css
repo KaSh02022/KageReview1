@@ -1,14 +1,146 @@
+/**
+ * The assistant is a guide inside FandomVerse, not a support widget bolted to
+ * the corner: chrome micro-type for its labels, hairline borders, and nothing
+ * saturated enough to pull the eye off a cinematic hero.
+ */
 .launcher {
   position: fixed;
-  right: var(--space-lg);
-  bottom: var(--space-lg);
+  /* Respect the notch/home indicator on a phone, and stay clear of the
+     content and the bottom navigation a small screen keeps within thumb
+     reach. `max()` keeps the desktop spacing when there is no inset. */
+  right: max(var(--space-lg), env(safe-area-inset-right));
+  bottom: max(var(--space-lg), calc(env(safe-area-inset-bottom) + var(--space-sm)));
   z-index: 900;
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-elevated);
 }
 
-.panelBody {
-  color: var(--color-text-muted);
-  font: var(--font-body-small);
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-height: 0;
+}
+
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-height: min(46vh, 340px);
+  overflow-y: auto;
+  padding-right: var(--space-xs);
+}
+
+.bot,
+.user {
   margin: 0;
+  font: var(--font-body-small);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-medium);
+  max-width: 90%;
+}
+
+.bot {
+  align-self: flex-start;
+  background: rgba(243, 245, 251, 0.05);
+  border: 1px solid var(--chrome-hairline);
+  color: var(--color-text-secondary);
+}
+
+.user {
+  align-self: flex-end;
+  background: rgba(var(--header-accent, 124, 141, 255), 0.14);
+  border: 1px solid rgba(var(--header-accent, 124, 141, 255), 0.4);
+  color: var(--color-text-primary);
+}
+
+/* Who is speaking, stated once per turn rather than implied by colour alone. */
+.who {
+  display: block;
+  font-size: var(--chrome-eyebrow-size);
+  letter-spacing: var(--chrome-eyebrow-track);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.quickButton {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  background: none;
+  border: 1px solid var(--chrome-hairline);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard);
+}
+
+.quickButton:hover {
+  color: var(--color-text-primary);
+  border-color: rgba(var(--header-accent, 124, 141, 255), 0.7);
+}
+
+.form {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  background: rgba(243, 245, 251, 0.05);
+  border: 1px solid var(--chrome-hairline);
+  border-radius: var(--radius-medium);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.send {
+  font-size: var(--chrome-label-size);
+  font-weight: 500;
+  letter-spacing: var(--chrome-label-track);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  background: none;
+  border: 1px solid var(--chrome-hairline);
+  border-radius: var(--radius-pill);
+  padding: 0 var(--space-md);
+  cursor: pointer;
+}
+
+.send:hover {
+  border-color: rgba(var(--header-accent, 124, 141, 255), 0.7);
+}
+
+.quickButton:focus-visible,
+.send:focus-visible,
+.input:focus-visible {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 2px;
+}
+
+.note {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quickButton,
+  .send {
+    transition: none;
+  }
 }

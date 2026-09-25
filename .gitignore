@@ -47,3 +47,7 @@ _gemini_batch_02/
 
 # Gemini master PNGs — runtime uses WebP renditions
 public/assets/gemini/*.png
+
+# FandomVerse merchandise production masters — raw art, not yet processed
+# into runtime WebP; mirrors the Gemini masters exclusion above.
+FandomVerse_Merchandise/

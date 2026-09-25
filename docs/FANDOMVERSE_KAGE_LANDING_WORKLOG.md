@@ -698,3 +698,219 @@ lint clean · typecheck clean · 142/142 Vitest · build clean ·
 
 Nothing was changed in `/`, the cinematic landing, master assets, data or the
 animation engine. Only `KageStage`'s teardown.
+
+---
+
+## 2026-09-25 — Home UX cleanup + local Fandom Assistant + merchandise asset preparation
+
+**Not committed.** Director: ChatGPT. Implementer: Claude Code. Continuing
+from `6d7fcf8` (Kage cinematic landing, committed and pushed).
+
+### What was inspected before changing anything
+
+- `public/landing-pages/kage.html` / `fandomverse-kage.html` and
+  `scripts/build-fandomverse-kage.mjs` — the preloader (`#pre`, `.pre-in`,
+  `#pre-fill`, `#pre-pct`, the `JOBS` boot sequence), the seven hero chips
+  (`.chip`, `data-chip`), and the `.peek` video-CTA card (`data-view="3"`,
+  `[data-frame]`, the `CARDS` camera array and its consumers).
+- `src/components/ChatbotLauncher/` — already a Phase 1 shell (launcher +
+  `Dialog` primitive + `useChatbotStore`) with a placeholder message; the
+  rule engine itself was explicitly deferred to "Phase 11" in its own
+  comments. `src/data/chatbot.json` and `src/types/content.ts`
+  (`ChatbotRule`, `ChatbotConfig`) already defined the intended shape.
+- `src/data/merchandise.json`, `src/data/contentValidation.test.ts`, and
+  `src/data/assetManifest.test.ts` — the merchandise schema, the assertion
+  that *every declared asset resolves to a real file on disk*, and the
+  frozen Gemini manifest gate (pinned at exactly 161 assets, three approved
+  types) that a merchandise entry must never touch.
+- `src/routes/categoryRoutes.ts` / `src/data/categories.json` — confirmed the
+  `kpop` (id) vs `k-pop` (route path) distinction before naming anything.
+
+### Task 1 — the percentage loader is gone, the mechanism is not
+
+The `JOBS` boot sequence (renderer/scene construction, `body.is-locked`,
+`fallback()` on WebGL failure) is untouched — it is load-bearing, and
+`fallback()` depends on jobs 0-1 having run. What changed is presentation
+only: `.pre-in { display: none; }` hides the brand mark, progress rail and
+counting percentage; `#pre` itself keeps its existing `.done` fade (now
+`.45s` instead of `.8s`, a short graceful transition rather than a second
+preloader). The engine still writes `preFill.style.right` and
+`prePct.textContent` every job — those nodes stay in the DOM so boot never
+throws on the first tick, they are just never seen.
+
+### Task 2 — the seven chapter items are real links
+
+The chip generator now emits `<a class="chip" href="/#/${route.path}" ...>`
+instead of `<div class="chip" ...>`, reusing the exact `/#/<path>` href form
+the existing "Explore X" CTA already used (no new routing convention). Mouse
+click, keyboard Tab + Enter, middle-click and "open in new tab" all come free
+from being a real anchor. Added `.chip:focus-visible` styling (outline +
+accent colour) since the engine's own CSS only styled `:hover`/`.on`.
+
+### Task 3 — the redundant video CTA is removed
+
+The `.peek` card ("07 — Seven worlds, one universe", a play icon with no
+video behind it) is deleted from the generator's HERO template. It was the
+**only** `[data-view]` element in the document, and every consumer of the
+`CARDS` array it fed is already guarded (`if (!CARDS.length) return`), so
+removal is safe. Nothing else — the Trailers page, the media dataset, and
+every other video/trailer surface in the product — was touched.
+
+### Task 4 — local rule-based FandomVerse Assistant
+
+- **`src/features/assistant/assistantEngine.ts`** (new) — pure functions:
+  `matchRule` (longest-pattern-wins substring matching, deterministic),
+  `fillTokens` (`{world}`/`{lead}` substitution from the existing category
+  and character datasets), `respond`, `getWelcome`. No network call, no
+  `fetch`, no API key, no external service, no iframe — it shares nothing
+  with the Kage/WebGL engine, so it is unaffected by the WebGL-unavailable
+  fallback path.
+- **`src/data/chatbot.json`** — extended from 1 to 13 rules within the
+  *existing* `ChatbotConfig`/`ChatbotRule` shape (no schema change):
+  greeting, about, worlds, characters, events, trailers, merchandise,
+  explore, search, bookmarks, "is this real", help, thanks.
+- **`src/components/ChatbotLauncher/ChatbotLauncher.tsx`** — wired the
+  engine into the existing launcher/`Dialog` shell. Reads the active
+  category via `useLocation()` (same pattern as `Header`), so answers are
+  scoped to "the world you are standing in" without any caller passing
+  context in. Conversation log (`role="log"`, `aria-live="polite"`), quick
+  reply chips, and a text input, all built on the chrome design tokens
+  (`--chrome-*`) rather than new styling.
+- Every existing Dialog guarantee (focus trap, Escape-to-close, focus
+  restoration, no focus-steal on mount — the D-012 regression test) is
+  inherited unchanged, since the panel still renders through the shared
+  `Dialog` primitive.
+- Mobile: launcher position uses
+  `right: max(var(--space-lg), env(safe-area-inset-right))` /
+  `bottom: max(var(--space-lg), calc(env(safe-area-inset-bottom) + ...))` so
+  it clears the notch/home-indicator area instead of sitting under it.
+
+### Task 5 — merchandise asset contract (planning only, no fabricated art)
+
+- **`docs/MERCHANDISE_ASSET_CONTRACT.md`** (new) — the naming scheme for 21
+  planned products (3 per category), master/runtime paths
+  (`_merch_masters/<slug>.png` 1600x1200, `/assets/merch/<slug>.webp`
+  800x600, 4:3 to match `Card`'s `aspect-ratio: 4/3`), the exact
+  `MerchandiseItem` shape a new entry must supply, and the content rules
+  (original fiction only, no real IP/celebrity/brand/trademark).
+- **`docs/merchandise-asset-plan.json`** (new) — the same 21 slugs as a
+  machine-readable planning manifest, explicitly marked *not* consumed by
+  the app and *not* part of `docs/asset-manifest.json`.
+- **Nothing added to `src/data/merchandise.json`.** `contentValidation.test`
+  asserts every declared asset resolves to a real file on disk, and there is
+  no image-fallback component anywhere in the UI — adding the 21 planned
+  filenames before the files exist would turn the suite red. Asset
+  production (masters -> WebP derivation) is left as the separate phase the
+  task specified.
+- The frozen Gemini manifest (`docs/asset-manifest.json`, pinned at 161
+  assets, three approved types) is untouched — merchandise was never in its
+  scope and stays out of it.
+
+### Files changed
+
+```
+scripts/build-fandomverse-kage.mjs                      (generator: tasks 1-3)
+public/landing-pages/fandomverse-kage.html               (regenerated output)
+src/features/assistant/assistantEngine.ts                 (new)
+src/features/assistant/assistantEngine.test.ts             (new)
+src/data/chatbot.json                                     (13 rules)
+src/components/ChatbotLauncher/ChatbotLauncher.tsx
+src/components/ChatbotLauncher/ChatbotLauncher.module.css
+src/components/ChatbotLauncher/ChatbotLauncher.test.tsx    (MemoryRouter wrapper + 5 new tests)
+docs/MERCHANDISE_ASSET_CONTRACT.md                         (new)
+docs/merchandise-asset-plan.json                           (new)
+```
+
+Not touched: `USE_MASTERS`, any Gemini master PNG, `docs/asset-manifest.json`,
+`src/data/merchandise.json`, the Header/Footer, routes, the Explore pages, or
+any file outside the list above.
+
+### Tests run and results
+
+| Check | Result |
+|---|---|
+| `npm run lint` | clean |
+| `npm run typecheck` | clean |
+| `npm run test` (Vitest) | **158 / 158** (was 142; +16 from the new engine + panel tests) |
+| `npm run build` | clean |
+| Focused Playwright — `landing`, `navigation`, `category-hubs`, `dialog-architecture` | **57 passed** |
+
+Manual browser verification (Playwright-driven, screenshots reviewed): the
+loader's percentage/brand panel never becomes visible on a cold load at
+1440x900 and 390x844; all 7 chips are `<a href="/#/...">`, and clicking each
+one (both by mouse and by keyboard focus + Enter) lands on the correct hub;
+`.peek`/`[data-view]` count is 0; the assistant opens with a context-aware
+welcome on `/#/anime` ("Anime has its own cast, led by Kaida Nova"), replies
+deterministically to a typed question, and the panel does not overflow or
+cover primary content at 390x844.
+
+### Known pre-existing failures (not caused by this task)
+
+**A) Fandom Core routing blocker — unchanged.** 8x `fandom-core.spec.ts` +
+7x `category-hubs.spec.ts:185` still fail; the Fandom Core has no route since
+`/` became the cinematic landing. Not touched, not solved here (explicitly
+out of scope for this task).
+
+**B) `App.test.tsx` — "navigates to every primary route" (Vitest, jsdom) —
+newly discovered, proven pre-existing.** Fails intermittently
+(observed 4/5 and 6/10 across two sampling runs), always at the same point:
+`Unable to find role="heading" and name /^gaming$/i` — the Gaming category
+route's `<h1>` is not found within the `waitFor` window during the 21-route
+walk this single test performs.
+
+Root-caused by direct reproduction, not assumption: all four of this
+session's file changes (`ChatbotLauncher.*`, `chatbot.json`,
+`fandomverse-kage.html`, `build-fandomverse-kage.mjs`) were stashed back to
+`6d7fcf8`, and the **identical** failure reproduced on the exact same route —
+4 of 5 clean-baseline runs failed with the same
+`Unable to find role="heading" and name /^gaming$/i`. This is a
+test-timing/CPU-contention flake (jsdom `waitFor`'s default window, likely
+correlated with Gaming's card count, under whatever else is running on the
+worker) that predates every change in this session. Per the stop condition
+("a test failure indicates an unrelated pre-existing problem"), it is
+reported here rather than fixed — fixing it would mean touching
+`App.test.tsx`'s timing/assertions or `RootLayout`, which is unrelated
+architecture this task does not authorise.
+
+**C) `landing.spec.ts:90` — "a chapter call to action navigates into the
+app" (Playwright) — investigated, classified flaky, not a Task 2
+regression.** Observed failing 2/10 in one sampling batch. A diagnostic test
+confirmed the mechanism itself is sound: clicking the chip (now the first
+`a[href="/#/gaming"]` in document order, ahead of the pre-existing "Explore
+Gaming" CTA) updates `location.hash` synchronously and correctly in every
+observed case, with GPU-driver `GL_CLOSE_PATH_NV`/"GPU stall" warnings
+visible in the browser console at the time. A controlled A/B (10 runs on the
+pre-Task-2 code, 10 runs on the Task-2 code, both run fresh) showed 10/10 and
+10/10 clean; the 2 failures seen earlier clustered entirely in a batch that
+ran immediately after a 5.6-minute, GPU-heavy Playwright suite (7 consecutive
+Fandom-Core WebGL boot/timeout cycles). Classified **D — flaky**, consistent
+with the WebGL-teardown timing sensitivity this codebase already documents
+elsewhere (`playwright.config.ts`'s own comment on worker-count-dependent
+timeouts).
+
+No test was skipped, weakened, or rewritten to hide any of the above.
+
+### Merchandise asset contract — decisions
+
+Documented in full in `docs/MERCHANDISE_ASSET_CONTRACT.md`. In short: 21
+slugs named, master/runtime paths and dimensions fixed at 4:3, the existing
+`MerchandiseItem` schema reused unchanged, and the actual image production
+explicitly deferred to a separate phase — no fabricated or downloaded images
+were introduced.
+
+### Unresolved issues
+
+- The Fandom Core routing blocker (A, above) — Director decision still
+  required: give it a route, or retire it with its suite.
+- The pre-existing `App.test.tsx` Gaming-route flake (B, above) — newly
+  documented, not fixed; needs its own investigation session focused on
+  jsdom test timing, which this task's scope did not cover.
+- 21 merchandise product images remain to be produced (masters -> WebP) in a
+  future, separate asset-production phase before `merchandise.json` can be
+  extended.
+
+### Git
+
+**No `git commit` or `git push` was performed in this task, by explicit
+instruction.** The working tree contains the changes listed above on top of
+`6d7fcf8`.

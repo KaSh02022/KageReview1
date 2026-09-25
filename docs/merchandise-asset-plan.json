@@ -1,0 +1,195 @@
+{
+  "_comment": "Planning artifact only. NOT consumed by the app, NOT part of the frozen Gemini manifest (docs/asset-manifest.json). See docs/MERCHANDISE_ASSET_CONTRACT.md.",
+  "version": 1,
+  "created": "2026-09-25",
+  "runtimeDir": "/assets/merch",
+  "masterDir": "_merch_masters",
+  "runtime": {
+    "format": "webp",
+    "width": 800,
+    "height": 600,
+    "aspectRatio": "4:3"
+  },
+  "master": {
+    "format": "png",
+    "width": 1600,
+    "height": 1200,
+    "aspectRatio": "4:3",
+    "inGit": false
+  },
+  "assets": [
+    {
+      "slug": "anime-artbook",
+      "categoryId": "anime",
+      "plannedProductId": "merch-anime-artbook",
+      "master": "_merch_masters/anime-artbook.png",
+      "runtime": "/assets/merch/anime-artbook.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "anime-hoodie",
+      "categoryId": "anime",
+      "plannedProductId": "merch-anime-hoodie",
+      "master": "_merch_masters/anime-hoodie.png",
+      "runtime": "/assets/merch/anime-hoodie.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "anime-acrylic-stand",
+      "categoryId": "anime",
+      "plannedProductId": "merch-anime-acrylic-stand",
+      "master": "_merch_masters/anime-acrylic-stand.png",
+      "runtime": "/assets/merch/anime-acrylic-stand.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "gaming-desk-mat",
+      "categoryId": "gaming",
+      "plannedProductId": "merch-gaming-desk-mat",
+      "master": "_merch_masters/gaming-desk-mat.png",
+      "runtime": "/assets/merch/gaming-desk-mat.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "gaming-hoodie",
+      "categoryId": "gaming",
+      "plannedProductId": "merch-gaming-hoodie",
+      "master": "_merch_masters/gaming-hoodie.png",
+      "runtime": "/assets/merch/gaming-hoodie.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "gaming-collectible",
+      "categoryId": "gaming",
+      "plannedProductId": "merch-gaming-collectible",
+      "master": "_merch_masters/gaming-collectible.png",
+      "runtime": "/assets/merch/gaming-collectible.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "movies-poster",
+      "categoryId": "movies",
+      "plannedProductId": "merch-movies-poster",
+      "master": "_merch_masters/movies-poster.png",
+      "runtime": "/assets/merch/movies-poster.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "movies-clapperboard-collectible",
+      "categoryId": "movies",
+      "plannedProductId": "merch-movies-clapperboard-collectible",
+      "master": "_merch_masters/movies-clapperboard-collectible.png",
+      "runtime": "/assets/merch/movies-clapperboard-collectible.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "movies-mug",
+      "categoryId": "movies",
+      "plannedProductId": "merch-movies-mug",
+      "master": "_merch_masters/movies-mug.png",
+      "runtime": "/assets/merch/movies-mug.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "tv-notebook",
+      "categoryId": "tv-shows",
+      "plannedProductId": "merch-tv-notebook",
+      "master": "_merch_masters/tv-notebook.png",
+      "runtime": "/assets/merch/tv-notebook.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "tv-tote-bag",
+      "categoryId": "tv-shows",
+      "plannedProductId": "merch-tv-tote-bag",
+      "master": "_merch_masters/tv-tote-bag.png",
+      "runtime": "/assets/merch/tv-tote-bag.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "tv-hoodie",
+      "categoryId": "tv-shows",
+      "plannedProductId": "merch-tv-hoodie",
+      "master": "_merch_masters/tv-hoodie.png",
+      "runtime": "/assets/merch/tv-hoodie.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "kpop-lightstick",
+      "categoryId": "kpop",
+      "plannedProductId": "merch-kpop-lightstick",
+      "master": "_merch_masters/kpop-lightstick.png",
+      "runtime": "/assets/merch/kpop-lightstick.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "kpop-photocard-set",
+      "categoryId": "kpop",
+      "plannedProductId": "merch-kpop-photocard-set",
+      "master": "_merch_masters/kpop-photocard-set.png",
+      "runtime": "/assets/merch/kpop-photocard-set.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "kpop-stage-hoodie",
+      "categoryId": "kpop",
+      "plannedProductId": "merch-kpop-stage-hoodie",
+      "master": "_merch_masters/kpop-stage-hoodie.png",
+      "runtime": "/assets/merch/kpop-stage-hoodie.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "comics-art-print",
+      "categoryId": "comics",
+      "plannedProductId": "merch-comics-art-print",
+      "master": "_merch_masters/comics-art-print.png",
+      "runtime": "/assets/merch/comics-art-print.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "comics-enamel-pin-set",
+      "categoryId": "comics",
+      "plannedProductId": "merch-comics-enamel-pin-set",
+      "master": "_merch_masters/comics-enamel-pin-set.png",
+      "runtime": "/assets/merch/comics-enamel-pin-set.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "comics-cap",
+      "categoryId": "comics",
+      "plannedProductId": "merch-comics-cap",
+      "master": "_merch_masters/comics-cap.png",
+      "runtime": "/assets/merch/comics-cap.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "manga-artbook",
+      "categoryId": "manga",
+      "plannedProductId": "merch-manga-artbook",
+      "master": "_merch_masters/manga-artbook.png",
+      "runtime": "/assets/merch/manga-artbook.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "manga-scroll-print",
+      "categoryId": "manga",
+      "plannedProductId": "merch-manga-scroll-print",
+      "master": "_merch_masters/manga-scroll-print.png",
+      "runtime": "/assets/merch/manga-scroll-print.webp",
+      "status": "planned"
+    },
+    {
+      "slug": "manga-tote",
+      "categoryId": "manga",
+      "plannedProductId": "merch-manga-tote",
+      "master": "_merch_masters/manga-tote.png",
+      "runtime": "/assets/merch/manga-tote.webp",
+      "status": "planned"
+    }
+  ],
+  "counts": {
+    "planned": 21,
+    "perCategory": 3,
+    "categories": 7
+  }
+}
