@@ -1,5 +1,6 @@
 import { media } from '../data'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
+import { ExploreCinematicHero } from '../features/explore/ExploreCinematicHero'
 import { EmptyState } from '../components/EmptyState/EmptyState'
 import { Grid } from '../components/ui/Layout/Grid'
 import { Card, CardMedia, CardHeader, CardMeta } from '../components/ui/Card/Card'
@@ -12,6 +13,15 @@ export function TrailersPage() {
     <PagePlaceholder
       title="Trailers"
       description="Every trailer across all seven fandom hubs. Each one is a demonstrative listing for an original, fictional franchise — there is no video to play. Filtering and sorting are coming later; see each category hub for full context."
+      hero={
+        <ExploreCinematicHero
+          surface="trailers"
+          title="Trailers"
+          eyebrow="Every world, in motion"
+          description="Every trailer across all seven fandom hubs. Each one is a demonstrative listing for an original, fictional franchise — there is no video to play. Filtering and sorting are coming later; see each category hub for full context."
+          accent="255, 182, 72"
+        />
+      }
     >
       {trailers.length === 0 ? (
         <EmptyState title="No trailers yet" />

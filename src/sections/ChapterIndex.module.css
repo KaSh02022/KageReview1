@@ -1,0 +1,166 @@
+.section {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(var(--space-2xl), 14vh, 180px) clamp(var(--space-xl), 6vh, 72px);
+  padding-inline: var(--space-page-gutter, clamp(16px, 5vw, 96px));
+  scroll-margin-top: 0;
+  background: var(--color-bg);
+}
+
+.section:focus {
+  outline: none;
+}
+
+.header {
+  max-width: 62ch;
+  margin-bottom: clamp(var(--space-2xl), 8vh, 96px);
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--color-primary-on-tint);
+  margin-bottom: var(--space-md);
+}
+
+.rule {
+  display: block;
+  width: clamp(28px, 6vw, 64px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.title {
+  font: var(--font-display, var(--font-h1));
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.lede {
+  font: var(--font-body);
+  color: var(--color-text-muted);
+  margin: var(--space-lg) 0 0;
+}
+
+/* ---------- the list ---------- */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.item {
+  display: block;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* A contents row, not a card: a full-width rule-separated line that lights
+   up on approach. Cards would repeat the chapters below; a list reads as an
+   index of them. */
+.entry {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: baseline;
+  gap: clamp(var(--space-md), 4vw, var(--space-2xl));
+  padding-block: clamp(var(--space-md), 2.6vh, var(--space-xl));
+  text-decoration: none;
+  color: inherit;
+  transition:
+    background-color var(--duration-slow) var(--easing-decelerate),
+    padding-inline var(--duration-slow) var(--easing-decelerate);
+}
+
+.entry:hover,
+.entry:focus-visible {
+  background: linear-gradient(
+    to right,
+    rgba(var(--accent-rgb), 0.1) 0%,
+    transparent 70%
+  );
+  padding-inline: var(--space-md);
+}
+
+.entry:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.entryNumber {
+  font: var(--font-caption);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  color: rgb(var(--accent-rgb));
+}
+
+.entryName {
+  font: var(--font-h2);
+  font-size: clamp(1.5rem, 3.6vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+.entryFranchise {
+  font: var(--font-body-small);
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+.entryArrow {
+  color: rgb(var(--accent-rgb));
+  transition: transform var(--duration-slow) var(--easing-decelerate);
+}
+
+.entry:hover .entryArrow,
+.entry:focus-visible .entryArrow {
+  transform: translate3d(6px, 0, 0);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 767px) {
+  /* The franchise drops below the name rather than being squeezed into a
+     third column that would wrap to two lines at this width. */
+  .entry {
+    grid-template-columns: auto 1fr auto;
+    row-gap: 2px;
+  }
+
+  .entryFranchise {
+    grid-column: 2 / 3;
+    text-align: left;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .entry,
+  .entryArrow {
+    transition: none;
+  }
+
+  .entry:hover .entryArrow,
+  .entry:focus-visible .entryArrow {
+    transform: none;
+  }
+}
+
+/* ---------- chapter rail clearance ---------- */
+
+/* The rail is fixed to the right edge from the tablet breakpoint up, and
+   these are the only two sections whose content reaches that far. */
+@media (min-width: 600px) {
+  .section {
+    padding-right: calc(var(--space-page-gutter) + 56px);
+  }
+}

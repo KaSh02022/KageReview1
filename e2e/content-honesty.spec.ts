@@ -57,7 +57,16 @@ const FORBIDDEN: Array<{ pattern: RegExp; why: string }> = [
 
 async function visibleText(page: Page, route: string) {
   await page.goto(`/#${route}`)
-  await page.waitForLoadState('networkidle')
+  // `networkidle` alone cannot be relied on here: /contact embeds a
+  // third-party map whose font and tile requests never settle in this
+  // environment, so the wait timed out before anything was asserted. Take
+  // quiet if it arrives, then wait for the route's own heading, which is
+  // what actually signals the page has rendered.
+  // Bounded: an unbounded `networkidle` does not reject until the whole test
+  // times out, so catching it achieves nothing. Three seconds is quiet enough
+  // for every route that can go quiet, and fails fast for the one that cannot.
+  await page.waitForLoadState('networkidle', { timeout: 3_000 }).catch(() => {})
+  await page.locator('h1').first().waitFor({ state: 'visible' })
   return page.evaluate(() => document.body.innerText)
 }
 
@@ -109,8 +118,16 @@ test.describe('Content honesty — fiction is labelled as fiction', () => {
   })
 
   test('the dummy auth dialog states it does not create a real account', async ({ page }) => {
-    await page.goto('/')
-    await page.getByRole('button', { name: /log in \/ sign up/i }).click()
+    // The auth control lives in the app header, which `/` (the cinematic
+    // landing) deliberately stands down. Entered from a hub instead.
+    //
+    // The header's single "Log in / Sign up" control became two — a text
+    // "Log in" and a ghost "Sign up" — when the global chrome was unified.
+    // Both open the same demo-auth dialog; only the emphasis differs. The
+    // behaviour under test is the dialog's honesty disclaimer, which is
+    // unchanged, so only the door moved.
+    await page.goto('/#/anime')
+    await page.getByRole('button', { name: /^log in$/i }).click()
     await expect(page.getByText(/does not authenticate you|create a real account/i)).toBeVisible()
   })
 })

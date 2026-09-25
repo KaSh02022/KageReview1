@@ -8,13 +8,28 @@ import { test, expect, type Page } from '@playwright/test'
  * persistence instead of testing whether a particular fixture still exists.
  */
 
-/** Opens the first card in the named section of a category hub. */
+/**
+ * Opens the first card in the named section of a category hub, and waits
+ * for the detail route to actually mount. Returning on the click alone let
+ * a slow device read the hub's own heading as if it were the detail page's.
+ */
 async function openFirstCardIn(page: Page, hubPath: string, sectionHeading: RegExp) {
   await page.goto(`/#${hubPath}`)
   const section = page
     .locator('section')
     .filter({ has: page.getByRole('heading', { name: sectionHeading }) })
+  const hubUrl = page.url()
+  const hubHeading = await page.getByRole('heading', { level: 1 }).textContent()
+
   await section.getByRole('link').first().click()
+  await expect.poll(() => page.url()).not.toBe(hubUrl)
+
+  // The URL changes a beat before React swaps the heading, so waiting on
+  // the URL alone still handed callers the hub's own <h1>. Wait for the
+  // heading itself to become the detail page's.
+  await expect
+    .poll(() => page.getByRole('heading', { level: 1 }).textContent())
+    .not.toBe(hubHeading)
 }
 
 test.describe('Storage persistence boundaries', () => {
@@ -25,6 +40,11 @@ test.describe('Storage persistence boundaries', () => {
 
     await page.getByRole('button', { name: 'Add to cart' }).click()
     await page.reload()
+    // Let the reload settle before navigating on. Under a loaded worker the
+    // cart route could otherwise be requested while the reload was still in
+    // flight, and win the race.
+    await page.waitForLoadState('load')
+
     await page.goto('/#/cart')
     await expect(page.getByText(productName, { exact: false })).toBeVisible()
   })

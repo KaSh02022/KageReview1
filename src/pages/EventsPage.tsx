@@ -1,5 +1,6 @@
 import { events } from '../data'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
+import { ExploreCinematicHero } from '../features/explore/ExploreCinematicHero'
 import { EmptyState } from '../components/EmptyState/EmptyState'
 import { Grid } from '../components/ui/Layout/Grid'
 import { Card, CardMedia, CardHeader, CardMeta } from '../components/ui/Card/Card'
@@ -10,6 +11,15 @@ export function EventsPage() {
     <PagePlaceholder
       title="Events"
       description="Event highlights across all seven fandom hubs — 21 simulated fan events (3 per category). Every event is fictional and none of them takes place. Filtering and sorting are coming later."
+      hero={
+        <ExploreCinematicHero
+          surface="events"
+          title="Events"
+          eyebrow="Where the fandoms gather"
+          description="Event highlights across all seven fandom hubs — 21 simulated fan events (3 per category). Every event is fictional and none of them takes place. Filtering and sorting are coming later."
+          accent="143, 123, 255"
+        />
+      }
     >
       {events.length === 0 ? (
         <EmptyState title="No events yet" />

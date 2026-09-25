@@ -1,0 +1,43 @@
+/* The Kage document styles `body` and paints fixed layers of its own, so the
+   host is a plain pass-through rather than a box. */
+.host {
+  display: contents;
+}
+
+/* Covers the frame from the moment the route mounts until the Kage document
+   has been injected and its own preloader takes over. Fixed and opaque so the
+   route is never an empty white rectangle, which is what a slow boot looked
+   like before. */
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  background: #05070a;
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.bootBrand {
+  margin: 0;
+  font: var(--font-h2);
+  letter-spacing: 0.04em;
+  color: #dfe7e0;
+}
+
+.bootNote {
+  margin: 0;
+  font: var(--font-body-small);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #78837c;
+}
+
+.bootLink {
+  color: #dfe7e0;
+  text-decoration: underline;
+}

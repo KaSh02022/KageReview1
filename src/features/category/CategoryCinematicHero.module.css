@@ -1,0 +1,314 @@
+.scene {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(88vh, 760px);
+  min-height: min(88dvh, 760px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Breaks out of the app shell's centred container so the scene is edge to
+     edge. `--viewport-w` is published by the landing runtime; the fallback
+     keeps this correct on a page that never mounts it. */
+  /* Full bleed, measured rather than assumed — see `--scene-bleed`. */
+  width: var(--viewport-w, 100%);
+  margin-left: var(--scene-bleed, 0px);
+  margin-right: 0;
+  padding-inline: clamp(20px, 5vw, 96px);
+  --local: var(--scene-progress, 0);
+}
+
+/* ---------- z 0 · the world ---------- */
+
+.plate {
+  position: absolute;
+  inset: -6% 0 -6%;
+  z-index: 0;
+  transform: translate3d(0, calc(var(--local) * -8%), 0);
+}
+
+.plateImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+
+/* ---------- z 1 · atmosphere ---------- */
+
+.haze {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(120% 86% at 74% 52%, rgba(var(--accent-rgb), 0.18) 0%, transparent 58%),
+    linear-gradient(to right, var(--color-bg) 2%, rgba(11, 14, 23, 0.86) 40%, rgba(11, 14, 23, 0.42) 100%);
+}
+
+/* ---------- z 2 · the lead ---------- */
+
+.figure {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  width: min(46%, 640px);
+  height: 94%;
+  transform: translate3d(0, calc(var(--local) * -6%), 0) scale(calc(1 + var(--local) * 0.04));
+  transform-origin: 70% 40%;
+  /* One mask layer per element, and no `mask-composite` anywhere: the legacy
+     `-webkit-mask-composite: source-in` intersects a single layer with an
+     empty accumulated mask and paints nothing (D-062's sibling defect). The
+     wrapper takes the vertical feather, the image the horizontal one. */
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 86%, transparent 100%);
+  animation: figureEnter 1100ms var(--easing-decelerate) both 120ms;
+}
+
+.figureImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 14%;
+  mask-image: linear-gradient(to left, #000 54%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, #000 54%, transparent 100%);
+}
+
+@keyframes figureEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(1.03);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- edges ---------- */
+
+.edge {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to top, var(--color-bg) 0%, transparent 18%);
+}
+
+/* ---------- z 3 · type ---------- */
+
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  width: min(54ch, 56%);
+  /* Type drifts slower than the art behind it, which is what keeps the depth
+     from flattening. */
+  transform: translate3d(0, calc(var(--local) * -3%), 0);
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgb(var(--accent-rgb));
+}
+
+.rule {
+  display: block;
+  width: clamp(28px, 6vw, 72px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.title {
+  font: var(--font-display, var(--font-h1));
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.tagline {
+  font: var(--font-h3);
+  font-weight: 400;
+  color: rgb(var(--accent-rgb));
+  margin: 0;
+}
+
+.description {
+  font: var(--font-body);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.lead {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0;
+  font: var(--font-body-small);
+}
+
+.leadLabel {
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-text-muted);
+}
+
+.leadName {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.leadRole {
+  color: var(--color-text-muted);
+}
+
+/* ---------- CTA ---------- */
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(var(--accent-rgb), 0.45);
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--color-text-primary);
+  font: var(--font-label);
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-slow) var(--easing-decelerate),
+    border-color var(--duration-slow) var(--easing-decelerate),
+    transform var(--duration-slow) var(--easing-decelerate);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: rgba(var(--accent-rgb), 0.2);
+  border-color: rgba(var(--accent-rgb), 0.8);
+  transform: translate3d(0, -2px, 0);
+}
+
+.cta:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.ctaArrow {
+  transition: transform var(--duration-slow) var(--easing-decelerate);
+}
+
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translate3d(0, 3px, 0);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 1023px) {
+  .content {
+    width: min(58ch, 86%);
+  }
+
+  .figure {
+    width: 62%;
+  }
+
+  .figureImage {
+    opacity: 0.62;
+  }
+}
+
+/* Phone: a different composition, not a smaller one. The lead becomes the
+   backdrop above the type, and the copy carries its own scrim so nothing in
+   the scene can make it unreadable. */
+@media (max-width: 599px) {
+  .scene {
+    min-height: min(92dvh, 720px);
+    justify-content: flex-end;
+    padding-bottom: clamp(var(--space-2xl), 10vh, 96px);
+  }
+
+  .figure {
+    width: 100%;
+    height: 62%;
+    top: 0;
+    bottom: auto;
+    transform: translate3d(0, calc(var(--local) * -3%), 0);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 76%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 76%, transparent 100%);
+  }
+
+  .figureImage {
+    object-position: 50% 10%;
+    opacity: 0.66;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .haze {
+    background: linear-gradient(
+      to top,
+      var(--color-bg) 22%,
+      rgba(11, 14, 23, 0.84) 56%,
+      rgba(11, 14, 23, 0.46) 100%
+    );
+  }
+
+  .content {
+    width: 100%;
+    transform: none;
+  }
+
+  .title {
+    font-size: clamp(2.25rem, 13vw, 3.25rem);
+  }
+
+  .description {
+    font: var(--font-body-small);
+    color: var(--color-text-muted);
+    max-width: none;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+/* Every layer keeps its composed position; only the travel is removed. No
+   content is hidden or delayed. */
+@media (prefers-reduced-motion: reduce) {
+  .plate,
+  .figure,
+  .content {
+    transform: none;
+  }
+
+  .figure {
+    animation: none;
+  }
+
+  .cta,
+  .ctaArrow {
+    transition: none;
+  }
+
+  .cta:hover,
+  .cta:focus-visible,
+  .cta:hover .ctaArrow,
+  .cta:focus-visible .ctaArrow {
+    transform: none;
+  }
+}

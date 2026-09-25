@@ -13,9 +13,18 @@ import { test, expect } from '@playwright/test'
  * catch the dialog becoming accidentally `aria-hidden` along with the
  * background — a real, non-obvious defect class for modal dialogs.
  */
+/**
+ * Where these tests start.
+ *
+ * This suite exercises the app shell — header, category nav, drawer, dialogs,
+ * skip link — not any particular page. It used to enter at `/` because that
+ * was the cheapest page carrying the chrome. `/` is now the cinematic
+ * landing, which deliberately stands the shell down, so these enter at a
+ * category hub instead. Every assertion is unchanged; only the door moved.
+ */
 test.describe('Dialog/Drawer background-inertness architecture', () => {
   test('Dialog: portals outside #root, and #root aria-hidden does not hide the dialog', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/#/anime')
     await page.getByRole('button', { name: 'Open FandomVerse assistant' }).click()
     await expect(page.getByRole('dialog', { name: 'FandomVerse Assistant' })).toBeVisible()
 
@@ -40,7 +49,7 @@ test.describe('Dialog/Drawer background-inertness architecture', () => {
     // actually visible/clickable, independent of whatever viewport this
     // browser project defaults to.
     await page.setViewportSize({ width: 375, height: 812 })
-    await page.goto('/')
+    await page.goto('/#/anime')
     await page.getByRole('button', { name: 'Toggle navigation menu' }).click()
     await expect(page.getByRole('dialog', { name: 'Browse FandomVerse' })).toBeVisible()
 
@@ -60,7 +69,7 @@ test.describe('Dialog/Drawer background-inertness architecture', () => {
   })
 
   test('#root aria-hidden is removed again after the dialog closes', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/#/anime')
     await page.getByRole('button', { name: 'Open FandomVerse assistant' }).click()
     await expect(page.getByRole('dialog')).toBeVisible()
 

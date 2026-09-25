@@ -15,3 +15,10 @@
 .main {
   outline: none;
 }
+
+/* The cinematic landing takes the whole frame: no container max-width, no
+   gutter, no shell chrome. */
+.bleedWrapper {
+  flex: 1;
+  width: 100%;
+}

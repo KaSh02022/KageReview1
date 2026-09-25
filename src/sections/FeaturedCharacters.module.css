@@ -1,0 +1,197 @@
+.section {
+  padding-block: var(--space-section);
+}
+
+.header {
+  max-width: var(--reading-max-width);
+  margin-bottom: var(--space-2xl);
+}
+
+.eyebrow {
+  font: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary-on-tint);
+  margin: 0 0 var(--space-sm);
+}
+
+.title {
+  font: var(--font-h1);
+  margin: 0;
+}
+
+.lede {
+  font: var(--font-body);
+  color: var(--color-text-muted);
+  margin: var(--space-sm) 0 0;
+}
+
+.grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  /* Seven leads: a fixed four-column track reads as a deliberate 4 + 3
+     block, where auto-fill left a single orphan card on its own row. */
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+.cell {
+  display: block;
+}
+
+/* ---------- card ---------- */
+
+.card {
+  --card-accent: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: var(--radius-large);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition:
+    transform var(--duration-slow) var(--easing-decelerate),
+    border-color var(--duration-slow) var(--easing-decelerate),
+    box-shadow var(--duration-slow) var(--easing-decelerate);
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translate3d(0, -6px, 0);
+  border-color: color-mix(in srgb, var(--card-accent) 55%, transparent);
+  box-shadow:
+    var(--shadow-elevated),
+    0 0 28px color-mix(in srgb, var(--card-accent) 20%, transparent);
+}
+
+.portraitFrame {
+  position: relative;
+  display: block;
+  /* Portraits are 1:1 masters. A 4:5 frame keeps the face high in the card
+     and crops the chest, which is where the art has least information. */
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-surface-elevated);
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* The masters are 1:1 and this frame is 4:5, so `cover` matches them by
+     height and `object-position` has no vertical travel to work with — the
+     dead sky above each head stayed fully in frame. Scaling from the face
+     anchor (~20% down, measured across the seven portraits) pushes that
+     empty band out of view and enlarges the face instead. */
+  transform: scale(1.34);
+  transform-origin: 50% 20%;
+  transition: transform var(--duration-slow) var(--easing-decelerate);
+}
+
+.card:hover .portrait,
+.card:focus-visible .portrait {
+  transform: scale(1.42);
+}
+
+.portraitScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11, 14, 23, 0.85) 0%, rgba(11, 14, 23, 0.08) 38%, transparent 62%);
+  opacity: 0.7;
+  transition: opacity var(--duration-slow) var(--easing-decelerate);
+}
+
+.card:hover .portraitScrim,
+.card:focus-visible .portraitScrim {
+  opacity: 1;
+}
+
+.badge {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-pill);
+  font: var(--font-caption);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  background: rgba(11, 14, 23, 0.72);
+  border: 1px solid color-mix(in srgb, var(--card-accent) 50%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-md);
+  border-top: 2px solid transparent;
+  transition: border-color var(--duration-slow) var(--easing-decelerate);
+}
+
+.card:hover .info,
+.card:focus-visible .info {
+  border-top-color: var(--card-accent);
+}
+
+.name {
+  font: var(--font-h3);
+  color: var(--color-text-primary);
+}
+
+.role {
+  font: var(--font-body-small);
+  color: var(--card-accent);
+}
+
+.series {
+  font: var(--font-caption);
+  color: var(--color-text-muted);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 599px) {
+  .grid {
+    /* Two columns keeps the section from becoming a very long scroll on
+       phones while portraits stay large enough to read a face. */
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .name {
+    font: var(--font-body);
+    font-weight: 600;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .portrait,
+  .portraitScrim,
+  .info {
+    transition: none;
+  }
+
+  .card:hover,
+  .card:focus-visible {
+    transform: none;
+  }
+
+  .card:hover .portrait,
+  .card:focus-visible .portrait {
+    /* Keep the framing scale; only the hover change is suppressed. */
+    transform: scale(1.34);
+  }
+}

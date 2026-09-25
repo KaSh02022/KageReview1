@@ -9,7 +9,8 @@ import { test, expect } from '@playwright/test'
  * hard page refresh at that route both work, with no broken state.
  */
 const DEEP_LINKS: Array<[string, RegExp]> = [
-  ['/', /FandomVerse/i],
+  // The root is the cinematic landing; this is the heading it owns.
+  ['/', /share a sky/i],
   ['/anime', /^Anime$/i],
   ['/gaming', /^Gaming$/i],
   // Real content ids are used deliberately here: the point of this suite is
@@ -44,8 +45,12 @@ for (const [path, expectedHeading] of DEEP_LINKS) {
 
     await expect(page.getByRole('heading', { level: 1, name: expectedHeading })).toBeVisible()
     // A broken reload would show React Router's errorElement or a blank
-    // shell — confirm the real app chrome (header nav) survived too.
-    await expect(page.getByRole('banner').getByRole('link', { name: 'FandomVerse' })).toBeVisible()
+    // shell — confirm the real app chrome (header nav) survived too. The
+    // cinematic landing at `/` deliberately carries no app banner, so it is
+    // checked by its own heading above instead.
+    if (path !== '/') {
+      await expect(page.getByRole('banner').getByRole('link', { name: 'FandomVerse' })).toBeVisible()
+    }
   })
 }
 

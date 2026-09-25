@@ -1,0 +1,134 @@
+.scene {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(62vh, 520px);
+  min-height: min(62dvh, 520px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Full bleed, measured rather than assumed — see `--scene-bleed`. */
+  width: var(--viewport-w, 100%);
+  margin-left: var(--scene-bleed, 0px);
+  margin-right: 0;
+  padding-inline: clamp(20px, 5vw, 96px);
+  margin-bottom: var(--space-2xl);
+  --local: var(--scene-progress, 0);
+}
+
+.plate {
+  position: absolute;
+  inset: -6% 0 -6%;
+  z-index: 0;
+  transform: translate3d(0, calc(var(--local) * -10%), 0);
+}
+
+.plateImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.52;
+}
+
+.haze {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(110% 90% at 78% 40%, rgba(var(--accent-rgb), 0.16) 0%, transparent 60%),
+    linear-gradient(to right, var(--color-bg) 0%, rgba(11, 14, 23, 0.82) 46%, rgba(11, 14, 23, 0.5) 100%);
+}
+
+/* Dissolves into the page body below rather than meeting it on a line. */
+.edge {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to top, var(--color-bg) 0%, transparent 22%);
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  width: min(56ch, 62%);
+  transform: translate3d(0, calc(var(--local) * -4%), 0);
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgb(var(--accent-rgb));
+}
+
+.rule {
+  display: block;
+  width: clamp(28px, 6vw, 72px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.title {
+  font: var(--font-display, var(--font-h1));
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.description {
+  font: var(--font-body);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 54ch;
+}
+
+@media (max-width: 1023px) {
+  .content {
+    width: min(58ch, 88%);
+  }
+}
+
+@media (max-width: 599px) {
+  .scene {
+    min-height: min(56dvh, 420px);
+    justify-content: flex-end;
+    padding-bottom: var(--space-2xl);
+  }
+
+  .content {
+    width: 100%;
+    transform: none;
+  }
+
+  .haze {
+    background: linear-gradient(
+      to top,
+      var(--color-bg) 18%,
+      rgba(11, 14, 23, 0.86) 56%,
+      rgba(11, 14, 23, 0.5) 100%
+    );
+  }
+
+  .description {
+    font: var(--font-body-small);
+    color: var(--color-text-muted);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plate,
+  .content {
+    transform: none;
+  }
+}

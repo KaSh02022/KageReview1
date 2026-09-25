@@ -1,0 +1,244 @@
+.section {
+  padding-block: var(--space-section);
+  scroll-margin-top: var(--space-xl);
+}
+
+/* The section is a programmatic focus target (skip-intro). Suppress the
+   ring for that case only — keyboard users still get rings on real
+   controls, and :focus-visible never matches a -1 tabindex container
+   focused by script after a click. */
+.section:focus {
+  outline: none;
+}
+
+.header {
+  max-width: var(--reading-max-width);
+  margin-bottom: var(--space-2xl);
+}
+
+.eyebrow {
+  font: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary-on-tint);
+  margin: 0 0 var(--space-sm);
+}
+
+.title {
+  font: var(--font-h1);
+  margin: 0;
+}
+
+.lede {
+  font: var(--font-body);
+  color: var(--color-text-muted);
+  margin: var(--space-sm) 0 0;
+}
+
+.grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-lg);
+}
+
+.cell {
+  display: block;
+}
+
+/* ---------- card ---------- */
+
+.card {
+  --card-accent: var(--color-primary);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 320px;
+  border-radius: var(--radius-large);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  isolation: isolate;
+  transition:
+    transform var(--duration-slow) var(--easing-decelerate),
+    border-color var(--duration-slow) var(--easing-decelerate),
+    box-shadow var(--duration-slow) var(--easing-decelerate);
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translate3d(0, -6px, 0);
+  border-color: color-mix(in srgb, var(--card-accent) 55%, transparent);
+  box-shadow:
+    var(--shadow-elevated),
+    0 0 32px color-mix(in srgb, var(--card-accent) 22%, transparent);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: block;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+  transform: scale(1.02);
+  transition:
+    transform var(--duration-slow) var(--easing-decelerate),
+    opacity var(--duration-slow) var(--easing-decelerate);
+}
+
+.card:hover .image,
+.card:focus-visible .image {
+  transform: scale(1.07);
+  opacity: 0.88;
+}
+
+.mediaScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--color-bg) 2%,
+    rgba(11, 14, 23, 0.82) 34%,
+    rgba(11, 14, 23, 0.18) 100%
+  );
+}
+
+.body {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  padding-bottom: var(--space-sm);
+}
+
+.name {
+  font: var(--font-h2);
+  color: var(--color-text-primary);
+  transition: transform var(--duration-slow) var(--easing-decelerate);
+}
+
+.card:hover .name,
+.card:focus-visible .name {
+  transform: translate3d(0, -2px, 0);
+}
+
+.franchise {
+  font: var(--font-body-small);
+  color: var(--color-text-secondary);
+}
+
+.tagline {
+  font: var(--font-body-small);
+  color: var(--color-text-muted);
+}
+
+/* ---------- enter indicator ---------- */
+
+.enter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg) var(--space-lg);
+  font: var(--font-label);
+  color: var(--card-accent);
+  opacity: 0.75;
+  transition: opacity var(--duration-slow) var(--easing-decelerate);
+}
+
+.card:hover .enter,
+.card:focus-visible .enter {
+  opacity: 1;
+}
+
+.enterArrow {
+  transition: transform var(--duration-slow) var(--easing-decelerate);
+}
+
+.card:hover .enterArrow,
+.card:focus-visible .enterArrow {
+  transform: translate3d(6px, 0, 0);
+}
+
+/* A hairline accent that draws in on hover — the "one universe" signature,
+   applied identically to all seven cards. */
+.card::after {
+  content: '';
+  position: absolute;
+  left: var(--space-lg);
+  right: var(--space-lg);
+  bottom: var(--space-md);
+  height: 2px;
+  background: var(--card-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-slow) var(--easing-decelerate);
+}
+
+.card:hover::after,
+.card:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 599px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .card {
+    min-height: 220px;
+  }
+
+  .header {
+    margin-bottom: var(--space-xl);
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .image,
+  .name,
+  .enterArrow,
+  .card::after {
+    transition: none;
+  }
+
+  .card:hover,
+  .card:focus-visible {
+    transform: none;
+  }
+
+  .card:hover .image,
+  .card:focus-visible .image {
+    transform: scale(1.02);
+  }
+
+  .card:hover .name,
+  .card:focus-visible .name,
+  .card:hover .enterArrow,
+  .card:focus-visible .enterArrow {
+    transform: none;
+  }
+
+  .card:hover::after,
+  .card:focus-visible::after {
+    transform: scaleX(1);
+  }
+}

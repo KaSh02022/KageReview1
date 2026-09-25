@@ -1,0 +1,193 @@
+.section {
+  padding-block: var(--space-section);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(var(--space-xl), 5vw, var(--space-3xl));
+  align-items: center;
+}
+
+/* ---------- copy ---------- */
+
+.copy {
+  max-width: 56ch;
+}
+
+.eyebrow {
+  font: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary-on-tint);
+  margin: 0 0 var(--space-sm);
+}
+
+.title {
+  font: var(--font-h1);
+  margin: 0 0 var(--space-md);
+}
+
+.body {
+  font: var(--font-body);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-md);
+}
+
+.stats {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-xl) 0 0;
+  display: flex;
+  gap: var(--space-2xl);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statValue {
+  font: var(--font-display);
+  font-size: clamp(2rem, 1.4rem + 2vw, 2.75rem);
+  line-height: 1;
+  color: var(--color-text-primary);
+}
+
+.statLabel {
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+/* ---------- orbit diagram ---------- */
+
+.orbit {
+  position: relative;
+  aspect-ratio: 1;
+  width: min(100%, 420px);
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+  /* px-based so the trig below is a plain length multiply; adjusted per
+     breakpoint rather than trying to multiply a percentage. */
+  --orbit-radius: 150px;
+}
+
+.core {
+  position: absolute;
+  width: 22%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-primary) 70%, transparent) 0%,
+    transparent 70%
+  );
+  animation: corePulse 6s ease-in-out infinite;
+}
+
+.ring,
+.ringOuter {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+}
+
+.ring {
+  width: 76%;
+  aspect-ratio: 1;
+}
+
+.ringOuter {
+  width: 96%;
+  aspect-ratio: 1;
+  opacity: 0.45;
+}
+
+.node {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--node-accent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--node-accent) 60%, transparent);
+  /* Same trig placement as the Fandom Core's overlay nodes. */
+  transform: translate(
+    calc(cos(var(--node-angle)) * var(--orbit-radius)),
+    calc(sin(var(--node-angle)) * var(--orbit-radius))
+  );
+  animation: nodeGlow 4.5s ease-in-out infinite;
+  animation-delay: var(--node-delay);
+}
+
+@keyframes corePulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes nodeGlow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 1023px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .orbit {
+    order: -1;
+    width: min(100%, 320px);
+    --orbit-radius: 118px;
+  }
+}
+
+@media (max-width: 599px) {
+  .stats {
+    gap: var(--space-xl);
+  }
+
+  .orbit {
+    width: min(100%, 250px);
+    --orbit-radius: 92px;
+  }
+
+  .node {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .core,
+  .node {
+    animation: none;
+  }
+
+  .core {
+    opacity: 0.85;
+  }
+
+  .node {
+    opacity: 0.9;
+  }
+}

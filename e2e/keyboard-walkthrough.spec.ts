@@ -9,6 +9,15 @@ import { test, expect } from '@playwright/test'
  * covers the drawer/dialog leg, since that's where those controls
  * actually render.
  */
+/**
+ * Where these tests start.
+ *
+ * This suite exercises the app shell — header, category nav, drawer, dialogs,
+ * skip link — not any particular page. It used to enter at `/` because that
+ * was the cheapest page carrying the chrome. `/` is now the cinematic
+ * landing, which deliberately stands the shell down, so these enter at a
+ * category hub instead. Every assertion is unchanged; only the door moved.
+ */
 test.describe('Keyboard-only walkthrough', () => {
   test('HOME -> CATEGORY -> DETAIL -> SEARCH -> BACK, entirely by keyboard, with focus always visible', async ({
     page,
@@ -26,9 +35,24 @@ test.describe('Keyboard-only walkthrough', () => {
     // an explicit desktop viewport regardless of the project's default
     // (mobile-chrome would otherwise never reach the "Anime" nav link).
     await page.setViewportSize({ width: 1280, height: 800 })
-    await page.goto('/')
 
-    // HOME: Tab from the top of the page to the Anime category link and activate it with Enter.
+    // Enter at a hub, not at `/`. The describe block above already states
+    // that these tests moved off `/` when it became the cinematic landing;
+    // this one leg was missed. It matters for two reasons, both of which made
+    // it fail or pass by luck depending on machine speed:
+    //
+    //   1. `/` stands the shell down, so the inline category nav this leg
+    //      exists to exercise is not on the page at all;
+    //   2. during the landing's intro the engine holds `is-locked` on <body>
+    //      and Tab never leaves BODY, and once it does boot the landing's own
+    //      link reads "Anime01" (label + chapter number), which can never
+    //      equal the "Anime" compared against below.
+    //
+    // Gaming, so that "Anime" is a real destination rather than the current
+    // page. Every assertion below is unchanged.
+    await page.goto('/#/gaming')
+
+    // Tab from the top of the page to the Anime category link and activate it with Enter.
     let guard = 0
     while (guard < 30) {
       const focused = await page.evaluate(() => document.activeElement?.textContent?.trim())
@@ -98,7 +122,7 @@ test.describe('Keyboard-only walkthrough', () => {
 
   test('MOBILE NAV -> DIALOG -> CLOSE, entirely by keyboard', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 })
-    await page.goto('/')
+    await page.goto('/#/anime')
 
     // MOBILE NAV: reach and open the hamburger toggle with the keyboard.
     let toggleReached = false
@@ -132,7 +156,7 @@ test.describe('Keyboard-only walkthrough', () => {
   })
 
   test('DIALOG (chatbot) -> CLOSE, entirely by keyboard, from anywhere on the page', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/#/anime')
     await page.getByRole('button', { name: 'Open FandomVerse assistant' }).focus()
     await page.keyboard.press('Enter')
 

@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import {
   articles,
@@ -18,7 +19,24 @@ import { Stack } from '../components/ui/Layout/Stack'
 import { Badge } from '../components/ui/Badge/Badge'
 import { Card, CardMedia, CardHeader, CardBody, CardMeta, CardFooter } from '../components/ui/Card/Card'
 import { Link } from '../components/ui/Link/Link'
+import { CategoryCinematicHero } from '../features/category/CategoryCinematicHero'
+import { FEATURED_CHARACTER_IDS } from '../data/landingAssets'
 import styles from './CategoryHubPage.module.css'
+
+/**
+ * Categories whose hub opens with the cinematic hero rather than the flat
+ * banner. All seven now; the set is kept rather than removed so a single
+ * category can be dropped back to the flat banner without a code change.
+ */
+const CINEMATIC_CATEGORIES = new Set<string>([
+  'anime',
+  'gaming',
+  'movies',
+  'tv-shows',
+  'kpop',
+  'comics',
+  'manga',
+])
 
 interface CategoryHubPageProps {
   categoryId?: string
@@ -34,6 +52,7 @@ interface CategoryHubPageProps {
  */
 export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryHubPageProps) {
   const { slug } = useParams()
+  const sectionsRef = useRef<HTMLDivElement | null>(null)
   const lookupValue = categoryIdProp ?? slug ?? ''
   const category = getCategoryByIdOrSlug(lookupValue)
 
@@ -60,22 +79,43 @@ export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryH
   const categoryMerch = merchandise.filter((item) => item.categoryId === categoryId)
   const otherCategories = CATEGORY_ROUTES.filter((route) => route.categoryId !== categoryId)
 
+  const isCinematic = CINEMATIC_CATEGORIES.has(categoryId)
+  const lead = isCinematic
+    ? characters.find(
+        (item) =>
+          item.categoryId === categoryId &&
+          (FEATURED_CHARACTER_IDS as readonly string[]).includes(item.id),
+      )
+    : undefined
+
   return (
     <div className={styles.wrapper}>
-      <header className={styles.hero} style={{ '--hero-accent': accent } as CSSProperties}>
-        <img
-          className={styles.heroImage}
-          src={category.heroImage.src}
-          alt={category.heroImage.alt}
-          loading="lazy"
+      {isCinematic ? (
+        <CategoryCinematicHero
+          category={category}
+          lead={lead}
+          onEnter={() =>
+            sectionsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
         />
-        <div className={styles.heroContent}>
-          <p className={styles.heroEyebrow}>{category.visualMotif}</p>
-          <h1 className={styles.heroTitle}>{category.name}</h1>
-          <p className={styles.heroTagline}>{category.tagline}</p>
-          <p className={styles.heroDescription}>{category.description}</p>
-        </div>
-      </header>
+      ) : (
+        <header className={styles.hero} style={{ '--hero-accent': accent } as CSSProperties}>
+          <img
+            className={styles.heroImage}
+            src={category.heroImage.src}
+            alt={category.heroImage.alt}
+            loading="lazy"
+          />
+          <div className={styles.heroContent}>
+            <p className={styles.heroEyebrow}>{category.visualMotif}</p>
+            <h1 className={styles.heroTitle}>{category.name}</h1>
+            <p className={styles.heroTagline}>{category.tagline}</p>
+            <p className={styles.heroDescription}>{category.description}</p>
+          </div>
+        </header>
+      )}
+
+      <div ref={sectionsRef} aria-hidden="true" />
 
       <Stack gap="2xl" className={styles.sections}>
         {featuredArticle && (
@@ -267,7 +307,7 @@ export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryH
           <SectionHeader id={`${categoryId}-explore`} title="Explore another world" level={2} />
           <Stack direction="row" wrap gap="sm">
             {otherCategories.map((route) => (
-              <Link key={route.categoryId} to={`/${route.path}`}>
+              <Link key={route.categoryId} to={`/${route.path}`} className={styles.worldLink}>
                 {route.label}
               </Link>
             ))}

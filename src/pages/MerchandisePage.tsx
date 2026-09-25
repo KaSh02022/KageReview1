@@ -1,5 +1,6 @@
 import { merchandise } from '../data'
 import { PagePlaceholder } from '../components/PagePlaceholder/PagePlaceholder'
+import { ExploreCinematicHero } from '../features/explore/ExploreCinematicHero'
 import { Card, CardMedia, CardHeader, CardBody, CardFooter } from '../components/ui/Card/Card'
 import { Badge } from '../components/ui/Badge/Badge'
 import { Grid } from '../components/ui/Layout/Grid'
@@ -9,6 +10,15 @@ export function MerchandisePage() {
     <PagePlaceholder
       title="Merchandise"
       description="Fan merchandise across all seven fandom hubs, with a temporary demo cart. These products are fictional and cannot be bought — there is no checkout, no payment, and no real purchase."
+      hero={
+        <ExploreCinematicHero
+          surface="merchandise"
+          title="Merchandise"
+          eyebrow="Take a world home"
+          description="Fan merchandise across all seven fandom hubs, with a temporary demo cart. These products are fictional and cannot be bought — there is no checkout, no payment, and no real purchase."
+          accent="92, 230, 166"
+        />
+      }
     >
       <Grid minItemWidth={220} gap="md">
         {merchandise.map((product) => (

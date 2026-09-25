@@ -34,8 +34,10 @@
 .hero {
   position: relative;
   width: 100%;
-  height: min(60vh, 480px);
-  min-height: 320px;
+  /* Overridable so a host page can fit the Core into a composition that has
+     to share the fold with other elements. The default is unchanged. */
+  height: var(--core-height, min(60vh, 480px));
+  min-height: var(--core-min-height, 320px);
   border-radius: var(--radius-large);
   overflow: hidden;
   background: var(--color-bg);
@@ -43,7 +45,7 @@
 
 @media (max-width: 599px) {
   .hero {
-    height: min(70vh, 420px);
-    min-height: 360px;
+    height: var(--core-height, min(70vh, 420px));
+    min-height: var(--core-min-height, 360px);
   }
 }

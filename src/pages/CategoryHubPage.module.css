@@ -95,3 +95,39 @@
     padding: var(--space-md);
   }
 }
+
+/* "Explore another world" — the one place on a hub that navigates between
+   worlds, so it borrows the header's register rather than the default inline
+   link tone. Bright underlined blue read as a browser default against the
+   cinematic chrome and was the loudest thing on the page below the fold.
+
+   Each world is a quiet chip with a drawn accent underline, matching the bar's
+   active indicator. Hover, focus and current state are all expressed the same
+   way, so the three cannot drift apart. */
+.worldLink {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: var(--chrome-label-size);
+  font-weight: 500;
+  letter-spacing: var(--chrome-label-track);
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--chrome-hairline);
+  border-radius: var(--radius-pill);
+  transition:
+    color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard);
+}
+
+.worldLink:hover {
+  color: var(--color-text-primary);
+  border-color: rgba(var(--header-accent, 124, 141, 255), 0.7);
+}
+
+.worldLink:focus-visible {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 2px;
+}
+

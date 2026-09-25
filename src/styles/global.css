@@ -60,6 +60,27 @@ svg {
   border-radius: var(--radius-sm);
 }
 
+/*
+  ...with one exception, which is not an aesthetic one.
+
+  `useRouteTransitionEffects` moves focus to <main> after every route change so
+  screen reader users land on the new content instead of a stale node. <main>
+  carries `tabindex="-1"` purely to be focusable for that purpose — it is not an
+  interactive control, and Chromium still matches :focus-visible on it after a
+  keyboard-initiated navigation. The rule above then drew the focus ring around
+  the ENTIRE page: a 1px `--color-focus` rectangle framing all hub content,
+  which went unattributed for three phases because `document.activeElement` had
+  already moved on by the time it was measured.
+
+  Real controls are untouched and keep their ring. NFR-002 is about being able
+  to see what you are operating; a whole-page outline tells you nothing.
+*/
+main[tabindex='-1']:focus,
+main[tabindex='-1']:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
 /* Utility: visually hidden but available to assistive tech */
 .visually-hidden {
   position: absolute;

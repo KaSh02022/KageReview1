@@ -1,7 +1,7 @@
 import { createHashRouter } from 'react-router-dom'
 import { RootLayout } from '../layouts/RootLayout'
 import { RouteErrorFallback } from '../pages/RouteErrorFallback'
-import { HomePage } from '../pages/HomePage'
+import { KageLandingPage } from '../pages/KageLandingPage'
 import { CategoryHubPage } from '../pages/CategoryHubPage'
 import { ArticleDetailPage } from '../pages/ArticleDetailPage'
 import { CharacterDetailPage } from '../pages/CharacterDetailPage'
@@ -43,7 +43,7 @@ export const router = createHashRouter([
     errorElement: <RouteErrorFallback />,
     handle: { breadcrumb: 'Home' },
     children: [
-      { index: true, element: <HomePage />, handle: { title: null } },
+      { index: true, element: <KageLandingPage />, handle: { title: null } },
       ...CATEGORY_ROUTES.map((category) => ({
         path: category.path,
         element: <CategoryHubPage categoryId={category.categoryId} label={category.label} />,

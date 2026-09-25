@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import { SkipLink } from '../components/SkipLink/SkipLink'
 import { Header } from '../components/Header/Header'
 import { Breadcrumb } from '../components/Breadcrumb/Breadcrumb'
@@ -16,21 +16,37 @@ export function RootLayout() {
   const mainRef = useRef<HTMLElement>(null)
   useRouteTransitionEffects(mainRef)
 
+  /**
+   * The cinematic landing is a full-bleed document with its own navigation,
+   * its own heading and its own colophon. Layering the app header, breadcrumb
+   * and footer on top of it would give the visitor two of each, so the shell
+   * stands down for that one route. Every other route is untouched.
+   */
+  const isCinematicLanding = useLocation().pathname === '/'
+
   return (
     <div className={styles.appShell}>
       <DocumentTitle />
-      <SkipLink />
-      <Header />
-      <div className={styles.contentWrapper}>
-        <Breadcrumb />
+      {isCinematicLanding ? null : (
+        <>
+          <SkipLink />
+          <Header />
+        </>
+      )}
+      <div className={isCinematicLanding ? styles.bleedWrapper : styles.contentWrapper}>
+        {isCinematicLanding ? null : <Breadcrumb />}
         <main id="main-content" ref={mainRef} className={styles.main} tabIndex={-1}>
           <ErrorBoundary>
             <Outlet />
           </ErrorBoundary>
         </main>
       </div>
-      <Footer />
-      <ChatbotLauncher />
+      {isCinematicLanding ? null : (
+        <>
+          <Footer />
+          <ChatbotLauncher />
+        </>
+      )}
       <DummyAuthModal />
     </div>
   )

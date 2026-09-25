@@ -30,7 +30,7 @@ test.describe('Accessibility foundation', () => {
     // Tab-key simulation under default WebKit prefs is affected.
     test.skip(browserName === 'webkit', 'WebKit only tabs to links with Full Keyboard Access on')
 
-    await page.goto('/')
+    await page.goto('/#/anime')
     await page.keyboard.press('Tab')
     const skipLink = page.getByRole('link', { name: 'Skip to content' })
     await expect(skipLink).toBeFocused()

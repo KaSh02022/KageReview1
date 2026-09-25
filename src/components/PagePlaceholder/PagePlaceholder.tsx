@@ -5,6 +5,14 @@ interface PagePlaceholderProps {
   title: string
   description: string
   children?: ReactNode
+  /**
+   * A cinematic header that carries the title and the intro copy itself.
+   *
+   * When supplied it replaces the plain `<h1>` + paragraph below rather than
+   * sitting above them, so the page keeps exactly one `<h1>` and the intro is
+   * never stated twice. Every other caller is unaffected.
+   */
+  hero?: ReactNode
 }
 
 /**
@@ -17,11 +25,15 @@ interface PagePlaceholderProps {
  * ever see. Those props were removed entirely rather than merely unset, so
  * they cannot be reintroduced by a future caller.
  */
-export function PagePlaceholder({ title, description, children }: PagePlaceholderProps) {
+export function PagePlaceholder({ title, description, children, hero }: PagePlaceholderProps) {
   return (
     <section className={styles.wrapper}>
-      <h1>{title}</h1>
-      <p className={styles.description}>{description}</p>
+      {hero ?? (
+        <>
+          <h1>{title}</h1>
+          <p className={styles.description}>{description}</p>
+        </>
+      )}
       {children}
     </section>
   )

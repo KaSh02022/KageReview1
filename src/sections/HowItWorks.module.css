@@ -1,0 +1,96 @@
+.section {
+  padding-block: var(--space-section);
+  border-top: 1px solid var(--color-border);
+}
+
+.header {
+  max-width: var(--reading-max-width);
+  margin-bottom: var(--space-2xl);
+}
+
+.eyebrow {
+  font: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary-on-tint);
+  margin: 0 0 var(--space-sm);
+}
+
+.title {
+  font: var(--font-h1);
+  margin: 0;
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-lg);
+  counter-reset: step;
+}
+
+.step {
+  display: block;
+}
+
+.stepInner {
+  position: relative;
+  height: 100%;
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  border-radius: var(--radius-large);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition: border-color var(--duration-slow) var(--easing-decelerate);
+}
+
+.stepInner:hover {
+  border-color: var(--color-border-strong);
+}
+
+/* The numeral is the visual weight of the card — oversized, low contrast,
+   sitting behind the text rather than competing with it. */
+.number {
+  position: absolute;
+  top: -0.22em;
+  right: 0.06em;
+  font: var(--font-display);
+  font-size: clamp(4.5rem, 3rem + 6vw, 7rem);
+  line-height: 1;
+  color: var(--color-text-primary);
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+}
+
+.stepTitle {
+  position: relative;
+  font: var(--font-h3);
+  margin: 0 0 var(--space-sm);
+}
+
+.stepBody {
+  position: relative;
+  font: var(--font-body-small);
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 34ch;
+}
+
+@media (max-width: 599px) {
+  .header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .stepInner {
+    padding: var(--space-lg) var(--space-md) var(--space-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stepInner {
+    transition: none;
+  }
+}

@@ -43,7 +43,7 @@ describe('Scroll and focus on route transition', () => {
   it('does not steal focus or force a scroll on the initial render', async () => {
     const scrollSpy = vi.spyOn(window, 'scrollTo')
     render(<RouterProvider router={router} />)
-    await screen.findByRole('heading', { name: 'Explore fandoms' })
+    await screen.findByTestId('kage-stage')
 
     expect(scrollSpy).not.toHaveBeenCalled()
     expect(document.activeElement).toBe(document.body)
@@ -52,7 +52,7 @@ describe('Scroll and focus on route transition', () => {
 
   it('scrolls to top and moves focus to main content on a subsequent navigation', async () => {
     render(<RouterProvider router={router} />)
-    await screen.findByRole('heading', { name: 'Explore fandoms' })
+    await screen.findByTestId('kage-stage')
 
     const scrollSpy = vi.spyOn(window, 'scrollTo')
     await router.navigate('/anime')

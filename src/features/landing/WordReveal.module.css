@@ -1,0 +1,40 @@
+.heading {
+  /* Masks are inline-block, so the heading needs to lay them out as text. */
+  display: block;
+}
+
+.mask {
+  display: inline-block;
+  overflow: hidden;
+  /* Without this the descenders of the last line are clipped by the mask. */
+  padding-bottom: 0.08em;
+  vertical-align: bottom;
+}
+
+.word {
+  display: inline-block;
+  transform: translate3d(0, 110%, 0);
+  opacity: 0;
+  transition:
+    transform var(--duration-cinematic) var(--easing-decelerate),
+    opacity var(--duration-cinematic) var(--easing-decelerate);
+  transition-delay: var(--word-delay, 0ms);
+  will-change: transform;
+}
+
+.revealed .word {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  /* Released once the word has arrived: a heading can be a dozen words, and
+     holding the hint would leave a composited layer per word for the life of
+     the page. */
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}

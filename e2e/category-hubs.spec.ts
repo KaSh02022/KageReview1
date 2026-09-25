@@ -245,10 +245,18 @@ test.describe('Category hubs — accessibility', () => {
 
   test('category identity is available as text, not colour alone', async ({ page }) => {
     await page.goto('/#/comics')
-    // The accent colour is decorative; the name, motif, and franchise must be readable.
+    // The accent colour is decorative; the category must be identifiable from
+    // text alone. Two independent signals are asserted: the name and the
+    // franchise.
+    //
+    // `visualMotif` used to be the third. The cinematic hero drops it by
+    // design (D-055): "Halftone dots and ink-bleed shadows" is art direction
+    // written to brief an image generator, not something a reader can use.
+    // The guarantee this test exists for is unchanged — identity is still
+    // carried by text, and by more than one piece of it.
     await expect(page.getByRole('heading', { level: 1, name: 'Comics' })).toBeVisible()
-    await expect(page.getByText(/halftone dots/i)).toBeVisible()
     await expect(page.getByText(/Ironclad Vanguard/i).first()).toBeVisible()
+    await expect(page.getByText(/panels, ink, and legends/i).first()).toBeVisible()
   })
 })
 

@@ -1,0 +1,221 @@
+.section {
+  position: relative;
+}
+
+.panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(82vh, 720px);
+  display: grid;
+  align-items: center;
+  padding-block: clamp(var(--space-2xl), 12vh, 160px);
+  padding-inline: var(--space-page-gutter);
+}
+
+/* Dissolves into the page at both ends, exactly as the chapters do, so the
+   closing shot arrives out of the last one instead of starting on a line. */
+.panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, var(--color-bg) 0%, transparent 18%),
+    linear-gradient(to top, var(--color-bg) 0%, transparent 14%);
+}
+
+/* ---------- backdrop ---------- */
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.45;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(110% 80% at 74% 50%, transparent 0%, rgba(11, 14, 23, 0.5) 52%, rgba(11, 14, 23, 0.9) 100%),
+    linear-gradient(to right, var(--color-bg) 4%, rgba(11, 14, 23, 0.72) 46%, rgba(11, 14, 23, 0.45) 100%);
+}
+
+/* The universe motif, reduced to a single slowly rotating ring. */
+.motif {
+  position: absolute;
+  top: 50%;
+  left: 72%;
+  width: min(520px, 60%);
+  aspect-ratio: 1;
+  margin: calc(min(520px, 60%) / -2) 0 0 calc(min(520px, 60%) / -2);
+  border: 1px solid color-mix(in srgb, var(--color-secondary) 28%, transparent);
+  border-radius: 42%;
+  opacity: 0.5;
+  animation: motifTurn 48s linear infinite;
+  will-change: transform;
+}
+
+@keyframes motifTurn {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- content ---------- */
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  max-width: 52ch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.title {
+  font: var(--font-display);
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  margin: 0;
+}
+
+.body {
+  font: var(--font-body);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  /* Left-aligned with the rest of the closing block, which is now editorial
+     rather than a centred panel. */
+  justify-content: flex-start;
+  margin-top: var(--space-lg);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 48px;
+  padding: 0 var(--space-xl);
+  border-radius: var(--radius-pill);
+  font: var(--font-button);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition:
+    transform var(--duration-normal) var(--easing-standard),
+    box-shadow var(--duration-normal) var(--easing-standard),
+    background-color var(--duration-normal) var(--easing-standard),
+    border-color var(--duration-normal) var(--easing-standard);
+}
+
+.ctaPrimary {
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+}
+
+.ctaPrimary:hover,
+.ctaPrimary:focus-visible {
+  background: var(--color-primary-hover);
+  transform: translate3d(0, -2px, 0);
+  box-shadow: var(--glow-primary);
+}
+
+.ctaGhost {
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+  background: rgba(11, 14, 23, 0.55);
+}
+
+.ctaGhost:hover,
+.ctaGhost:focus-visible {
+  border-color: var(--color-primary);
+  transform: translate3d(0, -2px, 0);
+}
+
+.cta:active {
+  transform: translate3d(0, 0, 0);
+}
+
+.ctaArrow {
+  transition: transform var(--duration-normal) var(--easing-standard);
+}
+
+.ctaPrimary:hover .ctaArrow,
+.ctaPrimary:focus-visible .ctaArrow {
+  transform: translate3d(4px, 0, 0);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 599px) {
+  .panel {
+    min-height: 280px;
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .actions {
+    flex-direction: column;
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .cta {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .motif {
+    animation: none;
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    transform: none;
+  }
+
+  .ctaPrimary:hover .ctaArrow,
+  .ctaPrimary:focus-visible .ctaArrow {
+    transform: none;
+  }
+}
+
+/* ---------- chapter rail clearance ---------- */
+
+@media (min-width: 600px) {
+  .panel {
+    padding-right: calc(var(--space-page-gutter) + 56px);
+  }
+}
+
+@media (max-width: 599px) {
+  .panel {
+    min-height: min(76vh, 560px);
+  }
+
+  .motif {
+    left: 50%;
+    opacity: 0.3;
+  }
+}

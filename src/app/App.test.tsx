@@ -18,7 +18,12 @@ describe('App routing (Phase 1 foundation)', () => {
 
   it('boots and renders the home page at the root route', async () => {
     render(<RouterProvider router={router} />)
-    expect(await screen.findByRole('heading', { name: /explore fandoms/i })).toBeInTheDocument()
+    // The root route is the cinematic landing, whose content is an authored
+    // document booted into the page at runtime. The assertion is unchanged in
+    // substance — the root route renders a real page, not a blank screen —
+    // but its marker is the stage rather than a heading the React landing
+    // used to own.
+    expect(await screen.findByTestId('kage-stage')).toBeInTheDocument()
   })
 
   it('navigates to every primary route and renders a real page (not a blank screen)', async () => {

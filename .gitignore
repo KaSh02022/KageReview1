@@ -40,3 +40,10 @@ pnpm-debug.log*
 
 # Vite
 .vite/
+
+# Gemini master/source assets — frozen local masters
+_gemini_batch_01/
+_gemini_batch_02/
+
+# Gemini master PNGs — runtime uses WebP renditions
+public/assets/gemini/*.png

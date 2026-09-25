@@ -1,87 +1,323 @@
+/**
+ * The global bar, built to the landing's visual language (`--chrome-*` in
+ * tokens.css) rather than to its own private values.
+ *
+ * Restraint is the point: the header supports the hero, it does not compete
+ * with it. Legibility of the navigation outranks the effect — the accent never
+ * touches text colour, the glow is a hairline rather than a halo, and the
+ * surface stays opaque enough that hero art behind it can never pull link
+ * contrast down.
+ */
 .header {
   position: sticky;
   top: 0;
   z-index: 800;
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+  isolation: isolate;
+  background: var(--chrome-glass-solid);
+  border-bottom: 1px solid var(--chrome-hairline);
+  transition:
+    background-color var(--duration-slow) var(--easing-standard),
+    border-color var(--duration-slow) var(--easing-standard),
+    box-shadow var(--duration-slow) var(--easing-standard);
 }
 
-.topRow {
-  display: flex;
-  flex-wrap: wrap;
+/* A very faint wash of the active world's colour, drifting from the side the
+   category art sits on. Purely atmospheric — it carries no information, and it
+   is deliberately weak enough not to tint the artwork underneath. */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 180% at 88% 0%,
+    rgba(var(--header-accent, 124, 141, 255), 0.11) 0%,
+    transparent 62%
+  );
+  transition: background var(--duration-slow) var(--easing-standard);
+}
+
+/* The luminous edge. One pixel, brightest under the active category. */
+.header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(var(--header-accent, 124, 141, 255), 0.45) 28%,
+    rgba(var(--header-accent, 124, 141, 255), 0.75) 50%,
+    rgba(var(--header-accent, 124, 141, 255), 0.45) 72%,
+    transparent 100%
+  );
+}
+
+/* Over artwork the bar goes translucent so the hero reads through it; the
+   blur keeps the type legible against whatever is passing underneath. On a
+   Category or Explore hero that matters from the first pixel, which is why
+   the treatment is not gated on scroll for those variants. */
+.header[data-variant='category'],
+.header[data-variant='explore'] {
+  background: var(--chrome-glass);
+  backdrop-filter: var(--chrome-blur);
+  -webkit-backdrop-filter: var(--chrome-blur);
+}
+
+.headerScrolled {
+  background: var(--chrome-glass-solid);
+  backdrop-filter: var(--chrome-blur);
+  -webkit-backdrop-filter: var(--chrome-blur);
+  box-shadow:
+    var(--shadow-card),
+    0 1px 28px -14px rgba(var(--header-accent, 124, 141, 255), 0.45);
+}
+
+/*
+  Four regions on one row, in explicit tracks rather than `space-between`, so
+  each keeps a stable position as its contents change width. The navigation
+  takes the flexible middle; `minmax(0, 1fr)` lets it shrink rather than push
+  the account controls off the end.
+*/
+.bar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
   align-items: center;
-  gap: var(--space-sm) var(--space-md);
-  padding-top: var(--space-sm);
-  padding-bottom: var(--space-sm);
+  column-gap: var(--chrome-gap);
+  min-height: var(--chrome-bar-h);
 }
 
-.logo {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-lg);
-  font-weight: 700;
+/* ---------------------------------------------------------------- brand */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  line-height: 1;
   text-decoration: none;
   color: var(--color-text-primary);
   white-space: nowrap;
 }
 
+.brand b {
+  font-family: var(--font-family-display);
+  font-size: var(--chrome-brand-size);
+  font-weight: 500;
+  letter-spacing: var(--chrome-brand-track);
+  text-transform: uppercase;
+}
+
+.brand i {
+  font-style: normal;
+  font-size: var(--chrome-eyebrow-size);
+  letter-spacing: var(--chrome-eyebrow-track);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ----------------------------------------------------------- navigation */
+.primaryNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.65rem, 1.5vw, 2rem);
+  min-width: 0;
+}
+
+.navLink {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: var(--chrome-label-size);
+  font-weight: 500;
+  letter-spacing: var(--chrome-label-track);
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: var(--space-xs) 0;
+  transition: color var(--duration-fast) var(--easing-standard);
+}
+
+/* The active indicator is a drawn underline rather than a static border or a
+   filled block, so moving between categories reads as the bar following you.
+   Scale rather than width keeps it on the compositor. */
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgb(var(--header-accent, 124, 141, 255));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-slow) var(--easing-decelerate);
+}
+
+.navLink:hover {
+  color: var(--color-text-primary);
+}
+
+.navLink:hover::after {
+  transform: scaleX(0.45);
+  opacity: 0.6;
+}
+
+.navLink[aria-current='page'] {
+  color: var(--color-text-primary);
+}
+
+.navLink[aria-current='page']::after {
+  transform: scaleX(1);
+  box-shadow: 0 0 10px -1px rgba(var(--header-accent, 124, 141, 255), 0.75);
+}
+
+/* --------------------------------------------------------------- search */
+.searchSlot {
+  display: flex;
+  justify-content: flex-end;
+  width: clamp(190px, 17vw, 280px);
+}
+
+/* The field is a quiet glass slot, not a filled control. In the app's default
+   styling the submit button is a saturated primary block, which made it the
+   brightest object in the bar — louder than the hero and fighting the category
+   accent. Search is a utility here, so both the field and its button are
+   toned down to the chrome's own register. The accent appears on focus, where
+   it carries information, and nowhere else. */
+.searchSlot :global(input),
+.searchPanel :global(input) {
+  font-size: var(--font-size-sm);
+  background: rgba(243, 245, 251, 0.05);
+  border: 1px solid var(--chrome-hairline);
+  color: var(--color-text-primary);
+}
+
+.searchSlot :global(input::placeholder),
+.searchPanel :global(input::placeholder) {
+  color: var(--color-text-muted);
+}
+
+.searchSlot :global(input:focus-visible),
+.searchPanel :global(input:focus-visible) {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.searchSlot :global(button),
+.searchPanel :global(button) {
+  background: none;
+  border: 1px solid var(--chrome-hairline);
+  color: var(--color-text-secondary);
+  box-shadow: none;
+}
+
+.searchSlot :global(button:hover),
+.searchPanel :global(button:hover) {
+  background: rgba(243, 245, 251, 0.07);
+  border-color: rgba(var(--header-accent, 124, 141, 255), 0.7);
+  color: var(--color-text-primary);
+}
+
+.searchToggle,
 .mobileNavToggle {
   display: none;
 }
 
-.searchSlot {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+.searchPanel {
+  padding-bottom: var(--space-sm);
 }
 
-.utilityBar {
+/* -------------------------------------------------------------- account */
+.account {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
-}
-
-.metaGroup {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 .iconLink {
   position: relative;
   text-decoration: none;
-  font-size: var(--font-size-lg);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
+  font-size: var(--chrome-label-size);
+  font-weight: 500;
+  letter-spacing: var(--chrome-label-track);
+  text-transform: uppercase;
+  white-space: nowrap;
   display: inline-flex;
+  align-items: center;
+  padding: var(--space-xs) var(--space-sm);
+  transition: color var(--duration-fast) var(--easing-standard);
+}
+
+.iconLink:hover,
+.iconLink[aria-current='page'] {
+  color: var(--color-text-primary);
+}
+
+.iconLink:focus-visible {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 2px;
 }
 
 .badge {
   position: absolute;
-  top: -6px;
-  right: -10px;
+  top: -4px;
+  right: -8px;
 }
 
-.categoryNav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm) var(--space-lg);
-  padding-bottom: var(--space-md);
+/* Log in reads as text, Sign up as a ghost outline: a difference in emphasis
+   only. Neither is a saturated block — the hero is the focal point, not the
+   bar. */
+.textAction,
+.ghostAction {
+  font-size: var(--chrome-label-size);
+  font-weight: 500;
+  letter-spacing: var(--chrome-label-track);
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard);
 }
 
-.categoryLink {
-  text-decoration: none;
-  color: var(--color-text-muted);
-  font: var(--font-body-small);
-  padding: var(--space-xs) 0;
-  border-bottom: 2px solid transparent;
+.textAction {
+  background: none;
+  border: 0;
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--color-text-secondary);
 }
 
-.categoryLink:hover {
+.textAction:hover {
   color: var(--color-text-primary);
 }
 
-.categoryLink[aria-current='page'] {
+.ghostAction {
+  background: none;
+  border: 1px solid var(--chrome-hairline);
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 0.85rem;
   color: var(--color-text-primary);
-  border-bottom-color: var(--color-primary);
+}
+
+.ghostAction:hover {
+  border-color: rgba(var(--header-accent, 124, 141, 255), 0.75);
+}
+
+.textAction:focus-visible,
+.ghostAction:focus-visible,
+.searchToggle:focus-visible {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------- drawer */
+.drawerScope {
+  display: contents;
 }
 
 .drawerNav {
@@ -90,44 +326,114 @@
   gap: var(--space-xs);
 }
 
-.drawerNav .categoryLink {
+.drawerNav .navLink {
+  /* A comfortable touch target, and wide enough to hit without precision. */
   padding: var(--space-sm) 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
   border-bottom: 1px solid var(--color-border);
+}
+
+.drawerHeading {
+  margin: var(--space-lg) 0 var(--space-xs);
+  font-size: var(--chrome-eyebrow-size);
+  letter-spacing: var(--chrome-eyebrow-track);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
 }
 
 /*
   Canonical breakpoint (tablet/desktop boundary — docs/04_DESIGN_SYSTEM.md
   §2b, matches src/styles/breakpoints.ts `tabletMax`/`desktopMin`). Both
   mobile and tablet get the drawer nav; only desktop+ gets the inline bar.
+
+  Below it the row becomes `brand | search | menu`: the inline field would
+  either force the bar to wrap or squeeze the brand, so it collapses to a
+  control that opens a full-width row underneath.
 */
-@media (max-width: 1023px) {
-  .mobileNavToggle {
-    display: inline-flex;
-  }
+/*
+  MEASURED DEFECT (1024x768): brand, seven links, a 190px field and the account
+  controls do not fit. The grid let the navigation shrink, but its links are
+  `nowrap`, so they overflowed their track and painted over their neighbours —
+  "FANDOMVERSE" ran into "ANIME" and the search field clipped "MANGA".
 
+  The field is what has to give: it is a utility, the navigation is not. Below
+  1280 it collapses to the same control the phone uses, which returns roughly
+  200px to the row and lets all seven worlds stay legible.
+*/
+@media (max-width: 1279px) {
   .searchSlot {
-    order: 3;
-    flex-basis: 100%;
+    display: none;
   }
 
-  .categoryNav {
-    display: none;
+  .searchToggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    background: none;
+    border: 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-lg);
+    cursor: pointer;
   }
 }
 
-/*
-  Canonical mobile boundary (docs/04_DESIGN_SYSTEM.md §2a). The visitor
-  counter and clock are secondary/decorative (FR-041/FR-042 don't require
-  them on every viewport) — hiding them at the mobile tier reclaims space
-  for the essential icons/auth control instead of letting the utility bar
-  force horizontal overflow (found via e2e/responsive.spec.ts, D-023).
-*/
-@media (max-width: 599px) {
-  .metaGroup {
+@media (max-width: 1023px) {
+  .bar {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+  }
+
+  .primaryNav,
+  .account {
     display: none;
   }
 
-  .utilityBar {
-    gap: var(--space-sm);
+  .searchToggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Touch target, not just an icon. */
+    min-width: 44px;
+    min-height: 44px;
+    background: none;
+    border: 0;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+  }
+
+  .mobileNavToggle {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Between 1024 and 1279 every region is present but the space is tight, so
+   the brand drops its second line and the tracking closes up rather than
+   letting the navigation wrap. */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .brand i {
+    display: none;
+  }
+
+  .navLink {
+    letter-spacing: 0.12em;
+  }
+
+  .textAction {
+    padding: var(--space-xs);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .header::before,
+  .navLink,
+  .navLink::after {
+    transition: none;
   }
 }

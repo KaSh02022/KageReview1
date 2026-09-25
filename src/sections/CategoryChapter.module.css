@@ -1,0 +1,394 @@
+.chapter {
+  /* Taller than the viewport: the extra height IS the travel time through
+     this chapter. The stage below sticks for its whole length, so the shot
+     holds instead of cutting. */
+  min-height: 210vh;
+  position: relative;
+
+  /* The one number every layer in this chapter derives from. `0` when this
+     chapter is centred, negative while it approaches, positive once past.
+     `--chapter-progress` is written to an ancestor once per frame. */
+  --local: calc(var(--chapter-progress, 0) - var(--chapter-i, 0));
+}
+
+.chapter:focus {
+  outline: none;
+}
+
+.stage {
+  position: sticky;
+  /* Pinned below the sticky site header, and sized to what is actually
+     visible, so the composition centres in the frame the reader sees. */
+  top: var(--header-h, 0px);
+  height: calc(100vh - var(--header-h, 0px));
+  /* Small viewports report 100vh as the *largest* height, so the bottom of
+     a composition can sit under the browser chrome. `dvh` tracks the real
+     visible box where supported. */
+  height: calc(100dvh - var(--header-h, 0px));
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+  isolation: isolate;
+}
+
+/* ---------- layer 1 · the world plate ---------- */
+
+.plate {
+  position: absolute;
+  inset: -8% 0 -8%;
+  z-index: 0;
+  transform: translate3d(0, calc(var(--local) * -5vh), 0);
+}
+
+.plateImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Pushed back behind the haze; the figure and type carry the contrast. */
+  opacity: 0.5;
+}
+
+/* ---------- layer 2 · depth haze ---------- */
+
+.haze {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(
+      120% 80% at 72% 55%,
+      rgba(var(--accent-rgb), 0.16) 0%,
+      transparent 58%
+    ),
+    linear-gradient(
+      to right,
+      var(--color-bg) 0%,
+      rgba(11, 14, 23, 0.86) 38%,
+      rgba(11, 14, 23, 0.45) 100%
+    );
+}
+
+/* ---------- layer 3 · the lead ---------- */
+
+.figure {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  width: min(46%, 660px);
+  height: 92%;
+  transform: translate3d(0, calc(var(--local) * -12vh), 0);
+  /* No `will-change` here, deliberately. With seven chapters it promoted
+     fourteen permanent composited layers on top of the sticky stages and the
+     full-viewport atmosphere canvas, and under that pressure Chromium stopped
+     rasterising some of them: the element kept its geometry, its opacity and
+     its decoded image, and painted nothing. Characters vanished mid-scroll on
+     a 375px phone while every automated check still passed. The transforms
+     are scroll-driven and perform fine without the hint. */
+  /* The top feather lives on the wrapper, and the side feather on the image,
+     so each element carries exactly ONE mask layer. Stacking both onto the
+     image needed `mask-composite`, whose legacy `-webkit-` form erased the
+     whole figure at any breakpoint that reduced it to a single layer. */
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 15%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 15%);
+}
+
+.figureImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 12%;
+  /* Feathered into the scene instead of sitting on it as a rectangle —
+     this is what stops the lead reading as a card pasted on a background.
+     Deliberately ONE mask layer and no `mask-composite`: the legacy
+     `-webkit-mask-composite: source-in` intersects a single layer with an
+     empty accumulated mask, which erased the whole figure wherever a
+     breakpoint reduced the layer count to one. The top edge needs no mask
+     of its own — the stage's `.edges` overlay already fades it out. */
+  mask-image: linear-gradient(to left, #000 54%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, #000 54%, transparent 100%);
+}
+
+/* ---------- layer 4 · foreground ---------- */
+
+.foreground {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  transform: translate3d(0, calc(var(--local) * 7vh), 0);
+  background: linear-gradient(to top, var(--color-bg) 0%, transparent 26%);
+}
+
+/* Both ends of the shot dissolve into the page background. Without this the
+   stage meets the section above it on a hard horizontal line, which reads as
+   a cut — the one thing a continuous world must not do. Not part of
+   `.foreground`, because that layer parallaxes and these edges must not. */
+.edges {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, var(--color-bg) 0%, transparent 16%),
+    linear-gradient(to top, var(--color-bg) 0%, transparent 12%);
+}
+
+/* ---------- layer 5 · type ---------- */
+
+.content {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  width: min(52ch, 52%);
+  padding-inline: var(--space-page-gutter, clamp(16px, 5vw, 96px));
+  /* Type drifts slower than the art it sits in front of — a foreground
+     element that moved with the plate would flatten the depth. */
+  transform: translate3d(0, calc(var(--local) * -3vh), 0);
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgb(var(--accent-rgb));
+}
+
+.number {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.rule {
+  display: block;
+  width: clamp(28px, 6vw, 72px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.franchise {
+  color: var(--color-text-secondary);
+  letter-spacing: 0.14em;
+}
+
+.title {
+  font: var(--font-display, var(--font-h1));
+  font-size: clamp(2.75rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.tagline {
+  font: var(--font-h3);
+  font-weight: 400;
+  color: rgb(var(--accent-rgb));
+  margin: 0;
+}
+
+.description {
+  font: var(--font-body);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.lead {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0;
+  font: var(--font-body-small);
+}
+
+.leadLabel {
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-text-muted);
+}
+
+.leadName {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.leadRole {
+  color: var(--color-text-muted);
+}
+
+/* ---------- CTA ---------- */
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(var(--accent-rgb), 0.45);
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--color-text-primary);
+  font: var(--font-label);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition:
+    background-color var(--duration-slow) var(--easing-decelerate),
+    border-color var(--duration-slow) var(--easing-decelerate),
+    transform var(--duration-slow) var(--easing-decelerate);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: rgba(var(--accent-rgb), 0.18);
+  border-color: rgba(var(--accent-rgb), 0.8);
+  transform: translate3d(0, -2px, 0);
+}
+
+.cta:active {
+  transform: translate3d(0, 0, 0);
+}
+
+.ctaArrow {
+  transition: transform var(--duration-slow) var(--easing-decelerate);
+}
+
+.cta:hover .ctaArrow,
+.cta:focus-visible .ctaArrow {
+  transform: translate3d(5px, 0, 0);
+}
+
+/* ---------- responsive ---------- */
+
+/* Tablet: the figure loses the width to stand beside the type, so it moves
+   behind it and the type takes the full measure. */
+@media (max-width: 1023px) {
+  .chapter {
+    min-height: 180vh;
+  }
+
+  .content {
+    width: min(58ch, 88%);
+  }
+
+  .figure {
+    width: 62%;
+    opacity: 0.55;
+  }
+}
+
+/* Phone: a different composition, not a smaller one. The lead becomes the
+   backdrop, the type sits on a solid base, and the parallax throw is cut —
+   a 12vh translate on a 844px screen is a lurch, not a drift. */
+@media (max-width: 599px) {
+  .chapter {
+    min-height: 155vh;
+  }
+
+  .stage {
+    align-items: end;
+  }
+
+  .content {
+    width: 100%;
+    gap: var(--space-sm);
+    padding-bottom: clamp(var(--space-xl), 12vh, 120px);
+    transform: none;
+  }
+
+  .title {
+    font-size: clamp(2.25rem, 13vw, 3.5rem);
+  }
+
+  .description {
+    font: var(--font-body-small);
+    color: var(--color-text-muted);
+    max-width: none;
+  }
+
+  .figure {
+    width: 100%;
+    height: 66%;
+    /* Clear of the site header, which would otherwise crop the lead's head. */
+    top: clamp(48px, 11vh, 96px);
+    bottom: auto;
+    /* A softer top feather here: the phone composition starts the lead near
+       the top of the stage, so a 15% fade would eat her face. */
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 7%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 7%);
+    /* Raised from 0.45: on a phone the lead sits inside the stage's top edge
+       fade as well as the haze, and at 0.45 the two together washed her out
+       of the composition entirely. */
+    opacity: 0.62;
+    transform: translate3d(0, calc(var(--local) * -4vh), 0);
+  }
+
+  /* A shorter top fade here, for the same reason — 16% of a phone stage is
+     most of the lead's head. */
+  .edges {
+    background:
+      linear-gradient(to bottom, var(--color-bg) 0%, transparent 9%),
+      linear-gradient(to top, var(--color-bg) 0%, transparent 12%);
+  }
+
+  .figureImage {
+    object-position: 50% 10%;
+    mask-image: linear-gradient(to top, transparent 2%, #000 44%);
+    -webkit-mask-image: linear-gradient(to top, transparent 2%, #000 44%);
+  }
+
+  .haze {
+    background: linear-gradient(
+      to top,
+      var(--color-bg) 26%,
+      rgba(11, 14, 23, 0.82) 58%,
+      rgba(11, 14, 23, 0.5) 100%
+    );
+  }
+
+  .plate {
+    transform: none;
+  }
+
+  .foreground {
+    transform: none;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+/* Every layer keeps its composed position; only the travel is removed.
+   Nothing here hides content — the chapter reads identically, it just does
+   not move as the page scrolls. */
+@media (prefers-reduced-motion: reduce) {
+  .plate,
+  .figure,
+  .foreground,
+  .content {
+    transform: none;
+  }
+
+  .cta,
+  .ctaArrow {
+    transition: none;
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    transform: none;
+  }
+
+  .cta:hover .ctaArrow,
+  .cta:focus-visible .ctaArrow {
+    transform: none;
+  }
+}

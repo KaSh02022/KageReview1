@@ -1,0 +1,27 @@
+/**
+ * The field spans exactly the landing stage and clips to it. Without the
+ * wrapper, a sticky canvas with a negative bottom margin went on painting
+ * past the end of the landing and over the site footer.
+ */
+.field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.canvas {
+  position: sticky;
+  top: 0;
+  display: block;
+  width: 100%;
+  /* Sticky rather than fixed so it travels with the reader but stays inside
+     the landing. The negative margin keeps it out of the flow. */
+  height: 100vh;
+  margin-bottom: -100vh;
+  pointer-events: none;
+  /* The field is an atmosphere, not a subject. Screen blending keeps it
+     reading as light in the air rather than as dots drawn on top. */
+  mix-blend-mode: screen;
+}

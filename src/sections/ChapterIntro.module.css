@@ -1,0 +1,204 @@
+.intro {
+  position: relative;
+  /* The threshold must fit between the sticky header and the fold, or its
+     scroll cue — the one thing telling the reader this page moves — lands
+     below it. */
+  min-height: calc(100vh - var(--header-h, 0px));
+  min-height: calc(100dvh - var(--header-h, 0px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(var(--space-lg), 4vh, 56px) clamp(var(--space-lg), 5vh, 64px);
+  --local: calc(var(--chapter-progress, 0) - 0);
+}
+
+.intro:focus {
+  outline: none;
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  /* Drifts up as the reader leaves, so the threshold recedes rather than
+     scrolling away as a flat block. */
+  transform: translate3d(0, calc(var(--local) * -6vh), 0);
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-primary-on-tint);
+}
+
+.number {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.rule {
+  display: block;
+  width: clamp(28px, 6vw, 72px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.markerLabel {
+  color: var(--color-text-muted);
+}
+
+.core {
+  width: 100%;
+  /* The threshold shares its fold with a marker, a statement and a scroll
+     cue, so the Core takes less height here than it does standalone. */
+  --core-height: min(44vh, 340px);
+  --core-min-height: 240px;
+}
+
+/* ---------- statement ---------- */
+
+.statement {
+  text-align: center;
+}
+
+.statementLead {
+  font: var(--font-h2);
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+  letter-spacing: 0.01em;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.statementWords {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  margin: var(--space-sm) 0 0;
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--color-text-muted);
+}
+
+/* ---------- scroll cue ---------- */
+
+/* In flow, at every width. Pinning it to the bottom edge looked tidier on a
+   tall viewport but collided with the statement above it whenever the fold
+   was short — first on a phone, then again at 1024x768. A cue that always
+   follows the statement cannot overlap it. */
+.cue {
+  align-self: center;
+  margin-top: clamp(var(--space-md), 3vh, var(--space-xl));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--color-text-muted);
+}
+
+.cueTrack {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(to bottom, currentColor, transparent);
+  opacity: 0.45;
+  overflow: hidden;
+}
+
+.cueDot {
+  position: absolute;
+  left: -1px;
+  width: 3px;
+  height: 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  animation: cueFall 2.6s var(--easing-standard) infinite;
+}
+
+@keyframes cueFall {
+  0% {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(58px);
+    opacity: 0;
+  }
+}
+
+/* ---------- responsive ---------- */
+
+/* The threshold is constrained by viewport HEIGHT, not width: a 1280x800 or
+   1024x768 desktop has less vertical room than a 768x1024 tablet. Sizing the
+   Core against the short fold is what keeps the statement and the scroll cue
+   — the two things that tell a visitor this page moves — above it. */
+@media (max-height: 860px) {
+  .core {
+    --core-height: min(34vh, 270px);
+    --core-min-height: 200px;
+  }
+}
+
+
+/* Tablet has far more vertical room than the desktop height allows for, and
+   at 340px the Core's orbit ring was clipped left and right while ~290px of
+   the fold sat empty below it. */
+@media (min-width: 600px) and (max-width: 1023px) {
+  .core {
+    --core-height: min(56vh, 520px);
+    --core-min-height: 320px;
+  }
+}
+
+
+@media (max-width: 599px) {
+  .intro {
+    padding-block: var(--space-lg) var(--space-xl);
+  }
+
+  .frame {
+    gap: var(--space-md);
+    transform: none;
+  }
+
+  .core {
+    --core-height: min(36vh, 260px);
+    --core-min-height: 200px;
+  }
+
+  .statementLead {
+    font-size: clamp(1.25rem, 6vw, 1.75rem);
+  }
+
+  .cueTrack {
+    height: 38px;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .frame {
+    transform: none;
+  }
+
+  .cueDot {
+    animation: none;
+    top: 8px;
+    opacity: 1;
+  }
+}

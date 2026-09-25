@@ -1,0 +1,153 @@
+.rail {
+  position: fixed;
+  right: clamp(12px, 2vw, 32px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  pointer-events: none;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item {
+  display: block;
+}
+
+.button {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 6px 8px;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-medium);
+  color: var(--color-text-muted);
+  font: var(--font-caption);
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition:
+    color var(--duration-slow) var(--easing-decelerate),
+    opacity var(--duration-slow) var(--easing-decelerate);
+}
+
+.number {
+  font-variant-numeric: tabular-nums;
+  /* Measured, not guessed: --color-text-muted on --color-bg is 8.89:1, and
+     opacity multiplies straight through it. 0.55 put these 12px numerals at
+     3.41:1, under the 4.5:1 WCAG AA minimum — an axe run caught it. 0.8
+     gives 6.04:1 and still reads as recessive next to the lit active entry,
+     which carries the accent colour and a longer tick. */
+  opacity: 0.8;
+  transition: opacity var(--duration-slow) var(--easing-decelerate);
+}
+
+/* The tick is the position indicator: short and dim when passing, long and
+   lit for the chapter being read. */
+.tick {
+  display: block;
+  width: 14px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+  transition:
+    width var(--duration-slow) var(--easing-decelerate),
+    background-color var(--duration-slow) var(--easing-decelerate),
+    opacity var(--duration-slow) var(--easing-decelerate);
+}
+
+/* The label is for screen readers and for hover; it does not sit in the
+   composition permanently, which would turn the rail into a sidebar. */
+.label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.button:hover .number,
+.button:focus-visible .number {
+  opacity: 1;
+}
+
+.button:hover .tick,
+.button:focus-visible .tick {
+  width: 26px;
+  opacity: 0.8;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.active {
+  color: var(--rail-accent, var(--color-text-primary));
+}
+
+.active .number {
+  opacity: 1;
+}
+
+.active .tick {
+  width: 34px;
+  opacity: 1;
+  background: var(--rail-accent, currentColor);
+}
+
+/* ---------- responsive ---------- */
+
+/* Below the desktop breakpoint the rail becomes a compact progress column:
+   ticks only, no numbers, so it never competes with the content for the
+   narrow gutter a phone has. */
+@media (max-width: 1023px) {
+  .rail {
+    right: 6px;
+  }
+
+  .number {
+    display: none;
+  }
+
+  .tick {
+    width: 10px;
+  }
+
+  .button:hover .tick,
+  .button:focus-visible .tick,
+  .active .tick {
+    width: 18px;
+  }
+}
+
+/* A coarse pointer has no hover, and a rail this small is not a touch
+   target worth 44px of the viewport edge — the page scrolls instead. */
+@media (max-width: 599px) {
+  .rail {
+    display: none;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .number,
+  .tick {
+    transition: none;
+  }
+}

@@ -1,0 +1,173 @@
+.section {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(var(--space-2xl), 16vh, 200px) clamp(var(--space-2xl), 9vh, 112px);
+  padding-inline: var(--space-page-gutter, clamp(16px, 5vw, 96px));
+  background: var(--color-bg);
+}
+
+.section:focus {
+  outline: none;
+}
+
+/* The section width belongs to the spectrum and the figures; the prose
+   inside it keeps its own reading measure, set per element below. A single
+   narrow wrapper would have clamped the spectrum to the paragraph column. */
+.inner {
+  max-width: min(1100px, 100%);
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--color-primary-on-tint);
+  margin-bottom: var(--space-md);
+}
+
+.rule {
+  display: block;
+  width: clamp(28px, 6vw, 64px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.title {
+  font: var(--font-display, var(--font-h1));
+  max-width: 20ch;
+  font-size: clamp(2.25rem, 5.4vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.body {
+  font: var(--font-body);
+  color: var(--color-text-secondary);
+  margin: var(--space-xl) 0 0;
+  max-width: 52ch;
+}
+
+/* ---------- the spectrum ---------- */
+
+.spectrum {
+  display: flex;
+  /* Escapes the reading measure: this band summarises all seven worlds, so
+     it belongs to the section width, not to the paragraph column. */
+  width: 100%;
+  margin-top: clamp(var(--space-2xl), 7vh, 80px);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.band {
+  position: relative;
+  flex: 1;
+  min-height: 56px;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-sm);
+  background: linear-gradient(
+    to top,
+    rgba(var(--accent-rgb), 0.9) 0%,
+    rgba(var(--accent-rgb), 0.28) 100%
+  );
+  transition: flex var(--duration-slow) var(--easing-decelerate);
+}
+
+.spectrum:hover .band {
+  flex: 0.85;
+}
+
+.spectrum .band:hover {
+  flex: 1.9;
+}
+
+.bandLabel {
+  font: var(--font-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  /* Against seven different accents at full strength, only the darkest ink
+     is legible on all of them. */
+  color: #0b0e17;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- figures ---------- */
+
+.figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(var(--space-xl), 6vw, 80px);
+  margin: clamp(var(--space-2xl), 7vh, 80px) 0 0;
+}
+
+.figure {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-xs);
+}
+
+.figureValue {
+  font: var(--font-h1);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1;
+  margin: 0;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.figureLabel {
+  font: var(--font-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-text-muted);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 767px) {
+  /* Seven labels cannot fit side by side at this width; the spectrum keeps
+     its colour but drops the words. */
+  .bandLabel {
+    display: none;
+  }
+
+  .band {
+    min-height: 40px;
+  }
+
+  .figures {
+    gap: var(--space-xl);
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .band {
+    transition: none;
+  }
+
+  .spectrum:hover .band,
+  .spectrum .band:hover {
+    flex: 1;
+  }
+}
+
+/* ---------- chapter rail clearance ---------- */
+
+/* The rail is fixed to the right edge from the tablet breakpoint up, and
+   these are the only two sections whose content reaches that far. */
+@media (min-width: 600px) {
+  .section {
+    padding-right: calc(var(--space-page-gutter) + 56px);
+  }
+}

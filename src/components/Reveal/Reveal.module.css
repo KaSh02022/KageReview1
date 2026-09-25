@@ -1,0 +1,25 @@
+.reveal {
+  --reveal-delay: 0ms;
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition:
+    opacity 700ms var(--easing-decelerate, cubic-bezier(0.16, 1, 0.3, 1)) var(--reveal-delay),
+    transform 700ms var(--easing-decelerate, cubic-bezier(0.16, 1, 0.3, 1)) var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+.revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  /* Dropped once revealed so long pages don't hold dozens of promoted layers. */
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}

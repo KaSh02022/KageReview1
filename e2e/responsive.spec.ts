@@ -37,6 +37,15 @@ for (const viewport of VIEWPORTS) {
   })
 }
 
+/**
+ * Where these tests start.
+ *
+ * This suite exercises the app shell — header, category nav, drawer, dialogs,
+ * skip link — not any particular page. It used to enter at `/` because that
+ * was the cheapest page carrying the chrome. `/` is now the cinematic
+ * landing, which deliberately stands the shell down, so these enter at a
+ * category hub instead. Every assertion is unchanged; only the door moved.
+ */
 test.describe('Mobile/tablet navigation drawer', () => {
   // Spread only the viewport/touch traits, not `defaultBrowserType` —
   // changing browser type isn't allowed inside a describe block (only at
@@ -48,25 +57,32 @@ test.describe('Mobile/tablet navigation drawer', () => {
   test('nav collapses into the drawer at the canonical breakpoint and the toggle is reachable', async ({
     page,
   }) => {
-    await page.goto('/')
+    await page.goto('/#/anime')
     await expect(page.getByRole('button', { name: 'Toggle navigation menu' })).toBeVisible()
     await expect(page.getByRole('navigation', { name: 'Fandom categories' })).toBeHidden()
   })
 
   test('opening the drawer causes no layout shift in the header', async ({ page }) => {
-    await page.goto('/')
-    const headerBoxBefore = await page.locator('header').boundingBox()
+    await page.goto('/#/anime')
+    // Several page-level components use a semantic <header> of their own —
+    // landing sections, and the category hub's hero — so a bare 'header'
+    // locator is ambiguous. The site header is the only one outside <main>.
+    // Role=banner would also select it, but the drawer is aria-modal, which
+    // takes the banner out of the a11y tree the moment it opens, and this
+    // test has to measure the header after that.
+    const siteHeader = page.locator('header:not(main header)')
+    const headerBoxBefore = await siteHeader.boundingBox()
 
     await page.getByRole('button', { name: 'Toggle navigation menu' }).click()
     await expect(page.getByRole('dialog', { name: 'Browse FandomVerse' })).toBeVisible()
 
-    const headerBoxAfter = await page.locator('header').boundingBox()
+    const headerBoxAfter = await siteHeader.boundingBox()
     expect(headerBoxAfter?.height).toBe(headerBoxBefore?.height)
     expect(headerBoxAfter?.width).toBe(headerBoxBefore?.width)
   })
 
   test('drawer is keyboard-dismissible with Escape and traps Tab focus', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/#/anime')
     await page.getByRole('button', { name: 'Toggle navigation menu' }).click()
     const drawer = page.getByRole('dialog', { name: 'Browse FandomVerse' })
     await expect(drawer).toBeVisible()
@@ -80,7 +96,7 @@ test.describe('Desktop navigation', () => {
   test.use({ viewport: { width: 1280, height: 800 } })
 
   test('inline category bar is visible and the mobile toggle is hidden', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/#/anime')
     await expect(page.getByRole('navigation', { name: 'Fandom categories' })).toBeVisible()
     await expect(page.getByRole('button', { name: 'Toggle navigation menu' })).toBeHidden()
   })

@@ -1,6 +1,27 @@
-.wrapper {
-  padding: var(--space-xl) 0;
+/**
+ * The landing escapes the app shell's centred container so its chapters can
+ * run full-bleed. `--viewport-w` is the document's clientWidth, written by
+ * useChapterProgress on measure — see the note there for why `100vw` is the
+ * wrong tool for this.
+ */
+.stage {
+  position: relative;
+  width: var(--viewport-w, 100%);
+  margin-inline: calc(50% - var(--viewport-w, 100%) / 2);
+  /* Chapters are sticky; an overflow value other than visible on an
+     ancestor would break every one of them. */
+  overflow: visible;
+}
+
+.flow {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3xl);
+}
+
+/* The closing CTA is full-bleed and sets its own gutter, matching the
+   chapters it follows. */
+.closing {
+  background: var(--color-bg);
 }

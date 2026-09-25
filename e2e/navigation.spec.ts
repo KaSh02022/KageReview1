@@ -3,12 +3,18 @@ import { test, expect } from '@playwright/test'
 test.describe('Navigation foundation', () => {
   test('home page loads with a real heading, not a blank screen', async ({ page }) => {
     await page.goto('/')
-    await expect(page.getByRole('heading', { name: 'FandomVerse' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Explore fandoms' })).toBeVisible()
+    // `/` is the cinematic landing. Same guarantee as before — the root route
+    // renders real content rather than a blank shell — read against the
+    // heading that route actually owns now.
+    await expect(page.getByRole('heading', { level: 1, name: /share a sky/i })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /^Gaming$/ })).toBeVisible()
   })
 
   test('navigating into a category hub works and updates the URL', async ({ page }) => {
-    await page.goto('/')
+    // Starts at another hub rather than `/`: this test exercises the app's
+    // category nav, and `/` is now the cinematic landing, which stands the
+    // app chrome down. Movies carries the same header. Assertions unchanged.
+    await page.goto('/#/movies')
 
     // On narrow viewports the category nav lives behind the hamburger
     // toggle (docs/03_UX_ARCHITECTURE.md §12); open it first if present.
