@@ -51,3 +51,8 @@ public/assets/gemini/*.png
 # FandomVerse merchandise production masters — raw art, not yet processed
 # into runtime WebP; mirrors the Gemini masters exclusion above.
 FandomVerse_Merchandise/
+
+# FandomVerse category-hub content source assets — raw source, already
+# copied into public/assets/generated/content/ (the runtime path that is
+# committed); mirrors the merchandise masters exclusion above.
+FandomVerse_Content_Assets/

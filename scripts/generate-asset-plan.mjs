@@ -441,7 +441,12 @@ const manifest = {
   imageClasses: IMAGE_CLASSES,
   tiers: TIERS,
   counts: {
-    currentProceduralAssets: 161,
+    // Was a hardcoded 161 — correct only by accident, since it happened to
+    // equal the sum below at the moment it was written and nothing had
+    // changed the tiers since. Adding real merchandise photography (Tier A)
+    // exposed it: assets.length moved to 189 but this literal did not.
+    // Computed now, so it can never go stale again.
+    currentProceduralAssets: approved.length + deferred.length + keptProcedural.length,
     approvedForGeneration: approved.length,
     deferredOptional: deferred.length,
     keptProcedural: keptProcedural.length,

@@ -218,7 +218,34 @@ This is what makes the "one universe, seven worlds" requirement structural rathe
 
 ### Section order
 
-Hero → Featured → Articles → Gallery → Characters → Events → Trailers → Upcoming Releases → Merchandise → Explore another world.
+Hero → Start here → Articles → Merchandise → Explore another world.
+
+**Simplified in two passes, both 2026-09-25**
+(docs/FANDOMVERSE_KAGE_LANDING_WORKLOG.md). The original nine-section order
+was Hero → Featured → Articles → Gallery → Characters → Events → Trailers →
+Upcoming Releases → Merchandise → Explore another world.
+
+1. **"Category Hub Visual Simplification"** removed Gallery, Trailers and
+   Upcoming Releases; all three rendered only procedural placeholder art
+   with no real per-item imagery, and Trailers/Releases duplicated the
+   dedicated `/trailers` and `/releases` Explore pages that already exist
+   site-wide. Merchandise was restructured to carry real product
+   photography (42 assets, 6 per category) and render as the page's visual
+   centerpiece: one spotlighted hero item, then the five products in a
+   larger grid than the other sections use.
+2. **"Category Hub Content Image Integration"** removed Characters and
+   Events once Featured (renamed "Start here") and Articles gained real
+   dedicated photography (21 assets, 3 per category, under
+   `public/assets/generated/content/`) instead of the same procedural
+   gradient-circle SVG generator every removed section shared — the extra
+   sections were no longer needed to fill the page.
+
+None of the five removed sections' datasets (`galleries.json`, trailer
+`media.json` entries, `releases.json`, `characters.json`, `events.json`)
+were touched by either pass, and character/event detail pages and routes
+still work — only this template's rendering of them changed. Coverage for
+those detail pages now lives in `e2e/deep-links.spec.ts` and
+`e2e/content-honesty.spec.ts` instead of this hub's own suite.
 
 Each section is a landmark `<section aria-labelledby>` pointing at its `SectionHeader` heading, so the hub is navigable by heading/landmark in a screen reader. Headings run h1 (category) → h2 (section) → h3 (card), with no skipped levels — asserted by an E2E test rather than by inspection, after the first implementation skipped h3 entirely.
 

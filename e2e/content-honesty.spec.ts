@@ -37,7 +37,11 @@ const ROUTES = [
   '/character/character-anime-kaida-nova',
   '/event/event-anime-starlit-ronin-convention',
   '/article/article-anime-why-the-ashen-reaches-feel-alive',
-  '/product/merch-anime-kaida-figure',
+  // Product id updated 2026-09-25: the placeholder catalogue this pointed at
+  // (merch-anime-kaida-figure) was replaced by real merchandise photography
+  // (docs/FANDOMVERSE_KAGE_LANDING_WORKLOG.md, Merchandise Asset Integration).
+  // The assertion below is unchanged — only the id moved.
+  '/product/anime-merch-01',
 ]
 
 /** Patterns that must never appear in text a visitor can read. */
@@ -97,7 +101,7 @@ test.describe('Content honesty — fiction is labelled as fiction', () => {
     const text = await visibleText(page, '/merchandise')
     expect(text).toMatch(/no checkout|cannot be bought|demo cart/i)
 
-    await page.goto('/#/product/merch-anime-kaida-figure')
+    await page.goto('/#/product/anime-merch-01')
     await expect(page.getByText(/no checkout, payment, or real purchase/i)).toBeVisible()
   })
 

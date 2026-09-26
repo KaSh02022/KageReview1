@@ -11,6 +11,7 @@ const DISCOVER_LINKS = [
   { to: '/trailers', label: 'Trailers' },
   { to: '/events', label: 'Events' },
   { to: '/merchandise', label: 'Merchandise' },
+  { to: '/quiz', label: 'Fandom Quiz' },
 ]
 
 /** About/Contact/Bookmarks, unchanged — the same destinations as before. */

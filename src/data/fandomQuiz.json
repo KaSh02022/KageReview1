@@ -1,0 +1,158 @@
+[
+  {
+    "id": "q01",
+    "question": "What kind of experience attracts you most?",
+    "options": [
+      { "id": "q01-a", "text": "Exploring expressive, emotionally charged worlds", "scores": { "anime": 3, "manga": 1 } },
+      { "id": "q01-b", "text": "Mastering hard challenges and outsmarting the odds", "scores": { "gaming": 3 } },
+      { "id": "q01-c", "text": "Getting swept up in a cinematic, atmospheric story", "scores": { "movies": 3 } },
+      { "id": "q01-d", "text": "Falling into a story that unfolds over many chapters", "scores": { "tv-shows": 3 } },
+      { "id": "q01-e", "text": "Losing yourself in music, performance and stage lights", "scores": { "kpop": 3 } },
+      { "id": "q01-f", "text": "Following bold heroes through illustrated adventures", "scores": { "comics": 3, "anime": 1 } },
+      { "id": "q01-g", "text": "Turning page after page through a richly drawn journey", "scores": { "manga": 3, "comics": 1 } }
+    ]
+  },
+  {
+    "id": "q02",
+    "question": "What type of story do you enjoy most?",
+    "options": [
+      { "id": "q02-a", "text": "A journey of self-discovery with real emotional stakes", "scores": { "anime": 3, "tv-shows": 1 } },
+      { "id": "q02-b", "text": "A high-stakes mission where every choice matters", "scores": { "gaming": 3, "movies": 1 } },
+      { "id": "q02-c", "text": "A tightly plotted mystery with a twist ending", "scores": { "movies": 3, "tv-shows": 1 } },
+      { "id": "q02-d", "text": "A slow-burn saga with characters who grow over time", "scores": { "tv-shows": 3, "manga": 1 } },
+      { "id": "q02-e", "text": "A story told through performance, rivalry and reinvention", "scores": { "kpop": 3 } },
+      { "id": "q02-f", "text": "A team of heroes standing against impossible odds", "scores": { "comics": 3, "gaming": 1 } },
+      { "id": "q02-g", "text": "A dark, atmospheric tale that unfolds volume by volume", "scores": { "manga": 3, "anime": 1 } }
+    ]
+  },
+  {
+    "id": "q03",
+    "question": "What would you rather do on a free evening?",
+    "options": [
+      { "id": "q03-a", "text": "Marathon an emotionally gripping series with vivid art", "scores": { "anime": 3 } },
+      { "id": "q03-b", "text": "Play through a session with friends", "scores": { "gaming": 3 } },
+      { "id": "q03-c", "text": "Watch a critically acclaimed film start to finish", "scores": { "movies": 3 } },
+      { "id": "q03-d", "text": "Binge a few episodes of a show everyone's talking about", "scores": { "tv-shows": 3 } },
+      { "id": "q03-e", "text": "Watch a live performance or stage-show highlight reel", "scores": { "kpop": 3, "movies": 1 } },
+      { "id": "q03-f", "text": "Read through a stack of comic issues", "scores": { "comics": 3 } },
+      { "id": "q03-g", "text": "Read several manga chapters in one sitting", "scores": { "manga": 3 } }
+    ]
+  },
+  {
+    "id": "q04",
+    "question": "Which atmosphere attracts you most?",
+    "options": [
+      { "id": "q04-a", "text": "Ember light and blade-sharp tension", "scores": { "anime": 3 } },
+      { "id": "q04-b", "text": "Neon-lit, high-tech and full of possibility", "scores": { "gaming": 3, "movies": 1 } },
+      { "id": "q04-c", "text": "Amber spotlight and film-grain mystery", "scores": { "movies": 3 } },
+      { "id": "q04-d", "text": "Quiet scanlines and secrets that unfold slowly", "scores": { "tv-shows": 3 } },
+      { "id": "q04-e", "text": "Magenta stage light and roaring crowds", "scores": { "kpop": 3 } },
+      { "id": "q04-f", "text": "Bold primary ink and halftone energy", "scores": { "comics": 3 } },
+      { "id": "q04-g", "text": "Monochrome panels with a single striking accent", "scores": { "manga": 3, "comics": 1 } }
+    ]
+  },
+  {
+    "id": "q05",
+    "question": "What type of character usually catches your attention?",
+    "options": [
+      { "id": "q05-a", "text": "The wanderer shaped by loss and quiet hope", "scores": { "anime": 3, "manga": 1 } },
+      { "id": "q05-b", "text": "The tactician who plans three steps ahead", "scores": { "gaming": 3 } },
+      { "id": "q05-c", "text": "The morally grey lead everyone's still debating", "scores": { "movies": 3, "tv-shows": 1 } },
+      { "id": "q05-d", "text": "The ensemble cast you grow to know over seasons", "scores": { "tv-shows": 3 } },
+      { "id": "q05-e", "text": "The performer who reinvents themselves every era", "scores": { "kpop": 3 } },
+      { "id": "q05-f", "text": "The reluctant hero who becomes a symbol", "scores": { "comics": 3 } },
+      { "id": "q05-g", "text": "The protagonist whose quiet resolve carries the story", "scores": { "manga": 3 } }
+    ]
+  },
+  {
+    "id": "q06",
+    "question": "What matters most in a fictional universe?",
+    "options": [
+      { "id": "q06-a", "text": "Emotion and heart behind every big moment", "scores": { "anime": 3 } },
+      { "id": "q06-b", "text": "Systems and mechanics that reward mastery", "scores": { "gaming": 3 } },
+      { "id": "q06-c", "text": "A vision realized with total craft", "scores": { "movies": 3 } },
+      { "id": "q06-d", "text": "Lore that rewards long-term attention", "scores": { "tv-shows": 3, "manga": 1 } },
+      { "id": "q06-e", "text": "A persona and identity built out loud", "scores": { "kpop": 3 } },
+      { "id": "q06-f", "text": "A legacy of heroes and stories that outlast one issue", "scores": { "comics": 3 } },
+      { "id": "q06-g", "text": "An atmosphere that lingers panel after panel", "scores": { "manga": 3 } }
+    ]
+  },
+  {
+    "id": "q07",
+    "question": "Which visual style do you prefer?",
+    "options": [
+      { "id": "q07-a", "text": "Expressive, dynamic character art", "scores": { "anime": 3 } },
+      { "id": "q07-b", "text": "Sleek, interface-driven visuals", "scores": { "gaming": 3 } },
+      { "id": "q07-c", "text": "Cinematic framing and lighting", "scores": { "movies": 3 } },
+      { "id": "q07-d", "text": "Grounded, naturalistic production design", "scores": { "tv-shows": 3 } },
+      { "id": "q07-e", "text": "Bold, glossy performance visuals", "scores": { "kpop": 3 } },
+      { "id": "q07-f", "text": "Punchy, high-contrast illustrated panels", "scores": { "comics": 3, "manga": 1 } },
+      { "id": "q07-g", "text": "Fine-lined, high-contrast sequential art", "scores": { "manga": 3, "comics": 1 } }
+    ]
+  },
+  {
+    "id": "q08",
+    "question": "What keeps you engaged with a series?",
+    "options": [
+      { "id": "q08-a", "text": "Characters whose feelings hit hard", "scores": { "anime": 3 } },
+      { "id": "q08-b", "text": "The next challenge to overcome", "scores": { "gaming": 3 } },
+      { "id": "q08-c", "text": "Wanting to know how it all resolves", "scores": { "movies": 3, "tv-shows": 1 } },
+      { "id": "q08-d", "text": "Watching relationships evolve episode to episode", "scores": { "tv-shows": 3 } },
+      { "id": "q08-e", "text": "Following an artist's era-to-era evolution", "scores": { "kpop": 3 } },
+      { "id": "q08-f", "text": "The next issue's cliffhanger", "scores": { "comics": 3 } },
+      { "id": "q08-g", "text": "The next chapter's reveal", "scores": { "manga": 3 } }
+    ]
+  },
+  {
+    "id": "q09",
+    "question": "Which experience would you most enjoy sharing with friends?",
+    "options": [
+      { "id": "q09-a", "text": "Recommending a series that made you feel everything", "scores": { "anime": 3 } },
+      { "id": "q09-b", "text": "Teaming up for a session together", "scores": { "gaming": 3 } },
+      { "id": "q09-c", "text": "A movie night with a story worth discussing after", "scores": { "movies": 3 } },
+      { "id": "q09-d", "text": "Theorizing together about where a show is headed", "scores": { "tv-shows": 3 } },
+      { "id": "q09-e", "text": "Going to a live show or stream party together", "scores": { "kpop": 3 } },
+      { "id": "q09-f", "text": "Trading favorite issues and fan art", "scores": { "comics": 3 } },
+      { "id": "q09-g", "text": "Passing along a manga you couldn't put down", "scores": { "manga": 3 } }
+    ]
+  },
+  {
+    "id": "q10",
+    "question": "Which type of fandom item would you most want to own?",
+    "options": [
+      { "id": "q10-a", "text": "An art print of your favorite character", "scores": { "anime": 3, "manga": 1 } },
+      { "id": "q10-b", "text": "Collector gear tied to your favorite world", "scores": { "gaming": 3 } },
+      { "id": "q10-c", "text": "A poster from a film you love", "scores": { "movies": 3 } },
+      { "id": "q10-d", "text": "A keepsake from a show's signature era", "scores": { "tv-shows": 3 } },
+      { "id": "q10-e", "text": "Merch tied to a performer or stage era", "scores": { "kpop": 3 } },
+      { "id": "q10-f", "text": "A collected volume of your favorite issues", "scores": { "comics": 3 } },
+      { "id": "q10-g", "text": "A boxed manga volume set", "scores": { "manga": 3 } }
+    ]
+  },
+  {
+    "id": "q11",
+    "question": "Which creative medium attracts you most?",
+    "options": [
+      { "id": "q11-a", "text": "Animation that moves like nothing else", "scores": { "anime": 3 } },
+      { "id": "q11-b", "text": "Interactive worlds you shape yourself", "scores": { "gaming": 3 } },
+      { "id": "q11-c", "text": "Filmmaking and cinematic craft", "scores": { "movies": 3 } },
+      { "id": "q11-d", "text": "Serialized television storytelling", "scores": { "tv-shows": 3 } },
+      { "id": "q11-e", "text": "Live performance and music production", "scores": { "kpop": 3 } },
+      { "id": "q11-f", "text": "Bold, Western-style illustrated storytelling", "scores": { "comics": 3 } },
+      { "id": "q11-g", "text": "Detailed, page-turning illustrated storytelling", "scores": { "manga": 3, "comics": 1 } }
+    ]
+  },
+  {
+    "id": "q12",
+    "question": "If you could enter one fictional entertainment world, which type would you choose?",
+    "options": [
+      { "id": "q12-a", "text": "A world where every character carries real heart", "scores": { "anime": 3 } },
+      { "id": "q12-b", "text": "A world you could actually explore and master", "scores": { "gaming": 3 } },
+      { "id": "q12-c", "text": "A world crafted like one unforgettable film", "scores": { "movies": 3 } },
+      { "id": "q12-d", "text": "A world with years of story still unfolding", "scores": { "tv-shows": 3 } },
+      { "id": "q12-e", "text": "A world built around music and performance", "scores": { "kpop": 3 } },
+      { "id": "q12-f", "text": "A world of larger-than-life illustrated heroes", "scores": { "comics": 3 } },
+      { "id": "q12-g", "text": "A world drawn in immersive, page-bound detail", "scores": { "manga": 3 } }
+    ]
+  }
+]

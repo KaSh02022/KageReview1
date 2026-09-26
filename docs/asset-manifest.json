@@ -47,10 +47,10 @@
     "D": "DO NOT REPLACE (architectural — must stay procedural)"
   },
   "counts": {
-    "currentProceduralAssets": 161,
+    "currentProceduralAssets": 189,
     "approvedForGeneration": 70,
     "deferredOptional": 56,
-    "keptProcedural": 35
+    "keptProcedural": 63
   },
   "assets": [
     {
@@ -902,7 +902,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-anime-why-the-ashen-reaches-feel-alive detail hero",
-      "replaces": "/assets/generated/article/article-anime-why-the-ashen-reaches-feel-alive.svg"
+      "replaces": "/assets/generated/content/anime-start-here.png"
     },
     {
       "assetId": "GEM-article-anime-ozrens-broken-oath",
@@ -913,7 +913,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-anime-ozrens-broken-oath detail hero",
-      "replaces": "/assets/generated/article/article-anime-ozrens-broken-oath.svg"
+      "replaces": "/assets/generated/content/anime-article-01.png"
     },
     {
       "assetId": "GEM-article-anime-community-fan-map-project",
@@ -924,7 +924,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-anime-community-fan-map-project detail hero",
-      "replaces": "/assets/generated/article/article-anime-community-fan-map-project.svg"
+      "replaces": "/assets/generated/content/anime-article-02.png"
     },
     {
       "assetId": "GEM-article-gaming-squad-tactics",
@@ -935,7 +935,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-gaming-squad-tactics detail hero",
-      "replaces": "/assets/generated/article/article-gaming-squad-tactics.svg"
+      "replaces": "/assets/generated/content/gaming-start-here.png"
     },
     {
       "assetId": "GEM-article-gaming-aria-9-nobody-trusts",
@@ -946,7 +946,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-gaming-aria-9-nobody-trusts detail hero",
-      "replaces": "/assets/generated/article/article-gaming-aria-9-nobody-trusts.svg"
+      "replaces": "/assets/generated/content/gaming-article-01.png"
     },
     {
       "assetId": "GEM-article-gaming-tournament-meta-shift",
@@ -957,7 +957,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-gaming-tournament-meta-shift detail hero",
-      "replaces": "/assets/generated/article/article-gaming-tournament-meta-shift.svg"
+      "replaces": "/assets/generated/content/gaming-article-02.png"
     },
     {
       "assetId": "GEM-article-movies-noir-built-for-streaming",
@@ -968,7 +968,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-movies-noir-built-for-streaming detail hero",
-      "replaces": "/assets/generated/article/article-movies-noir-built-for-streaming.svg"
+      "replaces": "/assets/generated/content/movies-start-here.png"
     },
     {
       "assetId": "GEM-article-movies-who-is-julian-moreau",
@@ -979,7 +979,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-movies-who-is-julian-moreau detail hero",
-      "replaces": "/assets/generated/article/article-movies-who-is-julian-moreau.svg"
+      "replaces": "/assets/generated/content/movies-article-01.png"
     },
     {
       "assetId": "GEM-article-movies-meridian-visual-language",
@@ -990,7 +990,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-movies-meridian-visual-language detail hero",
-      "replaces": "/assets/generated/article/article-movies-meridian-visual-language.svg"
+      "replaces": "/assets/generated/content/movies-article-02.png"
     },
     {
       "assetId": "GEM-article-tv-shows-what-the-fragments-are-hiding",
@@ -1001,7 +1001,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-tv-shows-what-the-fragments-are-hiding detail hero",
-      "replaces": "/assets/generated/article/article-tv-shows-what-the-fragments-are-hiding.svg"
+      "replaces": "/assets/generated/content/tvshows-start-here.png"
     },
     {
       "assetId": "GEM-article-tv-shows-nova-reyes-leak",
@@ -1012,7 +1012,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-tv-shows-nova-reyes-leak detail hero",
-      "replaces": "/assets/generated/article/article-tv-shows-nova-reyes-leak.svg"
+      "replaces": "/assets/generated/content/tvshows-article-01.png"
     },
     {
       "assetId": "GEM-article-tv-shows-fragment-translation-primer",
@@ -1023,7 +1023,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-tv-shows-fragment-translation-primer detail hero",
-      "replaces": "/assets/generated/article/article-tv-shows-fragment-translation-primer.svg"
+      "replaces": "/assets/generated/content/tvshows-article-02.png"
     },
     {
       "assetId": "GEM-article-kpop-five-voices-one-stage",
@@ -1034,7 +1034,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-kpop-five-voices-one-stage detail hero",
-      "replaces": "/assets/generated/article/article-kpop-five-voices-one-stage.svg"
+      "replaces": "/assets/generated/content/kpop-start-here.png"
     },
     {
       "assetId": "GEM-article-kpop-yuris-lyrics-decoded",
@@ -1045,7 +1045,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-kpop-yuris-lyrics-decoded detail hero",
-      "replaces": "/assets/generated/article/article-kpop-yuris-lyrics-decoded.svg"
+      "replaces": "/assets/generated/content/kpop-article-01.png"
     },
     {
       "assetId": "GEM-article-kpop-lunaris-stage-evolution",
@@ -1056,7 +1056,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-kpop-lunaris-stage-evolution detail hero",
-      "replaces": "/assets/generated/article/article-kpop-lunaris-stage-evolution.svg"
+      "replaces": "/assets/generated/content/kpop-article-02.png"
     },
     {
       "assetId": "GEM-article-comics-armor-grief-and-the-next-generation",
@@ -1067,7 +1067,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-comics-armor-grief-and-the-next-generation detail hero",
-      "replaces": "/assets/generated/article/article-comics-armor-grief-and-the-next-generation.svg"
+      "replaces": "/assets/generated/content/comics-start-here.png"
     },
     {
       "assetId": "GEM-article-comics-the-cartographers-endgame",
@@ -1078,7 +1078,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-comics-the-cartographers-endgame detail hero",
-      "replaces": "/assets/generated/article/article-comics-the-cartographers-endgame.svg"
+      "replaces": "/assets/generated/content/comics-article-01.png"
     },
     {
       "assetId": "GEM-article-comics-vanguard-armor-design",
@@ -1089,7 +1089,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-comics-vanguard-armor-design detail hero",
-      "replaces": "/assets/generated/article/article-comics-vanguard-armor-design.svg"
+      "replaces": "/assets/generated/content/comics-article-02.png"
     },
     {
       "assetId": "GEM-article-manga-binding-grief-and-what-stays",
@@ -1100,7 +1100,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-manga-binding-grief-and-what-stays detail hero",
-      "replaces": "/assets/generated/article/article-manga-binding-grief-and-what-stays.svg"
+      "replaces": "/assets/generated/content/manga-start-here.png"
     },
     {
       "assetId": "GEM-article-manga-tsukiko-the-spirit-who-remembers",
@@ -1111,7 +1111,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-manga-tsukiko-the-spirit-who-remembers detail hero",
-      "replaces": "/assets/generated/article/article-manga-tsukiko-the-spirit-who-remembers.svg"
+      "replaces": "/assets/generated/content/manga-article-01.png"
     },
     {
       "assetId": "GEM-article-manga-requiem-paper-motif",
@@ -1122,7 +1122,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Article card + /article/article-manga-requiem-paper-motif detail hero",
-      "replaces": "/assets/generated/article/article-manga-requiem-paper-motif.svg"
+      "replaces": "/assets/generated/content/manga-article-02.png"
     },
     {
       "assetId": "GEM-trailer-anime-teaser-trailer",
@@ -1510,157 +1510,465 @@
       "replaces": "/assets/generated/release/release-manga-volume-6-limited.svg"
     },
     {
-      "assetId": "PROC-merch-anime-blade-bearer-tee",
-      "filename": "/assets/generated/merch/merch-anime-blade-bearer-tee.svg",
+      "assetId": "PROC-merch-anime-hero",
+      "filename": "/assets/generated/merch/anime-merch-hero.png",
       "categoryId": "anime",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-anime-blade-bearer-tee",
+      "intendedPage": "Merchandise section + /product/anime-merch-hero",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-anime-kaida-figure",
-      "filename": "/assets/generated/merch/merch-anime-kaida-figure.svg",
+      "assetId": "PROC-merch-anime-01",
+      "filename": "/assets/generated/merch/anime-merch-01.png",
       "categoryId": "anime",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-anime-kaida-figure",
+      "intendedPage": "Merchandise section + /product/anime-merch-01",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-gaming-squad-hoodie",
-      "filename": "/assets/generated/merch/merch-gaming-squad-hoodie.svg",
+      "assetId": "PROC-merch-anime-02",
+      "filename": "/assets/generated/merch/anime-merch-02.png",
+      "categoryId": "anime",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/anime-merch-02",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-anime-03",
+      "filename": "/assets/generated/merch/anime-merch-03.png",
+      "categoryId": "anime",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/anime-merch-03",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-anime-04",
+      "filename": "/assets/generated/merch/anime-merch-04.png",
+      "categoryId": "anime",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/anime-merch-04",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-anime-05",
+      "filename": "/assets/generated/merch/anime-merch-05.png",
+      "categoryId": "anime",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/anime-merch-05",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-gaming-hero",
+      "filename": "/assets/generated/merch/gaming-merch-hero.png",
       "categoryId": "gaming",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-gaming-squad-hoodie",
+      "intendedPage": "Merchandise section + /product/gaming-merch-hero",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-gaming-aria-pin-set",
-      "filename": "/assets/generated/merch/merch-gaming-aria-pin-set.svg",
+      "assetId": "PROC-merch-gaming-01",
+      "filename": "/assets/generated/merch/gaming-merch-01.png",
       "categoryId": "gaming",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-gaming-aria-pin-set",
+      "intendedPage": "Merchandise section + /product/gaming-merch-01",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-movies-noir-poster",
-      "filename": "/assets/generated/merch/merch-movies-noir-poster.svg",
+      "assetId": "PROC-merch-gaming-02",
+      "filename": "/assets/generated/merch/gaming-merch-02.png",
+      "categoryId": "gaming",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/gaming-merch-02",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-gaming-03",
+      "filename": "/assets/generated/merch/gaming-merch-03.png",
+      "categoryId": "gaming",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/gaming-merch-03",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-gaming-04",
+      "filename": "/assets/generated/merch/gaming-merch-04.png",
+      "categoryId": "gaming",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/gaming-merch-04",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-gaming-05",
+      "filename": "/assets/generated/merch/gaming-merch-05.png",
+      "categoryId": "gaming",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/gaming-merch-05",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-movies-hero",
+      "filename": "/assets/generated/merch/movies-merch-hero.png",
       "categoryId": "movies",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-movies-noir-poster",
+      "intendedPage": "Merchandise section + /product/movies-merch-hero",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-movies-trench-coat",
-      "filename": "/assets/generated/merch/merch-movies-trench-coat.svg",
+      "assetId": "PROC-merch-movies-01",
+      "filename": "/assets/generated/merch/movies-merch-01.png",
       "categoryId": "movies",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-movies-trench-coat",
+      "intendedPage": "Merchandise section + /product/movies-merch-01",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-tv-shows-fragment-replica",
-      "filename": "/assets/generated/merch/merch-tv-shows-fragment-replica.svg",
+      "assetId": "PROC-merch-movies-02",
+      "filename": "/assets/generated/merch/movies-merch-02.png",
+      "categoryId": "movies",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/movies-merch-02",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-movies-03",
+      "filename": "/assets/generated/merch/movies-merch-03.png",
+      "categoryId": "movies",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/movies-merch-03",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-movies-04",
+      "filename": "/assets/generated/merch/movies-merch-04.png",
+      "categoryId": "movies",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/movies-merch-04",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-movies-05",
+      "filename": "/assets/generated/merch/movies-merch-05.png",
+      "categoryId": "movies",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/movies-merch-05",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-tvshows-hero",
+      "filename": "/assets/generated/merch/tvshows-merch-hero.png",
       "categoryId": "tv-shows",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-tv-shows-fragment-replica",
+      "intendedPage": "Merchandise section + /product/tvshows-merch-hero",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-tv-shows-researcher-tee",
-      "filename": "/assets/generated/merch/merch-tv-shows-researcher-tee.svg",
+      "assetId": "PROC-merch-tvshows-01",
+      "filename": "/assets/generated/merch/tvshows-merch-01.png",
       "categoryId": "tv-shows",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-tv-shows-researcher-tee",
+      "intendedPage": "Merchandise section + /product/tvshows-merch-01",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-kpop-lightstick",
-      "filename": "/assets/generated/merch/merch-kpop-lightstick.svg",
+      "assetId": "PROC-merch-tvshows-02",
+      "filename": "/assets/generated/merch/tvshows-merch-02.png",
+      "categoryId": "tv-shows",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/tvshows-merch-02",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-tvshows-03",
+      "filename": "/assets/generated/merch/tvshows-merch-03.png",
+      "categoryId": "tv-shows",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/tvshows-merch-03",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-tvshows-04",
+      "filename": "/assets/generated/merch/tvshows-merch-04.png",
+      "categoryId": "tv-shows",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/tvshows-merch-04",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-tvshows-05",
+      "filename": "/assets/generated/merch/tvshows-merch-05.png",
+      "categoryId": "tv-shows",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/tvshows-merch-05",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-kpop-hero",
+      "filename": "/assets/generated/merch/kpop-merch-hero.png",
       "categoryId": "kpop",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-kpop-lightstick",
+      "intendedPage": "Merchandise section + /product/kpop-merch-hero",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-kpop-afterglow-hoodie",
-      "filename": "/assets/generated/merch/merch-kpop-afterglow-hoodie.svg",
+      "assetId": "PROC-merch-kpop-01",
+      "filename": "/assets/generated/merch/kpop-merch-01.png",
       "categoryId": "kpop",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-kpop-afterglow-hoodie",
+      "intendedPage": "Merchandise section + /product/kpop-merch-01",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-comics-aegis-figure",
-      "filename": "/assets/generated/merch/merch-comics-aegis-figure.svg",
+      "assetId": "PROC-merch-kpop-02",
+      "filename": "/assets/generated/merch/kpop-merch-02.png",
+      "categoryId": "kpop",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/kpop-merch-02",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-kpop-03",
+      "filename": "/assets/generated/merch/kpop-merch-03.png",
+      "categoryId": "kpop",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/kpop-merch-03",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-kpop-04",
+      "filename": "/assets/generated/merch/kpop-merch-04.png",
+      "categoryId": "kpop",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/kpop-merch-04",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-kpop-05",
+      "filename": "/assets/generated/merch/kpop-merch-05.png",
+      "categoryId": "kpop",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/kpop-merch-05",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-comics-hero",
+      "filename": "/assets/generated/merch/comics-merch-hero.png",
       "categoryId": "comics",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-comics-aegis-figure",
+      "intendedPage": "Merchandise section + /product/comics-merch-hero",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-comics-team-tee",
-      "filename": "/assets/generated/merch/merch-comics-team-tee.svg",
+      "assetId": "PROC-merch-comics-01",
+      "filename": "/assets/generated/merch/comics-merch-01.png",
       "categoryId": "comics",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-comics-team-tee",
+      "intendedPage": "Merchandise section + /product/comics-merch-01",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-manga-talisman-bookmarks",
-      "filename": "/assets/generated/merch/merch-manga-talisman-bookmarks.svg",
+      "assetId": "PROC-merch-comics-02",
+      "filename": "/assets/generated/merch/comics-merch-02.png",
+      "categoryId": "comics",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/comics-merch-02",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-comics-03",
+      "filename": "/assets/generated/merch/comics-merch-03.png",
+      "categoryId": "comics",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/comics-merch-03",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-comics-04",
+      "filename": "/assets/generated/merch/comics-merch-04.png",
+      "categoryId": "comics",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/comics-merch-04",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-comics-05",
+      "filename": "/assets/generated/merch/comics-merch-05.png",
+      "categoryId": "comics",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/comics-merch-05",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-manga-hero",
+      "filename": "/assets/generated/merch/manga-merch-hero.png",
       "categoryId": "manga",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-manga-talisman-bookmarks",
+      "intendedPage": "Merchandise section + /product/manga-merch-hero",
       "replaces": null
     },
     {
-      "assetId": "PROC-merch-manga-ink-wash-tee",
-      "filename": "/assets/generated/merch/merch-manga-ink-wash-tee.svg",
+      "assetId": "PROC-merch-manga-01",
+      "filename": "/assets/generated/merch/manga-merch-01.png",
       "categoryId": "manga",
       "assetType": "merchandise-artwork",
       "imageClass": "CLASS-CARD",
       "tier": "A",
       "priority": "—",
-      "intendedPage": "Merchandise section + /product/merch-manga-ink-wash-tee",
+      "intendedPage": "Merchandise section + /product/manga-merch-01",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-manga-02",
+      "filename": "/assets/generated/merch/manga-merch-02.png",
+      "categoryId": "manga",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/manga-merch-02",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-manga-03",
+      "filename": "/assets/generated/merch/manga-merch-03.png",
+      "categoryId": "manga",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/manga-merch-03",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-manga-04",
+      "filename": "/assets/generated/merch/manga-merch-04.png",
+      "categoryId": "manga",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/manga-merch-04",
+      "replaces": null
+    },
+    {
+      "assetId": "PROC-merch-manga-05",
+      "filename": "/assets/generated/merch/manga-merch-05.png",
+      "categoryId": "manga",
+      "assetType": "merchandise-artwork",
+      "imageClass": "CLASS-CARD",
+      "tier": "A",
+      "priority": "—",
+      "intendedPage": "Merchandise section + /product/manga-merch-05",
       "replaces": null
     },
     {

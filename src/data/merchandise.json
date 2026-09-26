@@ -1,268 +1,800 @@
 [
   {
-    "id": "merch-anime-blade-bearer-tee",
+    "id": "anime-merch-hero",
     "categoryId": "anime",
-    "name": "Starlit Ronin Blade-Bearer Tee",
+    "name": "Starlit Ronin Featured Artbook",
     "image": {
-      "src": "/assets/generated/merch/merch-anime-blade-bearer-tee.svg",
-      "alt": "Product artwork for Starlit Ronin Blade-Bearer Tee",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/merch/anime-merch-hero.png",
+      "alt": "Featured merchandise artwork for Starlit Ronin Featured Artbook",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
     },
-    "priceRangeMin": 22,
-    "priceRangeMax": 28,
+    "priceRangeMin": 35,
+    "priceRangeMax": 50,
     "currency": "USD",
-    "description": "A graphic tee featuring Kaida’s celestial blade motif.",
+    "description": "A featured artbook collecting key Starlit Ronin illustrations.",
     "tags": [
       "anime",
-      "shirt"
+      "featured"
     ],
     "status": "available"
   },
   {
-    "id": "merch-anime-kaida-figure",
+    "id": "anime-merch-01",
     "categoryId": "anime",
-    "name": "Kaida Nova Collectible Figure",
+    "name": "Collector Hoodie",
     "image": {
-      "src": "/assets/generated/merch/merch-anime-kaida-figure.svg",
-      "alt": "Product artwork for Kaida Nova Collectible Figure",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
-    },
-    "priceRangeMin": 35,
-    "priceRangeMax": 45,
-    "currency": "USD",
-    "description": "A collectible figure of Kaida Nova in her signature pose.",
-    "tags": [
-      "anime",
-      "pin"
-    ],
-    "status": "coming-soon"
-  },
-  {
-    "id": "merch-gaming-squad-hoodie",
-    "categoryId": "gaming",
-    "name": "Ashfall Protocol Squad Hoodie",
-    "image": {
-      "src": "/assets/generated/merch/merch-gaming-squad-hoodie.svg",
-      "alt": "Product artwork for Ashfall Protocol Squad Hoodie",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/merch/anime-merch-01.png",
+      "alt": "Product artwork for Collector Hoodie",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
     },
     "priceRangeMin": 45,
     "priceRangeMax": 55,
     "currency": "USD",
-    "description": "A hoodie featuring Kestrel's squad insignia.",
+    "description": "A hoodie carrying Starlit Ronin colours and emblem.",
     "tags": [
-      "gaming",
-      "shirt"
+      "anime",
+      "hoodie"
     ],
     "status": "available"
   },
   {
-    "id": "merch-gaming-aria-pin-set",
-    "categoryId": "gaming",
-    "name": "ARIA-9 Enamel Pin Set",
+    "id": "anime-merch-02",
+    "categoryId": "anime",
+    "name": "Acrylic Collector Stand",
     "image": {
-      "src": "/assets/generated/merch/merch-gaming-aria-pin-set.svg",
-      "alt": "Product artwork for ARIA-9 Enamel Pin Set",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/merch/anime-merch-02.png",
+      "alt": "Product artwork for Acrylic Collector Stand",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
     },
     "priceRangeMin": 15,
-    "priceRangeMax": 20,
+    "priceRangeMax": 22,
     "currency": "USD",
-    "description": "A set of enamel pins inspired by ARIA-9’s interface icons.",
+    "description": "A display-stand piece featuring Starlit Ronin artwork.",
     "tags": [
-      "gaming",
-      "pin"
+      "anime",
+      "figure"
     ],
     "status": "available"
   },
   {
-    "id": "merch-movies-noir-poster",
-    "categoryId": "movies",
-    "name": "Midnight Meridian Noir Poster Print",
+    "id": "anime-merch-03",
+    "categoryId": "anime",
+    "name": "Collector Art Poster",
     "image": {
-      "src": "/assets/generated/merch/merch-movies-noir-poster.svg",
-      "alt": "Product artwork for Midnight Meridian Noir Poster Print",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/merch/anime-merch-03.png",
+      "alt": "Product artwork for Collector Art Poster",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
     },
-    "priceRangeMin": 18,
-    "priceRangeMax": 24,
+    "priceRangeMin": 15,
+    "priceRangeMax": 25,
     "currency": "USD",
-    "description": "A noir-styled poster print inspired by the Meridian skyline.",
+    "description": "A print of key Starlit Ronin artwork for wall display.",
     "tags": [
-      "movies",
+      "anime",
       "poster"
     ],
     "status": "available"
   },
   {
-    "id": "merch-movies-trench-coat",
-    "categoryId": "movies",
-    "name": "Meridian Trench Coat Replica",
+    "id": "anime-merch-04",
+    "categoryId": "anime",
+    "name": "Enamel Pin Set",
     "image": {
-      "src": "/assets/generated/merch/merch-movies-trench-coat.svg",
-      "alt": "Product artwork for Meridian Trench Coat Replica",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/merch/anime-merch-04.png",
+      "alt": "Product artwork for Enamel Pin Set",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
     },
-    "priceRangeMin": 90,
-    "priceRangeMax": 120,
+    "priceRangeMin": 12,
+    "priceRangeMax": 20,
     "currency": "USD",
-    "description": "A replica of Lena Cross's signature coat.",
+    "description": "A set of enamel pins themed around Starlit Ronin.",
     "tags": [
-      "movies",
-      "shirt"
+      "anime",
+      "pin"
     ],
-    "status": "coming-soon"
+    "status": "available"
   },
   {
-    "id": "merch-tv-shows-fragment-replica",
-    "categoryId": "tv-shows",
-    "name": "Glass Archive Fragment Replica",
+    "id": "anime-merch-05",
+    "categoryId": "anime",
+    "name": "Collector Tote Bag",
     "image": {
-      "src": "/assets/generated/merch/merch-tv-shows-fragment-replica.svg",
-      "alt": "Product artwork for Glass Archive Fragment Replica",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/merch/anime-merch-05.png",
+      "alt": "Product artwork for Collector Tote Bag",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 18,
+    "priceRangeMax": 25,
+    "currency": "USD",
+    "description": "A canvas tote printed with Starlit Ronin artwork.",
+    "tags": [
+      "anime",
+      "bag"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "gaming-merch-hero",
+    "categoryId": "gaming",
+    "name": "Ashfall Protocol Tactical Desk Mat",
+    "image": {
+      "src": "/assets/generated/merch/gaming-merch-hero.png",
+      "alt": "Featured merchandise artwork for Ashfall Protocol Tactical Desk Mat",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
     },
     "priceRangeMin": 25,
-    "priceRangeMax": 32,
+    "priceRangeMax": 35,
     "currency": "USD",
-    "description": "A replica prop of a recovered Archive fragment.",
+    "description": "A featured, full-desk mat themed around Ashfall Protocol.",
     "tags": [
-      "tv-shows",
-      "disc"
+      "gaming",
+      "featured"
     ],
     "status": "available"
   },
   {
-    "id": "merch-tv-shows-researcher-tee",
-    "categoryId": "tv-shows",
-    "name": "Archive Researcher Tee",
+    "id": "gaming-merch-01",
+    "categoryId": "gaming",
+    "name": "Gaming Collector Hoodie",
     "image": {
-      "src": "/assets/generated/merch/merch-tv-shows-researcher-tee.svg",
-      "alt": "Product artwork for Archive Researcher Tee",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/merch/gaming-merch-01.png",
+      "alt": "Product artwork for Gaming Collector Hoodie",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
     },
-    "priceRangeMin": 22,
+    "priceRangeMin": 45,
+    "priceRangeMax": 55,
+    "currency": "USD",
+    "description": "A hoodie featuring the Ashfall Protocol squad insignia.",
+    "tags": [
+      "gaming",
+      "hoodie"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "gaming-merch-02",
+    "categoryId": "gaming",
+    "name": "Extended Gaming Mouse Pad",
+    "image": {
+      "src": "/assets/generated/merch/gaming-merch-02.png",
+      "alt": "Product artwork for Extended Gaming Mouse Pad",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 18,
     "priceRangeMax": 28,
     "currency": "USD",
-    "description": "A tee styled after the Archive's field-researcher uniform.",
+    "description": "A desk-length mouse pad themed around Ashfall Protocol.",
     "tags": [
-      "tv-shows",
-      "shirt"
+      "gaming",
+      "accessory"
     ],
     "status": "available"
   },
   {
-    "id": "merch-kpop-lightstick",
+    "id": "gaming-merch-03",
+    "categoryId": "gaming",
+    "name": "Collector Figure",
+    "image": {
+      "src": "/assets/generated/merch/gaming-merch-03.png",
+      "alt": "Product artwork for Collector Figure",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 35,
+    "priceRangeMax": 45,
+    "currency": "USD",
+    "description": "A collectible figure of an Ashfall Protocol squad member.",
+    "tags": [
+      "gaming",
+      "figure"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "gaming-merch-04",
+    "categoryId": "gaming",
+    "name": "Keycap & Keychain Set",
+    "image": {
+      "src": "/assets/generated/merch/gaming-merch-04.png",
+      "alt": "Product artwork for Keycap & Keychain Set",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 12,
+    "priceRangeMax": 20,
+    "currency": "USD",
+    "description": "A matching keycap and keychain set for Ashfall Protocol fans.",
+    "tags": [
+      "gaming",
+      "accessory"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "gaming-merch-05",
+    "categoryId": "gaming",
+    "name": "Gaming Collector Mug",
+    "image": {
+      "src": "/assets/generated/merch/gaming-merch-05.png",
+      "alt": "Product artwork for Gaming Collector Mug",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 12,
+    "priceRangeMax": 18,
+    "currency": "USD",
+    "description": "A mug carrying Ashfall Protocol artwork.",
+    "tags": [
+      "gaming",
+      "mug"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "movies-merch-hero",
+    "categoryId": "movies",
+    "name": "Midnight Meridian Featured Poster",
+    "image": {
+      "src": "/assets/generated/merch/movies-merch-hero.png",
+      "alt": "Featured merchandise artwork for Midnight Meridian Featured Poster",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 20,
+    "priceRangeMax": 30,
+    "currency": "USD",
+    "description": "A featured art poster for the Midnight Meridian series.",
+    "tags": [
+      "movies",
+      "featured"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "movies-merch-01",
+    "categoryId": "movies",
+    "name": "Collector Clapperboard",
+    "image": {
+      "src": "/assets/generated/merch/movies-merch-01.png",
+      "alt": "Product artwork for Collector Clapperboard",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 25,
+    "priceRangeMax": 35,
+    "currency": "USD",
+    "description": "A display clapperboard themed around Midnight Meridian.",
+    "tags": [
+      "movies",
+      "collectible"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "movies-merch-02",
+    "categoryId": "movies",
+    "name": "Filmmaker Collector Notebook",
+    "image": {
+      "src": "/assets/generated/merch/movies-merch-02.png",
+      "alt": "Product artwork for Filmmaker Collector Notebook",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 10,
+    "priceRangeMax": 16,
+    "currency": "USD",
+    "description": "A notebook styled after the Midnight Meridian production.",
+    "tags": [
+      "movies",
+      "notebook"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "movies-merch-03",
+    "categoryId": "movies",
+    "name": "Collector Mug",
+    "image": {
+      "src": "/assets/generated/merch/movies-merch-03.png",
+      "alt": "Product artwork for Collector Mug",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 12,
+    "priceRangeMax": 18,
+    "currency": "USD",
+    "description": "A mug featuring Midnight Meridian artwork.",
+    "tags": [
+      "movies",
+      "mug"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "movies-merch-04",
+    "categoryId": "movies",
+    "name": "Movie Collector Hoodie",
+    "image": {
+      "src": "/assets/generated/merch/movies-merch-04.png",
+      "alt": "Product artwork for Movie Collector Hoodie",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 45,
+    "priceRangeMax": 55,
+    "currency": "USD",
+    "description": "A hoodie carrying the Midnight Meridian title treatment.",
+    "tags": [
+      "movies",
+      "hoodie"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "movies-merch-05",
+    "categoryId": "movies",
+    "name": "Director Collector Cap",
+    "image": {
+      "src": "/assets/generated/merch/movies-merch-05.png",
+      "alt": "Product artwork for Director Collector Cap",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 20,
+    "priceRangeMax": 28,
+    "currency": "USD",
+    "description": "A cap styled after the Midnight Meridian production crew.",
+    "tags": [
+      "movies",
+      "cap"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "tvshows-merch-hero",
+    "categoryId": "tv-shows",
+    "name": "Glass Archive Featured Notebook",
+    "image": {
+      "src": "/assets/generated/merch/tvshows-merch-hero.png",
+      "alt": "Featured merchandise artwork for Glass Archive Featured Notebook",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 15,
+    "priceRangeMax": 22,
+    "currency": "USD",
+    "description": "A featured notebook styled after The Glass Archive.",
+    "tags": [
+      "tv-shows",
+      "featured"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "tvshows-merch-01",
+    "categoryId": "tv-shows",
+    "name": "Archive Collector Hoodie",
+    "image": {
+      "src": "/assets/generated/merch/tvshows-merch-01.png",
+      "alt": "Product artwork for Archive Collector Hoodie",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 45,
+    "priceRangeMax": 55,
+    "currency": "USD",
+    "description": "A hoodie carrying The Glass Archive emblem.",
+    "tags": [
+      "tv-shows",
+      "hoodie"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "tvshows-merch-02",
+    "categoryId": "tv-shows",
+    "name": "Archive Collector Tote",
+    "image": {
+      "src": "/assets/generated/merch/tvshows-merch-02.png",
+      "alt": "Product artwork for Archive Collector Tote",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 18,
+    "priceRangeMax": 25,
+    "currency": "USD",
+    "description": "A tote bag printed with The Glass Archive artwork.",
+    "tags": [
+      "tv-shows",
+      "bag"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "tvshows-merch-03",
+    "categoryId": "tv-shows",
+    "name": "Collector Art Poster",
+    "image": {
+      "src": "/assets/generated/merch/tvshows-merch-03.png",
+      "alt": "Product artwork for Collector Art Poster",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 15,
+    "priceRangeMax": 25,
+    "currency": "USD",
+    "description": "A print of key art from The Glass Archive.",
+    "tags": [
+      "tv-shows",
+      "poster"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "tvshows-merch-04",
+    "categoryId": "tv-shows",
+    "name": "Archive Collector Mug",
+    "image": {
+      "src": "/assets/generated/merch/tvshows-merch-04.png",
+      "alt": "Product artwork for Archive Collector Mug",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 12,
+    "priceRangeMax": 18,
+    "currency": "USD",
+    "description": "A mug featuring The Glass Archive artwork.",
+    "tags": [
+      "tv-shows",
+      "mug"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "tvshows-merch-05",
+    "categoryId": "tv-shows",
+    "name": "Collector Box",
+    "image": {
+      "src": "/assets/generated/merch/tvshows-merch-05.png",
+      "alt": "Product artwork for Collector Box",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 25,
+    "priceRangeMax": 35,
+    "currency": "USD",
+    "description": "A keepsake box themed around The Glass Archive.",
+    "tags": [
+      "tv-shows",
+      "collectible"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "kpop-merch-hero",
     "categoryId": "kpop",
     "name": "LUNARIS Official Lightstick",
     "image": {
-      "src": "/assets/generated/merch/merch-kpop-lightstick.svg",
-      "alt": "Product artwork for LUNARIS Official Lightstick",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/merch/kpop-merch-hero.png",
+      "alt": "Featured merchandise artwork for LUNARIS Official Lightstick",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
     },
     "priceRangeMin": 30,
-    "priceRangeMax": 38,
+    "priceRangeMax": 45,
     "currency": "USD",
-    "description": "The official LUNARIS fan lightstick.",
+    "description": "The official fan lightstick for the LUNARIS group.",
     "tags": [
       "kpop",
-      "pin"
+      "featured"
     ],
     "status": "available"
   },
   {
-    "id": "merch-kpop-afterglow-hoodie",
+    "id": "kpop-merch-01",
     "categoryId": "kpop",
-    "name": "LUNARIS Afterglow Hoodie",
+    "name": "Collector Photocard Album",
     "image": {
-      "src": "/assets/generated/merch/merch-kpop-afterglow-hoodie.svg",
-      "alt": "Product artwork for LUNARIS Afterglow Hoodie",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/merch/kpop-merch-01.png",
+      "alt": "Product artwork for Collector Photocard Album",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
     },
-    "priceRangeMin": 48,
-    "priceRangeMax": 58,
+    "priceRangeMin": 15,
+    "priceRangeMax": 25,
     "currency": "USD",
-    "description": "A hoodie themed around the Afterglow comeback.",
+    "description": "A photocard album for collecting LUNARIS member cards.",
     "tags": [
       "kpop",
-      "shirt"
+      "collectible"
     ],
-    "status": "coming-soon"
+    "status": "available"
   },
   {
-    "id": "merch-comics-aegis-figure",
+    "id": "kpop-merch-02",
+    "categoryId": "kpop",
+    "name": "Collector Hoodie",
+    "image": {
+      "src": "/assets/generated/merch/kpop-merch-02.png",
+      "alt": "Product artwork for Collector Hoodie",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 45,
+    "priceRangeMax": 55,
+    "currency": "USD",
+    "description": "A hoodie carrying the LUNARIS group emblem.",
+    "tags": [
+      "kpop",
+      "hoodie"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "kpop-merch-03",
+    "categoryId": "kpop",
+    "name": "Collector Tote",
+    "image": {
+      "src": "/assets/generated/merch/kpop-merch-03.png",
+      "alt": "Product artwork for Collector Tote",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 18,
+    "priceRangeMax": 25,
+    "currency": "USD",
+    "description": "A tote bag printed with LUNARIS artwork.",
+    "tags": [
+      "kpop",
+      "bag"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "kpop-merch-04",
+    "categoryId": "kpop",
+    "name": "Concert Art Poster",
+    "image": {
+      "src": "/assets/generated/merch/kpop-merch-04.png",
+      "alt": "Product artwork for Concert Art Poster",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 15,
+    "priceRangeMax": 25,
+    "currency": "USD",
+    "description": "A concert-style art poster for LUNARIS.",
+    "tags": [
+      "kpop",
+      "poster"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "kpop-merch-05",
+    "categoryId": "kpop",
+    "name": "Bracelet & Keychain Set",
+    "image": {
+      "src": "/assets/generated/merch/kpop-merch-05.png",
+      "alt": "Product artwork for Bracelet & Keychain Set",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 10,
+    "priceRangeMax": 18,
+    "currency": "USD",
+    "description": "A matching bracelet and keychain set for LUNARIS fans.",
+    "tags": [
+      "kpop",
+      "accessory"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "comics-merch-hero",
     "categoryId": "comics",
-    "name": "Ironclad Vanguard: Aegis Figure",
+    "name": "Ironclad Vanguard Featured Art Print",
     "image": {
-      "src": "/assets/generated/merch/merch-comics-aegis-figure.svg",
-      "alt": "Product artwork for Ironclad Vanguard: Aegis Figure",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/merch/comics-merch-hero.png",
+      "alt": "Featured merchandise artwork for Ironclad Vanguard Featured Art Print",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
     },
-    "priceRangeMin": 32,
-    "priceRangeMax": 40,
-    "currency": "USD",
-    "description": "A collectible figure of Aegis in his exo-armor.",
-    "tags": [
-      "comics",
-      "pin"
-    ],
-    "status": "available"
-  },
-  {
-    "id": "merch-comics-team-tee",
-    "categoryId": "comics",
-    "name": "Ironclad Vanguard Team Tee",
-    "image": {
-      "src": "/assets/generated/merch/merch-comics-team-tee.svg",
-      "alt": "Product artwork for Ironclad Vanguard Team Tee",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
-    },
-    "priceRangeMin": 22,
-    "priceRangeMax": 26,
-    "currency": "USD",
-    "description": "A tee featuring the full Vanguard team roster art.",
-    "tags": [
-      "comics",
-      "shirt"
-    ],
-    "status": "available"
-  },
-  {
-    "id": "merch-manga-talisman-bookmarks",
-    "categoryId": "manga",
-    "name": "Paper Moon Requiem Talisman Bookmark Set",
-    "image": {
-      "src": "/assets/generated/merch/merch-manga-talisman-bookmarks.svg",
-      "alt": "Product artwork for Paper Moon Requiem Talisman Bookmark Set",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
-    },
-    "priceRangeMin": 12,
-    "priceRangeMax": 16,
-    "currency": "USD",
-    "description": "A set of bookmarks styled after Yui's paper talismans.",
-    "tags": [
-      "manga",
-      "disc"
-    ],
-    "status": "available"
-  },
-  {
-    "id": "merch-manga-ink-wash-tee",
-    "categoryId": "manga",
-    "name": "Paper Moon Requiem Ink-Wash Tee",
-    "image": {
-      "src": "/assets/generated/merch/merch-manga-ink-wash-tee.svg",
-      "alt": "Product artwork for Paper Moon Requiem Ink-Wash Tee",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
-    },
-    "priceRangeMin": 24,
+    "priceRangeMin": 20,
     "priceRangeMax": 30,
     "currency": "USD",
-    "description": "A tee featuring ink-wash style art from the series.",
+    "description": "A featured art print of the Ironclad Vanguard team.",
+    "tags": [
+      "comics",
+      "featured"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "comics-merch-01",
+    "categoryId": "comics",
+    "name": "Collector Notebook",
+    "image": {
+      "src": "/assets/generated/merch/comics-merch-01.png",
+      "alt": "Product artwork for Collector Notebook",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 10,
+    "priceRangeMax": 16,
+    "currency": "USD",
+    "description": "A notebook featuring Ironclad Vanguard artwork.",
+    "tags": [
+      "comics",
+      "notebook"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "comics-merch-02",
+    "categoryId": "comics",
+    "name": "Collector Hoodie",
+    "image": {
+      "src": "/assets/generated/merch/comics-merch-02.png",
+      "alt": "Product artwork for Collector Hoodie",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 45,
+    "priceRangeMax": 55,
+    "currency": "USD",
+    "description": "A hoodie carrying the Ironclad Vanguard team insignia.",
+    "tags": [
+      "comics",
+      "hoodie"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "comics-merch-03",
+    "categoryId": "comics",
+    "name": "Enamel Pin Set",
+    "image": {
+      "src": "/assets/generated/merch/comics-merch-03.png",
+      "alt": "Product artwork for Enamel Pin Set",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 12,
+    "priceRangeMax": 20,
+    "currency": "USD",
+    "description": "A set of enamel pins themed around Ironclad Vanguard.",
+    "tags": [
+      "comics",
+      "pin"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "comics-merch-04",
+    "categoryId": "comics",
+    "name": "Collector Cap",
+    "image": {
+      "src": "/assets/generated/merch/comics-merch-04.png",
+      "alt": "Product artwork for Collector Cap",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 20,
+    "priceRangeMax": 28,
+    "currency": "USD",
+    "description": "A cap featuring the Ironclad Vanguard emblem.",
+    "tags": [
+      "comics",
+      "cap"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "comics-merch-05",
+    "categoryId": "comics",
+    "name": "Collector Box",
+    "image": {
+      "src": "/assets/generated/merch/comics-merch-05.png",
+      "alt": "Product artwork for Collector Box",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 25,
+    "priceRangeMax": 35,
+    "currency": "USD",
+    "description": "A keepsake box themed around Ironclad Vanguard.",
+    "tags": [
+      "comics",
+      "collectible"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "manga-merch-hero",
+    "categoryId": "manga",
+    "name": "Paper Moon Requiem Collector Scroll",
+    "image": {
+      "src": "/assets/generated/merch/manga-merch-hero.png",
+      "alt": "Featured merchandise artwork for Paper Moon Requiem Collector Scroll",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 25,
+    "priceRangeMax": 35,
+    "currency": "USD",
+    "description": "A featured hanging scroll print for Paper Moon Requiem.",
     "tags": [
       "manga",
-      "shirt"
+      "featured"
     ],
-    "status": "coming-soon"
+    "status": "available"
+  },
+  {
+    "id": "manga-merch-01",
+    "categoryId": "manga",
+    "name": "Collector Artbook",
+    "image": {
+      "src": "/assets/generated/merch/manga-merch-01.png",
+      "alt": "Product artwork for Collector Artbook",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 30,
+    "priceRangeMax": 45,
+    "currency": "USD",
+    "description": "An artbook collecting illustrations from Paper Moon Requiem.",
+    "tags": [
+      "manga",
+      "book"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "manga-merch-02",
+    "categoryId": "manga",
+    "name": "Collector Hoodie",
+    "image": {
+      "src": "/assets/generated/merch/manga-merch-02.png",
+      "alt": "Product artwork for Collector Hoodie",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 45,
+    "priceRangeMax": 55,
+    "currency": "USD",
+    "description": "A hoodie carrying Paper Moon Requiem artwork.",
+    "tags": [
+      "manga",
+      "hoodie"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "manga-merch-03",
+    "categoryId": "manga",
+    "name": "Collector Tote",
+    "image": {
+      "src": "/assets/generated/merch/manga-merch-03.png",
+      "alt": "Product artwork for Collector Tote",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 18,
+    "priceRangeMax": 25,
+    "currency": "USD",
+    "description": "A tote bag printed with Paper Moon Requiem artwork.",
+    "tags": [
+      "manga",
+      "bag"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "manga-merch-04",
+    "categoryId": "manga",
+    "name": "Collector Art Poster",
+    "image": {
+      "src": "/assets/generated/merch/manga-merch-04.png",
+      "alt": "Product artwork for Collector Art Poster",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 15,
+    "priceRangeMax": 25,
+    "currency": "USD",
+    "description": "A print of key art from Paper Moon Requiem.",
+    "tags": [
+      "manga",
+      "poster"
+    ],
+    "status": "available"
+  },
+  {
+    "id": "manga-merch-05",
+    "categoryId": "manga",
+    "name": "Acrylic Collector Stand",
+    "image": {
+      "src": "/assets/generated/merch/manga-merch-05.png",
+      "alt": "Product artwork for Acrylic Collector Stand",
+      "credit": "Original FandomVerse merchandise artwork, provided by the project team for this catalogue -- depicts fictional in-house products only; no external source, no real-world brand, celebrity likeness, or trademark."
+    },
+    "priceRangeMin": 15,
+    "priceRangeMax": 22,
+    "currency": "USD",
+    "description": "A display-stand piece featuring Paper Moon Requiem artwork.",
+    "tags": [
+      "manga",
+      "figure"
+    ],
+    "status": "available"
   }
 ]

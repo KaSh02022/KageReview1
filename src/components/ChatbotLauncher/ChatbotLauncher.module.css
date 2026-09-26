@@ -88,6 +88,31 @@
   border-color: rgba(var(--header-accent, 124, 141, 255), 0.7);
 }
 
+/* The one action that actually leaves the conversation — visually distinct
+   (filled, accent) from the quiet outline `.quickButton` chips, which just
+   ask another question. */
+.linkAction {
+  align-self: flex-start;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-on-primary);
+  background: rgb(var(--header-accent, 124, 141, 255));
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition: filter var(--duration-fast) var(--easing-standard);
+}
+
+.linkAction:hover {
+  filter: brightness(1.1);
+}
+
+.linkAction:focus-visible {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 2px;
+}
+
 .form {
   display: flex;
   gap: var(--space-sm);

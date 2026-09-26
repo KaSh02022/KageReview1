@@ -33,8 +33,16 @@ describe('Gemini asset manifest', () => {
   })
 
   it('catalogues every currently shipping procedural asset exactly once', () => {
-    expect(manifest.assets).toHaveLength(161)
-    expect(manifest.counts.currentProceduralAssets).toBe(161)
+    // This is a snapshot, not the scope guard — the pin exists so the total
+    // can't silently drift. The scope guard itself is the next test ("approves
+    // only the three high-value asset types"), which is tier-B-only and does
+    // not move when merchandise content changes. This literal grew
+    // 161 -> 189 on 2026-09-25 when real merchandise photography replaced the
+    // 14 placeholder SVGs (28 new tier-A merchandise-artwork entries,
+    // `node scripts/generate-asset-plan.mjs` re-run); tier B (70) is
+    // unaffected, verified by the untouched next test.
+    expect(manifest.assets).toHaveLength(189)
+    expect(manifest.counts.currentProceduralAssets).toBe(189)
   })
 
   it('approves only the three high-value asset types (heroes, characters, gallery)', () => {

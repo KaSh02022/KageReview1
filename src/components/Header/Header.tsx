@@ -19,6 +19,7 @@ const EXPLORE_LINKS = [
   { to: '/trailers', label: 'Trailers' },
   { to: '/events', label: 'Events' },
   { to: '/merchandise', label: 'Merchandise' },
+  { to: '/quiz', label: 'Fandom Quiz' },
 ]
 
 /**

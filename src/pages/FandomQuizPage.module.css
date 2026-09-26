@@ -1,0 +1,191 @@
+.intro {
+  padding-top: var(--space-md);
+}
+
+.introMeta {
+  font: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.question {
+  padding-top: var(--space-md);
+}
+
+.progressLabel {
+  font: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-xs);
+}
+
+.progressTrack {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-pill);
+  transition: width var(--duration-normal) var(--easing-standard);
+}
+
+.questionText {
+  font: var(--font-h2);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  text-align: left;
+  padding: var(--space-md);
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font: var(--font-body);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) var(--easing-standard),
+    background var(--duration-fast) var(--easing-standard),
+    color var(--duration-fast) var(--easing-standard);
+}
+
+.option:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+.option:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.optionSelected {
+  border-color: var(--color-primary);
+  background: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+}
+
+.optionCheck {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-on-primary);
+  background: transparent;
+  font-size: 0.75rem;
+}
+
+.optionSelected .optionCheck {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.navRow {
+  align-items: center;
+}
+
+/* Result screen — themed with the matched category's own accent, the same
+   pattern CategoryHubPage uses for its hero (--hero-accent), so the quiz
+   result reads as an extension of that category rather than a new style. */
+.result {
+  --result-accent: var(--color-primary);
+  padding-top: var(--space-md);
+}
+
+.resultHero {
+  position: relative;
+  border-radius: var(--radius-large);
+  overflow: hidden;
+  min-height: 220px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.resultHeroImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.resultMatch {
+  position: relative;
+  z-index: 1;
+  padding: var(--space-lg);
+  width: 100%;
+  background: linear-gradient(to top, rgba(8, 8, 14, 0.92) 20%, rgba(8, 8, 14, 0.35) 70%, transparent 100%);
+}
+
+.matchLabel {
+  font: var(--font-label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--result-accent);
+  margin: 0;
+}
+
+.matchPercent {
+  font: var(--font-display);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.resultDescription {
+  font: var(--font-body);
+  color: var(--color-text-secondary);
+  max-width: var(--reading-max-width);
+  margin: 0;
+}
+
+.otherMatchesHeading {
+  font: var(--font-h3);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-sm);
+}
+
+/* RouterLink used directly for this CTA (see FandomQuizPage.tsx) has no
+   built-in underline reset the way the shared Button/Link components do. */
+.exploreButton {
+  text-decoration: none;
+}
+
+.otherMatchRow {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  color: var(--color-text-secondary);
+  font: var(--font-body-small);
+}
+
+@media (max-width: 599px) {
+  .resultHero {
+    min-height: 180px;
+  }
+}

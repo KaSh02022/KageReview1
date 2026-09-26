@@ -12,6 +12,7 @@ import { TrailersPage } from '../pages/TrailersPage'
 import { EventsPage } from '../pages/EventsPage'
 import { ReleasesPage } from '../pages/ReleasesPage'
 import { MerchandisePage } from '../pages/MerchandisePage'
+import { FandomQuizPage } from '../pages/FandomQuizPage'
 import { CartPage } from '../pages/CartPage'
 import { BookmarksPage } from '../pages/BookmarksPage'
 import { ContactPage } from '../pages/ContactPage'
@@ -90,6 +91,11 @@ export const router = createHashRouter([
         path: 'merchandise',
         element: <MerchandisePage />,
         handle: { breadcrumb: 'Merchandise', title: 'Merchandise' },
+      },
+      {
+        path: 'quiz',
+        element: <FandomQuizPage />,
+        handle: { breadcrumb: 'Fandom Quiz', title: 'Fandom Quiz' },
       },
       { path: 'cart', element: <CartPage />, handle: { breadcrumb: 'Cart', title: 'Cart' } },
       {

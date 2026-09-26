@@ -65,6 +65,55 @@ describe('assistant engine — context', () => {
   })
 })
 
+describe('assistant engine — quick action links', () => {
+  it('resolves a route linkTo (e.g. the Fandom Quiz) to a real path and label', () => {
+    const reply = respond('help me find a fandom', {})
+    expect(reply.ruleId).toBe('rule-find-fandom')
+    expect(reply.link).toEqual({ path: '/quiz', label: 'Take the Fandom Quiz' })
+  })
+
+  it('resolves the merchandise linkTo', () => {
+    const reply = respond('what can i buy', {})
+    expect(reply.link).toEqual({ path: '/merchandise', label: 'Browse Merchandise' })
+  })
+
+  it('resolves the events linkTo to the real Events route, not a bogus category', () => {
+    const reply = respond("what's happening", {})
+    expect(reply.link).toEqual({ path: '/events', label: 'Browse Events' })
+  })
+
+  it('has no link for a rule that does not author one', () => {
+    const reply = respond('thanks', { categoryId: 'anime' })
+    expect(reply.link).toBeUndefined()
+  })
+
+  it('detects "show me the X category" for any of the seven worlds and links straight to its hub', () => {
+    const anime = respond('Show me the Anime category.', {})
+    expect(anime.link).toEqual({ path: '/anime', label: 'Go to Anime' })
+
+    const kpop = respond('show me the kpop category', {})
+    expect(kpop.link).toEqual({ path: '/k-pop', label: 'Go to K-Pop' })
+
+    const tvShows = respond('take me to the tv shows category', {})
+    expect(tvShows.link).toEqual({ path: '/tv-shows', label: 'Go to TV Shows' })
+  })
+
+  it('does not treat a bare category name with no navigation intent as a link request', () => {
+    // No "show"/"go to"/"category"/etc. — should fall through to the
+    // generic fallback rather than assume navigation intent.
+    const reply = respond('anime', {})
+    expect(reply.ruleId).toBeNull()
+    expect(reply.link).toBeUndefined()
+  })
+
+  it('never lets the dynamic category detector shadow an authored static rule', () => {
+    // "merch" collides with no category name, but this specifically checks
+    // that a normal static-rule question is unaffected by the new fallback.
+    const reply = respond('show me merchandise', {})
+    expect(reply.ruleId).toBe('rule-merchandise')
+  })
+})
+
 describe('assistant engine — fallback and welcome', () => {
   it('falls back helpfully instead of failing', () => {
     const reply = respond('tell me about quantum tunnelling', { categoryId: 'comics' })

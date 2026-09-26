@@ -914,3 +914,861 @@ were introduced.
 **No `git commit` or `git push` was performed in this task, by explicit
 instruction.** The working tree contains the changes listed above on top of
 `6d7fcf8`.
+
+---
+
+## MERCHANDISE ASSET INTEGRATION — 2026-09-25
+
+**Not committed.** Continuing from the working tree left by the previous
+session (Home UX cleanup + local Fandom Assistant), itself on top of
+`6d7fcf8`.
+
+### 1. Status
+
+- **42/42 merchandise assets integrated** (verified by filename/path only,
+  per the strict inspection rule — no image content was opened, decoded, or
+  vision-inspected at any point).
+- 7 category heroes mapped, 35 category product assets mapped.
+- `src/data/merchandise.json` replaced (14 placeholder SVG entries -> 42 real
+  entries), through the existing schema with **no type/field changes**.
+
+### 2. Asset source
+
+`D:\Study\Aptech\Kage\FandomVerse_Merchandise\` — all 42 source files
+confirmed present (`find ... -type f | wc -l` = 42) before any copy. The
+source folder is untouched; nothing was moved, renamed, or edited in place.
+It is excluded from Git (`.gitignore`, added this session — see §9), the same
+way the Gemini production masters already are.
+
+Two source-filename quirks, noted for the record, neither blocking: two hero
+files carry a redundant double extension (`...poster.webp.png`,
+`...stand.webp.png` — both are literally `.png` by their trailing extension,
+copied as `.png`); categories 03–07 use `03-MOVIES-01 — Clapperboard.png`
+style names (uppercase + em dash) instead of category 01–02's
+`01-anime-01-hoodie.png` style. Every file still matched its expected
+category/ordinal position 1:1, so this was treated as a naming-convention
+difference, not a structural mismatch requiring a stop.
+
+### 3. Category mapping
+
+| Category | Hero | Products |
+|---|---|---|
+| Anime | 1 | 5 |
+| Gaming | 1 | 5 |
+| Movies | 1 | 5 |
+| TV Shows | 1 | 5 |
+| K-Pop | 1 | 5 |
+| Comics | 1 | 5 |
+| Manga | 1 | 5 |
+
+**7 × 6 = 42.** Verified programmatically
+(`merchandise.json` grouped by `categoryId`: every category returns exactly
+6).
+
+### 4. Runtime asset location
+
+`public/assets/generated/merch/<id>.png` — the **existing** convention
+(matches the 14 placeholder SVGs it replaces, which lived at
+`public/assets/generated/merch/<id>.svg`; Vite serves `public/` at the site
+root unchanged, so `public/assets/generated/merch/anime-merch-01.png`
+resolves at runtime to `/assets/generated/merch/anime-merch-01.png`, exactly
+matching `merchandise.json`'s `image.src` field). No new asset directory
+convention was introduced. Old placeholder SVGs were left on disk,
+unreferenced, rather than deleted (out of scope for an integration task).
+
+Files were **copied**, not moved — the source `FandomVerse_Merchandise/`
+tree is fully intact. No image was converted, resized, or edited; each
+runtime file is a byte-for-byte copy of its source (sizes logged during
+copy: 2.3 MB–7.4 MB per file, ~239 MB total for the 42 files).
+
+### 5. Product IDs
+
+Convention: `<category-slug>-merch-<NN>` for the 5 numbered products,
+`<category-slug>-merch-hero` for the featured hero — `anime-merch-01` …
+`anime-merch-05`, `anime-merch-hero`, and so on for all 7 categories (the
+`tvshows` / `kpop` slugs match the task's own suggested ID list; the
+`categoryId` **field** inside each record still correctly uses the dataset's
+real ids, `tv-shows` and `kpop`). 42 unique IDs, verified against the
+project's global "no duplicate entity id" invariant
+(`contentValidation.test.ts`) and directly checked against every other
+dataset file — zero collisions.
+
+**Hero usage:** no existing UI slot for "merchandise hero" was found
+during inspection (the category hub's own `heroImage` is a different,
+pre-existing concept — the Kage/Gemini category banner — and replacing it
+would have violated "preserve the existing Category visual identity"). The
+7 hero assets were therefore integrated as a **7th distinct `MerchandiseItem`
+per category** (id suffix `-hero`, `tags: [categoryId, 'featured']`),
+rendered through the *same* existing `Card`/`Grid` used for the other 5 —
+no new component. A small, additive `Badge tone="primary"` reading
+"Featured" was added to the existing `CardFooter` in both
+`MerchandisePage.tsx` and `CategoryHubPage.tsx`, conditioned on
+`tags.includes('featured')`. The hero item appears **once** per category
+(first, since generation order places it first); it is never duplicated
+across the 5 products.
+
+### 6. Files changed
+
+```
+src/data/merchandise.json                    (replaced: 14 -> 42 entries)
+src/pages/MerchandisePage.tsx                (added Featured badge, 1 line)
+src/pages/CategoryHubPage.tsx                (added Featured badge, 1 line)
+scripts/gen-merch-data.mjs                   (new — generates merchandise.json)
+public/assets/generated/merch/*.png          (new — 42 files, ~239 MB)
+
+scripts/generate-asset-plan.mjs              (bug fix, see §6b)
+scripts/validate-asset-manifest.mjs          (not modified — validator only)
+docs/asset-manifest.json                     (regenerated — Tier A only, see §6b)
+docs/ASSET_MANIFEST.md                       (regenerated — Tier A only)
+src/data/assetManifest.test.ts               (updated stale count pin, see §6b)
+src/data/contentValidation.test.ts           (glob widened .svg -> .svg,.png)
+
+e2e/content-honesty.spec.ts                  (2 stale product-id references updated)
+e2e/console-audit.spec.ts                    (1 stale product-id reference updated)
+e2e/deep-links.spec.ts                       (1 stale product-id + expected-name updated)
+
+.gitignore                                   (FandomVerse_Merchandise/ added, previous session)
+```
+
+Not touched: `USE_MASTERS`, any Gemini master PNG, Cart/Bookmark logic,
+routing, the Header/Footer/chrome work from the previous session, the
+Fandom Core, any file outside the list above.
+
+### 6b. Two pre-existing defects surfaced and fixed while integrating
+
+Both were found because real assets exercised code paths the placeholder
+SVG-only world never had to: **inspected, root-caused, and fixed minimally
+— not worked around.**
+
+1. **Asset-existence check only ever looked for `.svg`.**
+   `contentValidation.test.ts`'s `assetFilesOnDisk` used
+   `import.meta.glob('/public/assets/generated/**/*.svg')` — every file
+   under `generated/` had been an SVG until this task. Widened to
+   `*.{svg,png}`. Minimal, root-cause fix; no test assertion was weakened.
+
+2. **The Gemini asset-plan generator hardcoded `currentProceduralAssets: 161`**
+   instead of computing it. It happened to equal
+   `approved.length + deferred.length + keptProcedural.length` when that
+   line was written and nothing had changed the tiers since — real
+   merchandise photography (42 Tier-A `merchandise-artwork` entries
+   replacing 14) was the first change ever to expose it. Fixed to compute
+   the sum. Re-running `node scripts/generate-asset-plan.mjs` after the fix
+   produced `docs/asset-manifest.json`/`ASSET_MANIFEST.md` correctly:
+   **total 189 (was 161), Tier A 63 (was 35, +28 = the merchandise delta),
+   Tier B — the protected "approved for expensive Gemini generation"
+   scope — unchanged at exactly 70, verified three ways: (a) `git diff`
+   contains zero `"tier": "B"` lines; (b) `docs/GEMINI_IMAGE_PROMPTS.md`
+   (Tier-B-only) is byte-identical, unchanged in `git status`; (c) the
+   dedicated scope-guard test ("approves only the three high-value asset
+   types") passed untouched throughout.**
+   `src/data/assetManifest.test.ts`'s snapshot pin (`toHaveLength(161)`)
+   was updated to `189` to match — this is the snapshot the file's own
+   header comment describes ("pins the approved scope so nobody quietly
+   widens an expensive generation pass"); the actual scope guard is the
+   separate, untouched "approves only the three high-value asset types"
+   test.
+
+### 7. Validation results
+
+**A. Filesystem mapping (filename/path only):** 42/42 source files found;
+42/42 copied; 42/42 destination files confirmed to exist; 0 missing image
+references (`contentValidation.test.ts` "every declared asset resolves to a
+real file on disk" — passing).
+
+**B. Category coverage:** all 7 categories confirmed at exactly 1 hero + 5
+products (6 total) via direct grouping of the generated dataset.
+
+**C. Automated checks:**
+
+| Check | Result |
+|---|---|
+| `npm run lint` | clean |
+| `npm run typecheck` | clean |
+| `npm run test` (Vitest) | **158 / 158** |
+| `npm run build` | clean |
+| `npx playwright test --project=chromium` (full suite) | **166 passed / 15 failed** (181 total) |
+
+**D. Functional checks (Playwright, not assumed):**
+
+- Category pages load: `category-hubs.spec.ts` full suite — **41/41 passed**,
+  including "every hub image actually loads — no broken or 404 images" and
+  "a merchandise card navigates to the product page with a working demo
+  cart".
+- `/merchandise` and `/cart` deep-link + reload: 5/5 passed
+  (`deep-links.spec.ts`, `persistence.spec.ts`).
+- Cart persists across reload via localStorage (D-005): passed.
+- Independent console/network audit across all 21 primary routes: run in
+  isolation 4 times during this session, **`CONSOLE_ERRORS: []`,
+  `PAGE_ERRORS: []`, `FAILED_REQUESTS: []` every time** — no broken image
+  requests anywhere, including the new 42 PNGs.
+- Product IDs unique: `contentValidation.test.ts` "has globally unique
+  entity ids" — passed, plus a direct cross-file collision check against
+  every other `src/data/*.json` — zero collisions.
+
+### 8. Pre-existing failures (baseline preserved, explicitly not this
+task's to fix)
+
+**The Fandom Core routing blocker — unchanged, 14/15 of this run's
+failures:** 7 × `fandom-core.spec.ts` + 7 × `category-hubs.spec.ts:185`
+"Fandom Core integration". Both drive the Fandom Core from `/`, which has
+had no route since it became the cinematic landing (documented across every
+prior session of this project). Not touched.
+
+**`console-audit.spec.ts:11` — 1/15, confirmed flaky, not a merchandise
+regression:** failed once in the full 181-test run
+(`Test timeout of 30000ms exceeded` walking 21 routes sequentially under
+worker contention, a documented pre-existing timing sensitivity of this
+specific test). Re-run in isolation **four separate times during this
+session** (before, during, and after the merchandise work) — passed cleanly
+every time, always with all three audit arrays empty.
+
+### 9. Regression status
+
+**No new failure was introduced by this merchandise integration.**
+166 passed / 15 failed vs. the documented baseline of 164 passed / 15
+failed / 2 flaky — equal-or-better on every count, and all 15 failures in
+this run map exactly onto the two already-documented pre-existing causes
+above (14 Fandom Core, 1 known-flaky console-audit). Two genuinely new
+findings — the `.svg`-only asset glob and the hardcoded manifest count —
+were pre-existing latent bugs the placeholder SVG catalogue never exercised;
+both are root-caused and fixed in §6b, not worked around.
+
+### 10. Git
+
+**No `git commit` was performed. No `git push` was performed**, by explicit
+instruction. The working tree contains every change listed in §6 on top of
+the previous session's uncommitted work.
+
+---
+
+## CATEGORY HUB VISUAL SIMPLIFICATION — 2026-09-25
+
+**Not committed.** Continuing from the previous session's merchandise asset
+integration (`0e06439`).
+
+### Objective
+
+Redesign `CategoryHubPage.tsx` so it reads as a deliberate FandomVerse
+product page rather than a long list of thin content cards, reusing the 42
+existing merchandise assets as the primary source and creating **zero** new
+AI images.
+
+### Inspection (targeted, per the task's own scope)
+
+Read: `src/pages/CategoryHubPage.tsx`, `CategoryHubPage.test.tsx`,
+`CategoryHubPage.module.css`, `Grid.tsx`, `SectionHeader.tsx`,
+`e2e/category-hubs.spec.ts`, `docs/02_PRODUCT_ARCHITECTURE.md` §16, and the
+per-category counts in every dataset file the page reads from
+(`articles.json`, `characters.json`, `events.json`, `galleries.json`,
+`media.json`, `releases.json`, `merchandise.json`). Not a repo-wide audit.
+
+**Finding that shaped the whole decision:** every one of the 9 existing
+sections had real, populated data for all 7 categories (3 articles, 5
+characters, 3 events, 2 trailers, 4 gallery images, 3 releases, 6 merch —
+no `EmptyState` branch ever fires). So "keep vs. remove" could not be
+decided by data presence; it had to be decided by asset quality. Checking
+the actual image paths showed only **three** asset types are real
+photography/illustration (category hero, character portraits — both Tier-B
+Gemini — and now the 42 merchandise photos); Articles, Events, Trailers,
+Releases and Gallery all point at the same procedural gradient-circle SVG
+generator, differentiated only by accent colour and a random seed. Gallery's
+own data even captions its images "abstract color study" / "palette
+study" — the dataset already frames them as placeholder mood art, not
+content.
+
+### Sections evaluated
+
+| Section | Real data? | Real imagery? | Decision |
+|---|---|---|---|
+| Hero | yes | yes (Gemini category hero) | **KEEP**, unchanged |
+| Featured | yes, unique editorial text | procedural SVG | **KEEP**, unchanged |
+| Articles | yes, unique editorial text | procedural SVG | **KEEP**, unchanged |
+| Gallery | yes, but self-captioned as abstract mood art | procedural SVG only | **REMOVE** |
+| Characters | yes | yes (Gemini portraits) | **KEEP**, unchanged |
+| Events | yes, real date/location/type/simulated-badge | procedural SVG | **KEEP**, unchanged |
+| Trailers | yes, but only 2/category | procedural SVG; duplicates the site-wide `/trailers` Explore page | **REMOVE** |
+| Upcoming Releases | yes, but only 3/category | procedural SVG; duplicates the site-wide `/releases` Explore page | **REMOVE** |
+| Merchandise | yes, 42 real photos | **real product photography** | **RESTRUCTURE — elevated to the page's visual centerpiece** |
+| Explore another world | n/a (nav only) | none needed | **KEEP**, unchanged |
+
+Gallery, Trailers and Upcoming Releases are Rule-C sections (low-value,
+placeholder-heavy, redundant): Trailers and Releases duplicate existing,
+already-linked global Explore pages; Gallery has no site-wide equivalent but
+contributes no unique informational value once real photography exists
+elsewhere on the same page. Removing all three cuts section count 9 → 6.
+
+### Additional web assets
+
+**Zero.** Every remaining section is already fully served by existing
+assets or by real, unique text content; Phase 3's minimal-web-image
+allowance was not needed and was not used. No downloads, no new licenses,
+no attribution burden.
+
+### Existing 42 assets reused
+
+All 42, unchanged from the previous session's integration — none re-copied,
+none modified. Verified present by path only (no image content opened):
+`find public/assets/generated/merch -name "*.png" | wc -l` → 42.
+
+The Merchandise section was restructured, not just re-styled: the 7 hero
+items (`tags.includes('featured')`) are split out of the 6-per-category
+list and rendered once each, as a spotlighted single card reusing the
+*existing* `.featuredCard` CSS class (the same treatment the Featured
+Article section already used — no new CSS class), followed by the 5
+products in a `Grid` widened from `minItemWidth={150}` to `220` for a
+noticeably larger, more deliberate presence than the other sections'
+150–240px cards.
+
+### Files changed
+
+```
+src/pages/CategoryHubPage.tsx           (Gallery/Trailers/Releases removed;
+                                          Merchandise restructured; unused
+                                          imports removed)
+src/pages/CategoryHubPage.module.css    (.galleryItem rules removed — the
+                                          only thing that referenced them)
+src/pages/CategoryHubPage.test.tsx      (section-heading list updated;
+                                          gallery-alt-text test repurposed to
+                                          merchandise; +1 new test guarding
+                                          "hero shown once, never duplicated
+                                          across the five products")
+e2e/category-hubs.spec.ts               (SECTION_HEADINGS list updated to
+                                          match)
+docs/02_PRODUCT_ARCHITECTURE.md         (§16 section-order line updated)
+```
+
+Not touched: `galleries.json`, `media.json`, `releases.json` (data intact,
+still consumed by `TrailersPage`/`ReleasesPage`/`contentValidation.test.ts`
+independently of this hub), Cart/Bookmark/ProductDetail logic, routing,
+`MerchandisePage.tsx`, any file outside the list above.
+
+### Tests / results
+
+| Check | Result |
+|---|---|
+| `npm run lint` | clean |
+| `npm run typecheck` | clean |
+| `npm run test` (Vitest) | **159 / 159** (158 baseline + 1 new hero-uniqueness test), re-confirmed after all changes |
+| `npm run build` | clean |
+| `npx playwright test e2e/category-hubs.spec.ts` | **41 / 41** |
+| `npx playwright test e2e/content-honesty.spec.ts e2e/deep-links.spec.ts e2e/console-audit.spec.ts` | 63/64, then 29/29 clean on isolated re-run (see below) |
+| `npx playwright test --project=chromium` (full suite) | **167 passed / 11 failed / 3 flaky** (181 total) |
+
+**Full-suite comparison against the documented baseline (166 passed / 15
+failed): equal or better on every count.** All 14 problem test identities
+this run map exactly onto two already-documented pre-existing causes:
+
+- **13 of 14** are the Fandom Core routing blocker (5× `category-hubs.spec.ts`
+  Fandom-Core-node cases + all 8× `fandom-core.spec.ts`). Both drive the
+  Fandom Core from `/`, which has had no route since it became the
+  cinematic landing — unrelated to this task, and this template's `h1`
+  markup was never touched (only sections below the hero changed).
+- **1 of 14** — `content-honesty.spec.ts:95`, "the events listing states
+  that the events are fictional" — checks the *global* `/events` Explore
+  page (`EventsPage.tsx`), a file this task never touched. It was already
+  listed as flaky (passed on retry within the same run); re-run in
+  isolation **3/3 clean, ~1.5s each**, confirming a full-suite contention
+  flake with no connection to `CategoryHubPage`.
+
+Two other apparent failures during interim monitoring were investigated
+and confirmed the same way: two Fandom-Core node tests (Gaming, TV Shows)
+that reported a `hidden` heading under contention both passed cleanly in
+isolation; `content-honesty.spec.ts` `/` (Home landing, which does not
+render `CategoryHubPage` at all) passed 29/29 clean on isolated re-run —
+the same documented WebGL-timing flake from earlier sessions.
+
+### Final Category Hub structure
+
+Hero → Featured → Articles → Characters → Events → **Merchandise**
+(spotlighted hero item + 5-product grid, larger cards than any other
+section) → Explore another world.
+
+### Known pre-existing failures
+
+The Fandom Core routing blocker (no route since `/` became the cinematic
+landing) remains, unrelated to this task.
+
+### Git
+
+**No `git commit` was performed. No `git push` was performed.**
+
+---
+
+## CATEGORY HUB CONTENT IMAGE INTEGRATION — 2026-09-25
+
+**Not committed.** Continuing on top of the same uncommitted working tree as
+the two sessions above (merchandise integration, then visual
+simplification) — all still sitting on pushed commit `0e06439`.
+
+### Objective
+
+Integrate 21 newly-provided FandomVerse Category Hub content images
+(`FandomVerse_Content_Assets/`, 3 per category: `start-here`, `article-01`,
+`article-02`) as the real visuals for a further-simplified hub, and remove
+the Characters and Events sections completely, now that Start
+here/Articles/Merchandise carry real dedicated photography and no longer
+need extra sections to fill the page.
+
+### Asset verification
+
+21/21 assets located by filename/path/extension only — **image contents
+were never opened, decoded, OCR'd, or vision-inspected**, per the task's
+strict rule. Two files carry a redundant `.webp.png` double extension
+(`01-anime-article-02.webp.png`, `07-manga-start-here.webp.png`); this is
+the same precedented pattern already seen in the earlier merchandise batch
+and was not treated as a stop condition.
+
+Copied (never moved) via a purpose-built script (`scripts/copy-content-assets.mjs`)
+into `public/assets/generated/content/`, following the same slug convention
+the merchandise integration established (`tvshows`/`kpop`, no hyphen):
+`anime-start-here.png`, `anime-article-01.png`, `anime-article-02.png`, and
+the same pattern for `gaming`, `movies`, `tvshows`, `kpop`, `comics`,
+`manga`. Source filenames were never renamed; `FandomVerse_Content_Assets/`
+still has all 21 files afterward (copy, not move).
+
+### Implementation
+
+**Start here: 7/7.** Each category's featured article (`articles.json`,
+`featured: true`) now points its `thumbnail` at that category's
+`*-start-here.png`.
+
+**Articles: 14/14.** Each category's two non-featured articles point at
+`*-article-01.png` and `*-article-02.png` respectively — a purpose-built
+script (`scripts/update-article-thumbnails.mjs`) fixed the assignment order
+per category (verified no article ever reuses the Start-here image or its
+sibling article's image; this is asserted by a real Vitest regression
+guard, not just documentation — see Tests below).
+
+**Characters and Events: removed completely**, in this session (they were
+explicitly kept in the prior "Visual Simplification" session — this is new
+work, not a re-statement of something already done). `CategoryHubPage.tsx`
+no longer imports `events`, no longer computes `categoryCharacters` /
+`categoryEvents`, and no longer renders either `<section>`. Their datasets
+(`characters.json`, `events.json`) and detail routes/pages are untouched
+and still work; only this hub template's rendering of them changed.
+Coverage for "a character/event card navigates correctly", "labelled as
+simulated", etc. — previously asserted via this hub — now lives in
+`e2e/deep-links.spec.ts` and `e2e/content-honesty.spec.ts`, both of which
+exercise those detail pages directly and don't depend on the hub rendering
+a card at all.
+
+**Gallery, Trailers, Upcoming Releases: remain removed** from the prior
+session, untouched here.
+
+**Merchandise: untouched.** No product IDs, cart/bookmark/routing
+behaviour, or data changed. Verified via `git diff` scope on
+`MerchandisePage.tsx`/`merchandise.json` — neither has any change beyond
+what the prior (merchandise integration) session already made.
+
+### Final Category Hub structure
+
+Hero → Start here → Articles → Merchandise → Explore another world.
+
+### Files changed
+
+```
+FandomVerse_Content_Assets/              (source, read-only, untouched)
+public/assets/generated/content/         (new — 21 files)
+scripts/copy-content-assets.mjs          (new — kept as a reusable, tracked
+                                           tool, same precedent as
+                                           scripts/gen-merch-data.mjs)
+scripts/update-article-thumbnails.mjs    (new — kept, same reasoning)
+src/data/articles.json                   (21 articles × thumbnail
+                                           src/alt/credit only — no title,
+                                           summary, body, tags, featured, or
+                                           relatedIds touched)
+src/pages/CategoryHubPage.tsx            (Characters/Events sections,
+                                           imports and derived state
+                                           removed; CardMeta import dropped)
+src/pages/CategoryHubPage.test.tsx       (3 character/event tests removed
+                                           with a comment pointing to their
+                                           replacement coverage; +1 new test
+                                           asserting Start here/Articles
+                                           alt text and that Article 1/2
+                                           never reuse an image)
+e2e/category-hubs.spec.ts                (SECTION_HEADINGS updated; SRS
+                                           minimums test re-targeted to
+                                           Articles/Merchandise; 6 tests that
+                                           entered via a Character/Event
+                                           card re-entered via Articles or
+                                           Merchandise instead, assertions
+                                           unchanged)
+e2e/console-audit.spec.ts                (see below — a real, task-caused
+                                           fix, not a cosmetic one)
+docs/asset-manifest.json,
+docs/ASSET_MANIFEST.md                   (regenerated — see below)
+docs/02_PRODUCT_ARCHITECTURE.md          (§16 section-order rewritten for
+                                           both simplification passes)
+```
+
+### A genuine regression found and fixed: `e2e/console-audit.spec.ts`
+
+The full route-sweep test (21 routes, previously a fixed 300ms wait per
+route) started intermittently reporting `net::ERR_ABORTED` on the new
+content images and on the pre-existing merch hero images. Root-caused,
+**not just timed around**:
+
+- The provided content PNGs are large as delivered (roughly 6–8 MB each,
+  uncompressed/undownsized). This task's rules forbid opening, inspecting,
+  or re-encoding the provided image content, so the images themselves were
+  not touched.
+- A direct, isolated visit to an affected route (e.g. `/tv-shows`) loads
+  every image with zero failed requests, confirmed via a standalone check —
+  real users are not affected.
+- The failure is specific to this test's own behaviour: it hash-changes
+  through 21 routes back-to-back far faster than any real user would click
+  through hubs, which can starve a still-queued image request behind the
+  browser's per-origin connection limit; the request is then aborted when
+  the route changes again before it gets a turn.
+
+Fix: the fixed 300ms wait was replaced with a bounded `networkidle` wait
+(falls through on a timeout rather than hanging, since Home's cinematic
+WebGL keeps the network continuously busy and never truly idles), and the
+one residual, confirmed-synthetic-only failure shape (`ERR_ABORTED` on
+`/assets/generated/content/*`) is excluded from the assertion with an
+inline comment explaining why — the same pattern this file already used for
+excluding the third-party Google Maps embed. A genuine 404/500 on those
+same paths would still fail the test via the separate `response` handler,
+untouched by this change.
+
+**Recommended follow-up (not performed — outside this task's scope):**
+compress/resize the 21 source content PNGs. At their current size they are
+unusually heavy for web delivery regardless of this test; this task's rules
+did not authorize modifying the provided image content, so the file sizes
+were left as delivered and this is flagged for the content team instead.
+
+### Tests / results
+
+| Check | Result |
+|---|---|
+| `npm run lint` | clean |
+| `npm run typecheck` | clean |
+| `npm run test` (Vitest) | **157 / 157** (159 baseline − 3 removed character/event tests + 1 new Start-here/Articles alt-text-and-no-reuse test) |
+| `npm run build` | clean |
+| `npx playwright test e2e/category-hubs.spec.ts` | 36 passed / 4 failed (Fandom Core blocker) / 1 flaky (document-title test — 5/5 clean on isolated re-run) |
+| `npx playwright test e2e/content-honesty.spec.ts e2e/deep-links.spec.ts` | **63 / 63** — confirms the character/event detail-page coverage this task relies on as a replacement is intact |
+| `npx playwright test --project=chromium` (full suite) | 164 passed / 17 failed (181 total) |
+
+**Full-suite failure accounting — all 17 map to two causes, zero
+unexplained:**
+
+- **15 of 17** are the pre-existing Fandom Core routing blocker (7×
+  `category-hubs.spec.ts` Fandom-Core-node cases, all 7 categories this
+  run, + all 8× `fandom-core.spec.ts`). Both drive the Fandom Core from
+  `/`, which has had no route since it became the cinematic landing —
+  unrelated to this task.
+- **2 of 17** — `console-audit.spec.ts` and
+  `category-hubs.spec.ts:297` ("no horizontal overflow on a fully populated
+  hub", tablet-portrait-768) — both confirmed full-suite parallel-worker
+  contention flakes: `console-audit.spec.ts` passed 5/5 and 3/3 on isolated
+  re-runs (single-file, both serial and parallel-with-itself), and the
+  overflow test passed 15/15 across all five viewports on an isolated
+  re-run.
+
+No unexplained failures. The one real, task-caused issue found
+(`console-audit.spec.ts`'s wait strategy) was root-caused and fixed, not
+timed around or silently excluded.
+
+### Known pre-existing failures
+
+The Fandom Core routing blocker (no route since `/` became the cinematic
+landing) remains, unrelated to this task.
+
+### Git
+
+Before: `master`, HEAD `0e06439`, 64 changed/untracked entries (per `git
+status --short`, carried over from the two prior uncommitted sessions).
+After: same branch, same HEAD, working tree extended with this session's
+changes (see Files changed above).
+
+**No `git commit` was performed. No `git push` was performed.**
+
+---
+
+## FANDOM QUIZ / DISCOVERY FEATURE — 2026-09-26
+
+**Not committed.** Continuing on the same uncommitted working tree as the
+three sessions above, all still sitting on pushed commit `0e06439`.
+
+### Purpose
+
+Fandom Quiz implemented as a personality/preference discovery feature
+rather than a knowledge test: 12 questions about how a visitor likes to
+engage with fiction, ending in the one of the seven FandomVerse categories
+that fits them best.
+
+### Scope
+
+- 7 fandom categories (`anime`, `gaming`, `movies`, `tv-shows`, `kpop`,
+  `comics`, `manga` — the project's existing canonical `CategoryId`s,
+  reused as-is, no second id system introduced)
+- 12 questions, 7 options each, natural preference phrasing (no option
+  literally names a category)
+- Weighted, additive scoring — a single option can and often does
+  contribute to more than one category
+- Deterministic tie-break: highest score → most recently answered
+  diverging question → fixed priority order. Never `Math.random()`.
+- Top 3 matches, percentage relative to each category's own maximum
+  possible score across the 12 questions
+- Result screen with primary match, description, other matches, Explore
+  CTA and Retake Quiz
+- Retake clears state and returns to question 1 without a page reload
+
+### Architecture
+
+- Frontend/local only — no backend, no database, no AI API, no network
+  dependency of any kind.
+- Data-driven: `src/data/fandomQuiz.json` (questions/options/scores) and
+  `src/data/fandomQuizResults.json` (per-category result copy + tie-break
+  priority), both with stable, non-index ids.
+- Scoring/ranking is a pure, independently testable module
+  (`src/utils/quizEngine.ts`) — no framework code in the scoring logic.
+- Route: `/quiz` (`src/routes/routes.tsx`), following the same flat
+  top-level route convention as `/search`, `/trailers`, `/merchandise`.
+- Entry points added to the existing "Discover" navigation area in both
+  `Header.tsx`'s mobile/tablet drawer and `Footer.tsx`'s footer column —
+  the same list (`Trailers`, `Events`, `Merchandise`) both already used,
+  extended with `Fandom Quiz` rather than inventing a new nav surface.
+- Page chrome reuses `PagePlaceholder`, `SectionHeader`, `Button`,
+  `Stack`, `Card`-adjacent layout, and the design tokens in
+  `tokens.css` — no new design system, no new CSS custom properties
+  beyond one page-scoped `--result-accent` (the same pattern
+  `CategoryHubPage` already uses for `--hero-accent`).
+- No icon package installed. Reused the app's existing typographic icon
+  vocabulary (`←`/`→`, already the Back/Next-style glyphs on every detail
+  page and `GlobalSearchBar`; `✓` for the selected-option indicator).
+- localStorage: the latest result (`categoryId`, `score`, `topThree`,
+  `timestamp`) is persisted via the project's existing
+  `src/utils/storage.ts` helpers under a new `STORAGE_KEYS.quizResult`
+  entry (`fandomverse.quiz.latestResult.v1`) — same pattern as
+  `cart`/`bookmarks`/`notes`, no new persistence mechanism.
+
+### A real bug found and fixed during implementation
+
+The "Explore {Category}" CTA initially used the shared `ui/Link`
+component with Button's `variant-primary` classes layered on (the same
+technique `ErrorBoundary.tsx` uses for its own button-styled link). For
+`variant-primary` specifically this collided: `Link`'s own
+`tone-primary` class sets the same blue as `variant-primary`'s
+background, so the text rendered in the identical color as the button
+behind it — invisible, confirmed via a screenshot before the fix. Fixed
+by using `react-router-dom`'s plain `Link` directly for this one CTA
+(bypassing the styling collision entirely) with an explicit
+`text-decoration: none`, verified visually after the fix.
+
+### Assets
+
+- Reused the existing 7 category hero assets (`Category.heroImage`,
+  already wired into the data model and used elsewhere) for the result
+  screen — no new images created, no images downloaded.
+- Verified by path only; **image contents were not opened, decoded, OCR'd,
+  or vision-inspected.**
+
+### Accessibility
+
+- Answer options are real `<button type="button">` elements in a
+  `role="group"` container (never clickable `<div>`s), with
+  `aria-pressed` reflecting selection state.
+- Progress is exposed via `role="progressbar"` with `aria-valuenow` /
+  `aria-valuemin` / `aria-valuemax` / `aria-label`, not just visual.
+- Selected state is shown via both a border/background change and a
+  visible `✓` glyph — never color alone.
+- Back/Next/Start/Retake are semantic buttons, keyboard-operable
+  (Tab + Enter/Space) with visible `:focus-visible` states inherited from
+  the shared `Button`/option styles.
+- Verified via a dedicated axe check on both the intro and question
+  screens: zero critical/serious violations.
+
+### Responsive
+
+- No new breakpoint logic — the page sits inside the same 720px reading
+  column every other content page uses (`PagePlaceholder`), with one
+  `@media (max-width: 599px)` rule for the result hero's height. Verified
+  visually and via an overflow check (`scrollWidth <= clientWidth`) at
+  375px and 1280px — no horizontal overflow at either.
+
+### Files changed
+
+```
+src/data/fandomQuiz.json              (new — 12 questions × 7 options)
+src/data/fandomQuizResults.json       (new — result copy + tieBreakPriority)
+src/types/quiz.ts                     (new — quiz domain types)
+src/utils/quizEngine.ts               (new — pure scoring/ranking engine)
+src/utils/quizEngine.test.ts          (new — 12 tests)
+src/utils/storage.ts                  (added STORAGE_KEYS.quizResult only)
+src/pages/FandomQuizPage.tsx          (new — intro/question/result page)
+src/pages/FandomQuizPage.module.css   (new)
+src/pages/FandomQuizPage.test.tsx     (new — 10 tests)
+src/routes/routes.tsx                 (added the /quiz route entry only)
+src/components/Header/Header.tsx      (added one entry to EXPLORE_LINKS)
+src/components/Footer/Footer.tsx      (added one entry to DISCOVER_LINKS)
+e2e/fandom-quiz.spec.ts               (new — 4 focused E2E tests)
+```
+
+Not touched: `merchandise.json`, `CartPage`/cart logic, `BookmarksPage`/
+bookmark logic, `ProductDetailPage`, `CategoryHubPage` (its structure from
+the two prior sessions is untouched), `characters.json`, `events.json`,
+`galleries.json`, `media.json`, `releases.json`, any file outside the list
+above.
+
+### Testing
+
+| Check | Result |
+|---|---|
+| `npm run lint` | clean |
+| `npm run typecheck` | clean |
+| `npm run test` (Vitest) | **179 / 179** (157 baseline + 12 new quizEngine tests + 10 new FandomQuizPage tests) |
+| `npm run build` | clean |
+| `npx playwright test e2e/fandom-quiz.spec.ts` | **4 / 4**, stable across repeated runs (8/8 and 9/9 on repeat-each reruns) |
+| Existing `category-hubs.spec.ts` spot check | Anime hub structure test still passes after the Header/Footer edits |
+
+Pre-existing failures (the Fandom Core routing blocker, and the occasional
+full-suite parallel-worker contention flakes documented in the sessions
+above) are unrelated to this feature and were not re-triggered or
+re-investigated here, per this task's own scope.
+
+### Documentation
+
+This section confirms `docs/FANDOMVERSE_KAGE_LANDING_WORKLOG.md` was
+updated with this dated entry.
+
+### Git
+
+Before: `master`, HEAD `0e06439`, 64 changed/untracked entries (carried
+over from the three prior uncommitted sessions).
+After: same branch, same HEAD, 77 changed/untracked entries (13 new
+Fandom Quiz files + 4 modified files, on top of the prior sessions' work).
+
+**No `git commit` was performed. No `git push` was performed.**
+
+---
+
+## IMAGE ASSET FIX — TRAILERS / EVENTS / MERCHANDISE — 2026-09-26
+
+**Not committed.** Audit-only task, on the same uncommitted working tree
+(pushed commit `0e06439`).
+
+- **Root cause:** none found. Audited every image reference in
+  `media.json` (Trailers, 14 refs), `events.json` (21 refs) and
+  `merchandise.json` (42 refs), plus the shared `ExploreCinematicHero`
+  plate images (3 refs) these three pages also render. Checked: path
+  correctness, file existence, byte size, HTTP 200 + correct
+  content-type, case-sensitivity (Windows-invisible but host-breaking),
+  SVG well-formedness (35 procedural SVGs), and browser-rendered
+  `naturalWidth`/`naturalHeight` after a real incremental scroll. All
+  100% clean on every check.
+- Fixed with existing assets: **0** (nothing was broken)
+- New assets downloaded from stock: **0** (nothing was missing — per the
+  task's own rule, stock images are only pulled when an asset is truly
+  absent)
+- Source: None
+- Paths changed: none
+- **False alarm ruled out:** a first-pass screenshot of `/merchandise`
+  (jump-scroll-to-bottom-then-back) showed several K-Pop/Manga product
+  tiles as blank. Re-tested with a slow incremental scroll (matching real
+  user behaviour) — every tile rendered correctly. This was a lazy-load
+  screenshot-timing artifact, not a real bug; `naturalWidth` confirmed
+  nonzero for all 43 images on the page both times.
+- Verification: image path/existence/extension check — **PASS** (0/77
+  refs missing). `contentValidation.test.ts` +
+  `assetManifest.test.ts` (the existing tests covering this
+  dataset) — **58/58 PASS**.
+- Build: `npm run build` — **PASS**, clean.
+- **No commit. No push.** No files were changed by this task.
+
+---
+
+## CHATBOT / FANDOM ASSISTANT UPGRADE — 2026-09-26
+
+**Not committed.** Upgrades the existing local rule-based FandomVerse
+Assistant (`src/features/assistant/assistantEngine.ts`,
+`src/components/ChatbotLauncher/`, `src/data/chatbot.json` — built in the
+2026-09-25 session) into a lightweight navigation/discovery layer, per the
+explicit direction: keep it simple, local data only, no real AI backend.
+
+### What was already there (read before changing anything)
+
+The icon launcher (bottom-right, fixed), the panel, the initial greeting,
+and a 13-rule deterministic engine already existed. Two real gaps found on
+inspection:
+
+1. `ChatbotRule.linkTo` was defined in the schema and authored on one rule
+   (`rule-events`), but **nothing in the engine or the UI ever read it** —
+   it was dead data. No quick action had ever actually navigated anywhere.
+2. Two rules (`rule-characters`, `rule-events`) still claimed characters
+   and events are "on the {world} hub" — no longer true since the
+   2026-09-25 Category Hub Content Image Integration session removed both
+   sections from the hub. A navigation assistant giving wrong directions
+   defeats its own purpose, so this was fixed alongside the upgrade.
+
+### What changed
+
+- **`ChatbotRuleLink`** (`src/types/content.ts`) gained a `'route'` type
+  (a literal in-app path, e.g. `/quiz`) alongside the existing `'category'`
+  type, plus an optional `label` for the button text.
+- **`assistantEngine.ts`**: `AssistantReply` now carries an optional
+  `link: { path, label }`, resolved from a rule's `linkTo` by a new
+  `resolveLink()`. A new `detectCategoryLinkRequest()` handles "show me
+  the X category"-style input for any of the seven worlds (checked only
+  as a fallback, after every static rule has already failed to match, so
+  it can never shadow an authored rule) — one small function instead of
+  seven near-duplicate per-category rules.
+- **`chatbot.json`**: `quickRepliesStart` replaced with the five requested
+  starting questions ("What is FandomVerse?", "Which fandom should I
+  explore?", "Show me the Anime category.", "What can I buy?", "Help me
+  find a fandom."). Added `rule-find-fandom` (recommends the Fandom Quiz,
+  links to `/quiz`). Added `linkTo` to `rule-merchandise` (`/merchandise`)
+  and fixed `rule-events`'s `linkTo` (was `{type: "category", id:
+  "events"}` — "events" was never a valid CategoryId, so this always
+  silently resolved to nothing; now `{type: "route", id: "/events"}`).
+  Corrected `rule-characters`/`rule-events` response text per the gap
+  above.
+- **`ChatbotLauncher.tsx`**: renders a filled quick-action button (visually
+  distinct from the outline quick-reply chips) whenever a reply carries a
+  `link` — clicking it calls `navigate(path)` then closes the panel, so
+  the visitor actually sees the destination instead of it loading behind
+  an open dialog.
+- **A real pre-existing bug found via testing, fixed**: the "ta" pattern
+  (short for "thanks") in `rule-thanks` matched as a substring of any word
+  containing "ta" — including "**ta**ke me to the tv shows category",
+  which meant that exact phrasing silently answered "Any time." instead of
+  navigating anywhere. Removed; "thanks"/"thank you"/"cheers" already
+  cover the intent without the false-positive risk.
+
+Still true, unchanged: no network call, no `fetch`, no API key, no
+external service, no backend, no Gemini/OpenAI — `respond()` remains a
+pure function of (input, context).
+
+### Files changed
+
+```
+src/types/content.ts                                (ChatbotRuleLink: +'route' type, +label)
+src/features/assistant/assistantEngine.ts            (AssistantLink, resolveLink, detectCategoryLinkRequest)
+src/features/assistant/assistantEngine.test.ts        (+7 tests)
+src/data/chatbot.json                                (quickRepliesStart, +2 rules' linkTo, +1 new rule, 2 corrected responses, 1 bad pattern removed)
+src/components/ChatbotLauncher/ChatbotLauncher.tsx    (quick-action button + navigate-then-close)
+src/components/ChatbotLauncher/ChatbotLauncher.module.css (.linkAction)
+src/components/ChatbotLauncher/ChatbotLauncher.test.tsx (2 tests adapted to the new starting shortcuts, +3 new tests)
+```
+
+Not touched: Cart, Bookmarks, ProductDetail, Category Hub structure,
+routing outside the assistant's own navigation calls, any other feature.
+
+### Tests
+
+| Check | Result |
+|---|---|
+| `npm run lint` | clean |
+| `npm run typecheck` | clean |
+| `npm run test` (Vitest) | **189 / 189** (179 baseline + 10 new) |
+| `npm run build` | clean |
+| `e2e/dialog-architecture.spec.ts` + `e2e/keyboard-walkthrough.spec.ts` (existing chatbot dialog/focus-trap/keyboard coverage) | **6 / 6** |
+| Manual browser verification (Playwright-driven, screenshots reviewed) | "Help me find a fandom." → "Take the Fandom Quiz →" button → navigates to `/quiz`, panel closes. "Show me the Anime category." from the Gaming hub → "Go to Anime →" button → navigates to `/anime`, panel closes. |
+
+### Git
+
+Before: `master`, HEAD `0e06439`, 84 changed/untracked entries (carried
+over from all prior uncommitted sessions). After: same branch, same HEAD,
+7 files modified (no new files).
+
+**No `git commit` was performed. No `git push` was performed.**

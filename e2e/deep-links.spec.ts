@@ -19,7 +19,12 @@ const DEEP_LINKS: Array<[string, RegExp]> = [
   ['/article/article-anime-why-the-ashen-reaches-feel-alive', /^Starlit Ronin: Why the Ashen Reaches Feel Alive$/i],
   ['/character/character-anime-kaida-nova', /^Kaida Nova$/i],
   ['/event/event-anime-starlit-ronin-convention', /^Starlit Ronin Fan Convention$/i],
-  ['/product/merch-anime-blade-bearer-tee', /^Starlit Ronin Blade-Bearer Tee$/i],
+  // Product id updated 2026-09-25: the placeholder catalogue this pointed at
+  // was replaced by real merchandise photography — the id disappeared exactly
+  // as this suite's own comment above says it should catch, and was updated
+  // to the current real product per the same rule (see
+  // docs/FANDOMVERSE_KAGE_LANDING_WORKLOG.md, Merchandise Asset Integration).
+  ['/product/anime-merch-01', /^Collector Hoodie$/i],
   ['/search', /^Search$/i],
   ['/trailers', /^Trailers$/i],
   ['/events', /^Events$/i],

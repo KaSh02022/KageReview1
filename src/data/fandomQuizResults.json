@@ -1,0 +1,33 @@
+{
+  "tieBreakPriority": ["anime", "gaming", "movies", "tv-shows", "kpop", "comics", "manga"],
+  "results": {
+    "anime": {
+      "title": "Anime Explorer",
+      "description": "You're drawn to expressive characters, imaginative worlds and emotionally powerful storytelling."
+    },
+    "gaming": {
+      "title": "Gaming Challenger",
+      "description": "You're drawn to competition, discovery and interactive worlds where every decision matters."
+    },
+    "movies": {
+      "title": "Cinematic Voyager",
+      "description": "You're attracted to memorable stories, visual spectacle and cinematic experiences."
+    },
+    "tv-shows": {
+      "title": "Series Companion",
+      "description": "You enjoy long-form storytelling, character development and worlds that unfold over time."
+    },
+    "kpop": {
+      "title": "Performance Enthusiast",
+      "description": "You're drawn to music, performance, visual identity and fan culture."
+    },
+    "comics": {
+      "title": "Heroic Storyteller",
+      "description": "You enjoy illustrated worlds, iconic heroes and visually driven storytelling."
+    },
+    "manga": {
+      "title": "Manga Voyager",
+      "description": "You appreciate detailed sequential storytelling, character journeys and immersive worlds."
+    }
+  }
+}

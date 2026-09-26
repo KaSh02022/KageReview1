@@ -1,15 +1,23 @@
-import { chatbotConfig, getCategoryById, characters } from '../../data'
-import type { CategoryId, ChatbotRule } from '../../types/content'
+import { chatbotConfig, getCategoryById, categories, characters } from '../../data'
+import { CATEGORY_ROUTES } from '../../routes/categoryRoutes'
+import type { CategoryId, ChatbotRule, ChatbotRuleLink } from '../../types/content'
 
 export interface AssistantContext {
   /** The world the visitor is currently standing in, if any. */
   categoryId?: CategoryId
 }
 
+/** A resolved, ready-to-render quick action — a path the UI can navigate to and a label to show on the button. */
+export interface AssistantLink {
+  path: string
+  label: string
+}
+
 export interface AssistantReply {
   ruleId: string | null
   text: string
   quickReplies: string[]
+  link?: AssistantLink
 }
 
 /**
@@ -69,6 +77,50 @@ export function fillTokens(template: string, context: AssistantContext): string 
     .replace(/\{lead\}/g, lead ? lead.name : 'its lead character')
 }
 
+/** Turns an authored `linkTo` into a real path + label the UI can act on. */
+function resolveLink(linkTo: ChatbotRuleLink | undefined): AssistantLink | undefined {
+  if (!linkTo) return undefined
+  if (linkTo.type === 'category') {
+    const category = getCategoryById(linkTo.id)
+    const route = CATEGORY_ROUTES.find((item) => item.categoryId === linkTo.id)
+    if (!category || !route) return undefined
+    return { path: `/${route.path}`, label: linkTo.label ?? `Go to ${category.name}` }
+  }
+  if (linkTo.type === 'route') {
+    return { path: linkTo.id, label: linkTo.label ?? 'Open' }
+  }
+  // article/character/event/merchandise item-level links aren't resolved
+  // yet — nothing currently authors one, and per-item routing would need a
+  // lookup across four different collections for no current use case.
+  return undefined
+}
+
+const CATEGORY_NAV_INTENT = ['show', 'go to', 'take me', 'open', 'visit', 'jump to', 'view', 'category']
+
+/**
+ * Fallback for "show me the anime category"-style requests: rather than
+ * one near-duplicate static rule per world (7x), this scans the input for
+ * any category name alongside a navigation-intent word and links straight
+ * to that hub. Only runs when no static rule already matched, so it can
+ * never shadow an authored rule.
+ */
+function detectCategoryLinkRequest(input: string): CategoryId | undefined {
+  const haystack = normalise(input)
+  if (!haystack) return undefined
+  const hasIntent = CATEGORY_NAV_INTENT.some((word) => haystack.includes(normalise(word)))
+  if (!hasIntent) return undefined
+
+  for (const category of categories) {
+    // `id`, `slug` and `name` cover both hyphenated ("k-pop"/"tv-shows")
+    // and bare ("kpop") phrasing without a hand-authored alias list.
+    const candidates = [category.id, category.slug, category.name]
+    if (candidates.some((candidate) => haystack.includes(normalise(candidate)))) {
+      return category.id
+    }
+  }
+  return undefined
+}
+
 export function getWelcome(context: AssistantContext): AssistantReply {
   return {
     ruleId: null,
@@ -79,16 +131,32 @@ export function getWelcome(context: AssistantContext): AssistantReply {
 
 export function respond(input: string, context: AssistantContext = {}): AssistantReply {
   const rule = matchRule(input)
-  if (!rule) {
+  if (rule) {
     return {
-      ruleId: null,
-      text: fillTokens(chatbotConfig.defaultFallback, context),
-      quickReplies: chatbotConfig.quickRepliesStart ?? [],
+      ruleId: rule.id,
+      text: fillTokens(rule.response, context),
+      quickReplies: (rule.quickReplies ?? []).map((reply: string) => fillTokens(reply, context)),
+      link: resolveLink(rule.linkTo),
     }
   }
+
+  const categoryId = detectCategoryLinkRequest(input)
+  if (categoryId) {
+    const category = getCategoryById(categoryId)
+    const route = CATEGORY_ROUTES.find((item) => item.categoryId === categoryId)
+    if (category && route) {
+      return {
+        ruleId: null,
+        text: `Here's the ${category.name} hub — hero art, a featured story, more articles and merchandise, all in one place.`,
+        quickReplies: ['What can I buy?', 'Which fandom should I explore?'],
+        link: { path: `/${route.path}`, label: `Go to ${category.name}` },
+      }
+    }
+  }
+
   return {
-    ruleId: rule.id,
-    text: fillTokens(rule.response, context),
-    quickReplies: (rule.quickReplies ?? []).map((reply: string) => fillTokens(reply, context)),
+    ruleId: null,
+    text: fillTokens(chatbotConfig.defaultFallback, context),
+    quickReplies: chatbotConfig.quickRepliesStart ?? [],
   }
 }

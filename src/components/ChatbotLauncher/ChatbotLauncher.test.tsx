@@ -1,9 +1,15 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, useLocation } from 'react-router-dom'
 import { ChatbotLauncher } from './ChatbotLauncher'
 import { useChatbotStore } from '../../stores/chatbotStore'
+
+/** Renders the current path, so a quick-action navigation can be observed without a full route table. */
+function LocationProbe() {
+  const location = useLocation()
+  return <div data-testid="location-probe">{location.pathname}</div>
+}
 
 /**
  * Regression test for docs/11_DECISION_LOG.md D-012: in Phase 1, this
@@ -66,7 +72,12 @@ describe('ChatbotLauncher — local rule-based conversation', () => {
   })
 
   async function open(route = '/anime') {
-    renderAssistant(route)
+    render(
+      <MemoryRouter initialEntries={[route]}>
+        <ChatbotLauncher />
+        <LocationProbe />
+      </MemoryRouter>,
+    )
     await userEvent.click(screen.getByRole('button', { name: 'Open FandomVerse assistant' }))
     return within(await screen.findByRole('dialog', { name: 'FandomVerse Assistant' }))
   }
@@ -75,7 +86,10 @@ describe('ChatbotLauncher — local rule-based conversation', () => {
     const panel = await open()
     const log = panel.getByRole('log', { name: 'Conversation' })
     expect(within(log).getByText(/FandomVerse guide/i)).toBeInTheDocument()
-    expect(panel.getByRole('button', { name: 'Who are the characters?' })).toBeInTheDocument()
+    // Starting shortcuts updated 2026-09-26 (Chatbot / Fandom Assistant
+    // upgrade) to the five suggested questions the assistant is meant to
+    // showcase, in place of the previous ad hoc set.
+    expect(panel.getByRole('button', { name: 'What is FandomVerse?' })).toBeInTheDocument()
   })
 
   it('answers a typed question with a deterministic scripted reply', async () => {
@@ -93,7 +107,9 @@ describe('ChatbotLauncher — local rule-based conversation', () => {
 
   it('answers for the world the visitor is standing in', async () => {
     const panel = await open('/gaming')
-    await userEvent.click(panel.getByRole('button', { name: 'Who are the characters?' }))
+    // "What can I buy?" is one of the current starting shortcuts and its
+    // reply is world-scoped ("Merchandise for {world} is on...").
+    await userEvent.click(panel.getByRole('button', { name: 'What can I buy?' }))
 
     const log = panel.getByRole('log', { name: 'Conversation' })
     await waitFor(() => {
@@ -118,5 +134,50 @@ describe('ChatbotLauncher — local rule-based conversation', () => {
     const before = within(log).getAllByText(/./).length
     await userEvent.click(panel.getByRole('button', { name: 'Send' }))
     expect(within(log).getAllByText(/./).length).toBe(before)
+  })
+})
+
+describe('ChatbotLauncher — quick action links (2026-09-26 upgrade)', () => {
+  beforeEach(() => {
+    useChatbotStore.setState({ isOpen: false, messages: [] })
+  })
+
+  async function open(route = '/anime') {
+    render(
+      <MemoryRouter initialEntries={[route]}>
+        <ChatbotLauncher />
+        <LocationProbe />
+      </MemoryRouter>,
+    )
+    await userEvent.click(screen.getByRole('button', { name: 'Open FandomVerse assistant' }))
+    return within(await screen.findByRole('dialog', { name: 'FandomVerse Assistant' }))
+  }
+
+  it('shows no quick-action button until a reply actually has a link', async () => {
+    const panel = await open()
+    // The welcome message itself carries no linkTo, so no quick-action
+    // button should exist yet — only the plain quick-reply chips.
+    expect(panel.queryByRole('button', { name: /→$/ })).not.toBeInTheDocument()
+  })
+
+  it('a reply with a linkTo shows a quick-action button that navigates and closes the panel', async () => {
+    const panel = await open()
+    await userEvent.click(panel.getByRole('button', { name: 'Help me find a fandom.' }))
+
+    const action = await panel.findByRole('button', { name: /take the fandom quiz/i })
+    await userEvent.click(action)
+
+    expect(screen.getByTestId('location-probe')).toHaveTextContent('/quiz')
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('links a "show me the X category" request straight to that hub', async () => {
+    const panel = await open()
+    await userEvent.click(panel.getByRole('button', { name: 'Show me the Anime category.' }))
+
+    const action = await panel.findByRole('button', { name: /go to anime/i })
+    await userEvent.click(action)
+
+    expect(screen.getByTestId('location-probe')).toHaveTextContent('/anime')
   })
 })

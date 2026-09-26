@@ -168,8 +168,11 @@ export interface Faq {
 }
 
 export interface ChatbotRuleLink {
-  type: 'category' | 'article' | 'character' | 'event' | 'merchandise'
+  /** 'category' resolves `id` as a CategoryId via the category dataset/routes; 'route' uses `id` as a literal in-app path (e.g. "/quiz"). */
+  type: 'category' | 'route' | 'article' | 'character' | 'event' | 'merchandise'
   id: string
+  /** Button label shown for the quick action; a sensible default is derived when omitted. */
+  label?: string
 }
 
 export interface ChatbotRule {

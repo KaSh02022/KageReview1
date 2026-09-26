@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { CategoryHubPage } from './CategoryHubPage'
-import { categories, characters, events } from '../data'
+import { categories, merchandise } from '../data'
 import { CATEGORY_ROUTES } from '../routes/categoryRoutes'
 
 function renderHub(categoryId: string) {
@@ -22,13 +22,17 @@ describe('CategoryHubPage', () => {
 
       expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(category!.name)
       for (const sectionTitle of [
+        // Gallery, Trailers and Upcoming Releases were removed 2026-09-25
+        // ("Category Hub Visual Simplification"); Characters and Events
+        // followed the same day ("Category Hub Content Image
+        // Integration") once Start here/Articles/Merchandise had real
+        // dedicated photography and no longer needed the extra sections to
+        // fill the page. All five datasets are untouched and their detail
+        // pages/routes still work — covered directly by
+        // e2e/deep-links.spec.ts and e2e/content-honesty.spec.ts — only
+        // this hub template stopped rendering them.
         'Start here', // the Featured section's heading; "Featured" itself is the eyebrow
         'Articles',
-        'Gallery',
-        'Characters',
-        'Events',
-        'Trailers',
-        'Upcoming Releases',
         'Merchandise',
         'Explore another world',
       ]) {
@@ -40,47 +44,71 @@ describe('CategoryHubPage', () => {
     },
   )
 
-  it('links every one of the category’s characters to its detail route', () => {
-    renderHub('anime')
-    const charactersHeading = screen.getByRole('heading', { name: /^characters$/i })
-    const section = charactersHeading.closest('section')
-    const animeCharacters = characters.filter((item) => item.categoryId === 'anime')
+  // The three tests that used to live here ("links every character to its
+  // detail route", "links every event to its detail route", "labels
+  // simulated fan events") no longer apply: Characters and Events were
+  // removed from this template 2026-09-25 ("Category Hub Content Image
+  // Integration"). The guarantees they checked are not lost — they are
+  // asserted directly against the still-working character/event detail
+  // pages in e2e/deep-links.spec.ts (`/character/...`, `/event/...` resolve)
+  // and e2e/content-honesty.spec.ts ("events are explicitly labelled as
+  // simulated, not real") — neither of which depends on the hub rendering a
+  // card at all.
 
-    expect(animeCharacters).toHaveLength(5)
-    for (const character of animeCharacters) {
-      const link = within(section!).getByRole('link', { name: new RegExp(character.name, 'i') })
-      expect(link).toHaveAttribute('href', `/character/${character.id}`)
+  it('gives Start here and every Articles image real alt text, and never reuses one image between the two articles', () => {
+    renderHub('gaming')
+    const startHereSection = screen.getByRole('heading', { name: /^start here/i }).closest('section')
+    const articlesSection = screen.getByRole('heading', { name: /^articles$/i }).closest('section')
+
+    const startHereImage = within(startHereSection!).getByRole('img')
+    const articleImages = within(articlesSection!).getAllByRole('img')
+
+    expect(articleImages).toHaveLength(2)
+    for (const image of [startHereImage, ...articleImages]) {
+      expect(image.getAttribute('alt')?.length ?? 0).toBeGreaterThan(10)
+      expect(image).toHaveAttribute('loading', 'lazy')
     }
+
+    // Article 1 and Article 2 each ship their own dedicated asset — this is
+    // a real regression guard, not just documentation of the mapping.
+    const [article1Src, article2Src] = articleImages.map((image) => image.getAttribute('src'))
+    expect(article1Src).not.toEqual(article2Src)
+    expect(article1Src).not.toEqual(startHereImage.getAttribute('src'))
   })
 
-  it('links every one of the category’s events to its detail route', () => {
-    renderHub('kpop')
-    const eventsHeading = screen.getByRole('heading', { name: /^events$/i })
-    const section = eventsHeading.closest('section')
-    const kpopEvents = events.filter((item) => item.categoryId === 'kpop')
-
-    expect(kpopEvents).toHaveLength(3)
-    for (const event of kpopEvents) {
-      const link = within(section!).getByRole('link', { name: new RegExp(event.title, 'i') })
-      expect(link).toHaveAttribute('href', `/event/${event.id}`)
-    }
-  })
-
-  it('labels simulated fan events so users are never misled', () => {
-    renderHub('anime')
-    const eventsSection = screen.getByRole('heading', { name: /^events$/i }).closest('section')
-    expect(within(eventsSection!).getAllByText(/simulated fan event/i).length).toBeGreaterThan(0)
-  })
-
-  it('gives every gallery image real alt text', () => {
+  it('gives every merchandise image real alt text', () => {
+    // Was "gives every gallery image real alt text" until Gallery was
+    // removed 2026-09-25 (Category Hub Visual Simplification). Merchandise
+    // is now the hub's real-photography section, so the same accessibility
+    // coverage moved here rather than being dropped.
     renderHub('manga')
-    const gallerySection = screen.getByRole('heading', { name: /^gallery$/i }).closest('section')
-    const images = within(gallerySection!).getAllByRole('img')
+    const merchSection = screen.getByRole('heading', { name: /^merchandise$/i }).closest('section')
+    const images = within(merchSection!).getAllByRole('img')
 
     expect(images.length).toBeGreaterThan(0)
     for (const image of images) {
       expect(image.getAttribute('alt')?.length ?? 0).toBeGreaterThan(10)
       expect(image).toHaveAttribute('loading', 'lazy')
+    }
+  })
+
+  it('shows the featured merchandise hero once, separately from the five products, never duplicated', () => {
+    renderHub('anime')
+    const merchSection = screen.getByRole('heading', { name: /^merchandise$/i }).closest('section')
+    const animeMerch = merchandise.filter((item) => item.categoryId === 'anime')
+    const hero = animeMerch.find((item) => item.tags.includes('featured'))
+    const products = animeMerch.filter((item) => item.id !== hero?.id)
+
+    expect(hero, 'anime has no merchandise hero').toBeDefined()
+    expect(products).toHaveLength(5)
+
+    // The hero's own product link appears exactly once in the section...
+    expect(within(merchSection!).getAllByRole('link', { name: new RegExp(hero!.name, 'i') })).toHaveLength(1)
+    // ...and every one of the five products is a distinct, separate card.
+    for (const product of products) {
+      expect(
+        within(merchSection!).getByRole('link', { name: new RegExp(product.name, 'i') }),
+      ).toHaveAttribute('href', `/product/${product.id}`)
     }
   })
 

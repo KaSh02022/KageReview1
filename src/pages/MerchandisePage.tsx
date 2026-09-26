@@ -33,6 +33,7 @@ export function MerchandisePage() {
               {product.currency} {product.priceRangeMin}–{product.priceRangeMax}
             </CardBody>
             <CardFooter>
+              {product.tags.includes('featured') && <Badge tone="primary">Featured</Badge>}
               <Badge tone={product.status === 'available' ? 'success' : 'neutral'}>{product.status}</Badge>
             </CardFooter>
           </Card>

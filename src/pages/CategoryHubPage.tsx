@@ -1,23 +1,14 @@
 import type { CSSProperties } from 'react'
 import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import {
-  articles,
-  characters,
-  events,
-  media,
-  galleries,
-  releases,
-  merchandise,
-  getCategoryByIdOrSlug,
-} from '../data'
+import { articles, characters, merchandise, getCategoryByIdOrSlug } from '../data'
 import { CATEGORY_ROUTES } from '../routes/categoryRoutes'
 import { EmptyState } from '../components/EmptyState/EmptyState'
 import { SectionHeader } from '../components/ui/SectionHeader/SectionHeader'
 import { Grid } from '../components/ui/Layout/Grid'
 import { Stack } from '../components/ui/Layout/Stack'
 import { Badge } from '../components/ui/Badge/Badge'
-import { Card, CardMedia, CardHeader, CardBody, CardMeta, CardFooter } from '../components/ui/Card/Card'
+import { Card, CardMedia, CardHeader, CardBody, CardFooter } from '../components/ui/Card/Card'
 import { Link } from '../components/ui/Link/Link'
 import { CategoryCinematicHero } from '../features/category/CategoryCinematicHero'
 import { FEATURED_CHARACTER_IDS } from '../data/landingAssets'
@@ -46,9 +37,25 @@ interface CategoryHubPageProps {
 /**
  * The shared "one universe, seven worlds" category hub template (Phase 5,
  * docs/02_PRODUCT_ARCHITECTURE.md §16). Every category renders the exact
- * same section structure — hero, featured, articles, gallery, characters,
- * events, trailers, upcoming releases, merchandise, discovery — with only
- * the accent color, imagery, and content differing per category.
+ * same section structure — hero, start here, articles, merchandise,
+ * discovery — with only the accent color, imagery, and content differing
+ * per category.
+ *
+ * Simplified in two passes, both 2026-09-25
+ * (docs/FANDOMVERSE_KAGE_LANDING_WORKLOG.md): first Gallery, Trailers and
+ * Upcoming Releases ("Category Hub Visual Simplification"), then Characters
+ * and Events ("Category Hub Content Image Integration") were removed from
+ * this template. All five were either procedural placeholder art with no
+ * unique per-item imagery, or duplicated a dedicated Explore page that
+ * already exists site-wide — sections that made the hub read as a long list
+ * of thin cards rather than a deliberate product page. Their datasets
+ * (`galleries.json`, trailer `media.json` entries, `releases.json`,
+ * `characters.json`, `events.json`) are untouched, and character/event
+ * detail pages and routes still work; only this template's rendering of
+ * them changed. "Start here" and "Articles" now carry dedicated
+ * photography (`public/assets/generated/content/`), and Merchandise
+ * carries real product photography (`public/assets/generated/merch/`) —
+ * together the page's visual content.
  */
 export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryHubPageProps) {
   const { slug } = useParams()
@@ -71,12 +78,11 @@ export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryH
   const categoryArticles = articles.filter((item) => item.categoryId === categoryId)
   const featuredArticle = categoryArticles.find((item) => item.featured)
   const remainingArticles = categoryArticles.filter((item) => item.id !== featuredArticle?.id)
-  const categoryCharacters = characters.filter((item) => item.categoryId === categoryId)
-  const categoryEvents = events.filter((item) => item.categoryId === categoryId)
-  const categoryTrailers = media.filter((item) => item.categoryId === categoryId && item.mediaType === 'trailer')
-  const categoryGallery = galleries.find((item) => item.categoryId === categoryId)
-  const categoryReleases = releases.filter((item) => item.categoryId === categoryId)
   const categoryMerch = merchandise.filter((item) => item.categoryId === categoryId)
+  // The hero is a distinct, once-only spotlight item (see §Merchandise
+  // below) — never one of the five products, and never repeated.
+  const merchHero = categoryMerch.find((item) => item.tags.includes('featured'))
+  const merchProducts = categoryMerch.filter((item) => item.id !== merchHero?.id)
   const otherCategories = CATEGORY_ROUTES.filter((route) => route.categoryId !== categoryId)
 
   const isCinematic = CINEMATIC_CATEGORIES.has(categoryId)
@@ -160,146 +166,67 @@ export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryH
           )}
         </section>
 
-        <section aria-labelledby={`${categoryId}-gallery`}>
-          <SectionHeader id={`${categoryId}-gallery`} title="Gallery" level={2} />
-          {!categoryGallery || categoryGallery.images.length === 0 ? (
-            <EmptyState title="No gallery images yet" description="Fan-art and concept pieces are added over time." />
-          ) : (
-            <Grid minItemWidth={150} gap="sm">
-              {categoryGallery.images.map((image) => (
-                <figure key={image.id} className={styles.galleryItem}>
-                  <img src={image.src} alt={image.alt} loading="lazy" />
-                  <figcaption>{image.caption}</figcaption>
-                </figure>
-              ))}
-            </Grid>
-          )}
-        </section>
-
-        <section aria-labelledby={`${categoryId}-characters`}>
-          <SectionHeader id={`${categoryId}-characters`} title="Characters" level={2} />
-          {categoryCharacters.length === 0 ? (
-            <EmptyState title="No character profiles yet" description="Character profiles are added over time." />
-          ) : (
-            <Grid minItemWidth={150} gap="sm">
-              {categoryCharacters.map((character) => (
-                <Card key={character.id} to={`/character/${character.id}`} accent={accent}>
-                  <CardMedia>
-                    <img src={character.image.src} alt={character.image.alt} loading="lazy" />
-                  </CardMedia>
-                  <CardHeader>
-                    <h3>{character.name}</h3>
-                  </CardHeader>
-                  <CardMeta>{character.role}</CardMeta>
-                </Card>
-              ))}
-            </Grid>
-          )}
-        </section>
-
-        <section aria-labelledby={`${categoryId}-events`}>
-          <SectionHeader id={`${categoryId}-events`} title="Events" level={2} />
-          {categoryEvents.length === 0 ? (
-            <EmptyState title="No events scheduled" description="Fan events are added as they're organized." />
-          ) : (
-            <Grid minItemWidth={240} gap="md">
-              {categoryEvents.map((event) => (
-                <Card key={event.id} to={`/event/${event.id}`} accent={accent}>
-                  <CardMedia>
-                    <img src={event.image.src} alt={event.image.alt} loading="lazy" />
-                  </CardMedia>
-                  <CardHeader>
-                    <h3>{event.title}</h3>
-                  </CardHeader>
-                  <CardBody>
-                    <p>
-                      {event.date} · {event.location}
-                    </p>
-                  </CardBody>
-                  <CardFooter>
-                    <Badge tone="neutral">{event.eventType}</Badge>
-                    {event.fictional && (
-                      <Badge tone="warning">Simulated fan event</Badge>
-                    )}
-                  </CardFooter>
-                </Card>
-              ))}
-            </Grid>
-          )}
-        </section>
-
-        <section aria-labelledby={`${categoryId}-trailers`}>
-          <SectionHeader id={`${categoryId}-trailers`} title="Trailers" level={2} />
-          {categoryTrailers.length === 0 ? (
-            <EmptyState title="No trailers yet" description="Trailers are added as they're released." />
-          ) : (
-            <Grid minItemWidth={220} gap="md">
-              {categoryTrailers.map((trailer) => (
-                <Card key={trailer.id} accent={accent}>
-                  <CardMedia>
-                    <img src={trailer.thumbnail.src} alt={trailer.thumbnail.alt} loading="lazy" />
-                  </CardMedia>
-                  <CardHeader>
-                    <h3>{trailer.title}</h3>
-                  </CardHeader>
-                  <CardBody>
-                    <p>{trailer.description}</p>
-                  </CardBody>
-                  <CardFooter>
-                    <Badge tone="neutral">Fictional trailer</Badge>
-                  </CardFooter>
-                </Card>
-              ))}
-            </Grid>
-          )}
-        </section>
-
-        <section aria-labelledby={`${categoryId}-releases`}>
-          <SectionHeader id={`${categoryId}-releases`} title="Upcoming Releases" level={2} />
-          {categoryReleases.length === 0 ? (
-            <EmptyState title="Nothing scheduled" description="Release info is added as it's announced." />
-          ) : (
-            <Grid minItemWidth={150} gap="sm">
-              {categoryReleases.map((release) => (
-                <Card key={release.id} accent={accent}>
-                  <CardMedia>
-                    <img src={release.coverImage.src} alt={release.coverImage.alt} loading="lazy" />
-                  </CardMedia>
-                  <CardHeader>
-                    <h3>{release.title}</h3>
-                  </CardHeader>
-                  <CardFooter>
-                    <Badge tone={release.status === 'upcoming' ? 'primary' : 'neutral'}>{release.status}</Badge>
-                  </CardFooter>
-                </Card>
-              ))}
-            </Grid>
-          )}
-        </section>
-
+        {/* The catalogue's visual centerpiece: real product photography (see
+            docs/FANDOMVERSE_KAGE_LANDING_WORKLOG.md, "Category Hub Visual
+            Simplification"), so this is the one content section sized and
+            spotlighted like the page means it — not the same quiet card size
+            as everything else. The hero item renders once, separately from
+            the five products, reusing the exact spotlight treatment the
+            Featured Article section already established above
+            (`.featuredCard`) rather than inventing a second one. */}
         <section aria-labelledby={`${categoryId}-merch`}>
-          <SectionHeader id={`${categoryId}-merch`} title="Merchandise" level={2} />
+          <SectionHeader
+            id={`${categoryId}-merch`}
+            eyebrow="Collection"
+            title="Merchandise"
+            description={`Original ${category.franchise} gear, from the fan hub's own shop.`}
+            level={2}
+          />
           {categoryMerch.length === 0 ? (
             <EmptyState title="No merchandise yet" description="Merchandise is added over time." />
           ) : (
-            <Grid minItemWidth={150} gap="sm">
-              {categoryMerch.map((item) => (
-                <Card key={item.id} to={`/product/${item.id}`} accent={accent}>
+            <Stack gap="lg">
+              {merchHero && (
+                <Card to={`/product/${merchHero.id}`} accent={accent} className={styles.featuredCard}>
                   <CardMedia>
-                    <img src={item.image.src} alt={item.image.alt} loading="lazy" />
+                    <img src={merchHero.image.src} alt={merchHero.image.alt} loading="lazy" />
                   </CardMedia>
                   <CardHeader>
-                    <h3>{item.name}</h3>
+                    <h3>{merchHero.name}</h3>
                   </CardHeader>
+                  <CardBody>
+                    <p>{merchHero.description}</p>
+                  </CardBody>
                   <CardFooter>
                     <span>
-                      {item.currency} {item.priceRangeMin}–{item.priceRangeMax}
+                      {merchHero.currency} {merchHero.priceRangeMin}–{merchHero.priceRangeMax}
                     </span>
-                    <Badge tone={item.status === 'available' ? 'success' : 'neutral'}>{item.status}</Badge>
+                    <Badge tone="primary">Featured</Badge>
+                    <Badge tone={merchHero.status === 'available' ? 'success' : 'neutral'}>
+                      {merchHero.status}
+                    </Badge>
                   </CardFooter>
                 </Card>
-              ))}
-            </Grid>
+              )}
+              <Grid minItemWidth={220} gap="md">
+                {merchProducts.map((item) => (
+                  <Card key={item.id} to={`/product/${item.id}`} accent={accent}>
+                    <CardMedia>
+                      <img src={item.image.src} alt={item.image.alt} loading="lazy" />
+                    </CardMedia>
+                    <CardHeader>
+                      <h3>{item.name}</h3>
+                    </CardHeader>
+                    <CardFooter>
+                      <span>
+                        {item.currency} {item.priceRangeMin}–{item.priceRangeMax}
+                      </span>
+                      <Badge tone={item.status === 'available' ? 'success' : 'neutral'}>{item.status}</Badge>
+                    </CardFooter>
+                  </Card>
+                ))}
+              </Grid>
+            </Stack>
           )}
         </section>
 

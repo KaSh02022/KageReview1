@@ -66,26 +66,6 @@
   max-width: 640px;
 }
 
-.galleryItem {
-  margin: 0;
-  border-radius: var(--radius-medium);
-  overflow: hidden;
-  background: var(--color-surface-elevated);
-}
-
-.galleryItem img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.galleryItem figcaption {
-  font: var(--font-body-small);
-  color: var(--color-text-muted);
-  padding: var(--space-xs) var(--space-sm);
-}
-
 @media (max-width: 599px) {
   .hero {
     min-height: 220px;

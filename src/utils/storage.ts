@@ -53,4 +53,5 @@ export const STORAGE_KEYS = {
   bookmarks: 'fandomverse.bookmarks.v1',
   notes: 'fandomverse.notes.v1',
   visitorCount: 'fandomverse.visitorCount.v1',
+  quizResult: 'fandomverse.quiz.latestResult.v1',
 } as const

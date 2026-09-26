@@ -1,11 +1,12 @@
 {
-  "welcomeMessage": "I'm the FandomVerse guide. Ask about characters, events, trailers or merchandise — or pick one of the shortcuts below.",
-  "defaultFallback": "I don't have an answer for that one. I can help with characters, events, trailers, merchandise, or finding your way around a world.",
+  "welcomeMessage": "I'm the FandomVerse guide. Ask about characters, events, trailers or merchandise, take the Fandom Quiz, or pick one of the shortcuts below.",
+  "defaultFallback": "I don't have an answer for that one. I can help with characters, events, trailers, merchandise, finding your way around a world — or try \"Help me find a fandom\" for the quiz.",
   "quickRepliesStart": [
-    "Who are the characters?",
-    "What's happening?",
-    "Show me merchandise",
-    "What is FandomVerse?"
+    "What is FandomVerse?",
+    "Which fandom should I explore?",
+    "Show me the Anime category.",
+    "What can I buy?",
+    "Help me find a fandom."
   ],
   "rules": [
     {
@@ -24,20 +25,20 @@
       "id": "rule-worlds",
       "patterns": ["show me the worlds", "what worlds", "what categories", "list categories", "seven worlds"],
       "response": "Seven worlds: Anime, Gaming, Movies, TV Shows, K-Pop, Comics and Manga. Each has its own lead character, events, trailers and merchandise.",
-      "quickReplies": ["Who are the characters?", "What is FandomVerse?"]
+      "quickReplies": ["Show me the Anime category.", "Which fandom should I explore?"]
     },
     {
       "id": "rule-characters",
       "patterns": ["character", "characters", "who are the characters", "cast", "lead", "protagonist"],
-      "response": "{world} has its own cast, led by {lead}. You'll find every character file on the {world} hub.",
+      "response": "{world}'s story centers on {lead}. Character profiles still exist, just not listed on the hub anymore — search for one by name using the header search.",
       "quickReplies": ["What's happening?", "Show me trailers"]
     },
     {
       "id": "rule-events",
       "patterns": ["event", "events", "what's happening", "whats happening", "meetup", "convention", "happening"],
-      "response": "Events for {world} — meetups, premieres and community gatherings — are listed on the {world} hub, and everything across all seven worlds is on the Events page.",
+      "response": "Events aren't shown on the world hubs anymore, but every fan event across all seven worlds — including {world}'s — is on the Events page.",
       "quickReplies": ["Show me trailers", "Show me merchandise"],
-      "linkTo": { "type": "category", "id": "events" }
+      "linkTo": { "type": "route", "id": "/events", "label": "Browse Events" }
     },
     {
       "id": "rule-trailers",
@@ -49,13 +50,32 @@
       "id": "rule-merchandise",
       "patterns": ["merch", "merchandise", "buy", "shop", "store", "product", "products", "price"],
       "response": "Merchandise for {world} is on the Merchandise page. Everything is an original FandomVerse product — this is a demonstration catalogue, not a real storefront, so nothing can actually be purchased.",
-      "quickReplies": ["Who are the characters?", "What's happening?"]
+      "quickReplies": ["Who are the characters?", "What's happening?"],
+      "linkTo": { "type": "route", "id": "/merchandise", "label": "Browse Merchandise" }
     },
     {
       "id": "rule-explore",
-      "patterns": ["explore", "where do i start", "how do i start", "navigate", "get around", "help me find"],
-      "response": "Start on the {world} hub: the lead character sits at the top, then featured stories, events, trailers and merchandise below. The header navigates between all seven worlds.",
-      "quickReplies": ["Who are the characters?", "Show me merchandise"]
+      "patterns": ["explore", "where do i start", "how do i start", "navigate", "get around"],
+      "response": "Start on a world's hub: hero art, a featured \"Start here\" story, more articles, then merchandise below. The header (or footer) switches between all seven worlds — or try the Fandom Quiz if you're not sure which one fits you.",
+      "quickReplies": ["Which fandom should I explore?", "Show me merchandise"]
+    },
+    {
+      "id": "rule-find-fandom",
+      "patterns": [
+        "which fandom should i explore",
+        "which fandom should i pick",
+        "which fandom should i try",
+        "help me find a fandom",
+        "help me find my fandom",
+        "help me choose a fandom",
+        "not sure which fandom",
+        "i don't know which fandom",
+        "recommend a fandom",
+        "find my fandom"
+      ],
+      "response": "Not sure yet? Take the 2-minute Fandom Quiz — it matches you to one of the seven worlds based on how you actually like to fan out, not trivia.",
+      "quickReplies": ["What can I buy?", "What is FandomVerse?"],
+      "linkTo": { "type": "route", "id": "/quiz", "label": "Take the Fandom Quiz" }
     },
     {
       "id": "rule-search",
@@ -83,7 +103,7 @@
     },
     {
       "id": "rule-thanks",
-      "patterns": ["thanks", "thank you", "cheers", "ta"],
+      "patterns": ["thanks", "thank you", "cheers"],
       "response": "Any time. Enjoy {world}.",
       "quickReplies": ["Who are the characters?", "What's happening?"]
     }

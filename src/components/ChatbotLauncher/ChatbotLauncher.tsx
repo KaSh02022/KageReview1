@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { CATEGORY_ROUTES } from '../../routes/categoryRoutes'
 import { getCategoryById } from '../../data'
 import { useChatbotStore } from '../../stores/chatbotStore'
-import { getWelcome, respond } from '../../features/assistant/assistantEngine'
+import { getWelcome, respond, type AssistantLink } from '../../features/assistant/assistantEngine'
 import { IconButton } from '../ui/Button/IconButton'
 import { Dialog } from '../ui/Dialog/Dialog'
 import styles from './ChatbotLauncher.module.css'
@@ -34,6 +34,7 @@ export function ChatbotLauncher() {
   const pushMessage = useChatbotStore((state) => state.pushMessage)
 
   const { pathname } = useLocation()
+  const navigate = useNavigate()
   const activeRoute = CATEGORY_ROUTES.find((route) => pathname === `/${route.path}`)
   // Resolved through the dataset rather than used raw, so the id is the
   // canonical CategoryId the engine expects — the same path the header takes.
@@ -46,6 +47,8 @@ export function ChatbotLauncher() {
    * free of setState — one render per exchange instead of a cascade.
    */
   const [replyShortcuts, setReplyShortcuts] = useState<string[] | null>(null)
+  /** The most recent reply's quick action (e.g. "Take the Fandom Quiz"), if it had one. */
+  const [replyLink, setReplyLink] = useState<AssistantLink | undefined>(undefined)
   const welcome = getWelcome(context)
   const quickReplies = replyShortcuts ?? welcome.quickReplies
   const logRef = useRef<HTMLDivElement>(null)
@@ -73,12 +76,20 @@ export function ChatbotLauncher() {
     const reply = respond(text, context)
     pushMessage({ id: nextId('bot'), role: 'bot', text: reply.text })
     setReplyShortcuts(reply.quickReplies)
+    setReplyLink(reply.link)
     setDraft('')
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     ask(draft)
+  }
+
+  /** Quick actions actually leave the conversation, so the panel closes once the destination is reached. */
+  function followLink() {
+    if (!replyLink) return
+    navigate(replyLink.path)
+    close()
   }
 
   return (
@@ -118,6 +129,12 @@ export function ChatbotLauncher() {
               </p>
             ))}
           </div>
+
+          {replyLink && (
+            <button type="button" className={styles.linkAction} onClick={followLink}>
+              {replyLink.label} →
+            </button>
+          )}
 
           {quickReplies.length > 0 && (
             <div className={styles.quick}>

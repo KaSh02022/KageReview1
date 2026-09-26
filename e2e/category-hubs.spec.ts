@@ -21,14 +21,16 @@ const CATEGORY_HUBS = [
   { path: '/manga', name: 'Manga' },
 ]
 
+// Gallery, Trailers and Upcoming Releases were removed from CategoryHubPage
+// 2026-09-25 (Category Hub Visual Simplification); Characters and Events
+// followed the same day (Category Hub Content Image Integration), once
+// Start here/Articles/Merchandise had real dedicated photography and no
+// longer needed extra sections to fill the page. All five datasets are
+// untouched and their detail pages/routes still work; only the hub template
+// stopped rendering them.
 const SECTION_HEADINGS = [
   /^start here:/i,
   /^articles$/i,
-  /^gallery$/i,
-  /^characters$/i,
-  /^events$/i,
-  /^trailers$/i,
-  /^upcoming releases$/i,
   /^merchandise$/i,
   /^explore another world$/i,
 ]
@@ -63,11 +65,19 @@ test.describe('Category hubs — structure and content minimums', () => {
       }
     })
 
-    test(`${hub.name} hub shows at least 5 characters and 3 events (SRS minimums)`, async ({ page }) => {
+    test(`${hub.name} hub shows 2 articles and 6 merchandise items (SRS minimums that still render on this page)`, async ({ page }) => {
+      // Was "shows at least 5 characters and 3 events" until both sections
+      // were removed 2026-09-25 (Category Hub Content Image Integration).
+      // Those SRS totals (35 characters, 21 events site-wide) are still
+      // enforced at the dataset level in
+      // src/data/contentValidation.test.ts — they no longer render on this
+      // page at all, so there is nothing left here for a link count to
+      // check. Articles and Merchandise are the two remaining sections with
+      // a real per-item minimum to hold the line on.
       await page.goto(`/#${hub.path}`)
 
-      await expectSectionLinkCount(page, /^characters$/i, 5)
-      await expectSectionLinkCount(page, /^events$/i, 3)
+      await expectSectionLinkCount(page, /^articles$/i, 2)
+      await expectSectionLinkCount(page, /^merchandise$/i, 6)
     })
   }
 
@@ -102,40 +112,42 @@ test.describe('Category hubs — structure and content minimums', () => {
 })
 
 test.describe('Category hubs — route/content integration', () => {
-  test('a character card navigates to that character’s detail page', async ({ page }) => {
+  // The next two tests used to enter via a Character card and an Event
+  // card. Both sections were removed 2026-09-25 (Category Hub Content Image
+  // Integration), so they now enter via the two card types that took their
+  // place as this page's click-through content: the Start here spotlight
+  // and an Articles grid card. The underlying guarantee ("a hub card really
+  // navigates to a real detail page with the right heading") is unchanged;
+  // character/event detail pages themselves are still covered directly by
+  // e2e/deep-links.spec.ts and e2e/content-honesty.spec.ts.
+
+  test('the Start here card navigates to that article’s detail page', async ({ page }) => {
     await page.goto('/#/anime')
-    const charactersSection = page
+    const startHereSection = page
       .locator('section')
-      .filter({ has: page.getByRole('heading', { name: /^characters$/i }) })
-    const firstCharacter = charactersSection.getByRole('link').first()
-    // The card's heading is the character's name; the link's full text also
-    // includes the role, so read the heading rather than the whole link.
-    const name = (await firstCharacter.getByRole('heading').textContent())?.trim() ?? ''
-    expect(name).not.toBe('')
-
-    await firstCharacter.click()
-    await expect(page).toHaveURL(/#\/character\//)
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText(name)
-  })
-
-  test('an event card navigates to that event’s detail page, labelled as simulated', async ({ page }) => {
-    await page.goto('/#/k-pop')
-    const eventsSection = page
-      .locator('section')
-      .filter({ has: page.getByRole('heading', { name: /^events$/i }) })
-
-    const firstEvent = eventsSection.getByRole('link').first()
-    const title = (await firstEvent.getByRole('heading').textContent())?.trim() ?? ''
+      .filter({ has: page.getByRole('heading', { name: /^start here/i }) })
+    const startHereCard = startHereSection.getByRole('link').first()
+    const title = (await startHereCard.getByRole('heading').textContent())?.trim() ?? ''
     expect(title).not.toBe('')
 
-    await firstEvent.click()
-    await expect(page).toHaveURL(/#\/event\//)
-    // Wait for the detail page itself to render before asserting the badge.
-    // `toHaveURL` resolves as soon as the hash changes, while the hub — which
-    // shows one "Simulated fan event" badge per event card — is still mounted,
-    // so asserting too early hits three matches instead of the detail page's one.
+    await startHereCard.click()
+    await expect(page).toHaveURL(/#\/article\//)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(title)
-    await expect(page.getByText(/simulated fan event/i)).toBeVisible()
+  })
+
+  test('an article card navigates to that article’s detail page', async ({ page }) => {
+    await page.goto('/#/k-pop')
+    const articlesSection = page
+      .locator('section')
+      .filter({ has: page.getByRole('heading', { name: /^articles$/i }) })
+
+    const firstArticle = articlesSection.getByRole('link').first()
+    const title = (await firstArticle.getByRole('heading').textContent())?.trim() ?? ''
+    expect(title).not.toBe('')
+
+    await firstArticle.click()
+    await expect(page).toHaveURL(/#\/article\//)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(title)
   })
 
   test('a merchandise card navigates to the product page with a working demo cart', async ({ page }) => {
@@ -151,29 +163,36 @@ test.describe('Category hubs — route/content integration', () => {
     await expect(page.getByText(/no checkout, payment, or real purchase/i)).toBeVisible()
   })
 
+  // The next two tests used to enter via a Character card. Same
+  // replacement rationale as above: Articles is a still-present hub card
+  // type, and ArticleDetailPage carries the same document-title hook and
+  // back-link every detail page shares (docs/02_PRODUCT_ARCHITECTURE.md
+  // §16), so the assertion is exercised exactly as before, just through a
+  // section that still exists.
+
   test('detail pages set a document title naming the item, not a generic label', async ({ page }) => {
     await page.goto('/#/anime')
-    const charactersSection = page
+    const articlesSection = page
       .locator('section')
-      .filter({ has: page.getByRole('heading', { name: /^characters$/i }) })
+      .filter({ has: page.getByRole('heading', { name: /^articles$/i }) })
 
-    const firstCharacterLink = charactersSection.getByRole('link').first()
-    await expect(firstCharacterLink).toBeVisible()
-    await firstCharacterLink.click()
-    await expect(page).toHaveURL(/#\/character\//)
+    const firstArticleLink = articlesSection.getByRole('link').first()
+    await expect(firstArticleLink).toBeVisible()
+    await firstArticleLink.click()
+    await expect(page).toHaveURL(/#\/article\//)
     const heading = (await page.getByRole('heading', { level: 1 }).textContent())?.trim() ?? ''
     await expect(page).toHaveTitle(new RegExp(heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'))
   })
 
   test('the back-to-hub link on a detail page returns to the right category', async ({ page }) => {
     await page.goto('/#/manga')
-    const charactersSection = page
+    const merchSection = page
       .locator('section')
-      .filter({ has: page.getByRole('heading', { name: /^characters$/i }) })
+      .filter({ has: page.getByRole('heading', { name: /^merchandise$/i }) })
 
-    const firstCharacterLink = charactersSection.getByRole('link').first()
-    await expect(firstCharacterLink).toBeVisible()
-    await firstCharacterLink.click()
+    const firstProductLink = merchSection.getByRole('link').first()
+    await expect(firstProductLink).toBeVisible()
+    await firstProductLink.click()
     await page.getByRole('link', { name: /back to manga/i }).click()
     await expect(page).toHaveURL(/#\/manga$/)
     await expect(page.getByRole('heading', { level: 1, name: 'Manga' })).toBeVisible()
@@ -201,15 +220,18 @@ test.describe('Category hubs — accessibility', () => {
     expect(seriousOrCritical, JSON.stringify(seriousOrCritical, null, 2)).toEqual([])
   })
 
-  test('a character detail page has no critical or serious axe violations', async ({ page }) => {
+  test('an article detail page has no critical or serious axe violations', async ({ page }) => {
+    // Was via a Character card until that section was removed 2026-09-25
+    // (Category Hub Content Image Integration) — Articles is the
+    // still-present hub card type now exercised.
     await page.goto('/#/anime')
-    const characterLink = page
+    const articleLink = page
       .locator('section')
-      .filter({ has: page.getByRole('heading', { name: /^characters$/i }) })
+      .filter({ has: page.getByRole('heading', { name: /^articles$/i }) })
       .getByRole('link')
       .first()
-    await expect(characterLink).toBeVisible()
-    await characterLink.click()
+    await expect(articleLink).toBeVisible()
+    await articleLink.click()
 
     const results = await new AxeBuilder({ page }).analyze()
     const seriousOrCritical = results.violations.filter(
@@ -283,10 +305,15 @@ for (const viewport of HUB_VIEWPORTS) {
     })
 
     test('no horizontal overflow on a detail page', async ({ page }) => {
+      // Was via a Character card until that section was removed 2026-09-25
+      // (Category Hub Content Image Integration) — Merchandise is the
+      // still-present hub card type now exercised, and it is the one
+      // section whose new real photography makes an overflow regression on
+      // its detail page the most worth guarding against.
       await page.goto('/#/anime')
       const detailLink = page
         .locator('section')
-        .filter({ has: page.getByRole('heading', { name: /^characters$/i }) })
+        .filter({ has: page.getByRole('heading', { name: /^merchandise$/i }) })
         .getByRole('link')
         .first()
       await expect(detailLink).toBeVisible()
