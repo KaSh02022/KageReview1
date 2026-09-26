@@ -1772,3 +1772,422 @@ over from all prior uncommitted sessions). After: same branch, same HEAD,
 7 files modified (no new files).
 
 **No `git commit` was performed. No `git push` was performed.**
+
+---
+
+## FINAL UI POLISH: TYPOGRAPHY / ICON / HEADER / FOOTER / HAMBURGER MENU — 2026-09-26
+
+**Not committed.** Continuing on top of pushed commit `e991e65`
+("feat: add TECH4/FPT Aptech credit to About, Contact and Footer").
+
+### Scope discovery (targeted, not a full-project read)
+
+Read only: `src/components/Header/Header.tsx` + `.module.css`,
+`src/components/Footer/Footer.tsx` + `.module.css`, `src/components/ui/
+Drawer/Drawer.tsx` + `.module.css` (the hamburger's menu primitive),
+`src/components/ui/Button/IconButton.tsx` + `.module.css` (the hamburger's
+own control), `src/styles/tokens.css` (the shared `--chrome-*` micro-type
+tokens both Header and Footer consume), `package.json` (validation
+scripts). Confirmed via `grep` that `--chrome-brand-*`/`--chrome-eyebrow-
+*`/`--chrome-label-*` are also consumed by `ChatbotLauncher.module.css`
+and `CategoryHubPage.module.css` — both explicitly out of this task's
+scope — which is why the fix below is scoped locally rather than edited in
+`tokens.css`.
+
+### Hamburger menu — already functionally complete
+
+Before touching anything, confirmed the hamburger (`.mobileNavToggle` in
+Header.tsx) already opens the existing `Drawer` primitive, and that
+Drawer's "Discover" section already lists **exactly** the four required
+items — Trailers, Events, Merchandise, Fandom Quiz — in that order, added
+in the 2026-09-26 Fandom Quiz / Chatbot sessions. No Characters, Gallery,
+or Upcoming Releases present. Click-to-open, click-to-close, Escape,
+focus-trap/restore, and real SPA `NavLink` navigation for all four items
+were already in place via the shared `Dialog`-equivalent `useFocusTrap`
+contract — verified working (not rebuilt) via the existing
+`e2e/dialog-architecture.spec.ts` and `e2e/keyboard-walkthrough.spec.ts`
+("MOBILE NAV -> DIALOG -> CLOSE, entirely by keyboard") plus a manual
+Playwright-driven check of all four link labels and destinations. This
+session's actual work is the polish below, not new menu wiring.
+
+### Typography polish
+
+Measured problem: the shared `--chrome-*` tokens are 8px eyebrow text at
+0.34em tracking, 11px nav labels at 0.18em tracking — legible in
+isolation but small/wide once actually rendered in the bar and footer.
+
+Fix: overridden **locally** on `.header`, `.footer`, and `.drawerScope`
+(the drawer portals to `document.body`, so it doesn't inherit from
+`.header` — same reason `--header-accent` was already re-scoped there) —
+not edited in `tokens.css`, so `ChatbotLauncher`/`CategoryHubPage` are
+unaffected:
+
+| Token | Before | After |
+|---|---|---|
+| `--chrome-brand-size` (logo) | 0.75rem (12px) | 0.8125rem (13px) |
+| `--chrome-brand-track` | 0.26em | 0.18em |
+| `--chrome-eyebrow-size` (tagline, footer column headings, drawer "Discover" label) | 0.5rem (8px) | 0.625rem (10px) |
+| `--chrome-eyebrow-track` | 0.34em | 0.22em |
+| `--chrome-label-size` (nav links, Bookmarks/Cart, Log in/Sign up) | 0.6875rem (11px) | 0.75rem (12px) |
+| `--chrome-label-track` | 0.18em | 0.14em |
+
+No text content changed anywhere. No new font, no CDN, no new design
+token names — existing tokens, adjusted values, locally scoped.
+
+### Header polish
+
+Hero, background, layout, logo and navigation structure untouched. Added
+a missing `.navLink:focus-visible` ring (every other interactive chrome
+control — `iconLink`, `textAction`, `ghostAction`, the search field —
+already had one; nav links were relying on the browser default).
+
+### Footer polish
+
+Content unchanged — TECH4, FPT Aptech, `TECH4_FPT_APTECH@gmail.com`, the
+copyright line, and all navigation links are exactly as the previous
+session left them. Same token overrides as Header applied to `.footer`,
+giving the column headings (EXPLORE/DISCOVER/FANDOMVERSE) and the
+brand tagline better legibility against the 14px links below them — a
+clearer size-based hierarchy on top of the existing colour/tracking one.
+Added missing `.link:focus-visible` and `.credit a:focus-visible` rings
+(same gap as Header's nav links).
+
+### Icon polish
+
+The project's icon system is typographic glyphs (☰, ×, ⌕, →), not an SVG/
+stroke-based library, so "stroke-width" does not apply; touch targets
+(44×44px minimum) and centering were already correct on inspection — no
+emoji anywhere in this scope, no new icon library added. No changes made
+here beyond the focus-ring additions above, which cover the icon buttons
+too (`iconLink`, `searchToggle` already had rings; `mobileNavToggle`
+inherits `Button.module.css`'s own).
+
+### Hamburger menu polish
+
+- `.drawerNav .navLink` given a subtle full-row hover background (`rgba(243,
+  245, 251, 0.05)`) instead of a text-colour-only change — these are list
+  rows in a vertical menu, not inline bar links, so a row highlight reads
+  better. Implemented with padding + a matching negative margin so the
+  row's border-bottom width is unchanged.
+- Added `.drawerNav .navLink:focus-visible` (inset ring, matching the row
+  shape) — same missing-focus-ring gap as the inline nav.
+- Animation unchanged: the existing single `translateX` slide (`--duration-
+  normal`) — no new/complex animation added, `prefers-reduced-motion`
+  still disables it via the existing rule in Drawer.module.css.
+
+### 4 menu items (verified, not re-implemented)
+
+Trailers, Events, Merchandise, Fandom Quiz — in that order, under a
+"Discover" label, with no other items. Verified via Playwright: opening
+the drawer lists exactly those four link texts, and clicking "Fandom
+Quiz" navigates to `/#/quiz` and closes the drawer (same confirmed for
+the other three routes in earlier sessions).
+
+### Responsive
+
+Checked 1440×900 (desktop), 768×1024 (tablet), 375×812 (mobile) via
+Playwright screenshots: no header/footer horizontal overflow at any
+width (`scrollWidth === clientWidth` at all three), hamburger stays
+top-right and correctly positioned, drawer renders full-height without
+exceeding the viewport, all four Discover items legible and each a
+44px-minimum touch target. Existing 1024–1279px "tight" tier (brand
+tagline hidden, tighter nav tracking) untouched.
+
+### Files changed
+
+```
+src/components/Header/Header.module.css   (token overrides, focus-visible
+                                            rings, drawer row hover/focus)
+src/components/Footer/Footer.module.css   (token overrides, focus-visible
+                                            rings)
+```
+
+Not touched: `Header.tsx`, `Footer.tsx`, `Drawer.tsx`, `Drawer.module.css`,
+`IconButton.*`, `tokens.css`, routing, Category pages, Merchandise, Quiz,
+Trailers/Events implementation, any content/text, any image asset.
+
+### Validation
+
+| Check | Result |
+|---|---|
+| Header renders (desktop/tablet/mobile) | PASS |
+| Footer renders (desktop/tablet/mobile) | PASS |
+| Hamburger opens/closes | PASS |
+| 4 menu items present, correctly labelled and ordered | PASS |
+| Navigation for all 4 items (verified Fandom Quiz live; Trailers/Events/Merchandise confirmed working in prior sessions, unchanged here) | PASS |
+| Responsive (1440/768/375) — no overflow | PASS |
+| Console errors | **0** new |
+| `npm run lint` | clean |
+| `npm run typecheck` | clean |
+| `npm run build` | clean |
+| `src/components/Header/Header.test.tsx` (Vitest) | 3/3 passed |
+| `e2e/dialog-architecture.spec.ts` + `e2e/keyboard-walkthrough.spec.ts` (Drawer/focus-trap/keyboard coverage) | 6/6 passed |
+
+### Git
+
+Before: `master`, HEAD `e991e65`, working tree clean. After: same branch,
+same HEAD, 2 files modified (`Header.module.css`, `Footer.module.css`).
+
+**No `git commit` was performed. No `git push` was performed.**
+
+---
+
+## FOUR-ISSUE FIX: EMAIL UNDERLINES / TRAILER+EVENT PHOTOS / PRICE FORMAT / HEADER SEARCH — 2026-09-26
+
+**Not committed.** Continuing on top of the previous UI polish session.
+Four independent, screenshot-reported issues, fixed one at a time.
+
+### 1. Email underlines
+
+`Footer.module.css`'s `.credit a` had an explicit `text-decoration:
+underline`; `ContactPage.module.css`'s `.address a` had none set, so it
+fell back to the browser default underline. Both now `text-decoration:
+none`, with the Contact address link recoloured to `--color-primary`
+(hover `--color-primary-hover`) so it still reads as a link without the
+line — the same colour-only-hover convention every other link in the app
+already uses.
+
+### 2. Trailers and Events had no real photography
+
+Previously procedural gradient SVGs (Phase 5, by design). Sourced 14
+category-atmosphere photos from Unsplash (free Unsplash License, no
+attribution required but credited anyway) — 7 for Trailers, 7 for Events,
+one per category, reused across that category's items (2 trailers, 3
+events each) rather than one bespoke image per item, since none of these
+items have distinct visual identity to differentiate on. Avoided any
+photo showing a real recognizable franchise, celebrity, or trademark
+(e.g. rejected several "comic books" search results that showed actual
+Marvel covers; used an original ink-drawing photo instead). Saved to
+`public/assets/generated/media-photo/<category>.jpg` (trailers) and
+`public/assets/generated/event-photo/<category>.jpg` (events);
+`src/data/media.json`/`events.json` updated via a new, kept
+`scripts/update-trailer-event-photos.mjs` (same reusable-tool precedent
+as `gen-merch-data.mjs`), with real per-item alt text and honest credit
+text naming the photographer and stating plainly these are generic stock
+photos, not real footage or event photography.
+
+Two test fixes this required, both the same sanctioned pattern already
+used earlier this project for new asset batches:
+`contentValidation.test.ts`'s existence-check glob widened from
+`{svg,png}` to `{svg,png,jpg}`; `docs/asset-manifest.json` regenerated
+(`node scripts/generate-asset-plan.mjs`) since the 14 trailer thumbnails'
+Tier-C `replaces:` pointers went stale — Tier B's 70-asset scope verified
+untouched (`git diff | grep tier.*B` = 0 lines).
+
+### 3. Price format
+
+All 5 places a price renders (`MerchandisePage`, `ProductDetailPage`,
+`CategoryHubPage` ×2, `CartPage`) showed `{currency} {min}–{max}`
+(currency first). Reformatted to put the currency after the number via
+two new small helpers in `src/utils/formatPrice.ts`
+(`formatPriceRange`/`formatPrice`), used everywhere instead of five
+separate inline template strings. `CartPage`'s running total previously
+had no currency at all — fixed the same way (every item in the catalogue
+is USD, so it's passed explicitly rather than invented per-line).
+
+### 4. Header search felt cramped
+
+FR-009 requires search "present in global header on every route" — the
+existing inline field already had a responsive fallback for narrow
+viewports (an icon that reveals the same `GlobalSearchBar` in a
+full-width panel below the bar); this session made that the **only**
+behaviour, at every width, instead of just <1280px. The icon stays a
+top-level `.bar` child (not nested in `.account`, which is `display:
+none` below the desktop tier — nesting it there would have hidden search
+entirely on mobile/tablet, caught before shipping). `.bar`'s grid lost
+the old 190–280px search-field track; the navigation and account
+controls now have real room at every width that used to feel tight.
+
+`e2e/keyboard-walkthrough.spec.ts`'s "SEARCH" leg updated: it used to
+Shift+Tab directly to an always-present `<input type="search">`; now it
+Shift+Tab's to the toggle button (identified via `aria-controls`),
+activates it with Enter, and relies on the existing focus-on-open effect
+(`Header.tsx`) to land in the newly-rendered input — same assertions,
+adapted entry point.
+
+### Files changed
+
+```
+src/components/Footer/Footer.module.css
+src/pages/ContactPage.module.css
+src/data/media.json                        (14 trailer thumbnails)
+src/data/events.json                       (21 event images)
+src/data/contentValidation.test.ts          (glob widened, +jpg)
+docs/asset-manifest.json                    (regenerated, Tier B untouched)
+scripts/update-trailer-event-photos.mjs     (new, kept as a reusable tool)
+public/assets/generated/media-photo/*.jpg   (7 new)
+public/assets/generated/event-photo/*.jpg   (7 new)
+src/utils/formatPrice.ts                    (new)
+src/pages/MerchandisePage.tsx
+src/pages/ProductDetailPage.tsx
+src/pages/CategoryHubPage.tsx
+src/pages/CartPage.tsx
+src/components/Header/Header.tsx
+src/components/Header/Header.module.css
+e2e/keyboard-walkthrough.spec.ts
+```
+
+### Tests
+
+| Check | Result |
+|---|---|
+| `npm run lint` | clean |
+| `npm run typecheck` | clean |
+| `npm run build` | clean |
+| `npm run test` (Vitest) | **189 / 189** |
+| `contentValidation.test.ts` + `assetManifest.test.ts` | 58/58 (after the glob widen + manifest regen) |
+| `e2e/keyboard-walkthrough.spec.ts` + `dialog-architecture.spec.ts` + `navigation.spec.ts` + `responsive.spec.ts` | **51 / 51** |
+| Manual browser check (Playwright-driven) | 0 console errors across every touched route; email links confirmed `text-decoration: none`; merchandise price confirmed `35–50 USD`; header confirmed less cramped with a working search-icon → panel flow; Trailers/Events confirmed showing real photos |
+
+### Git
+
+Before: `master`, HEAD `e991e65`, working tree clean (from the UI polish
+session). After: same branch, same HEAD, 14 files modified + 1 new script
++ 14 new image assets.
+
+**No `git commit` was performed. No `git push` was performed.**
+
+---
+
+## UI/COPY CLEANUP — FOOTER / CART / BOOKMARKS / LOGIN / REGISTER — 2026-09-26
+
+**Not committed.** Continuing on top of the previous session's uncommitted
+work (still on pushed commit `0e06439`, `e991e65` local-only, etc.).
+Reference images (SportHub login/register mockups) used **only** for
+layout/hierarchy/spacing inspiration, per director instruction — no
+SportHub branding, copy, or colour copied; brand stayed FandomVerse
+throughout.
+
+### A real conflict found and resolved before implementing
+
+The task asks to remove phrases like "does not create a real account",
+"no checkout, payment, or real purchase", and "temporary" from Login/
+Register/Cart — but two existing tests in `e2e/content-honesty.spec.ts`
+asserted those exact phrases as part of the site's established
+"no deceptive UI" policy. Flagged to the director before writing any
+code; instructed to remove the wording as asked and update the tests to
+match the new copy (not silently break the suite, not silently ignore
+the instruction). Both tests were rewritten to verify the same underlying
+guarantee a different way — see "Login / Register" below.
+
+### Footer cleanup
+
+Removed both legal paragraphs ("A student/competition project — not a
+real commercial storefront." and "Content is illustrative/original. See
+project documentation for AI-usage and licensing policy.") — replaced
+with exactly `© {year} FandomVerse_FPT_Aptech`. The `Developed by TECH4 ·
+FPT Aptech` / email credit block (added in the prior "About Us / Contact
+/ Footer" session) is untouched — this task never asked for it to be
+removed. Chatbot launcher untouched. `.legal`'s now-unused
+`justify-content: space-between`/`.note` rule removed since there's only
+one line left to lay out.
+
+### Cart copy cleanup
+
+`PagePlaceholder` title "Your cart" → "Your Cart"; description rewritten
+from a storage/technical disclaimer to "Items you've added from the
+Merchandise collection, ready whenever you want to check back." Empty
+state kept its existing "Your cart is empty" heading (already matched)
+and got the director's suggested supporting line ("Explore the
+Merchandise collection…"). The running total's trailing "— temporary,
+demo cart only" clause was dropped; it now just reads "Total: {price}
+USD". Behaviour (localStorage persistence, no real checkout) is
+unchanged — only stated nowhere in the UI now.
+
+### Bookmarks copy cleanup
+
+`PagePlaceholder` description rewritten from a localStorage/sessionStorage
+explanation to "Save your favorite FandomVerse content and come back to
+it anytime." The per-note textarea's placeholder ("Personal note (this
+session only)") had its "session" wording dropped too ("Add a personal
+note"). Empty state text was already clean (no change needed). Bookmark/
+note persistence behaviour is unchanged.
+
+### Login / Register redesign
+
+`DummyAuthModal.tsx` — same single-component, mode-toggled architecture
+as before (`mode: 'login' | 'signup'`), same `Dialog` primitive, same
+`setDummyLoggedIn(true)` on submit. Changed:
+
+- Dropped the "(demo)" suffix from the dialog title and the header's
+  "Log out (demo)" button, and removed the disclaimer paragraph entirely
+  ("This form is for demonstration only…").
+- New copy: title "Welcome back" / "Create your account" (using
+  `Dialog`'s own `description` prop for the subtitle, rather than hand-
+  rolling a second heading) — "Sign in to continue your FandomVerse
+  experience." / "Join FandomVerse and start building your fandom
+  journey." Submit button "Log in" / "Create account". Switch-mode link
+  "Don't have an account? Sign up" / "Already have an account? Log in".
+- Added a real, working password-visibility toggle (`Show`/`Hide` text
+  button — no emoji, no new icon library, same typographic-icon
+  convention the rest of the chrome already uses) and a "Remember me"
+  checkbox (login mode only, matching the reference) — genuinely
+  interactive, but not wired to any persistence, matching `useUiStore`'s
+  own documented in-memory-only boundary for `isDummyLoggedIn`.
+- **Did not add**: social login (Google/Facebook — no real OAuth
+  implementation exists anywhere in this codebase, and the task
+  explicitly forbids fake provider buttons), a divider ("or continue with
+  email" — nothing to divide from without social login), a "Forgot
+  password?" link (no reset flow exists; a dead link would be worse than
+  no link), or any Register-only fields (first/last name, phone, confirm
+  password, terms checkbox — none currently exist in the form's logic,
+  and the task's own instructions gate all of these on "if it currently
+  exists"). Email + Password remain the only fields, for both modes,
+  matching the current, unchanged logic exactly.
+- Card widened from `size="sm"` (360px) to `size="md"` (480px) — a
+  `Dialog` prop change only, not a `Dialog.module.css` edit, so
+  `ChatbotLauncher`'s dialog (the component's other consumer) is
+  unaffected.
+- `e2e/content-honesty.spec.ts`'s auth test rewritten (see "conflict"
+  above): was a text assertion on the removed disclaimer; now asserts the
+  same underlying guarantee behaviourally — submitting issues no network
+  request, does not navigate away, and the header flips to a real
+  "Log out" control, confirming the whole exchange stayed local without
+  the dialog having to say so.
+
+### Files changed
+
+```
+src/components/Footer/Footer.tsx
+src/components/Footer/Footer.module.css
+src/pages/CartPage.tsx
+src/pages/BookmarksPage.tsx
+src/components/DummyAuth/DummyAuthModal.tsx
+src/components/DummyAuth/DummyAuthModal.module.css
+src/components/Header/Header.tsx           ("Log out (demo)" → "Log out")
+e2e/content-honesty.spec.ts                (2 tests rewritten)
+```
+
+Not touched: Hero, Header layout/navigation, Category pages, Merchandise
+listing/detail, Quiz, Trailers, Events, any backend/auth infrastructure
+(none exists; none was added).
+
+### Responsive
+
+Checked 1280×900 (desktop), 768×1024 (tablet), 375×812 (mobile), and
+320×700 (small mobile) via Playwright: the auth dialog has zero
+horizontal overflow at any of these (`scrollWidth === clientWidth`
+throughout, even at 320px), stays centred, and the chatbot launcher does
+not obscure it. Footer/Cart/Bookmarks screenshots reviewed at desktop and
+mobile — no broken layout, no abnormal empty space after the footer text
+removal.
+
+### Tests / validation
+
+| Check | Result |
+|---|---|
+| `npm run lint` | clean |
+| `npm run typecheck` | clean |
+| `npm run build` | clean |
+| `npm run test` (Vitest) | **189 / 189** (unchanged — no Vitest files touched this session) |
+| `e2e/content-honesty.spec.ts` | **29 / 29** (2 tests rewritten to match the new copy/behaviour, all others unaffected) |
+| Manual browser check (Playwright-driven) | 0 console errors across Footer/Cart/Bookmarks/Login/Register; footer confirmed to render exactly `© 2026 FandomVerse_FPT_Aptech`; password-visibility toggle confirmed to actually change the input's type; Login and Register screenshots reviewed at desktop and mobile |
+
+### Git
+
+Before: `master`, HEAD `e991e65`, working tree carried over from the
+prior (uncommitted) trailer/event-photo session. After: same branch, same
+HEAD, working tree extended with this session's changes (see Files
+changed above).
+
+**No `git commit` was performed. No `git push` was performed.**

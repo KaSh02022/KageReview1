@@ -9,6 +9,19 @@
  * contrast down.
  */
 .header {
+  /* Typography polish (2026-09-26): the shared `--chrome-*` micro-type
+     tokens in tokens.css read as too small/too widely tracked once actually
+     measured (8px eyebrow, 11px nav labels, 0.34em tracking) — legible in
+     isolation, but tight for real navigation use. Overridden locally rather
+     than in tokens.css so nothing outside Header/Footer/the drawer (which
+     also consume these tokens) is affected. */
+  --chrome-brand-size: 0.8125rem; /* 12px -> 13px */
+  --chrome-brand-track: 0.18em; /* 0.26em -> 0.18em */
+  --chrome-eyebrow-size: 0.625rem; /* 8px -> 10px */
+  --chrome-eyebrow-track: 0.22em; /* 0.34em -> 0.22em */
+  --chrome-label-size: 0.75rem; /* 11px -> 12px */
+  --chrome-label-track: 0.14em; /* 0.18em -> 0.14em */
+
   position: sticky;
   top: 0;
   z-index: 800;
@@ -81,7 +94,9 @@
   Four regions on one row, in explicit tracks rather than `space-between`, so
   each keeps a stable position as its contents change width. The navigation
   takes the flexible middle; `minmax(0, 1fr)` lets it shrink rather than push
-  the account controls off the end.
+  the account controls off the end. Search's track is now just the icon
+  button's width (see `.searchToggle`), not a 190-280px field — the same
+  slot that used to squeeze the navigation now costs the bar almost nothing.
 */
 .bar {
   display: grid;
@@ -165,6 +180,15 @@
   opacity: 0.6;
 }
 
+/* Every other interactive chrome control already has its own focus ring
+   (iconLink, textAction, ghostAction, the search field/button); nav links
+   were relying on the browser default. */
+.navLink:focus-visible {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .navLink[aria-current='page'] {
   color: var(--color-text-primary);
 }
@@ -175,10 +199,25 @@
 }
 
 /* --------------------------------------------------------------- search */
-.searchSlot {
-  display: flex;
-  justify-content: flex-end;
-  width: clamp(190px, 17vw, 280px);
+/* One icon in the bar at every width (2026-09-26 — was a ~200-280px inline
+   field squeezed between the navigation and the account controls; moved to
+   the same icon-reveals-a-full-width-panel pattern narrow viewports already
+   used, see Header.tsx). The field itself lives in `.searchPanel` below. */
+.searchToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  background: none;
+  border: 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+}
+
+.searchToggle:hover {
+  color: rgb(var(--header-accent, 124, 141, 255));
 }
 
 /* The field is a quiet glass slot, not a filled control. In the app's default
@@ -187,7 +226,6 @@
    accent. Search is a utility here, so both the field and its button are
    toned down to the chrome's own register. The accent appears on focus, where
    it carries information, and nowhere else. */
-.searchSlot :global(input),
 .searchPanel :global(input) {
   font-size: var(--font-size-sm);
   background: rgba(243, 245, 251, 0.05);
@@ -195,19 +233,16 @@
   color: var(--color-text-primary);
 }
 
-.searchSlot :global(input::placeholder),
 .searchPanel :global(input::placeholder) {
   color: var(--color-text-muted);
 }
 
-.searchSlot :global(input:focus-visible),
 .searchPanel :global(input:focus-visible) {
   outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
   outline-offset: 1px;
   border-color: transparent;
 }
 
-.searchSlot :global(button),
 .searchPanel :global(button) {
   background: none;
   border: 1px solid var(--chrome-hairline);
@@ -215,20 +250,22 @@
   box-shadow: none;
 }
 
-.searchSlot :global(button:hover),
 .searchPanel :global(button:hover) {
   background: rgba(243, 245, 251, 0.07);
   border-color: rgba(var(--header-accent, 124, 141, 255), 0.7);
   color: var(--color-text-primary);
 }
 
-.searchToggle,
 .mobileNavToggle {
   display: none;
 }
 
 .searchPanel {
   padding-bottom: var(--space-sm);
+  /* The panel is a sibling of `.bar` inside `<Container>` (see Header.tsx),
+     so it spans the full header width — roomy, not squeezed into a fixed
+     slot — while staying visually anchored under the bar it opened from. */
+  max-width: 480px;
 }
 
 /* -------------------------------------------------------------- account */
@@ -316,8 +353,17 @@
 }
 
 /* --------------------------------------------------------------- drawer */
+/* Portals to document.body (see Header.tsx), so it inherits neither
+   --header-accent nor the typography overrides above from `.header` —
+   both are redeclared here for the same reason the accent already was. */
 .drawerScope {
   display: contents;
+  --chrome-brand-size: 0.8125rem;
+  --chrome-brand-track: 0.18em;
+  --chrome-eyebrow-size: 0.625rem;
+  --chrome-eyebrow-track: 0.22em;
+  --chrome-label-size: 0.75rem;
+  --chrome-label-track: 0.14em;
 }
 
 .drawerNav {
@@ -328,11 +374,26 @@
 
 .drawerNav .navLink {
   /* A comfortable touch target, and wide enough to hit without precision. */
-  padding: var(--space-sm) 0;
+  padding: var(--space-sm) var(--space-sm);
+  margin: 0 calc(var(--space-sm) * -1);
   min-height: 44px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  transition:
+    color var(--duration-fast) var(--easing-standard),
+    background-color var(--duration-fast) var(--easing-standard);
+}
+
+/* A subtle row highlight, not just a colour change — these are list rows
+   in a vertical menu, not inline bar links. */
+.drawerNav .navLink:hover {
+  background: rgba(243, 245, 251, 0.05);
+}
+
+.drawerNav .navLink:focus-visible {
+  outline-offset: -2px;
 }
 
 .drawerHeading {
@@ -362,47 +423,16 @@
   1280 it collapses to the same control the phone uses, which returns roughly
   200px to the row and lets all seven worlds stay legible.
 */
-@media (max-width: 1279px) {
-  .searchSlot {
-    display: none;
-  }
-
-  .searchToggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
-    background: none;
-    border: 0;
-    color: var(--color-text-primary);
-    font-size: var(--font-size-lg);
-    cursor: pointer;
-  }
-}
-
 @media (max-width: 1023px) {
   .bar {
+    /* Brand takes the flexible space here — nav and account are hidden,
+       search and the hamburger just need to sit at the end. */
     grid-template-columns: minmax(0, 1fr) auto auto;
   }
 
   .primaryNav,
   .account {
     display: none;
-  }
-
-  .searchToggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    /* Touch target, not just an icon. */
-    min-width: 44px;
-    min-height: 44px;
-    background: none;
-    border: 0;
-    color: var(--color-text-primary);
-    font-size: var(--font-size-lg);
-    cursor: pointer;
   }
 
   .mobileNavToggle {

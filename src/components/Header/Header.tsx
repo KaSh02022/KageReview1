@@ -116,10 +116,18 @@ export function Header() {
             {categoryLinks()}
           </nav>
 
-          <div className={styles.searchSlot}>
-            <GlobalSearchBar />
-          </div>
-
+          {/* Search moved here from its own inline field (2026-09-26): at
+              every width it used to sit in a fixed-width slot squeezed
+              directly between the nav and the account controls, reading
+              cramped even at desktop where there was technically room. A
+              single icon that reveals the existing full-width
+              `.searchPanel` below the bar (already built for narrow
+              viewports) keeps search "in the global header on every route"
+              (FR-009) without permanently occupying bar space — same
+              GlobalSearchBar, same query behaviour, just not wedged inline.
+              Kept as its own bar child rather than nested in `.account`,
+              which is hidden below the desktop tier — search must not
+              disappear with it. */}
           <button
             type="button"
             ref={searchToggleRef}
@@ -156,12 +164,14 @@ export function Header() {
               )}
             </NavLink>
 
-            {/* Both controls open the same existing demo-auth modal; the
-                distinction is visual emphasis, not behaviour, so no auth
-                logic changes here. */}
+            {/* Both controls open the same auth modal; the distinction is
+                visual emphasis, not behaviour, so no auth logic changes
+                here. "(demo)" removed from the visible label (2026-09-26,
+                UI/Copy Cleanup) — the underlying behaviour (local-only,
+                no real account) is unchanged, see DummyAuthModal.tsx. */}
             {isDummyLoggedIn ? (
               <button type="button" className={styles.ghostAction} onClick={() => setDummyLoggedIn(false)}>
-                Log out (demo)
+                Log out
               </button>
             ) : (
               <>

@@ -6,9 +6,15 @@ import { Card, CardBody, CardFooter } from '../components/ui/Card/Card'
 import { Stack } from '../components/ui/Layout/Stack'
 import { IconButton } from '../components/ui/Button/IconButton'
 import { Button } from '../components/ui/Button/Button'
+import { formatPrice } from '../utils/formatPrice'
 import styles from './CartPage.module.css'
 
-/** Temporary cart, D-005: localStorage-persisted, no checkout/payment (FR-031). */
+/**
+ * Cart, D-005/FR-031: saved to this device only, no checkout/payment.
+ * Copy carries none of that implementation detail (2026-09-26, UI/Copy
+ * Cleanup) — behaviour (persistence, no real purchase) is unchanged; see
+ * e2e/content-honesty.spec.ts for the still-enforced honesty guarantees.
+ */
 export function CartPage() {
   const items = useCartStore((state) => state.items)
   const removeItem = useCartStore((state) => state.removeItem)
@@ -17,11 +23,14 @@ export function CartPage() {
 
   return (
     <PagePlaceholder
-      title="Your cart"
-      description="This cart is temporary and browser-local (saved via localStorage on this device only). There is no checkout, payment, or real purchase."
+      title="Your Cart"
+      description="Items you've added from the Merchandise collection, ready whenever you want to check back."
     >
       {items.length === 0 ? (
-        <EmptyState title="Your cart is empty" description="Add items from the Merchandise page." />
+        <EmptyState
+          title="Your cart is empty"
+          description="Explore the Merchandise collection and add your favorite items to your cart."
+        />
       ) : (
         <Stack gap="md">
           {items.map((item) => {
@@ -31,7 +40,7 @@ export function CartPage() {
               <Card key={item.merchandiseId}>
                 <CardBody className={styles.lineItem}>
                   <span>
-                    {product.name} — {product.currency} {product.priceRangeMin * item.quantity}
+                    {product.name} — {formatPrice(product.priceRangeMin * item.quantity, product.currency)}
                   </span>
                   <Stack direction="row" gap="xs" align="center">
                     <IconButton
@@ -60,7 +69,8 @@ export function CartPage() {
             )
           })}
           <p className={styles.total}>
-            <strong>Total: {total}</strong> — temporary, demo cart only
+            {/* Every merchandise item in this catalogue uses USD (src/data/merchandise.json) — there is no multi-currency case to derive this from per-line. */}
+            <strong>Total: {formatPrice(total, 'USD')}</strong>
           </p>
         </Stack>
       )}

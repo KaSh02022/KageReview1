@@ -8,6 +8,7 @@ import { Badge } from '../components/ui/Badge/Badge'
 import { Link } from '../components/ui/Link/Link'
 import { Stack } from '../components/ui/Layout/Stack'
 import { CATEGORY_ROUTES } from '../routes/categoryRoutes'
+import { formatPriceRange } from '../utils/formatPrice'
 import styles from './DetailPage.module.css'
 
 export function ProductDetailPage() {
@@ -38,7 +39,7 @@ export function ProductDetailPage() {
         <Badge tone={isAvailable ? 'success' : 'neutral'}>{product.status}</Badge>
       </Stack>
       <p className={styles.summary}>
-        {product.currency} {product.priceRangeMin}–{product.priceRangeMax}
+        {formatPriceRange(product.priceRangeMin, product.priceRangeMax, product.currency)}
       </p>
       <p>{product.description}</p>
       <div className={styles.inlineAction}>

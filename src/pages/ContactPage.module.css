@@ -46,4 +46,11 @@
   display: inline-flex;
   align-items: center;
   min-height: 24px;
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: color var(--duration-fast) var(--easing-standard);
+}
+
+.address a:hover {
+  color: var(--color-primary-hover);
 }

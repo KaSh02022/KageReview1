@@ -8,7 +8,13 @@ import { Button } from '../components/ui/Button/Button'
 import { Textarea } from '../components/ui/Form/Textarea'
 import styles from './BookmarksPage.module.css'
 
-/** FR-035–038: favorites (localStorage) + session-only notes (sessionStorage) + export. */
+/**
+ * Bookmarks, FR-035–038: favorites saved to this device, personal notes
+ * cleared when the browser session ends, plus export. Copy carries none
+ * of that storage detail (2026-09-26, UI/Copy Cleanup) — the underlying
+ * persistence behaviour (localStorage favourites, sessionStorage notes)
+ * is unchanged.
+ */
 export function BookmarksPage() {
   const entries = useBookmarksStore((state) => state.entries)
   const removeBookmark = useBookmarksStore((state) => state.removeBookmark)
@@ -36,7 +42,7 @@ export function BookmarksPage() {
   return (
     <PagePlaceholder
       title="Bookmarks"
-      description="Favorites persist on this device via localStorage. Personal notes are session-only (sessionStorage) and clear when the browser session ends."
+      description="Save your favorite FandomVerse content and come back to it anytime."
     >
       {entries.length === 0 ? (
         <EmptyState
@@ -60,7 +66,7 @@ export function BookmarksPage() {
                     id={`note-${key}`}
                     value={notes[key] ?? ''}
                     onChange={(event) => setNote(key, event.target.value)}
-                    placeholder="Personal note (this session only)"
+                    placeholder="Add a personal note"
                   />
                 </CardBody>
                 <CardFooter>

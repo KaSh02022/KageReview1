@@ -85,14 +85,7 @@ export function Footer() {
         </div>
 
         <div className={styles.legal}>
-          <p>
-            © {new Date().getFullYear()} FandomVerse. A student/competition project — not a real
-            commercial storefront.
-          </p>
-          <p className={styles.note}>
-            Content is illustrative/original. See project documentation for AI-usage and licensing
-            policy.
-          </p>
+          <p>© {new Date().getFullYear()} FandomVerse_FPT_Aptech</p>
         </div>
       </Container>
     </footer>

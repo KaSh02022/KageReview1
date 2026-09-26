@@ -9,9 +9,9 @@
     "eventType": "convention",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-anime-starlit-ronin-convention.svg",
-      "alt": "Promotional artwork for the Starlit Ronin Fan Convention fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/anime.jpg",
+      "alt": "Starlit Ronin Fan Convention — category gathering atmosphere photo",
+      "credit": "Stock photo by Nicholas Green on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Starlit Ronin Fan Convention event."
     },
     "relatedIds": [
       "character-anime-kaida-nova"
@@ -28,9 +28,9 @@
     "eventType": "watch-party",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-anime-season-finale-watch-party.svg",
-      "alt": "Promotional artwork for the Season Finale Watch Party fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/anime.jpg",
+      "alt": "Season Finale Watch Party — category gathering atmosphere photo",
+      "credit": "Stock photo by Nicholas Green on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Season Finale Watch Party event."
     },
     "relatedIds": [
       "character-anime-kaida-nova"
@@ -47,9 +47,9 @@
     "eventType": "meetup",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-anime-kaida-cosplay-meetup.svg",
-      "alt": "Promotional artwork for the Kaida Cosplay Meetup fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/anime.jpg",
+      "alt": "Kaida Cosplay Meetup — category gathering atmosphere photo",
+      "credit": "Stock photo by Nicholas Green on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Kaida Cosplay Meetup event."
     },
     "relatedIds": [
       "character-anime-kaida-nova"
@@ -66,9 +66,9 @@
     "eventType": "other",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-gaming-community-championship.svg",
-      "alt": "Promotional artwork for the Ashfall Protocol Community Championship fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/gaming.jpg",
+      "alt": "Ashfall Protocol Community Championship — category gathering atmosphere photo",
+      "credit": "Stock photo by Stem List on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Ashfall Protocol Community Championship event."
     },
     "relatedIds": [
       "character-gaming-kestrel-rho"
@@ -85,9 +85,9 @@
     "eventType": "watch-party",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-gaming-squad-up-watch-party.svg",
-      "alt": "Promotional artwork for the Ashfall Squad-Up Watch Party fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/gaming.jpg",
+      "alt": "Ashfall Squad-Up Watch Party — category gathering atmosphere photo",
+      "credit": "Stock photo by Stem List on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Ashfall Squad-Up Watch Party event."
     },
     "relatedIds": [
       "character-gaming-kestrel-rho"
@@ -104,9 +104,9 @@
     "eventType": "meetup",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-gaming-local-meetup.svg",
-      "alt": "Promotional artwork for the Ashfall Protocol Local Meetup fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/gaming.jpg",
+      "alt": "Ashfall Protocol Local Meetup — category gathering atmosphere photo",
+      "credit": "Stock photo by Stem List on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Ashfall Protocol Local Meetup event."
     },
     "relatedIds": [
       "character-gaming-kestrel-rho"
@@ -123,9 +123,9 @@
     "eventType": "other",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-movies-premiere-night.svg",
-      "alt": "Promotional artwork for the Midnight Meridian Premiere Night fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/movies.jpg",
+      "alt": "Midnight Meridian Premiere Night — category gathering atmosphere photo",
+      "credit": "Stock photo by Claudio Schwarz on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Midnight Meridian Premiere Night event."
     },
     "relatedIds": [
       "character-movies-lena-cross"
@@ -142,9 +142,9 @@
     "eventType": "watch-party",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-movies-directors-cut-watch-party.svg",
-      "alt": "Promotional artwork for the Director's Cut Watch Party fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/movies.jpg",
+      "alt": "Director's Cut Watch Party — category gathering atmosphere photo",
+      "credit": "Stock photo by Claudio Schwarz on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Director's Cut Watch Party event."
     },
     "relatedIds": [
       "character-movies-lena-cross"
@@ -161,9 +161,9 @@
     "eventType": "meetup",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-movies-noir-fans-meetup.svg",
-      "alt": "Promotional artwork for the Noir Fans Meetup fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/movies.jpg",
+      "alt": "Noir Fans Meetup — category gathering atmosphere photo",
+      "credit": "Stock photo by Claudio Schwarz on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Noir Fans Meetup event."
     },
     "relatedIds": [
       "character-movies-lena-cross"
@@ -180,9 +180,9 @@
     "eventType": "convention",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-tv-shows-con-panel.svg",
-      "alt": "Promotional artwork for the Glass Archive Fan Convention Panel fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/tvshows.jpg",
+      "alt": "Glass Archive Fan Convention Panel — category gathering atmosphere photo",
+      "credit": "Stock photo by Vitaly Gariev on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Glass Archive Fan Convention Panel event."
     },
     "relatedIds": [
       "character-tv-shows-elena-marsh"
@@ -199,9 +199,9 @@
     "eventType": "watch-party",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-tv-shows-season-3-finale-watch-party.svg",
-      "alt": "Promotional artwork for the Season 3 Finale Watch Party fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/tvshows.jpg",
+      "alt": "Season 3 Finale Watch Party — category gathering atmosphere photo",
+      "credit": "Stock photo by Vitaly Gariev on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Season 3 Finale Watch Party event."
     },
     "relatedIds": [
       "character-tv-shows-elena-marsh"
@@ -218,9 +218,9 @@
     "eventType": "meetup",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-tv-shows-archive-theory-meetup.svg",
-      "alt": "Promotional artwork for the Archive Theory Meetup fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/tvshows.jpg",
+      "alt": "Archive Theory Meetup — category gathering atmosphere photo",
+      "credit": "Stock photo by Vitaly Gariev on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Archive Theory Meetup event."
     },
     "relatedIds": [
       "character-tv-shows-elena-marsh"
@@ -237,9 +237,9 @@
     "eventType": "convention",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-kpop-lunaris-convention.svg",
-      "alt": "Promotional artwork for the LUNARIS Fan Convention fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/kpop.jpg",
+      "alt": "LUNARIS Fan Convention — category gathering atmosphere photo",
+      "credit": "Stock photo by Nathan Fertig on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional LUNARIS Fan Convention event."
     },
     "relatedIds": [
       "character-kpop-hana"
@@ -256,9 +256,9 @@
     "eventType": "watch-party",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-kpop-comeback-watch-party.svg",
-      "alt": "Promotional artwork for the Comeback Stage Watch Party fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/kpop.jpg",
+      "alt": "Comeback Stage Watch Party — category gathering atmosphere photo",
+      "credit": "Stock photo by Nathan Fertig on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Comeback Stage Watch Party event."
     },
     "relatedIds": [
       "character-kpop-hana"
@@ -275,9 +275,9 @@
     "eventType": "meetup",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-kpop-lightstick-meetup.svg",
-      "alt": "Promotional artwork for the Lightstick Meetup fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/kpop.jpg",
+      "alt": "Lightstick Meetup — category gathering atmosphere photo",
+      "credit": "Stock photo by Nathan Fertig on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Lightstick Meetup event."
     },
     "relatedIds": [
       "character-kpop-hana"
@@ -294,9 +294,9 @@
     "eventType": "convention",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-comics-vanguard-con-panel.svg",
-      "alt": "Promotional artwork for the Ironclad Vanguard Con Panel fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/comics.jpg",
+      "alt": "Ironclad Vanguard Con Panel — category gathering atmosphere photo",
+      "credit": "Stock photo by Jin-Woo Lee on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Ironclad Vanguard Con Panel event."
     },
     "relatedIds": [
       "character-comics-aegis"
@@ -313,9 +313,9 @@
     "eventType": "other",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-comics-issue-release-party.svg",
-      "alt": "Promotional artwork for the Issue #1 Release Party fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/comics.jpg",
+      "alt": "Issue #1 Release Party — category gathering atmosphere photo",
+      "credit": "Stock photo by Jin-Woo Lee on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Issue #1 Release Party event."
     },
     "relatedIds": [
       "character-comics-aegis"
@@ -332,9 +332,9 @@
     "eventType": "meetup",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-comics-readers-meetup.svg",
-      "alt": "Promotional artwork for the Vanguard Readers Meetup fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/comics.jpg",
+      "alt": "Vanguard Readers Meetup — category gathering atmosphere photo",
+      "credit": "Stock photo by Jin-Woo Lee on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Vanguard Readers Meetup event."
     },
     "relatedIds": [
       "character-comics-aegis"
@@ -351,9 +351,9 @@
     "eventType": "convention",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-manga-requiem-convention.svg",
-      "alt": "Promotional artwork for the Paper Moon Requiem Fan Convention fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/manga.jpg",
+      "alt": "Paper Moon Requiem Fan Convention — category gathering atmosphere photo",
+      "credit": "Stock photo by Natalie Sierra on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Paper Moon Requiem Fan Convention event."
     },
     "relatedIds": [
       "character-manga-yui-kurogane"
@@ -370,9 +370,9 @@
     "eventType": "watch-party",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-manga-volume-release-watch-party.svg",
-      "alt": "Promotional artwork for the Volume Release Watch Party fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/manga.jpg",
+      "alt": "Volume Release Watch Party — category gathering atmosphere photo",
+      "credit": "Stock photo by Natalie Sierra on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Volume Release Watch Party event."
     },
     "relatedIds": [
       "character-manga-yui-kurogane"
@@ -389,9 +389,9 @@
     "eventType": "meetup",
     "status": "upcoming",
     "image": {
-      "src": "/assets/generated/event/event-manga-readers-meetup.svg",
-      "alt": "Promotional artwork for the Requiem Readers Meetup fan event",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/event-photo/manga.jpg",
+      "alt": "Requiem Readers Meetup — category gathering atmosphere photo",
+      "credit": "Stock photo by Natalie Sierra on Unsplash (Unsplash License, free to use) — a generic gathering-atmosphere image selected to illustrate this simulated fan event; not real photography of this fictional Requiem Readers Meetup event."
     },
     "relatedIds": [
       "character-manga-yui-kurogane"

@@ -1,15 +1,56 @@
-.notice {
-  font: var(--font-caption);
-  color: var(--color-text-muted);
-  border-left: 3px solid var(--color-warning);
-  padding-left: var(--space-md);
-  margin: 0 0 var(--space-md);
-}
-
 .form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-lg);
+}
+
+.passwordRow {
+  position: relative;
+}
+
+.passwordInput {
+  padding-right: 4.5rem;
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 50%;
+  right: var(--space-sm);
+  transform: translateY(-50%);
+  background: none;
+  border: 0;
+  padding: var(--space-xs) var(--space-sm);
+  font: var(--font-label);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-small);
+}
+
+.passwordToggle:hover {
+  color: var(--color-text-primary);
+}
+
+.passwordToggle:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+.rememberRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font: var(--font-body-small);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--color-primary);
+  cursor: pointer;
 }
 
 .switchMode {
@@ -19,8 +60,17 @@
   background: none;
   border: none;
   color: var(--color-text-muted);
-  text-decoration: underline;
   cursor: pointer;
   font: var(--font-body-small);
   text-align: center;
+}
+
+.switchMode:hover {
+  color: var(--color-text-primary);
+}
+
+.switchMode:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-small);
 }

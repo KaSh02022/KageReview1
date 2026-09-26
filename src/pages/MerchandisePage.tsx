@@ -4,6 +4,7 @@ import { ExploreCinematicHero } from '../features/explore/ExploreCinematicHero'
 import { Card, CardMedia, CardHeader, CardBody, CardFooter } from '../components/ui/Card/Card'
 import { Badge } from '../components/ui/Badge/Badge'
 import { Grid } from '../components/ui/Layout/Grid'
+import { formatPriceRange } from '../utils/formatPrice'
 
 export function MerchandisePage() {
   return (
@@ -30,7 +31,7 @@ export function MerchandisePage() {
               <h2>{product.name}</h2>
             </CardHeader>
             <CardBody>
-              {product.currency} {product.priceRangeMin}–{product.priceRangeMax}
+              {formatPriceRange(product.priceRangeMin, product.priceRangeMax, product.currency)}
             </CardBody>
             <CardFooter>
               {product.tags.includes('featured') && <Badge tone="primary">Featured</Badge>}

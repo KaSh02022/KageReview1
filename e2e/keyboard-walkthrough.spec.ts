@@ -94,21 +94,28 @@ test.describe('Keyboard-only walkthrough', () => {
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
     await expect(page.locator('#main-content')).toBeFocused()
 
-    // DETAIL -> SEARCH: the search input lives in the header, earlier in
+    // DETAIL -> SEARCH: the search toggle lives in the header, earlier in
     // DOM/tab order than main content, so Shift+Tab (backward) reaches it
     // directly rather than forward-tabbing all the way around the page.
-    let searchReached = false
+    // Search moved from an always-present inline field to an icon that
+    // reveals the same field in a panel (2026-09-26, decluttering the bar —
+    // see Header.module.css), so the toggle is reached and activated first;
+    // opening the panel auto-focuses its input (Header.tsx's isSearchOpen
+    // effect), so no further tabbing is needed to reach it.
+    let toggleReached = false
     for (let i = 0; i < 20; i += 1) {
-      const isSearchInput = await page.evaluate(
-        () => document.activeElement?.getAttribute('type') === 'search',
+      const isSearchToggle = await page.evaluate(
+        () => document.activeElement?.getAttribute('aria-controls') === 'header-search-panel',
       )
-      if (isSearchInput) {
-        searchReached = true
+      if (isSearchToggle) {
+        toggleReached = true
         break
       }
       await page.keyboard.press('Shift+Tab')
     }
-    expect(searchReached).toBe(true)
+    expect(toggleReached).toBe(true)
+    await page.keyboard.press('Enter')
+    await expect(page.locator('input[type="search"]')).toBeFocused()
     await page.keyboard.type('anime')
     await page.keyboard.press('Enter')
     await expect(page.getByRole('heading', { level: 1, name: 'Search' })).toBeVisible()

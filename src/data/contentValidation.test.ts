@@ -34,7 +34,7 @@ const SRS_MIN_EVENTS_PER_CATEGORY = 3
  * for `fs`/`process`, and this test lives under src/.
  */
 const assetFilesOnDisk = new Set(
-  Object.keys(import.meta.glob('/public/assets/generated/**/*.{svg,png}')).map((path) =>
+  Object.keys(import.meta.glob('/public/assets/generated/**/*.{svg,png,jpg}')).map((path) =>
     path.replace('/public', ''),
   ),
 )

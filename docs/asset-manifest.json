@@ -1133,7 +1133,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-anime-teaser-trailer.svg"
+      "replaces": "/assets/generated/media-photo/anime.jpg"
     },
     {
       "assetId": "GEM-trailer-anime-official-trailer",
@@ -1144,7 +1144,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-anime-official-trailer.svg"
+      "replaces": "/assets/generated/media-photo/anime.jpg"
     },
     {
       "assetId": "GEM-trailer-gaming-teaser-trailer",
@@ -1155,7 +1155,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-gaming-teaser-trailer.svg"
+      "replaces": "/assets/generated/media-photo/gaming.jpg"
     },
     {
       "assetId": "GEM-trailer-gaming-official-trailer",
@@ -1166,7 +1166,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-gaming-official-trailer.svg"
+      "replaces": "/assets/generated/media-photo/gaming.jpg"
     },
     {
       "assetId": "GEM-trailer-movies-teaser-trailer",
@@ -1177,7 +1177,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-movies-teaser-trailer.svg"
+      "replaces": "/assets/generated/media-photo/movies.jpg"
     },
     {
       "assetId": "GEM-trailer-movies-official-trailer",
@@ -1188,7 +1188,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-movies-official-trailer.svg"
+      "replaces": "/assets/generated/media-photo/movies.jpg"
     },
     {
       "assetId": "GEM-trailer-tv-shows-teaser-trailer",
@@ -1199,7 +1199,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-tv-shows-teaser-trailer.svg"
+      "replaces": "/assets/generated/media-photo/tvshows.jpg"
     },
     {
       "assetId": "GEM-trailer-tv-shows-official-trailer",
@@ -1210,7 +1210,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-tv-shows-official-trailer.svg"
+      "replaces": "/assets/generated/media-photo/tvshows.jpg"
     },
     {
       "assetId": "GEM-trailer-kpop-teaser-trailer",
@@ -1221,7 +1221,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-kpop-teaser-trailer.svg"
+      "replaces": "/assets/generated/media-photo/kpop.jpg"
     },
     {
       "assetId": "GEM-trailer-kpop-official-trailer",
@@ -1232,7 +1232,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-kpop-official-trailer.svg"
+      "replaces": "/assets/generated/media-photo/kpop.jpg"
     },
     {
       "assetId": "GEM-trailer-comics-teaser-trailer",
@@ -1243,7 +1243,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-comics-teaser-trailer.svg"
+      "replaces": "/assets/generated/media-photo/comics.jpg"
     },
     {
       "assetId": "GEM-trailer-comics-official-trailer",
@@ -1254,7 +1254,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-comics-official-trailer.svg"
+      "replaces": "/assets/generated/media-photo/comics.jpg"
     },
     {
       "assetId": "GEM-trailer-manga-teaser-trailer",
@@ -1265,7 +1265,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-manga-teaser-trailer.svg"
+      "replaces": "/assets/generated/media-photo/manga.jpg"
     },
     {
       "assetId": "GEM-trailer-manga-official-trailer",
@@ -1276,7 +1276,7 @@
       "tier": "C",
       "priority": "P3",
       "intendedPage": "Trailers section + /trailers",
-      "replaces": "/assets/generated/media/media-manga-official-trailer.svg"
+      "replaces": "/assets/generated/media-photo/manga.jpg"
     },
     {
       "assetId": "GEM-release-anime-season-2",
@@ -1973,7 +1973,7 @@
     },
     {
       "assetId": "PROC-event-anime-starlit-ronin-convention",
-      "filename": "/assets/generated/event/event-anime-starlit-ronin-convention.svg",
+      "filename": "/assets/generated/event-photo/anime.jpg",
       "categoryId": "anime",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -1984,7 +1984,7 @@
     },
     {
       "assetId": "PROC-event-anime-season-finale-watch-party",
-      "filename": "/assets/generated/event/event-anime-season-finale-watch-party.svg",
+      "filename": "/assets/generated/event-photo/anime.jpg",
       "categoryId": "anime",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -1995,7 +1995,7 @@
     },
     {
       "assetId": "PROC-event-anime-kaida-cosplay-meetup",
-      "filename": "/assets/generated/event/event-anime-kaida-cosplay-meetup.svg",
+      "filename": "/assets/generated/event-photo/anime.jpg",
       "categoryId": "anime",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2006,7 +2006,7 @@
     },
     {
       "assetId": "PROC-event-gaming-community-championship",
-      "filename": "/assets/generated/event/event-gaming-community-championship.svg",
+      "filename": "/assets/generated/event-photo/gaming.jpg",
       "categoryId": "gaming",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2017,7 +2017,7 @@
     },
     {
       "assetId": "PROC-event-gaming-squad-up-watch-party",
-      "filename": "/assets/generated/event/event-gaming-squad-up-watch-party.svg",
+      "filename": "/assets/generated/event-photo/gaming.jpg",
       "categoryId": "gaming",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2028,7 +2028,7 @@
     },
     {
       "assetId": "PROC-event-gaming-local-meetup",
-      "filename": "/assets/generated/event/event-gaming-local-meetup.svg",
+      "filename": "/assets/generated/event-photo/gaming.jpg",
       "categoryId": "gaming",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2039,7 +2039,7 @@
     },
     {
       "assetId": "PROC-event-movies-premiere-night",
-      "filename": "/assets/generated/event/event-movies-premiere-night.svg",
+      "filename": "/assets/generated/event-photo/movies.jpg",
       "categoryId": "movies",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2050,7 +2050,7 @@
     },
     {
       "assetId": "PROC-event-movies-directors-cut-watch-party",
-      "filename": "/assets/generated/event/event-movies-directors-cut-watch-party.svg",
+      "filename": "/assets/generated/event-photo/movies.jpg",
       "categoryId": "movies",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2061,7 +2061,7 @@
     },
     {
       "assetId": "PROC-event-movies-noir-fans-meetup",
-      "filename": "/assets/generated/event/event-movies-noir-fans-meetup.svg",
+      "filename": "/assets/generated/event-photo/movies.jpg",
       "categoryId": "movies",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2072,7 +2072,7 @@
     },
     {
       "assetId": "PROC-event-tv-shows-con-panel",
-      "filename": "/assets/generated/event/event-tv-shows-con-panel.svg",
+      "filename": "/assets/generated/event-photo/tvshows.jpg",
       "categoryId": "tv-shows",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2083,7 +2083,7 @@
     },
     {
       "assetId": "PROC-event-tv-shows-season-3-finale-watch-party",
-      "filename": "/assets/generated/event/event-tv-shows-season-3-finale-watch-party.svg",
+      "filename": "/assets/generated/event-photo/tvshows.jpg",
       "categoryId": "tv-shows",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2094,7 +2094,7 @@
     },
     {
       "assetId": "PROC-event-tv-shows-archive-theory-meetup",
-      "filename": "/assets/generated/event/event-tv-shows-archive-theory-meetup.svg",
+      "filename": "/assets/generated/event-photo/tvshows.jpg",
       "categoryId": "tv-shows",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2105,7 +2105,7 @@
     },
     {
       "assetId": "PROC-event-kpop-lunaris-convention",
-      "filename": "/assets/generated/event/event-kpop-lunaris-convention.svg",
+      "filename": "/assets/generated/event-photo/kpop.jpg",
       "categoryId": "kpop",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2116,7 +2116,7 @@
     },
     {
       "assetId": "PROC-event-kpop-comeback-watch-party",
-      "filename": "/assets/generated/event/event-kpop-comeback-watch-party.svg",
+      "filename": "/assets/generated/event-photo/kpop.jpg",
       "categoryId": "kpop",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2127,7 +2127,7 @@
     },
     {
       "assetId": "PROC-event-kpop-lightstick-meetup",
-      "filename": "/assets/generated/event/event-kpop-lightstick-meetup.svg",
+      "filename": "/assets/generated/event-photo/kpop.jpg",
       "categoryId": "kpop",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2138,7 +2138,7 @@
     },
     {
       "assetId": "PROC-event-comics-vanguard-con-panel",
-      "filename": "/assets/generated/event/event-comics-vanguard-con-panel.svg",
+      "filename": "/assets/generated/event-photo/comics.jpg",
       "categoryId": "comics",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2149,7 +2149,7 @@
     },
     {
       "assetId": "PROC-event-comics-issue-release-party",
-      "filename": "/assets/generated/event/event-comics-issue-release-party.svg",
+      "filename": "/assets/generated/event-photo/comics.jpg",
       "categoryId": "comics",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2160,7 +2160,7 @@
     },
     {
       "assetId": "PROC-event-comics-readers-meetup",
-      "filename": "/assets/generated/event/event-comics-readers-meetup.svg",
+      "filename": "/assets/generated/event-photo/comics.jpg",
       "categoryId": "comics",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2171,7 +2171,7 @@
     },
     {
       "assetId": "PROC-event-manga-requiem-convention",
-      "filename": "/assets/generated/event/event-manga-requiem-convention.svg",
+      "filename": "/assets/generated/event-photo/manga.jpg",
       "categoryId": "manga",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2182,7 +2182,7 @@
     },
     {
       "assetId": "PROC-event-manga-volume-release-watch-party",
-      "filename": "/assets/generated/event/event-manga-volume-release-watch-party.svg",
+      "filename": "/assets/generated/event-photo/manga.jpg",
       "categoryId": "manga",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",
@@ -2193,7 +2193,7 @@
     },
     {
       "assetId": "PROC-event-manga-readers-meetup",
-      "filename": "/assets/generated/event/event-manga-readers-meetup.svg",
+      "filename": "/assets/generated/event-photo/manga.jpg",
       "categoryId": "manga",
       "assetType": "event-visual",
       "imageClass": "CLASS-CARD",

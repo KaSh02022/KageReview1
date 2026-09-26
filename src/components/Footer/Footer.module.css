@@ -4,6 +4,16 @@
  * grid of icons.
  */
 .footer {
+  /* Typography polish (2026-09-26) — same override as Header.module.css,
+     kept in sync so the two share one register; not moved into tokens.css
+     since nothing outside Header/Footer should shift size. */
+  --chrome-brand-size: 0.8125rem;
+  --chrome-brand-track: 0.18em;
+  --chrome-eyebrow-size: 0.625rem;
+  --chrome-eyebrow-track: 0.22em;
+  --chrome-label-size: 0.75rem;
+  --chrome-label-track: 0.14em;
+
   position: relative;
   margin-top: var(--space-section);
   padding: var(--space-2xl) 0 var(--space-xl);
@@ -86,11 +96,17 @@
 
 .credit a {
   color: var(--color-text-muted);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .credit a:hover {
   color: var(--color-text-primary);
+}
+
+.credit a:focus-visible {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .column {
@@ -121,24 +137,22 @@
   color: var(--color-text-primary);
 }
 
+.link:focus-visible {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .legal {
   margin-top: var(--space-2xl);
   padding-top: var(--space-md);
   border-top: 1px solid var(--chrome-hairline);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-sm) var(--space-lg);
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
 }
 
 .legal p {
   margin: 0;
-}
-
-.note {
-  max-width: 46ch;
 }
 
 @media (max-width: 1023px) {

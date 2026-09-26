@@ -105,10 +105,18 @@ test.describe('Content honesty — fiction is labelled as fiction', () => {
     await expect(page.getByText(/no checkout, payment, or real purchase/i)).toBeVisible()
   })
 
-  test('the cart states it is temporary and browser-local', async ({ page }) => {
+  test('the cart page renders with its current copy', async ({ page }) => {
+    // Was "the cart states it is temporary and browser-local", checking
+    // for a storage/technical disclaimer. Cart's copy was rewritten
+    // 2026-09-26 (UI/Copy Cleanup) to drop that disclaimer entirely — a
+    // deliberate director decision; the cart's actual behaviour
+    // (local-only, no real purchase) is unchanged, it's just no longer
+    // stated in the UI text. This no longer asserts a "fiction labelled
+    // as fiction" guarantee, just that the page renders its current copy
+    // rather than the old, now-inaccurate text.
     const text = await visibleText(page, '/cart')
-    expect(text).toMatch(/temporary/i)
-    expect(text).toMatch(/no checkout, payment, or real purchase/i)
+    expect(text).toMatch(/your cart is empty/i)
+    expect(text).toMatch(/explore the merchandise collection/i)
   })
 
   test('trailers state that no video is available rather than implying playback', async ({ page }) => {
@@ -121,17 +129,38 @@ test.describe('Content honesty — fiction is labelled as fiction', () => {
     expect(text).toMatch(/no public office|illustrative|student/i)
   })
 
-  test('the dummy auth dialog states it does not create a real account', async ({ page }) => {
-    // The auth control lives in the app header, which `/` (the cinematic
-    // landing) deliberately stands down. Entered from a hub instead.
-    //
-    // The header's single "Log in / Sign up" control became two — a text
-    // "Log in" and a ghost "Sign up" — when the global chrome was unified.
-    // Both open the same demo-auth dialog; only the emphasis differs. The
-    // behaviour under test is the dialog's honesty disclaimer, which is
-    // unchanged, so only the door moved.
+  test('logging in is a local UI state change, not real navigation or a network call', async ({
+    page,
+  }) => {
+    // Was "the dummy auth dialog states it does not create a real
+    // account", asserting an in-dialog text disclaimer. That disclaimer
+    // was removed 2026-09-26 (UI/Copy Cleanup, director decision) along
+    // with all "(demo)" wording, so the dialog no longer says this in
+    // words — but the underlying guarantee (no real account, no network
+    // request) is unchanged, so this now asserts it behaviourally
+    // instead: submitting the form does not navigate away and issues no
+    // request, and the header flips to a real "Log out" control,
+    // confirming the whole exchange stayed local.
+    const requests: string[] = []
+    page.on('request', (request) => {
+      if (!request.url().startsWith('data:')) requests.push(request.url())
+    })
+
     await page.goto('/#/anime')
+    await page.waitForLoadState('networkidle').catch(() => {})
+    const urlBeforeSubmit = page.url()
     await page.getByRole('button', { name: /^log in$/i }).click()
-    await expect(page.getByText(/does not authenticate you|create a real account/i)).toBeVisible()
+    const dialog = page.getByRole('dialog')
+    await expect(dialog.getByRole('heading', { name: /welcome back/i })).toBeVisible()
+
+    requests.length = 0 // only count requests made *after* the page/dialog have settled
+    // Scoped to the dialog: the header's own "Log in" trigger button has
+    // the same accessible name as the dialog's submit button.
+    await dialog.getByRole('button', { name: /^log in$/i }).click()
+
+    await expect(dialog).not.toBeVisible()
+    await expect(page.getByRole('button', { name: /^log out$/i })).toBeVisible()
+    expect(page.url()).toBe(urlBeforeSubmit)
+    expect(requests).toEqual([])
   })
 })

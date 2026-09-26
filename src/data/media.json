@@ -7,9 +7,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-anime-teaser-trailer.svg",
-      "alt": "Thumbnail artwork for the Starlit Ronin: Teaser Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/anime.jpg",
+      "alt": "Starlit Ronin: Teaser Trailer — category atmosphere photo",
+      "credit": "Stock photo by Cash Macanaya on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for Starlit Ronin."
     },
     "description": "A trailer for Starlit Ronin, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -29,9 +29,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-anime-official-trailer.svg",
-      "alt": "Thumbnail artwork for the Starlit Ronin: Official Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/anime.jpg",
+      "alt": "Starlit Ronin: Official Trailer — category atmosphere photo",
+      "credit": "Stock photo by Cash Macanaya on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for Starlit Ronin."
     },
     "description": "A trailer for Starlit Ronin, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -51,9 +51,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-gaming-teaser-trailer.svg",
-      "alt": "Thumbnail artwork for the Ashfall Protocol: Teaser Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/gaming.jpg",
+      "alt": "Ashfall Protocol: Teaser Trailer — category atmosphere photo",
+      "credit": "Stock photo by Florian Olivo on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for Ashfall Protocol."
     },
     "description": "A trailer for Ashfall Protocol, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -73,9 +73,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-gaming-official-trailer.svg",
-      "alt": "Thumbnail artwork for the Ashfall Protocol: Official Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/gaming.jpg",
+      "alt": "Ashfall Protocol: Official Trailer — category atmosphere photo",
+      "credit": "Stock photo by Florian Olivo on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for Ashfall Protocol."
     },
     "description": "A trailer for Ashfall Protocol, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -95,9 +95,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-movies-teaser-trailer.svg",
-      "alt": "Thumbnail artwork for the Midnight Meridian: Teaser Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/movies.jpg",
+      "alt": "Midnight Meridian: Teaser Trailer — category atmosphere photo",
+      "credit": "Stock photo by Jake Hills on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for Midnight Meridian."
     },
     "description": "A trailer for Midnight Meridian, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -117,9 +117,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-movies-official-trailer.svg",
-      "alt": "Thumbnail artwork for the Midnight Meridian: Official Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/movies.jpg",
+      "alt": "Midnight Meridian: Official Trailer — category atmosphere photo",
+      "credit": "Stock photo by Jake Hills on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for Midnight Meridian."
     },
     "description": "A trailer for Midnight Meridian, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -139,9 +139,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-tv-shows-teaser-trailer.svg",
-      "alt": "Thumbnail artwork for the The Glass Archive: Teaser Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/tvshows.jpg",
+      "alt": "The Glass Archive: Teaser Trailer — category atmosphere photo",
+      "credit": "Stock photo by Caroline Roose on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for The Glass Archive."
     },
     "description": "A trailer for The Glass Archive, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -161,9 +161,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-tv-shows-official-trailer.svg",
-      "alt": "Thumbnail artwork for the The Glass Archive: Official Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/tvshows.jpg",
+      "alt": "The Glass Archive: Official Trailer — category atmosphere photo",
+      "credit": "Stock photo by Caroline Roose on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for The Glass Archive."
     },
     "description": "A trailer for The Glass Archive, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -183,9 +183,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-kpop-teaser-trailer.svg",
-      "alt": "Thumbnail artwork for the LUNARIS: Teaser Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/kpop.jpg",
+      "alt": "LUNARIS: Teaser Trailer — category atmosphere photo",
+      "credit": "Stock photo by ActionVance on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for LUNARIS."
     },
     "description": "A trailer for LUNARIS, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -205,9 +205,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-kpop-official-trailer.svg",
-      "alt": "Thumbnail artwork for the LUNARIS: Official Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/kpop.jpg",
+      "alt": "LUNARIS: Official Trailer — category atmosphere photo",
+      "credit": "Stock photo by ActionVance on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for LUNARIS."
     },
     "description": "A trailer for LUNARIS, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -227,9 +227,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-comics-teaser-trailer.svg",
-      "alt": "Thumbnail artwork for the Ironclad Vanguard: Teaser Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/comics.jpg",
+      "alt": "Ironclad Vanguard: Teaser Trailer — category atmosphere photo",
+      "credit": "Stock photo by Usynor on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for Ironclad Vanguard."
     },
     "description": "A trailer for Ironclad Vanguard, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -249,9 +249,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-comics-official-trailer.svg",
-      "alt": "Thumbnail artwork for the Ironclad Vanguard: Official Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/comics.jpg",
+      "alt": "Ironclad Vanguard: Official Trailer — category atmosphere photo",
+      "credit": "Stock photo by Usynor on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for Ironclad Vanguard."
     },
     "description": "A trailer for Ironclad Vanguard, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -271,9 +271,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-manga-teaser-trailer.svg",
-      "alt": "Thumbnail artwork for the Paper Moon Requiem: Teaser Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/manga.jpg",
+      "alt": "Paper Moon Requiem: Teaser Trailer — category atmosphere photo",
+      "credit": "Stock photo by Kamil Switalski on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for Paper Moon Requiem."
     },
     "description": "A trailer for Paper Moon Requiem, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",
@@ -293,9 +293,9 @@
     "format": "video",
     "embedUrl": "",
     "thumbnail": {
-      "src": "/assets/generated/media/media-manga-official-trailer.svg",
-      "alt": "Thumbnail artwork for the Paper Moon Requiem: Official Trailer",
-      "credit": "Original procedural SVG, self-authored by the FandomVerse content-generation script (Phase 5) — no external source, no AI image generation."
+      "src": "/assets/generated/media-photo/manga.jpg",
+      "alt": "Paper Moon Requiem: Official Trailer — category atmosphere photo",
+      "credit": "Stock photo by Kamil Switalski on Unsplash (Unsplash License, free to use) — a generic category-atmosphere image selected to illustrate this listing; not actual trailer footage or real production photography for Paper Moon Requiem."
     },
     "description": "A trailer for Paper Moon Requiem, an original fictional series created for FandomVerse. Video playback is not available — this is a demonstrative listing, not real footage.",
     "releaseStatus": "upcoming",

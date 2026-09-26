@@ -12,6 +12,7 @@ import { Card, CardMedia, CardHeader, CardBody, CardFooter } from '../components
 import { Link } from '../components/ui/Link/Link'
 import { CategoryCinematicHero } from '../features/category/CategoryCinematicHero'
 import { FEATURED_CHARACTER_IDS } from '../data/landingAssets'
+import { formatPriceRange } from '../utils/formatPrice'
 import styles from './CategoryHubPage.module.css'
 
 /**
@@ -199,7 +200,7 @@ export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryH
                   </CardBody>
                   <CardFooter>
                     <span>
-                      {merchHero.currency} {merchHero.priceRangeMin}–{merchHero.priceRangeMax}
+                      {formatPriceRange(merchHero.priceRangeMin, merchHero.priceRangeMax, merchHero.currency)}
                     </span>
                     <Badge tone="primary">Featured</Badge>
                     <Badge tone={merchHero.status === 'available' ? 'success' : 'neutral'}>
@@ -219,7 +220,7 @@ export function CategoryHubPage({ categoryId: categoryIdProp, label }: CategoryH
                     </CardHeader>
                     <CardFooter>
                       <span>
-                        {item.currency} {item.priceRangeMin}–{item.priceRangeMax}
+                        {formatPriceRange(item.priceRangeMin, item.priceRangeMax, item.currency)}
                       </span>
                       <Badge tone={item.status === 'available' ? 'success' : 'neutral'}>{item.status}</Badge>
                     </CardFooter>
