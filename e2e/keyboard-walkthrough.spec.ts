@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 /**
  * Phase 3 §12: a real keyboard-only walkthrough of a representative user
- * journey, not just automated axe scans (Director's explicit instruction
+ * journey, not just automated axe scans (per the explicit instruction
  * — "do not accept 'no automated violations' as the only evidence").
  * Desktop viewport is used for the Home -> Category -> Detail -> Search
  * -> Back leg (inline nav is keyboard-reachable there); a mobile viewport

@@ -1,7 +1,7 @@
 import type { CategoryId } from '../types/content'
 
 /**
- * Landing-page art direction assets (Gemini Batch 01, Director-approved).
+ * Landing-page art direction assets (Gemini Batch 01, approved).
  *
  * WHY THIS FILE EXISTS — filename mapping, not renaming.
  * Three delivered filenames differ from the stems recorded in

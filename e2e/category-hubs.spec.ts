@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test'
 import { AxeBuilder } from '@axe-core/playwright'
 
 /**
- * Phase 5 category-hub coverage (Director's Phase 5 §25): verifies the
+ * Phase 5 category-hub coverage (Phase 5 §25): verifies the
  * SRS content minimums actually reach the screen, that hub cards really
  * navigate to their detail routes, that no declared image 404s, and that
  * the hubs hold up responsively and accessibly. The dataset-level

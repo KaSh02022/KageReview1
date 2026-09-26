@@ -2,11 +2,11 @@
   "welcomeMessage": "I'm the FandomVerse guide. Ask about characters, events, trailers or merchandise, take the Fandom Quiz, or pick one of the shortcuts below.",
   "defaultFallback": "I don't have an answer for that one. I can help with characters, events, trailers, merchandise, finding your way around a world — or try \"Help me find a fandom\" for the quiz.",
   "quickRepliesStart": [
-    "What is FandomVerse?",
-    "Which fandom should I explore?",
-    "Show me the Anime category.",
-    "What can I buy?",
-    "Help me find a fandom."
+    "Explore a fandom",
+    "Take the Fandom Quiz",
+    "Watch a trailer",
+    "Discover events",
+    "Browse merchandise"
   ],
   "rules": [
     {
@@ -68,6 +68,7 @@
         "help me find a fandom",
         "help me find my fandom",
         "help me choose a fandom",
+        "take the fandom quiz",
         "not sure which fandom",
         "i don't know which fandom",
         "recommend a fandom",

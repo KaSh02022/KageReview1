@@ -1,6 +1,6 @@
 /**
  * Pure camera-parallax math, extracted out of the R3F `useFrame` loop so
- * it's unit-testable without a real WebGL context (Director's Phase 4
+ * it's unit-testable without a real WebGL context (Phase 4
  * §17: "camera behavior where practical"). Deterministic, no side
  * effects: given normalized pointer coordinates, returns the *target*
  * rig rotation — the smoothing/lerp toward this target still happens

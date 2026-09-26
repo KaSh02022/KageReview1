@@ -1,7 +1,7 @@
 import { test, expect, devices } from '@playwright/test'
 
 /**
- * Phase 2 responsive/visual QA (Director's Phase 2 §17/§25): checks the
+ * Phase 2 responsive/visual QA (Phase 2 §17/§25): checks the
  * canonical breakpoint system across mobile/tablet/desktop/wide for
  * horizontal overflow, mobile-drawer usability, and no-layout-shift-on-open
  * — replacing the arbitrary 767px Header behavior from Phase 1

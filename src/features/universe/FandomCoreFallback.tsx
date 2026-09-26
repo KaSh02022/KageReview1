@@ -8,7 +8,7 @@ import styles from './FandomCoreFallback.module.css'
  * shared with the WebGL path so there is exactly one accessible
  * implementation, never duplicated). Deliberately NOT styled like an error
  * state — a soft glow, a ring, and the category nodes read as an
- * intentional design (Director's Phase 4 §10).
+ * intentional design (Phase 4 §10).
  *
  * Hover state is lifted to the parent (`CinematicEntry`) rather than owned
  * here, so the same hover can also highlight the matching node in the 3D

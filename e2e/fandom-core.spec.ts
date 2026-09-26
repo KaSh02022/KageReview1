@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test'
 
-/** Forces canvas.getContext('webgl'/'webgl2') to return null, simulating a WebGL-unavailable browser (Director Phase 4 §9/§10/§17). */
+/** Forces canvas.getContext('webgl'/'webgl2') to return null, simulating a WebGL-unavailable browser (Phase 4 §9/§10/§17). */
 async function disableWebgl(page: Page) {
   await page.addInitScript(() => {
     const originalGetContext = HTMLCanvasElement.prototype.getContext

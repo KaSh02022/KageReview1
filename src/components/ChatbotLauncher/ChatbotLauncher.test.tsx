@@ -86,10 +86,9 @@ describe('ChatbotLauncher — local rule-based conversation', () => {
     const panel = await open()
     const log = panel.getByRole('log', { name: 'Conversation' })
     expect(within(log).getByText(/FandomVerse guide/i)).toBeInTheDocument()
-    // Starting shortcuts updated 2026-09-26 (Chatbot / Fandom Assistant
-    // upgrade) to the five suggested questions the assistant is meant to
-    // showcase, in place of the previous ad hoc set.
-    expect(panel.getByRole('button', { name: 'What is FandomVerse?' })).toBeInTheDocument()
+    // Starting shortcuts are the five priority quick actions the assistant
+    // panel showcases.
+    expect(panel.getByRole('button', { name: 'Explore a fandom' })).toBeInTheDocument()
   })
 
   it('answers a typed question with a deterministic scripted reply', async () => {
@@ -107,9 +106,9 @@ describe('ChatbotLauncher — local rule-based conversation', () => {
 
   it('answers for the world the visitor is standing in', async () => {
     const panel = await open('/gaming')
-    // "What can I buy?" is one of the current starting shortcuts and its
+    // "Browse merchandise" is one of the current starting shortcuts and its
     // reply is world-scoped ("Merchandise for {world} is on...").
-    await userEvent.click(panel.getByRole('button', { name: 'What can I buy?' }))
+    await userEvent.click(panel.getByRole('button', { name: 'Browse merchandise' }))
 
     const log = panel.getByRole('log', { name: 'Conversation' })
     await waitFor(() => {
@@ -162,7 +161,7 @@ describe('ChatbotLauncher — quick action links (2026-09-26 upgrade)', () => {
 
   it('a reply with a linkTo shows a quick-action button that navigates and closes the panel', async () => {
     const panel = await open()
-    await userEvent.click(panel.getByRole('button', { name: 'Help me find a fandom.' }))
+    await userEvent.click(panel.getByRole('button', { name: 'Take the Fandom Quiz' }))
 
     const action = await panel.findByRole('button', { name: /take the fandom quiz/i })
     await userEvent.click(action)
@@ -173,7 +172,11 @@ describe('ChatbotLauncher — quick action links (2026-09-26 upgrade)', () => {
 
   it('links a "show me the X category" request straight to that hub', async () => {
     const panel = await open()
-    await userEvent.click(panel.getByRole('button', { name: 'Show me the Anime category.' }))
+    // "Show me the Anime category." is not a starting shortcut, so it's
+    // typed here — still exercises the same detectCategoryLinkRequest
+    // fallback this test guards.
+    await userEvent.type(panel.getByLabelText('Ask the FandomVerse assistant'), 'Show me the Anime category.')
+    await userEvent.click(panel.getByRole('button', { name: 'Send' }))
 
     const action = await panel.findByRole('button', { name: /go to anime/i })
     await userEvent.click(action)

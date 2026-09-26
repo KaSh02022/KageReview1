@@ -1,7 +1,13 @@
+/*
+  Dark cinematic glass rather than the generic elevated-surface card — this
+  primitive currently has one consumer (Header's mobile nav / Discover
+  menu), so restyling it here does not risk any other Drawer instance
+  reading as an unstyled ordinary dropdown.
+*/
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(4, 5, 9, 0.72);
   z-index: 1000;
 }
 
@@ -10,7 +16,9 @@
   top: 0;
   bottom: 0;
   width: var(--drawer-width);
-  background: var(--color-surface-elevated);
+  background: var(--chrome-glass-solid);
+  backdrop-filter: var(--chrome-blur);
+  -webkit-backdrop-filter: var(--chrome-blur);
   box-shadow: var(--shadow-dialog);
   display: flex;
   flex-direction: column;
@@ -21,12 +29,12 @@
 
 .left {
   left: 0;
-  border-right: 1px solid var(--color-border);
+  border-right: 1px solid var(--chrome-hairline);
 }
 
 .right {
   right: 0;
-  border-left: 1px solid var(--color-border);
+  border-left: 1px solid var(--chrome-hairline);
 }
 
 .header {
@@ -37,7 +45,12 @@
 }
 
 .title {
-  font: var(--font-h3);
+  font-family: var(--font-family-display);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
   margin: 0;
 }
 

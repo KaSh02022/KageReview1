@@ -15,7 +15,7 @@ describe('FandomCoreFallback (2D Fandom Core — no-WebGL / reduced-motion / loa
     expect(document.querySelector('canvas')).toBeNull()
   })
 
-  it('still exposes all seven category links — the fallback must never lose navigation (Director Phase 4 §10)', () => {
+  it('still exposes all seven category links — the fallback must never lose navigation (Phase 4 §10)', () => {
     render(
       <MemoryRouter>
         <FandomCoreFallback hoveredCategoryId={null} onHoverChange={vi.fn()} />

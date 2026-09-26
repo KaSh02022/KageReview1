@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { computeParallaxRotation } from './computeParallaxRotation'
 
-describe('computeParallaxRotation (camera behavior, Director Phase 4 §7/§17)', () => {
+describe('computeParallaxRotation (camera behavior, Phase 4 §7/§17)', () => {
   it('returns zero rotation when reduced motion is preferred, regardless of pointer position', () => {
     const result = computeParallaxRotation({
       pointerX: 1,

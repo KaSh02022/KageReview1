@@ -3,6 +3,13 @@
  * the corner: chrome micro-type for its labels, hairline borders, and nothing
  * saturated enough to pull the eye off a cinematic hero.
  */
+/*
+  A capsule, not an app-widget icon button: same dark glass + hairline +
+  chrome micro-type as the header's Discover drawer, so the entry reads as
+  part of the landing rather than a bolted-on chat bubble. The idle state
+  has no animation of its own — only hover/focus pick up a glow — so it
+  never competes with the Kage scene.
+*/
 .launcher {
   position: fixed;
   /* Respect the notch/home indicator on a phone, and stay clear of the
@@ -11,8 +18,57 @@
   right: max(var(--space-lg), env(safe-area-inset-right));
   bottom: max(var(--space-lg), calc(env(safe-area-inset-bottom) + var(--space-sm)));
   z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  background: var(--chrome-glass-solid);
+  border: 1px solid var(--chrome-hairline);
   border-radius: var(--radius-pill);
+  backdrop-filter: var(--chrome-blur);
+  -webkit-backdrop-filter: var(--chrome-blur);
+  color: var(--color-text-primary);
+  font-size: var(--chrome-label-size);
+  font-weight: 500;
+  letter-spacing: var(--chrome-label-track);
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
   box-shadow: var(--shadow-elevated);
+  transition:
+    border-color var(--duration-fast) var(--easing-standard),
+    box-shadow var(--duration-fast) var(--easing-standard);
+}
+
+.launcherDot {
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(var(--header-accent, 124, 141, 255));
+  box-shadow: 0 0 8px 1px rgba(var(--header-accent, 124, 141, 255), 0.8);
+}
+
+.launcher:hover,
+.launcher:focus-visible {
+  border-color: rgba(var(--header-accent, 124, 141, 255), 0.7);
+  box-shadow:
+    var(--shadow-elevated),
+    0 0 18px -4px rgba(var(--header-accent, 124, 141, 255), 0.55);
+}
+
+.launcher:focus-visible {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 3px;
+}
+
+@media (max-width: 599px) {
+  .launcher span:not(.launcherDot) {
+    /* Keeps the capsule compact on a phone — the dot plus aria-label still
+       carries "assistant" for anyone using a screen reader. */
+    display: none;
+  }
 }
 
 .panel {
@@ -163,7 +219,64 @@
   color: var(--color-text-muted);
 }
 
+/* Discovery navigation to the seven category hubs — reuses CATEGORY_ROUTES,
+   the same routes the header's own nav resolves, so no new route or data
+   is introduced. */
+.worlds {
+  border-top: 1px solid var(--chrome-hairline);
+  padding-top: var(--space-sm);
+}
+
+.worldsHeading {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--chrome-eyebrow-size);
+  letter-spacing: var(--chrome-eyebrow-track);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.worldsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.worldButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--chrome-label-size);
+  letter-spacing: var(--chrome-label-track);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  background: none;
+  border: 1px solid var(--chrome-hairline);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard);
+}
+
+.worldIndex {
+  color: var(--color-text-muted);
+  font-size: 0.65rem;
+}
+
+.worldButton:hover {
+  color: var(--color-text-primary);
+  border-color: rgba(var(--header-accent, 124, 141, 255), 0.7);
+}
+
+.worldButton:focus-visible {
+  outline: 2px solid rgb(var(--header-accent, 124, 141, 255));
+  outline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .launcher,
+  .worldButton,
   .quickButton,
   .send {
     transition: none;

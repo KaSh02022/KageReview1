@@ -66,6 +66,74 @@
   }
 }
 
+/*
+  Opt-in side-panel placement, added for ChatbotLauncher's cinematic
+  assistant panel. Scoped by [data-placement='right'] rather than a new
+  component, so the centered modal card (.panel with no data-placement
+  override, used by DummyAuthModal and every other Dialog consumer) is
+  completely unaffected — the attribute selector's specificity beats the
+  .size-* width classes regardless of source order, so the fixed panel
+  width always wins over whatever `size` was passed.
+*/
+.overlay[data-placement='right'] {
+  align-items: stretch;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.panel[data-placement='right'] {
+  width: min(400px, 100vw);
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  border-radius: 0;
+  border: none;
+  border-left: 1px solid var(--chrome-hairline);
+  background: var(--chrome-glass-solid);
+  backdrop-filter: var(--chrome-blur);
+  -webkit-backdrop-filter: var(--chrome-blur);
+  animation: dialog-in-right var(--duration-normal) var(--easing-standard);
+}
+
+@keyframes dialog-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .overlay[data-placement='right'] {
+    align-items: flex-end;
+    justify-content: stretch;
+  }
+
+  .panel[data-placement='right'] {
+    width: 100%;
+    height: auto;
+    max-height: min(80vh, 640px);
+    border-left: none;
+    border-top: 1px solid var(--chrome-hairline);
+    border-radius: var(--radius-large) var(--radius-large) 0 0;
+    animation: dialog-in-bottom var(--duration-normal) var(--easing-standard);
+  }
+
+  @keyframes dialog-in-bottom {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .panel {
     animation: none;

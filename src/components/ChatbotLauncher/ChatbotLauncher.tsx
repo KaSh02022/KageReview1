@@ -4,7 +4,6 @@ import { CATEGORY_ROUTES } from '../../routes/categoryRoutes'
 import { getCategoryById } from '../../data'
 import { useChatbotStore } from '../../stores/chatbotStore'
 import { getWelcome, respond, type AssistantLink } from '../../features/assistant/assistantEngine'
-import { IconButton } from '../ui/Button/IconButton'
 import { Dialog } from '../ui/Dialog/Dialog'
 import styles from './ChatbotLauncher.module.css'
 
@@ -94,19 +93,26 @@ export function ChatbotLauncher() {
 
   return (
     <>
-      <IconButton
-        label="Open FandomVerse assistant"
-        icon="💬"
-        variant="primary"
-        size="large"
+      <button
+        type="button"
         className={styles.launcher}
-        style={{ borderRadius: 'var(--radius-pill)' }}
         onClick={toggle}
+        aria-label="Open FandomVerse assistant"
         aria-haspopup="dialog"
         aria-expanded={isOpen}
-      />
+      >
+        <span className={styles.launcherDot} aria-hidden="true" />
+        <span aria-hidden="true">FandomVerse Assistant</span>
+      </button>
 
-      <Dialog isOpen={isOpen} onClose={close} title="FandomVerse Assistant" size="sm">
+      <Dialog
+        isOpen={isOpen}
+        onClose={close}
+        title="FandomVerse Assistant"
+        description="Your guide through seven worlds."
+        size="sm"
+        placement="right"
+      >
         <div className={styles.panel}>
           {/* A live region, so a screen reader hears each answer without the
               focus having to move into the log. */}
@@ -151,6 +157,28 @@ export function ChatbotLauncher() {
             </div>
           )}
 
+          <div className={styles.worlds}>
+            <p className={styles.worldsHeading}>Seven worlds</p>
+            <div className={styles.worldsList}>
+              {CATEGORY_ROUTES.map((route, index) => (
+                <button
+                  key={route.path}
+                  type="button"
+                  className={styles.worldButton}
+                  onClick={() => {
+                    navigate(`/${route.path}`)
+                    close()
+                  }}
+                >
+                  <span className={styles.worldIndex} aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  {route.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <form className={styles.form} onSubmit={handleSubmit}>
             <label className="visually-hidden" htmlFor="assistant-input">
               Ask the FandomVerse assistant
@@ -170,7 +198,7 @@ export function ChatbotLauncher() {
           </form>
 
           <p className={styles.note}>
-            Answers come from a local script — no account, no network, no AI service.
+            A local guide, always in your browser — no account required.
           </p>
         </div>
       </Dialog>

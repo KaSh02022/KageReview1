@@ -15,6 +15,14 @@ export interface DialogProps {
   children: ReactNode
   /** Closing via a backdrop click is opt-out, not opt-in, since it's the expected pattern for every dialog in this app. */
   closeOnBackdropClick?: boolean
+  /**
+   * 'center' (default) is the existing modal card, unchanged for every
+   * current consumer (DummyAuthModal). 'right' is an opt-in side-panel
+   * placement — slides from the right edge on desktop, becomes a bottom
+   * sheet under the tablet breakpoint — added for ChatbotLauncher's
+   * cinematic assistant panel without altering the default.
+   */
+  placement?: 'center' | 'right'
 }
 
 /**
@@ -34,6 +42,7 @@ export function Dialog({
   size = 'md',
   children,
   closeOnBackdropClick = true,
+  placement = 'center',
 }: DialogProps) {
   const panelRef = useRef<HTMLDivElement>(null)
   const titleId = useId()
@@ -49,6 +58,7 @@ export function Dialog({
     // role="presentation" rather than given a redundant keyboard handler.
     <div
       className={styles.overlay}
+      data-placement={placement}
       role="presentation"
       onClick={closeOnBackdropClick ? onClose : undefined}
     >
@@ -68,6 +78,7 @@ export function Dialog({
         aria-describedby={description ? descriptionId : undefined}
         tabIndex={-1}
         className={`${styles.panel} ${styles[`size-${size}`]}`}
+        data-placement={placement}
         onClick={(event) => event.stopPropagation()}
       >
         <div className={styles.header}>

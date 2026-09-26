@@ -9,7 +9,7 @@ import { FANDOM_CORE_NODES } from './fandomCoreNodes'
  * jsdom has no WebGL (canvas.getContext('webgl') returns null), so
  * useWebglSupport() always reports false here — CinematicEntry always
  * takes the 2D fallback path in this test environment. That's exactly the
- * "WebGL-disabled/fallback mode" case the Director's §9 asks to test, and
+ * "WebGL-disabled/fallback mode" case §9 asks to test, and
  * it happens for free; the real canvas path is covered by E2E (a real
  * browser) instead.
  */
