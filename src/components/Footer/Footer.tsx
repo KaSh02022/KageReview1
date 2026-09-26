@@ -49,6 +49,11 @@ export function Footer() {
               <VisitorCounter />
               <Clock />
             </div>
+            <p className={styles.credit}>
+              Developed by TECH4 · FPT Aptech
+              <br />
+              <a href="mailto:TECH4_FPT_APTECH@gmail.com">TECH4_FPT_APTECH@gmail.com</a>
+            </p>
           </div>
 
           <nav aria-label="Explore" className={styles.column}>

@@ -48,12 +48,13 @@ export function ContactPage() {
       description="Team contact information with a responsive map and directions."
     >
       <address className={styles.address}>
-        FandomVerse Team
+        TECH4
+        <br />
+        FPT Aptech
         <br />
         A student competition project — no public office or storefront.
         <br />
-        <a href="mailto:hello@example.invalid">hello@example.invalid</a> (example address, not
-        monitored)
+        <a href="mailto:TECH4_FPT_APTECH@gmail.com">TECH4_FPT_APTECH@gmail.com</a>
       </address>
 
       <div className={styles.mapWrapper}>

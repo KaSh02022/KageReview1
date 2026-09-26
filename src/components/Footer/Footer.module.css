@@ -77,6 +77,22 @@
   color: var(--color-text-muted);
 }
 
+.credit {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
+}
+
+.credit a {
+  color: var(--color-text-muted);
+  text-decoration: underline;
+}
+
+.credit a:hover {
+  color: var(--color-text-primary);
+}
+
 .column {
   display: flex;
   flex-direction: column;
