@@ -13,6 +13,7 @@ export function TrailersPage() {
     <PagePlaceholder
       title="Trailers"
       description="Every trailer across all seven fandom hubs. Each one is a demonstrative listing for an original, fictional franchise — there is no video to play. Filtering and sorting are coming later; see each category hub for full context."
+      wide
       hero={
         <ExploreCinematicHero
           surface="trailers"

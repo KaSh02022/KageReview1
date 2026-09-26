@@ -3,6 +3,14 @@
   padding: var(--space-6) 0;
 }
 
+/* Product/media grid pages (Merchandise, Trailers, Events) opt into this —
+   the 720px reading column was capping their Grid to a handful of cards on
+   the left with a large empty gap to the right at desktop widths; this
+   matches the global Container's own max-width instead. */
+.wide {
+  max-width: var(--content-max-width);
+}
+
 .description {
   color: var(--color-text-muted);
 }

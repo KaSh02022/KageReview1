@@ -65,7 +65,11 @@ test.describe('Storage persistence boundaries', () => {
     await page.getByRole('button', { name: /^Bookmark$/ }).click()
 
     await page.goto('/#/bookmarks')
-    const note = page.getByPlaceholder('Personal note (this session only)')
+    // Placeholder reworded 2026-09-26 (UI/Copy Cleanup) from "Personal note
+    // (this session only)" to drop the technical "session" wording — this
+    // test was missed in that session's own validation pass and is fixed
+    // here as a genuine, if belated, regression fix.
+    const note = page.getByPlaceholder('Add a personal note')
     await note.fill('Architecture verification note')
     await expect(note).toHaveValue('Architecture verification note')
   })

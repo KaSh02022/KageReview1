@@ -39,9 +39,17 @@ export function CartPage() {
             return (
               <Card key={item.merchandiseId}>
                 <CardBody className={styles.lineItem}>
-                  <span>
-                    {product.name} — {formatPrice(product.priceRangeMin * item.quantity, product.currency)}
-                  </span>
+                  <div className={styles.productInfo}>
+                    <img
+                      src={product.image.src}
+                      alt={product.image.alt}
+                      loading="lazy"
+                      className={styles.thumbnail}
+                    />
+                    <span>
+                      {product.name} — {formatPrice(product.priceRangeMin * item.quantity, product.currency)}
+                    </span>
+                  </div>
                   <Stack direction="row" gap="xs" align="center">
                     <IconButton
                       label={`Decrease quantity of ${product.name}`}

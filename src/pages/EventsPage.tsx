@@ -11,6 +11,7 @@ export function EventsPage() {
     <PagePlaceholder
       title="Events"
       description="Event highlights across all seven fandom hubs — 21 simulated fan events (3 per category). Every event is fictional and none of them takes place. Filtering and sorting are coming later."
+      wide
       hero={
         <ExploreCinematicHero
           surface="events"

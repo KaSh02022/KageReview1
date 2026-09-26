@@ -11,6 +11,7 @@ export function MerchandisePage() {
     <PagePlaceholder
       title="Merchandise"
       description="Fan merchandise across all seven fandom hubs, with a temporary demo cart. These products are fictional and cannot be bought — there is no checkout, no payment, and no real purchase."
+      wide
       hero={
         <ExploreCinematicHero
           surface="merchandise"

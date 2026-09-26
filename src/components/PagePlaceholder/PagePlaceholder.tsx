@@ -13,6 +13,14 @@ interface PagePlaceholderProps {
    * never stated twice. Every other caller is unaffected.
    */
   hero?: ReactNode
+  /**
+   * Widens the wrapper to the same max-width the global Container uses
+   * (2026-09-26, Content Grid + Cart Image Polish), for callers whose body
+   * is a product/media grid rather than prose. The 720px reading-width
+   * default stays correct for text pages (About, Contact, Search…) and is
+   * unchanged unless a caller opts in.
+   */
+  wide?: boolean
 }
 
 /**
@@ -25,9 +33,9 @@ interface PagePlaceholderProps {
  * ever see. Those props were removed entirely rather than merely unset, so
  * they cannot be reintroduced by a future caller.
  */
-export function PagePlaceholder({ title, description, children, hero }: PagePlaceholderProps) {
+export function PagePlaceholder({ title, description, children, hero, wide = false }: PagePlaceholderProps) {
   return (
-    <section className={styles.wrapper}>
+    <section className={`${styles.wrapper} ${wide ? styles.wide : ''}`}>
       {hero ?? (
         <>
           <h1>{title}</h1>

@@ -3,6 +3,30 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.productInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.thumbnail {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--color-border);
+}
+
+@media (max-width: 599px) {
+  .thumbnail {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .total {

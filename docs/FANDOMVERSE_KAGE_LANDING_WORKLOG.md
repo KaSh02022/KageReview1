@@ -2191,3 +2191,114 @@ HEAD, working tree extended with this session's changes (see Files
 changed above).
 
 **No `git commit` was performed. No `git push` was performed.**
+
+---
+
+## CONTENT GRID + CART IMAGE POLISH — 2026-09-26
+
+**Not committed.** Continuing from `9bb5950` (real trailer/event photos,
+price formatting, header search cleanup, professional UI copy).
+
+### Problem
+
+Merchandise, Trailers and Events used the full-width grid mechanism
+(`Grid`'s `repeat(auto-fill, minmax(${minItemWidth}px, 1fr))`, already the
+exact CSS Grid pattern the task recommended) but the grid itself was never
+the bottleneck: all three pages render through `PagePlaceholder`, whose
+`.wrapper` caps at `max-width: 720px` — correct for a reading column
+(About, Contact, Search) but capping the Grid to a single narrow column of
+cards at desktop width, leaving a large empty right-hand gutter.
+
+### Files read before changing anything
+
+`src/components/ui/Grid/Grid.tsx`, `src/components/PagePlaceholder/PagePlaceholder.tsx`
++ `.module.css`, `src/pages/MerchandisePage.tsx`, `TrailersPage.tsx`,
+`EventsPage.tsx`, `src/pages/CartPage.tsx` + `.module.css`,
+`src/components/ui/Layout/Layout.module.css`,
+`src/features/explore/ExploreCinematicHero.module.css` (confirmed
+full-bleed, unaffected by wrapper width — no risk to the hero).
+
+### Fix — Merchandise / Trailers / Events grids
+
+Added an opt-in `wide?: boolean` prop to `PagePlaceholder` (default
+`false`, so About/Contact/Search/Cart/Bookmarks keep their existing
+720px reading width unchanged). When `wide` is set, `.wrapper` also
+receives `.wide { max-width: var(--content-max-width) }` (1440px — the
+same token the global `Container` already uses elsewhere). `MerchandisePage`,
+`TrailersPage` and `EventsPage` each pass `wide` on their existing
+`<PagePlaceholder>` call — one attribute added per file, nothing else
+changed. No Grid mechanism, card markup, data, or asset was touched.
+
+Verified via Playwright (computed `gridTemplateColumns` column count +
+`scrollWidth`/`clientWidth` overflow check) on all three pages: **5
+columns at 1440px, 3 at 768px, 1 at 375px**, zero horizontal overflow at
+any width, zero console errors. Screenshots reviewed confirming full-width
+card distribution, no large empty gutter.
+
+### Fix — Cart product thumbnail
+
+`CartPage.tsx` already resolved each line item's full `product` record via
+`merchandise.find((entry) => entry.id === item.merchandiseId)` (cart state
+only ever stored the id) — so "resolve from existing merchandise data by
+id, no new assets, no hardcoded mapping" was already satisfied
+architecturally. Added a 64×64 (48×48 under 599px) `<img>` reading
+`product.image.src` / `.alt` directly from that same record, laid out
+beside the existing name/price line via two new flex wrapper classes
+(`.lineItem`, `.productInfo`) in `CartPage.module.css`; quantity controls
+and Remove button are untouched.
+
+Verified end-to-end: added a real product via ProductDetailPage → `/cart`
+shows a decoded (non-broken) thumbnail (`naturalWidth` 2048), quantity
+increase/decrease (1→2→1) still works, Remove still empties the cart,
+`flex-wrap` reflows quantity controls to their own row at 375px with no
+overflow, zero console errors.
+
+### Regression found and fixed during this phase's own validation
+
+Running `persistence.spec.ts` alongside `responsive.spec.ts` (this
+phase's own required "run relevant tests" step) surfaced one failure
+unrelated to the grid/thumbnail work: `e2e/persistence.spec.ts`'s
+"a bookmark note is readable" test still looked for the placeholder
+`"Personal note (this session only)"`, which the prior UI/Copy Cleanup
+session had already changed to `"Add a personal note"` — that session ran
+`content-honesty.spec.ts` but never `persistence.spec.ts`, so the
+regression sat undetected for one full phase. Fixed the locator string to
+match current UI text (`e2e/persistence.spec.ts:72`), with an inline
+comment recording why. Re-verified: 3/3 passed.
+
+### Files changed
+
+```
+src/components/PagePlaceholder/PagePlaceholder.tsx        (new `wide` prop)
+src/components/PagePlaceholder/PagePlaceholder.module.css (new `.wide` class)
+src/pages/MerchandisePage.tsx                              (`wide` attribute)
+src/pages/TrailersPage.tsx                                 (`wide` attribute)
+src/pages/EventsPage.tsx                                   (`wide` attribute)
+src/pages/CartPage.tsx                                     (product thumbnail)
+src/pages/CartPage.module.css                               (`.lineItem`, `.productInfo`, `.thumbnail`)
+e2e/persistence.spec.ts                                     (stale placeholder locator fixed — genuine regression, see above)
+```
+
+Not touched: Header, Footer, Hero, Category hub pages, Fandom Quiz,
+Login/Register, Bookmarks, Chatbot, any data file, any asset, card
+markup/design, dependencies.
+
+### Tests / validation
+
+| Check | Result |
+|---|---|
+| `npm run lint` | clean |
+| `npm run typecheck` | clean |
+| `npm run build` | clean |
+| `npm run test` (Vitest) | **189 / 189** (unchanged — no Vitest-covered source file touched this phase) |
+| `e2e/content-honesty.spec.ts` | **29 / 29** — no new scaffolding/honesty regression from the grid/thumbnail changes |
+| `e2e/persistence.spec.ts` | **3 / 3** (was 2/3 before the placeholder-locator fix above) |
+| `e2e/responsive.spec.ts` (+ `persistence.spec.ts` together) | **43 / 43** |
+| Manual Playwright checks | Merchandise/Trailers/Events: 5/3/1 grid columns at 1440/768/375px, 0 overflow, 0 console errors. Cart: thumbnail decodes, quantity + remove behaviour intact, 0 overflow at 375px. |
+
+### Git
+
+Before: `master`, HEAD `9bb5950`. After: same branch, same HEAD, working
+tree extended with this phase's changes (see Files changed above).
+
+**No `git commit` was performed. No `git push` was performed.**
